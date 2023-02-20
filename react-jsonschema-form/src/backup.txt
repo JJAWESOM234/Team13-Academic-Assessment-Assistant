@@ -1,0 +1,42 @@
+"programSLOs": {
+          "type": "array",
+          "title": "",
+          "items": [ 
+              {
+                "type": "string",
+                "title": "SLO1",
+              },
+              {
+                "type": "array",
+                "title": "Bloom1",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Knowledge",
+                    "Analysis",
+                    "Comprehension",
+                    "Synthesis",
+                    "Application",
+                    "Evaluation"
+                  ]
+                },
+                "uniqueItems": true
+              },
+              {
+                "type": "array",
+                "title": "Common1",
+                "items" : {
+                  "type": "string",
+                  "enum": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "Not Applicable for SLO",
+                  ]
+                },
+                "uniqueItems": true
+              }
+            ],
+          
+        }
