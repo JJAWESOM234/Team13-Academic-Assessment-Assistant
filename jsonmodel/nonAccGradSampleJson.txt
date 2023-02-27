@@ -21,150 +21,44 @@
     3. Effective oral and written communication
     4. Knowledge of discipline’s ethics and standards`,
       "properties": {
-        "programSLOs": {
-          "type": "object",
+        "programSLOTable": {
+          "minItems": 1,
           "title": "",
-          "properties": {
-            "programSLOsSLO1":{
-              "type": "string",
-              "title": "SLO1",
-            },
-            "programSLOsSLO1Bloom":{
-              "type": "array",
-              "title": "Bloom’s Taxonomy Cognitive Level",
-              "items": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "programSLODesc":{
                 "type": "string",
-                "enum": [
-                  "Knowledge",
-                  "Analysis",
-                  "Comprehension",
-                  "Synthesis",
-                  "Application",
-                  "Evaluation"
-                ]
+                "title": "SLODesc",
               },
-              "uniqueItems": true
-            },
-            "programSLOsSLO1Common":{
-              "type": "array",
-              "title": "Common Graduate Program SLOs",
-              "items" : {
+              "programSLOBloom":{
                 "type": "string",
-                "enum": [
-                  "1",
-                  "2",
-                  "3",
-                  "4",
-                  "Not Applicable for SLO",
-                ]
+                "title": "Bloom’s Taxonomy Cognitive Level",
+                "oneOf": [
+                  {"const": "Knowledge", "title": "Knowledge"},
+                  {"const": "Analysis", "title": "Analysis"},
+                  {"const": "Comprehension", "title": "Comprehension"},
+                  {"const": "Synthesis", "title": "Synthesis"},
+                  {"const": "Application", "title": "Application"},
+                  {"const": "Evaluation", "title": "Evaluation"}
+                  ]
               },
-              "uniqueItems": true
-            },
-            "programSLOsSLO2":{
-              "type": "string",
-              "title": "SLO2",
-            },
-            "programSLOsSLO2Bloom":{
-              "type": "array",
-              "title": "Bloom’s Taxonomy Cognitive Level",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "Knowledge",
-                  "Analysis",
-                  "Comprehension",
-                  "Synthesis",
-                  "Application",
-                  "Evaluation"
-                ]
+              "programSLOCommon":{
+                "type": "array",
+                "title": "Common Graduate Program SLOs",
+                "items" : {
+                  "type": "string",
+                  "enum": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "Not Applicable for SLO",
+                  ]
+                },
+                "uniqueItems": true
               },
-              "uniqueItems": true
-            },
-            "programSLOsSLO2Common":{
-              "type": "array",
-              "title": "Common Graduate Program SLOs",
-              "items" : {
-                "type": "string",
-                "enum": [
-                  "1",
-                  "2",
-                  "3",
-                  "4",
-                  "Not Applicable for SLO",
-                ]
-              },
-              "uniqueItems": true
-            },
-            "programSLOsSLO3":{
-              "type": "string",
-              "title": "SLO3",
-            },
-            "programSLOsSLO3Bloom":{
-              "type": "array",
-              "title": "Bloom’s Taxonomy Cognitive Level",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "Knowledge",
-                  "Analysis",
-                  "Comprehension",
-                  "Synthesis",
-                  "Application",
-                  "Evaluation"
-                ]
-              },
-              "uniqueItems": true
-            },
-            "programSLOsSLO3Common":{
-              "type": "array",
-              "title": "Common Graduate Program SLOs",
-              "items" : {
-                "type": "string",
-                "enum": [
-                  "1",
-                  "2",
-                  "3",
-                  "4",
-                  "Not Applicable for SLO",
-                ]
-              },
-              "uniqueItems": true
-            },
-            "programSLOsSLO4":{
-              "type": "string",
-              "title": "SLO4",
-            },
-            "programSLOsSLO4Bloom":{
-              "type": "array",
-              "title": "Bloom’s Taxonomy Cognitive Level",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "Knowledge",
-                  "Analysis",
-                  "Comprehension",
-                  "Synthesis",
-                  "Application",
-                  "Evaluation"
-                ]
-              },
-              "uniqueItems": true
-            },
-            "programSLOsSLO4Common":{
-              "type": "array",
-              "title": "Common Graduate Program SLOs",
-              "items" : {
-                "type": "string",
-                "enum": [
-                  "1",
-                  "2",
-                  "3",
-                  "4",
-                  "Not Applicable for SLO",
-                ]
-              },
-              "uniqueItems": true
-            },
+            }
           }
         },
         "proStandardsQuestion": {
@@ -201,6 +95,7 @@
       "properties": {
         "assessmentMeasure": {
           "type": "array",
+          "minItems": 4,
           "items": {
             "type": "object",
             "properties": {
@@ -219,17 +114,22 @@
                   "type": "string",
                   "enum": ["Examination", "Product", "Performance"]
                 },
+                "uniqueItems": true,
                 "description": "Check all that apply",
-                "uniqueItems": true
               },
               "measureType":{
                 "title": "Type",
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": ["Direct Measure", "Indirect Measure"]
-                },
-                "uniqueItems": true
+                "type": "string",
+                "oneOf": [
+                  {
+                    "title": "Direct Measure",
+                    "const": "direct"
+                  },
+                  {
+                    "title": "Indirect Measure",
+                    "const": "indirect"
+                  }
+                ]
               },
               "measurePoint":{
                 "title": "Point In Program Assessment is Administered",
@@ -237,7 +137,16 @@
                 "properties": {
                   "measurePointInProgram": {
                     "type": "string",
-                    "enum": ["In Final Term of Program", "In Final Year of Program"]
+                    "oneOf": [
+                      {
+                        "title": "In final term of program",
+                        "const": "finalTerm"
+                      },
+                      {
+                        "title": "In final year of program",
+                        "const": "finalYear"
+                      }
+                    ]
                   },
                   "measurePointLocation": {
                     "type": "string"
@@ -246,20 +155,35 @@
               },
               "measurePopulation": {
                 "title": "Population Measured",
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": ["All Students", "Sample of Students - Describe below"]//when sample selected, allow string input to describe
-                },
-                "uniqueItems": true
+                "type": "string",
+                "oneOf": [
+                  {
+                    "title": "All Students",
+                    "const": "allStudents"
+                  },
+                  {
+                    "title": "Sample of Students - Describe below",
+                    "const": "sampleStudents"
+                  }
+                ]
               },
               "measureDataFreq": {
                 "title": "Frequency of Data Collection",
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": ["Once/semester", "Once/year", "Other - Describe below"]//when sample selected, allow string input to describe
-                }
+                "type": "string",
+                "oneOf": [
+                  {
+                    "title": "Once/semester",
+                    "const": "oncePerSemester"
+                  },
+                  {
+                    "title": "Once/year",
+                    "const": "oncePerYear"
+                  },
+                  {
+                    "title": "Other - Describe Below",
+                    "const": "other"
+                  }
+                ]
               },
               "measureProficiencyThreshold": {
                 "title": "Proficiency Threshold",
@@ -284,179 +208,359 @@
       "title": "III. Data Collection and Analysis",
       "properties": {
         "dataResultsTable":{
-          "type": "object",
+          "type": "array",
           "description": `A.    Results Table – Report results for each SLO. If an SLO was assessed by 
-      multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.`,
-          "properties":{
-            "dataResultsSLO1":{
-              "type": "object",
-              "title": "SLO 1 - Measure One",
-              "properties":{
-                "dataResultsSLO1Range":{
-                  "type": "string",
-                  "title": "Data Collection Date Range"
-                },
-                "dataResultsSLO1NumStudents":{
-                  "type": "number",
-                  "title": "Number of Students Assessed"
-                },
-                "dataResultsSLO1PercStudents":{
-                  "type": "string",
-                  "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
-                }
+          multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.`,
+          "minItems": 4,
+          "items": {
+            "properties":{
+              "dataResultsEntryName":{
+                "type": "string",
+                "title": "SLO Number & Measure Number"
+              },
+              "dataResultsEntryRange":{
+                "type": "string",
+                "title": "Data Collection Date Range"
+              },
+              "dataResultsEntryNumStudents":{
+                "type": "number",
+                "title": "Number of Students Assessed"
+              },
+              "dataResultsEntryPercStudents":{
+                "type": "string",
+                "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
               }
-            },
-            "dataResultsSLO2":{
-              "type": "object",
-              "title": "SLO 2 - Measure One",
-              "properties":{
-                "dataResultsSLO2Range":{
-                  "type": "string",
-                  "title": "Data Collection Date Range"
-                },
-                "dataResultsSLO2NumStudents":{
-                  "type": "number",
-                  "title": "Number of Students Assessed"
-                },
-                "dataResultsSLO2PercStudents":{
-                  "type": "string",
-                  "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
-                }
-              }
-            },
-            "dataResultsSLO3":{
-              "type": "object",
-              "title": "SLO 3 - Measure One",
-              "properties":{
-                "dataResultsSLO3Range":{
-                  "type": "string",
-                  "title": "Data Collection Date Range"
-                },
-                "dataResultsSLO3NumStudents":{
-                  "type": "number",
-                  "title": "Number of Students Assessed"
-                },
-                "dataResultsSLO3PercStudents":{
-                  "type": "string",
-                  "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
-                }
-              }
-            },
-            "dataResultsSLO4":{
-              "type": "object",
-              "title": "SLO 4 - Measure One",
-              "properties":{
-                "dataResultsSLO4Range":{
-                  "type": "string",
-                  "title": "Data Collection Date Range"
-                },
-                "dataResultsSLO4NumStudents":{
-                  "type": "number",
-                  "title": "Number of Students Assessed"
-                },
-                "dataResultsSLO4PercStudents":{
-                  "type": "string",
-                  "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
-                }
-              }
-            },
+            }
           }
         },
         "dataSLOStatusTable":{
-          "type": "object",
+          "type": "array",
           "description": `B.  SLO Status Table – Based on the results reported in the above table and 
           referring to the program proficiency target, indicate the current status of program SLOs as Met, 
           Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.`,
-          "properties": {
-            "dataSLO-1Status":{
-              "type": "array",
-              "title": "SLO 1",
-              "items": {
+          "minItems": 4,
+          "items": {
+            "properties": {
+              "dataSLOName":{
                 "type": "string",
-                "enum": ["Met", "Partially Met", "Not Met", "Unknown"]
+                "title": "SLO Name/#"
               },
-              "uniqueItems": true
-            },
-            "dataSLO-2Status":{
-              "type": "array",
-              "title": "SLO 2",
-              "items": {
+              "dataSLOStatus":{
                 "type": "string",
-                "enum": ["Met", "Partially Met", "Not Met", "Unknown"]
+                "oneOf": [
+                  {
+                    "title": "Met",
+                    "const": "met"
+                  },
+                  {
+                    "title": "Partially Met",
+                    "const": "partiallyMet"
+                  },
+                  {
+                    "title": "Not Met",
+                    "const": "notMet"
+                  },
+                  {
+                    "title": "Unknown",
+                    "const": "unknown"
+                  }
+                ]
               },
-              "uniqueItems": true
-            },
-            "dataSLO-3Status":{
-              "type": "array",
-              "title": "SLO 3",
-              "items": {
-                "type": "string",
-                "enum": ["Met", "Partially Met", "Not Met", "Unknown"]
-              },
-              "uniqueItems": true
-            },
-            "dataSLO-4Status":{
-              "type": "array",
-              "title": "SLO 4",
-              "items": {
-                "type": "string",
-                "enum": ["Met", "Partially Met", "Not Met", "Unknown"]
-              },
-              "uniqueItems": true
             }
           }
         },
         "dataResultsDescription":{
-          "type": "object",
+          "type": "string",
           "description": `C. Describe how results are communicated within the program. Address each SLO. 
-          If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.`,
-          "properties": {
-            "dataResultsDescriptionInput":{
-              "type": "string"
-            }
-          }
+          If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.`
+          
         }
       }
     },
     "decisionsAndActions":{
-      "type": "object",
+      "type": "array",
       "title": "IV. Decisions and Actions",
       "description": `Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. 
       Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions: 
       What are the effects of your previously stated changes from your last report? 
       What did you do in response to your previous assessment report feedback?
       How have you made progress since the last assessment report? `,
-
-      "properties":{
-        "decisionsAndActionsSLO1":{
-          "type": "string",
-          "title": "SLO 1"
-        },
-        "decisionsAndActionsSLO2":{
-          "type": "string",
-          "title": "SLO 2"
-        },
-        "decisionsAndActionsSLO3":{
-          "type": "string",
-          "title": "SLO 3"
-        },
-        "decisionsAndActionsSLO4":{
-          "type": "string",
-          "title": "SLO 4"
+      "minItems": 4,
+      "items": {
+        "properties":{
+          "decisionsAndActionsSLO":{
+            "type": "string",
+            "title": "SLO #"
+          },
+          "decisionsAndActionsSLODesc":{
+            "type": "string",
+            "title": "Description"
+          }
         }
       }
     },
 
     "additionalInformation":{
-      "type": "object",
+      "type": "string",
       "title": "V. Additional Information",
-      "description": `OPTONAL:  Provide additional information that may be helpful to reviewers.`,
-      "properties": {
-        "additionalInformationInput":{
-          "type": "string",
-          "title": ""
+      "description": `OPTONAL:  Provide additional information that may be helpful to reviewers.`
+    }
+  }
+};
+
+const uiSchema = {
+  "studentLearningOutcomes": {
+    "stakeholders":{
+      "ui:widget": "textarea"
+    },
+
+    "proStandardsQuestion":{
+      "ui:widget": "radio"
+    },
+
+    "programSLOTable":{
+      "items": {
+        "programSLO":{
+          "ui:widget": "textarea"
+        },
+        "programSLOBloom":{
+          "ui:widget": "radio"
+        },
+        "programSLOCommon":{
+          "ui:widget": "CheckboxesWidget"
         }
       }
     }
+  },
+
+  "assessmentMethods":{
+    "assessmentMeasure":{
+      "items": {
+        "measureDomain":{
+          "ui:widget": "checkboxes"
+        },
+        "measureType":{
+          "ui:widget": "radio"
+        },
+        "measurePoint":{
+          "measurePointInProgram":{
+            "ui:widget": "radio"
+          }
+        },
+        "measurePopulation":{
+            "ui:widget": "radio"
+        },
+        "measureDataFreq":{
+            "ui:widget": "RadioWidget"
+        }
+      }
+    }
+  },
+
+  "dataCollection":{
+    "dataSLOStatusTable":{
+      "items": {
+        "dataSLOStatus":{
+          "ui:widget": "RadioWidget"
+        },
+      }
+    },
+    "dataResultsDescription":{
+      "ui:widget": "textarea"
+    }
+  },
+
+  "decisionsAndActions":{
+    "decisionsAndActionsSLO1":{
+      "ui:widget": "textarea"
+    },
+    "decisionsAndActionsSLO2":{
+      "ui:widget": "textarea"
+    },
+    "decisionsAndActionsSLO3":{
+      "ui:widget": "textarea"
+    },
+    "decisionsAndActionsSLO4":{
+      "ui:widget": "textarea"
+    },
+  },
+
+  "additionalInformation":{
+    "ui:widget": "textarea"
   }
+}
+
+const formData = {
+  "college": "College of IS&T",
+  "program": "Computer Science",
+  "academicYear": "2022-2023",
+  "preparer": "John Doe",
+  "deptSchool": "Computer Science Department",
+  "degreeLevel": "Master's",
+  "dateRange": "August 15, 2022 - May 15, 2023",
+
+  "studentLearningOutcomes":{
+    "programSLOTable":[
+      {
+      "programSLODesc": "Students will learn XYZ",
+      "programSLOBloom": "Knowledge",
+      "programSLOCommon": ["1", "3"]
+      },
+      {
+      "programSLODesc": "Students will learn ABC",
+      "programSLOBloom": "Comprehension",
+      "programSLOCommon": ["3", "4"]
+      },
+      {
+      "programSLODesc": "Students have TUV",
+      "programSLOBloom": "Analysis",
+      "programSLOCommon": ["2"]
+      },
+      {
+      "programSLODesc": "Students know JKL",
+      "programSLOBloom": "Evaluation",
+      "programSLOCommon": ["Not Applicable for SLO"]
+      },
+    ],
+    
+    "proStandardsQuestion": true,
+    "stakeholders": `When it comes to the creation and review of Student Learning Outcomes (SLOs), stakeholders play a crucial role in ensuring that these outcomes accurately reflect the needs and expectations of the educational community. This includes both internal stakeholders such as faculty, staff, and students, as well as external stakeholders such as employers, accrediting bodies, and community partners.`
+  },
+
+  "assessmentMethods":{
+    "assessmentMeasure":[
+      {
+        "measureTitle": "Tests and Exams",
+        "measureDescription": "This is the measure of all tests and exams",
+        "measureDomain": ["Examination"],
+        "measureType": "direct",
+        "measurePoint":{
+          "measurePointInProgram": "finalTerm",
+          "measurePointLocation": "Dodge Campus"
+        },
+        "measurePopulation": "allStudents",
+        "measureDataFreq": "other",
+        "measureProficiencyThreshold": "Proficiency Threshold is ###",
+        "measureProficiencyTarget": "Proficiency Target is ##%"
+      },
+      {
+        "measureTitle": "Surveys",
+        "measureDescription": "This is the measure of exit surveys.",
+        "measureDomain": ["Product"],
+        "measureType": "direct",
+        "measurePoint":{
+          "measurePointInProgram": "finalTerm",
+          "measurePointLocation": "Dodge Campus"
+        },
+        "measurePopulation": "sampleStudents",
+        "measureDataFreq": "oncePerYear",
+        "measureProficiencyThreshold": "Proficiency Threshold is ###",
+        "measureProficiencyTarget": "Proficiency Target is ##%"
+      },
+      {
+        "measureTitle": "Tests and Exams",
+        "measureDescription": "This is the measure of all tests and exams",
+        "measureDomain": ["Examination"],
+        "measureType": "direct",
+        "measurePoint":{
+          "measurePointInProgram": "finalTerm",
+          "measurePointLocation": "Dodge Campus"
+        },
+        "measurePopulation": "allStudents",
+        "measureDataFreq": "other",
+        "measureProficiencyThreshold": "Proficiency Threshold is ###",
+        "measureProficiencyTarget": "Proficiency Target is ##%"
+      },
+      {
+        "measureTitle": "Surveys",
+        "measureDescription": "This is the measure of exit surveys.",
+        "measureDomain": ["Product"],
+        "measureType": "direct",
+        "measurePoint":{
+          "measurePointInProgram": "finalTerm",
+          "measurePointLocation": "Dodge Campus"
+        },
+        "measurePopulation": "sampleStudents",
+        "measureDataFreq": "oncePerSemester",
+        "measureProficiencyThreshold": "Proficiency Threshold is ###",
+        "measureProficiencyTarget": "Proficiency Target is ##%"
+      }
+    ],
+    "measureComplementDirect": "Describe indirect measures here."
+  },
+
+  "dataCollection":{
+    "dataResultsTable":[
+      {
+          "dataResultsEntryName": "SLO 1 - Measure One",
+          "dataResultsEntryRange": "August 15, 2022 - December 15, 2022",
+          "dataResultsEntryNumStudents": 242,
+          "dataResultsEntryPercStudents": "78%"    
+      },
+      {
+          "dataResultsEntryName": "SLO 1 - Measure Two",
+          "dataResultsEntryRange": "January 5, 2023 - May 15, 2023",
+          "dataResultsEntryNumStudents": 100,
+          "dataResultsEntryPercStudents": "45%"    
+      },
+      {
+          "dataResultsEntryName": "SLO 2 - Measure One",
+          "dataResultsEntryRange": "August 15, 2022 - December 15, 2022",
+          "dataResultsEntryNumStudents": 23,
+          "dataResultsEntryPercStudents": "56%"    
+      },
+      {
+          "dataResultsEntryName": "SLO 3 - Measure One",
+          "dataResultsEntryRange": "August 15, 2022 - December 15, 2022",
+          "dataResultsEntryNumStudents": 77,
+          "dataResultsEntryPercStudents": "79%"    
+      },
+      {
+          "dataResultsEntryName": "SLO 4 - Measure One",
+          "dataResultsEntryRange": "January 5, 2023 - May 15, 2023",
+          "dataResultsEntryNumStudents": 156,
+          "dataResultsEntryPercStudents": "92%"    
+      },
+    ],
+    "dataSLOStatusTable":[
+      {
+        "dataSLOName": "SLO 1",
+        "dataSLOStatus": "met"
+      },
+      {
+        "dataSLOName": "SLO 2",
+        "dataSLOStatus": "partiallyMet"
+      },
+      {
+        "dataSLOName": "SLO 3",
+        "dataSLOStatus": "met"
+      },
+      {
+        "dataSLOName": "SLO 4",
+        "dataSLOStatus": "unknown"
+      },
+    ],
+    "dataResultsDescription": "A description of the data results and how they are communicated."
+  },
+  
+  "decisionsAndActions":[
+    {
+      "decisionsAndActionsSLO": "SLO 1",
+      "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
+    },
+    {
+      "decisionsAndActionsSLO": "SLO 2",
+      "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
+    },
+    {
+      "decisionsAndActionsSLO": "SLO 3",
+      "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
+    },
+    {
+      "decisionsAndActionsSLO": "SLO 4",
+      "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
+    }
+  ],
+
+  "additionalInformation": "Additional info here"
 }
