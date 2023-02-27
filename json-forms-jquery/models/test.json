@@ -1,26 +1,92 @@
 {
-    "message": {
-      "type": "string",
-      "title": "Message"
-    },
-    "author": {
-      "type": "object",
-      "title": "Author",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "Name"
-        },
-        "gender": {
-          "type": "string",
-          "title": "Gender",
-          "enum": [ "male", "female", "alien" ]
-        },
-        "magic": {
-          "type": "integer",
-          "title": "Magic number",
-          "default": 42
-        }
-      }
-    }
-  }
+  "college": "College",
+  "program": "Proigram ",
+  "academicYear": "2019",
+  "preparer": "tesing",
+  "deptSchool": "computer scince ",
+  "degreeLevel": "bahelors",
+  "dateRange": "now until then ",
+  "studentLearningOutcomes": {
+      "aSegmentDesc": "",
+      "studentLearning": [
+          {
+              "programSLOsSLO1": "Do good1",
+              "programSLOsSLO1Bloom": "Knowledge",
+              "programSLOsSLO1Common": "1"
+          },
+          {
+              "programSLOsSLO1": "do good2",
+              "programSLOsSLO1Bloom": "Knowledge",
+              "programSLOsSLO1Common": "3"
+          }
+      ],
+      "bSegment": "yes",
+      "cSegment": "fasdf"
+  },
+  "assessmentMethods": {
+      "assessmentMeasure": [
+          {
+              "measureTitle": "slo1 measure 1",
+              "measureDescription": "it aligns 1",
+              "measureDomain": "Product",
+              "measureType": "Direct Measure",
+              "measurePoint": {
+                  "measurePointInProgram": "In Final Term of Program",
+                  "measurePointLocation": "Description"
+              },
+              "measurePopulation": "All Students",
+              "measureDataFreq": "Once/semester",
+              "measureProficiencyThreshold": "100",
+              "measureProficiencyTarget": "1005"
+          },
+          {
+              "measureTitle": "slo2 measure 1",
+              "measureDescription": "it aligns 2",
+              "measureDomain": "Product",
+              "measureType": "Direct Measure",
+              "measurePoint": {
+                  "measurePointInProgram": "In Final Term of Program",
+                  "measurePointLocation": "term program"
+              },
+              "measurePopulation": "All Students",
+              "measureDataFreq": "Once/semester",
+              "measureProficiencyThreshold": "50",
+              "measureProficiencyTarget": "75"
+          }
+      ],
+      "measureComplementDirect": "B section"
+  },
+  "dataCollection": {
+      "dataResultsTable": [
+          {
+              "SLOmeasure": [
+                  {
+                      "dataResultsSLO1Range": "now to then 1",
+                      "dataResultsSLO1NumStudents": 50,
+                      "dataResultsSLO1PercStudents": "7%"
+                  }
+              ]
+          },
+          {
+              "SLOmeasure": [
+                  {
+                      "dataResultsSLO1Range": "now to then 2",
+                      "dataResultsSLO1NumStudents": 75,
+                      "dataResultsSLO1PercStudents": "8%"
+                  }
+              ]
+          }
+      ],
+      "dataSLOStatusTable": {
+          "dataSLOStatustable": [{ "dataSLOStatus": "Partially Met" }]
+      },
+      "dataResultsDescription": "Section C"
+  },
+  "decisionsAndActions": {
+      "decisionsAndActionsSLO1": "decision 1",
+      "decisionsAndActionsSLO2": "decision 2",
+      "decisionsAndActionsSLO3": "decision 3",
+      "decisionsAndActionsSLO4": "decision 4"
+  },
+  "additionalInformation": "add info"
+}

@@ -31,7 +31,6 @@ $("#jsonform").jsonForm({
                     },
                     studentLearning: {
                         type: "array",
-                        minItems: "4",
                         title: "SLO Entries",
                         items: {
                             type: "object",
@@ -90,7 +89,6 @@ $("#jsonform").jsonForm({
                 properties: {
                     assessmentMeasure: {
                         type: "array",
-                        minItems: "4",
                         title: "SLO Measurements",
                         items: {
                             type: "object",
@@ -144,7 +142,7 @@ $("#jsonform").jsonForm({
                                 },
                                 measurePopulation: {
                                     title: "Population Measured",
-                                    type: "array",
+                                    type: "string",
                                     enum: [
                                         "All Students",
                                         "Sample of Students - Describe below",
@@ -153,7 +151,7 @@ $("#jsonform").jsonForm({
                                 },
                                 measureDataFreq: {
                                     title: "Frequency of Data Collection",
-                                    type: "array",
+                                    type: "string",
                                     enum: [
                                         "Once/semester",
                                         "Once/year",
@@ -185,7 +183,6 @@ $("#jsonform").jsonForm({
                     dataResultsTable: {
                         title: "SLO Measure Table",
                         type: "array",
-                        minItems: "4",
                         description:
                             "A.    Results Table – Report results for each SLO. If an SLO was assessed by multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.",
                         items: {
@@ -195,7 +192,6 @@ $("#jsonform").jsonForm({
                                 SLOmeasure: {
                                     title: "notitle",
                                     type: "array",
-                                    minItems: "1",
                                     items: {
                                         type: "object",
                                         title: "Measure #",
@@ -225,7 +221,6 @@ $("#jsonform").jsonForm({
                             dataSLOStatustable: {
                                 title: "notitle",
                                 type: "array",
-                                minItems: "4",
                                 items: {
                                     type: "object",
                                     title: "SLO #",
@@ -288,15 +283,12 @@ $("#jsonform").jsonForm({
     },
 
     onSubmit: function (errors, values) {
+        console.log(errors);
         if (errors) {
             $("#res").html("<p>I beg your pardon?</p>")
         } else {
             $("#res").html(
-                "<p>Hello " +
-                    values.name +
-                    "." +
-                    (values.age ? "<br/>You are " + values.age + "." : "") +
-                    "</p>"
+                "<p>"+JSON.stringify(values, null, 4) +"</p>"
             )
         }
     },
