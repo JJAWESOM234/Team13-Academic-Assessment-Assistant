@@ -9,6 +9,6 @@ The user inputs information into the form, on submitting a JSON string of the us
 1. Clone the react-jsonschema-form folder
 2. cd react-jsonschema-form
 3. npm start
-4. Application will run on browser at [localhost](http://localhost:3000/)
+4. Application will run on browser at localhost:3000
 
 # Release Notes
