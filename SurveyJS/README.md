@@ -9,7 +9,9 @@ src folder in template react app should be replaced with src folder from SurveyJ
 
 Move into react app directory and run `npm start`, the rendered form should open in a new browser
 
-# Getting Started with Create React App [AUTO-GENERATED]
+
+
+# Getting Started with Create React App [Auto-Generated]
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
