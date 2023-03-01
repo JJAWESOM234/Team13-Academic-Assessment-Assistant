@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 // Default V2 theme
 import 'survey-core/defaultV2.min.css';
-// Modern theme
-// import 'survey-core/modern.min.css';
+
 import { Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
+import { useCallback } from 'react';
 
 const surveyJson = {
+
   title: "Non-Accredited Graduate Assessment Report Template",
   type: "object",
 
@@ -46,8 +48,8 @@ const surveyJson = {
           inputType: "text",
         },
         {
-          name: "college",
-          title: "College",
+          name: "dateRange",
+          title: "Date Range of Data",
           inputType: "text",
         },
         {
@@ -282,17 +284,30 @@ const surveyJson = {
           type: "comment",
           name: "additionalInfo",
           title: " ",
-          placeholder: "OPTIONAL: Provide additional information that maay be helpful to reviewers.",
+          placeholder: "OPTIONAL: Provide additional information that may be helpful to reviewers.",
         }
       ]
     },
   ]
+
 };
 
+
+
+
 function App() {
+
   const survey = new Model(surveyJson);
 
+  const alertResults = useCallback((sender) => {
+    const results = JSON.stringify(sender.data);
+    alert(results);
+  }, []);
+
+  survey.onComplete.add(alertResults);
+
   return <Survey model = {survey}/>;
+
 }
 
 export default App;
