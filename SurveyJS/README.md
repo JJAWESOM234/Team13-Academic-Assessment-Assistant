@@ -1,3 +1,4 @@
+# AAA Form Generation with SurveyJS
 
 **Node** and **npm** must be installed
 
@@ -8,8 +9,6 @@ Run `npm install survey-react-ui --save` to install the *survey-react-ui* packag
 src folder in template react app should be replaced with src folder from SurveyJS
 
 Move into react app directory and run `npm start`, the rendered form should open in a new browser
-
-
 
 # Getting Started with Create React App [Auto-Generated]
 
