@@ -12,3 +12,7 @@ The user inputs information into the form, on submitting a JSON string of the us
 4. Application will run on browser at localhost:3000
 
 # Release Notes
+
+The application displays the Non-Accredited Graduate Assessment form to the browser. Users can input information,
+add and subtract SLO entries, assessment methods, decisions and actions, and data collection objects. On submitting
+the form, the user's input as a JSON string will be displayed in a browser alert.
