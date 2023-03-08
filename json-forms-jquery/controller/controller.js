@@ -1,3 +1,4 @@
+var iSLOCount = 0
 $("#jsonform").jsonForm({
     schema: {
         title: "Non-Accredited Graduate Assessment Report Template",
@@ -281,15 +282,50 @@ $("#jsonform").jsonForm({
             },
         },
     },
+    form: [
+        {
+            key: "studentLearningOutcomes",
+            onChange: function (evt) {
+                // iSLOCount = $(evt.target).studentLearning.length;
+                // console.log(evt.currentTarget);
+                console.log(
+                    $(
+                        evt.target.parentElement.parentElement.parentElement
+                            .parentElement.parentElement.childElementCount
+                    )
+                );
+            },
+        },
+        {
+            key: "assessmentMethods",
+        },
+        {
+            key: "dataCollection",
+        },
+        {
+            key: "decisionsAndActions",
+        },
+        {
+            key: "additionalInformation",
+        },
+        {
+            type: "button",
+            title: "Submit",
+            onClick: function (evt){
+                console.log(evt.target);
+                evt.target.submit;
+            }
+        },
+    ],
 
     onSubmit: function (errors, values) {
-        console.log(errors);
+        console.log(errors)
+        console.log(values)
         if (errors) {
             $("#res").html("<p>I beg your pardon?</p>")
         } else {
-            $("#res").html(
-                "<p>"+JSON.stringify(values, null, 4) +"</p>"
-            )
+            $("#res").html("<p>" + JSON.stringify(values, null, 4) + "</p>")
         }
+        console.log(values.studentLearningOutcomes.studentLearning.length)
     },
 })

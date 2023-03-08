@@ -1,92 +1,879 @@
-{
-  "college": "College",
-  "program": "Proigram ",
-  "academicYear": "2019",
-  "preparer": "tesing",
-  "deptSchool": "computer scince ",
-  "degreeLevel": "bahelors",
-  "dateRange": "now until then ",
-  "studentLearningOutcomes": {
-      "aSegmentDesc": "",
-      "studentLearning": [
-          {
-              "programSLOsSLO1": "Do good1",
-              "programSLOsSLO1Bloom": "Knowledge",
-              "programSLOsSLO1Common": "1"
-          },
-          {
-              "programSLOsSLO1": "do good2",
-              "programSLOsSLO1Bloom": "Knowledge",
-              "programSLOsSLO1Common": "3"
-          }
-      ],
-      "bSegment": "yes",
-      "cSegment": "fasdf"
-  },
-  "assessmentMethods": {
-      "assessmentMeasure": [
-          {
-              "measureTitle": "slo1 measure 1",
-              "measureDescription": "it aligns 1",
-              "measureDomain": "Product",
-              "measureType": "Direct Measure",
-              "measurePoint": {
-                  "measurePointInProgram": "In Final Term of Program",
-                  "measurePointLocation": "Description"
-              },
-              "measurePopulation": "All Students",
-              "measureDataFreq": "Once/semester",
-              "measureProficiencyThreshold": "100",
-              "measureProficiencyTarget": "1005"
-          },
-          {
-              "measureTitle": "slo2 measure 1",
-              "measureDescription": "it aligns 2",
-              "measureDomain": "Product",
-              "measureType": "Direct Measure",
-              "measurePoint": {
-                  "measurePointInProgram": "In Final Term of Program",
-                  "measurePointLocation": "term program"
-              },
-              "measurePopulation": "All Students",
-              "measureDataFreq": "Once/semester",
-              "measureProficiencyThreshold": "50",
-              "measureProficiencyTarget": "75"
-          }
-      ],
-      "measureComplementDirect": "B section"
-  },
-  "dataCollection": {
-      "dataResultsTable": [
-          {
-              "SLOmeasure": [
-                  {
-                      "dataResultsSLO1Range": "now to then 1",
-                      "dataResultsSLO1NumStudents": 50,
-                      "dataResultsSLO1PercStudents": "7%"
-                  }
-              ]
-          },
-          {
-              "SLOmeasure": [
-                  {
-                      "dataResultsSLO1Range": "now to then 2",
-                      "dataResultsSLO1NumStudents": 75,
-                      "dataResultsSLO1PercStudents": "8%"
-                  }
-              ]
-          }
-      ],
-      "dataSLOStatusTable": {
-          "dataSLOStatustable": [{ "dataSLOStatus": "Partially Met" }]
-      },
-      "dataResultsDescription": "Section C"
-  },
-  "decisionsAndActions": {
-      "decisionsAndActionsSLO1": "decision 1",
-      "decisionsAndActionsSLO2": "decision 2",
-      "decisionsAndActionsSLO3": "decision 3",
-      "decisionsAndActionsSLO4": "decision 4"
-  },
-  "additionalInformation": "add info"
-}
+[
+    {
+        "NAME_OF_TEST": "secondary test one",
+        "college": "University of Nebraska at Omaha",
+        "program": "Computer Science ",
+        "academicYear": "2023",
+        "preparer": "John Smith",
+        "deptSchool": "IS&T",
+        "degreeLevel": "Masters",
+        "dateRange": "02/01/2023 to 03/01/2023",
+        "studentLearningOutcomes": {
+            "aSegmentDesc": "",
+            "studentLearning": [
+                {
+                    "programSLOsSLO1": "Understand the basics of computer technology ",
+                    "programSLOsSLO1Bloom": "Knowledge",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "understand the algorithms and their complexity ",
+                    "programSLOsSLO1Bloom": "Comprehension",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Develop advanced problem solving techniques ",
+                    "programSLOsSLO1Bloom": "Evaluation",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Understand project management ",
+                    "programSLOsSLO1Bloom": "Analysis",
+                    "programSLOsSLO1Common": "1"
+                }
+            ],
+            "bSegment": "yes",
+            "cSegment": "Students will understand how to do each above SLO which reflects the desires of the workplace. "
+        },
+        "assessmentMethods": {
+            "assessmentMeasure": [
+                {
+                    "measureTitle": "slo1 measure 1",
+                    "measureDescription": "it aligns 1",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "Assessment when finished entire program "
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "70%",
+                    "measureProficiencyTarget": "95%"
+                },
+                {
+                    "measureTitle": "slo2 measure 1",
+                    "measureDescription": "it aligns 2",
+                    "measureDomain": "Product",
+                    "measureType": "Indirect Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Year of Program",
+                        "measurePointLocation": "The most advanced classes will not contribute towards slos"
+                    },
+                    "measurePopulation": "Sample of Students - Describe below",
+                    "measureDataFreq": "Once/year",
+                    "measureProficiencyThreshold": "80%",
+                    "measureProficiencyTarget": "85%"
+                },
+                {
+                    "measureTitle": "slo3 measure 1",
+                    "measureDescription": "it aligns 3",
+                    "measureDomain": "Performance",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "No Desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "75%",
+                    "measureProficiencyTarget": "88%"
+                },
+                {
+                    "measureTitle": "slo4 measure1",
+                    "measureDescription": "it aligns 4",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "No desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "90%",
+                    "measureProficiencyTarget": "100%"
+                }
+            ],
+            "measureComplementDirect": "No additional information for section b."
+        },
+        "dataCollection": {
+            "dataResultsTable": [
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 50,
+                            "dataResultsSLO1PercStudents": "80%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 43,
+                            "dataResultsSLO1PercStudents": "98%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 54,
+                            "dataResultsSLO1PercStudents": "16%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 123,
+                            "dataResultsSLO1PercStudents": "87%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 831,
+                            "dataResultsSLO1PercStudents": "77%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 2,
+                            "dataResultsSLO1PercStudents": "50%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 779,
+                            "dataResultsSLO1PercStudents": "78%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 143,
+                            "dataResultsSLO1PercStudents": "99%"
+                        }
+                    ]
+                }
+            ],
+            "dataSLOStatusTable": {
+                "dataSLOStatustable": [
+                    { "dataSLOStatus": "Met" },
+                    { "dataSLOStatus": "Partially Met" },
+                    { "dataSLOStatus": "Not Met" },
+                    { "dataSLOStatus": "Unknown" }
+                ]
+            },
+            "dataResultsDescription": "The results are communicated because they work. "
+        },
+        "decisionsAndActions": {
+            "decisionsAndActionsSLO1": "Continue with the goal",
+            "decisionsAndActionsSLO2": "discontinue the goal",
+            "decisionsAndActionsSLO3": "no action",
+            "decisionsAndActionsSLO4": "no action"
+        },
+        "additionalInformation": "No add info"
+    },
+
+    {
+        "NAME_OF_TEST": "secondary test two",
+        "college": "University of Nebraska at Omaha",
+        "program": "Computer Science ",
+        "academicYear": "2023",
+        "preparer": "John Smith",
+        "deptSchool": "IS&T",
+        "degreeLevel": "Masters",
+        "dateRange": "02/01/2023 to 03/01/2023",
+        "studentLearningOutcomes": {
+            "aSegmentDesc": "",
+            "studentLearning": [
+                {
+                    "programSLOsSLO1": "Understand the basics of computer technology ",
+                    "programSLOsSLO1Bloom": "Knowledge",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "understand the algorithms and their complexity ",
+                    "programSLOsSLO1Bloom": "Comprehension",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Develop advanced problem solving techniques ",
+                    "programSLOsSLO1Bloom": "Evaluation",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Understand project management ",
+                    "programSLOsSLO1Bloom": "Analysis",
+                    "programSLOsSLO1Common": "1"
+                }
+            ],
+            "bSegment": "yes",
+            "cSegment": "Students will understand how to do each above SLO which reflects the desires of the workplace. "
+        },
+        "assessmentMethods": {
+            "assessmentMeasure": [
+                {
+                    "measureTitle": "slo1 measure 1",
+                    "measureDescription": "it aligns 1",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "Assessment when finished entire program "
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "70%",
+                    "measureProficiencyTarget": "95%"
+                },
+                {
+                    "measureTitle": "slo2 measure 1",
+                    "measureDescription": "it aligns 2",
+                    "measureDomain": "Product",
+                    "measureType": "Indirect Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Year of Program",
+                        "measurePointLocation": "The most advanced classes will not contribute towards slos"
+                    },
+                    "measurePopulation": "Sample of Students - Describe below",
+                    "measureDataFreq": "Once/year",
+                    "measureProficiencyThreshold": "80%",
+                    "measureProficiencyTarget": "85%"
+                },
+                {
+                    "measureTitle": "slo3 measure 1",
+                    "measureDescription": "it aligns 3",
+                    "measureDomain": "Performance",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "No Desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "75%",
+                    "measureProficiencyTarget": "88%"
+                },
+                {
+                    "measureTitle": "slo4 measure1",
+                    "measureDescription": "it aligns 4",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "No desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "90%",
+                    "measureProficiencyTarget": "100%"
+                }
+            ],
+            "measureComplementDirect": "No additional information for section b."
+        },
+        "dataCollection": {
+            "dataResultsTable": [
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 50,
+                            "dataResultsSLO1PercStudents": "80%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 54,
+                            "dataResultsSLO1PercStudents": "16%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 123,
+                            "dataResultsSLO1PercStudents": "87%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 831,
+                            "dataResultsSLO1PercStudents": "77%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 2,
+                            "dataResultsSLO1PercStudents": "50%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 86,
+                            "dataResultsSLO1PercStudents": "79%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 779,
+                            "dataResultsSLO1PercStudents": "78%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 143,
+                            "dataResultsSLO1PercStudents": "99%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 654,
+                            "dataResultsSLO1PercStudents": "56%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 985,
+                            "dataResultsSLO1PercStudents": "89%"
+                        }
+                    ]
+                }
+            ],
+            "dataSLOStatusTable": {
+                "dataSLOStatustable": [
+                    { "dataSLOStatus": "Met" },
+                    { "dataSLOStatus": "Partially Met" },
+                    { "dataSLOStatus": "Not Met" },
+                    { "dataSLOStatus": "Unknown" }
+                ]
+            },
+            "dataResultsDescription": "The results are communicated because they work. "
+        },
+        "decisionsAndActions": {
+            "decisionsAndActionsSLO1": "Continue with the goal",
+            "decisionsAndActionsSLO2": "discontinue the goal",
+            "decisionsAndActionsSLO3": "no action",
+            "decisionsAndActionsSLO4": "no action"
+        },
+        "additionalInformation": "No add info"
+    },
+    {
+        "NAME_OF_TEST": "secondary test three",
+        "college": "University of Nebraska at Omaha",
+        "program": "Computer Science ",
+        "academicYear": "2023",
+        "preparer": "John Smith",
+        "deptSchool": "IS&T",
+        "degreeLevel": "Masters",
+        "dateRange": "02/01/2023 to 03/01/2023",
+        "studentLearningOutcomes": {
+            "aSegmentDesc": "",
+            "studentLearning": [
+                {
+                    "programSLOsSLO1": "Understand the basics of computer technology ",
+                    "programSLOsSLO1Bloom": "Knowledge",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "understand the algorithms and their complexity ",
+                    "programSLOsSLO1Bloom": "Comprehension",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Develop advanced problem solving techniques ",
+                    "programSLOsSLO1Bloom": "Evaluation",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Understand project management ",
+                    "programSLOsSLO1Bloom": "Analysis",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Understand the interworkings of programming languages ",
+                    "programSLOsSLO1Bloom": "Knowledge",
+                    "programSLOsSLO1Common": "4"
+                }
+            ],
+            "bSegment": "yes",
+            "cSegment": "Students will understand how to do each above SLO which reflects the desires of the workplace. "
+        },
+        "assessmentMethods": {
+            "assessmentMeasure": [
+                {
+                    "measureTitle": "slo1 measure 1",
+                    "measureDescription": "it aligns 1",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "Assessment when finished entire program "
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "70%",
+                    "measureProficiencyTarget": "95%"
+                },
+                {
+                    "measureTitle": "slo2 measure 1",
+                    "measureDescription": "it aligns 2",
+                    "measureDomain": "Product",
+                    "measureType": "Indirect Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Year of Program",
+                        "measurePointLocation": "The most advanced classes will not contribute towards slos"
+                    },
+                    "measurePopulation": "Sample of Students - Describe below",
+                    "measureDataFreq": "Once/year",
+                    "measureProficiencyThreshold": "80%",
+                    "measureProficiencyTarget": "85%"
+                },
+                {
+                    "measureTitle": "slo3 measure 1",
+                    "measureDescription": "it aligns 3",
+                    "measureDomain": "Performance",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "No Desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "75%",
+                    "measureProficiencyTarget": "88%"
+                },
+                {
+                    "measureTitle": "slo4 measure1",
+                    "measureDescription": "it aligns 4",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "No desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "90%",
+                    "measureProficiencyTarget": "100%"
+                },
+                {
+                    "measureTitle": "slo5 measure 1",
+                    "measureDescription": "it aligns5",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "no desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "80%",
+                    "measureProficiencyTarget": "80%"
+                }
+            ],
+            "measureComplementDirect": "No additional information for section b."
+        },
+        "dataCollection": {
+            "dataResultsTable": [
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 50,
+                            "dataResultsSLO1PercStudents": "80%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 54,
+                            "dataResultsSLO1PercStudents": "16%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 123,
+                            "dataResultsSLO1PercStudents": "87%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 831,
+                            "dataResultsSLO1PercStudents": "77%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 2,
+                            "dataResultsSLO1PercStudents": "50%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 86,
+                            "dataResultsSLO1PercStudents": "79%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 779,
+                            "dataResultsSLO1PercStudents": "78%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 143,
+                            "dataResultsSLO1PercStudents": "99%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 654,
+                            "dataResultsSLO1PercStudents": "56%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 985,
+                            "dataResultsSLO1PercStudents": "89%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 98,
+                            "dataResultsSLO1PercStudents": "89%"
+                        }
+                    ]
+                }
+            ],
+            "dataSLOStatusTable": {
+                "dataSLOStatustable": [
+                    { "dataSLOStatus": "Met" },
+                    { "dataSLOStatus": "Partially Met" },
+                    { "dataSLOStatus": "Not Met" },
+                    { "dataSLOStatus": "Unknown" },
+                    { "dataSLOStatus": "Not Met" }
+                ]
+            },
+            "dataResultsDescription": "The results are communicated because they work. "
+        },
+        "decisionsAndActions": {
+            "decisionsAndActionsSLO1": "Continue with the goal",
+            "decisionsAndActionsSLO2": "discontinue the goal",
+            "decisionsAndActionsSLO3": "no action",
+            "decisionsAndActionsSLO4": "no action",
+            "decisionsAndActionsSLO5": "no action"
+        },
+        "additionalInformation": "No add info"
+    },
+    {
+        "NAME_OF_TEST": "secondary test four",
+        "college": "University of Nebraska at Omaha",
+        "program": "Computer Science ",
+        "academicYear": "2023",
+        "preparer": "John Smith",
+        "deptSchool": "IS&T",
+        "degreeLevel": "Masters",
+        "dateRange": "02/01/2023 to 03/01/2023",
+        "studentLearningOutcomes": {
+            "aSegmentDesc": "",
+            "studentLearning": [
+                {
+                    "programSLOsSLO1": "Understand the basics of computer technology ",
+                    "programSLOsSLO1Bloom": "Knowledge",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "understand the algorithms and their complexity ",
+                    "programSLOsSLO1Bloom": "Comprehension",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Develop advanced problem solving techniques ",
+                    "programSLOsSLO1Bloom": "Evaluation",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Understand project management ",
+                    "programSLOsSLO1Bloom": "Analysis",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Understand the basics of computer technology ",
+                    "programSLOsSLO1Bloom": "Knowledge",
+                    "programSLOsSLO1Common": "4"
+                },
+                {
+                    "programSLOsSLO1": "understand the algorithms and their complexity ",
+                    "programSLOsSLO1Bloom": "Comprehension",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Develop advanced problem solving techniques ",
+                    "programSLOsSLO1Bloom": "Synthesis",
+                    "programSLOsSLO1Common": "1"
+                },
+                {
+                    "programSLOsSLO1": "Understand project management ",
+                    "programSLOsSLO1Bloom": "Application",
+                    "programSLOsSLO1Common": "4"
+                }
+            ],
+            "bSegment": "No",
+            "cSegment": "Students will understand how to do each above SLO which reflects the desires of the workplace. "
+        },
+        "assessmentMethods": {
+            "assessmentMeasure": [
+                {
+                    "measureTitle": "slo1 measure 1",
+                    "measureDescription": "it aligns 1",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "Assessment when finished entire program "
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "70%",
+                    "measureProficiencyTarget": "95%"
+                },
+                {
+                    "measureTitle": "slo2 measure 1",
+                    "measureDescription": "it aligns 2",
+                    "measureDomain": "Product",
+                    "measureType": "Indirect Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Year of Program",
+                        "measurePointLocation": "The most advanced classes will not contribute towards slos"
+                    },
+                    "measurePopulation": "Sample of Students - Describe below",
+                    "measureDataFreq": "Once/year",
+                    "measureProficiencyThreshold": "80%",
+                    "measureProficiencyTarget": "85%"
+                },
+                {
+                    "measureTitle": "slo3 measure 1",
+                    "measureDescription": "it aligns 3",
+                    "measureDomain": "Performance",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "No Desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "75%",
+                    "measureProficiencyTarget": "88%"
+                },
+                {
+                    "measureTitle": "slo4 measure1",
+                    "measureDescription": "it aligns 4",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "No desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "90%",
+                    "measureProficiencyTarget": "100%"
+                },
+                {
+                    "measureTitle": "slo5 measure 1",
+                    "measureDescription": "it aligns5",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "no desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "80%",
+                    "measureProficiencyTarget": "80%"
+                },
+                {
+                    "measureTitle": "slo6",
+                    "measureDescription": "align6",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "no desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "66%",
+                    "measureProficiencyTarget": "77%"
+                },
+                {
+                    "measureTitle": "slo7",
+                    "measureDescription": "aligns7",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "no desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "88%",
+                    "measureProficiencyTarget": "99%"
+                },
+                {
+                    "measureTitle": "slo8",
+                    "measureDescription": "align8",
+                    "measureDomain": "Examination",
+                    "measureType": "Direct Measure",
+                    "measurePoint": {
+                        "measurePointInProgram": "In Final Term of Program",
+                        "measurePointLocation": "no desc"
+                    },
+                    "measurePopulation": "All Students",
+                    "measureDataFreq": "Once/semester",
+                    "measureProficiencyThreshold": "88%",
+                    "measureProficiencyTarget": "88%"
+                }
+            ],
+            "measureComplementDirect": "No additional information for section b."
+        },
+        "dataCollection": {
+            "dataResultsTable": [
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 50,
+                            "dataResultsSLO1PercStudents": "80%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 54,
+                            "dataResultsSLO1PercStudents": "16%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 123,
+                            "dataResultsSLO1PercStudents": "87%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 831,
+                            "dataResultsSLO1PercStudents": "77%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 2,
+                            "dataResultsSLO1PercStudents": "50%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 86,
+                            "dataResultsSLO1PercStudents": "79%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 779,
+                            "dataResultsSLO1PercStudents": "78%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 143,
+                            "dataResultsSLO1PercStudents": "99%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 654,
+                            "dataResultsSLO1PercStudents": "56%"
+                        },
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 985,
+                            "dataResultsSLO1PercStudents": "89%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 98,
+                            "dataResultsSLO1PercStudents": "89%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 123,
+                            "dataResultsSLO1PercStudents": "12%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 543,
+                            "dataResultsSLO1PercStudents": "45%"
+                        }
+                    ]
+                },
+                {
+                    "SLOmeasure": [
+                        {
+                            "dataResultsSLO1Range": "02/01/2023 to 03/01/2023",
+                            "dataResultsSLO1NumStudents": 654,
+                            "dataResultsSLO1PercStudents": "65%"
+                        }
+                    ]
+                }
+            ],
+            "dataSLOStatusTable": {
+                "dataSLOStatustable": [
+                    { "dataSLOStatus": "Met" },
+                    { "dataSLOStatus": "Partially Met" },
+                    { "dataSLOStatus": "Not Met" },
+                    { "dataSLOStatus": "Unknown" },
+                    { "dataSLOStatus": "Not Met" },
+                    { "dataSLOStatus": "Partially Met" },
+                    { "dataSLOStatus": "Not Met" },
+                    { "dataSLOStatus": "Unknown" }
+                ]
+            },
+            "dataResultsDescription": "The results are communicated because they work. "
+        },
+        "decisionsAndActions": {
+            "decisionsAndActionsSLO1": "Continue with the goal",
+            "decisionsAndActionsSLO2": "discontinue the goal",
+            "decisionsAndActionsSLO3": "no action",
+            "decisionsAndActionsSLO4": "no action",
+            "decisionsAndActionsSLO5": "no action",
+            "decisionsAndActionsSLO6": "no action",
+            "decisionsAndActionsSLO7": "no action",
+            "decisionsAndActionsSLO8": "no action"
+        },
+        "additionalInformation": "No add info"
+    }
+]
