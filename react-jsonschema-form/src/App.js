@@ -2,8 +2,8 @@ import logo from './logo.svg';
 import { RJSFSchema } from "@rjsf/utils";
 import Form from "@rjsf/core";
 import validator from "@rjsf/validator-ajv8";
+import FormSelector from './FormSelector'
 import { ArrayFieldTitleTemplateProps,ArrayFieldTemplateItemType, titleId, Registry } from "@rjsf/utils";
-import './form.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -626,13 +626,11 @@ const fields: RegistryFieldsType = {
 
 function App() {
   return (
-    <div className='body'>
-      <div className='rjsfForm'>
-        <Form 
-          schema={schema} validator={validator} uiSchema={uiSchema} 
-          fields={fields}
-          onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}/>
+    <div>
+      <div class="page-header" style={{ textAlign: 'center' }}>
+        <h1>Academic Assessment</h1>
       </div>
+      <FormSelector/>
     </div>
   );
 }
