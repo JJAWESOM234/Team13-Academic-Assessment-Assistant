@@ -41,7 +41,7 @@ const schema: RJSFSchema = {
     4. Knowledge of discipline’s ethics and standards`,
       "properties": {
         "programSLOTable": {
-          "minItems": 1,
+          "minItems": 4,
           "type": "array",
           "items": {
             "properties": {
@@ -113,7 +113,7 @@ const schema: RJSFSchema = {
       "properties": {
         "assessmentMeasure": {
           "type": "array",
-          "minItems": 0,
+          "minItems": 4,
           "items": {
             "type": "object",
             "properties": {
@@ -229,7 +229,7 @@ const schema: RJSFSchema = {
           "type": "array",
           "description": `A.    Results Table – Report results for each SLO. If an SLO was assessed by 
           multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.`,
-          "minItems": 1,
+          "minItems": 4,
           "items": {
             "properties":{
               "dataResultsEntryName":{
@@ -256,7 +256,7 @@ const schema: RJSFSchema = {
           "description": `B.  SLO Status Table – Based on the results reported in the above table and 
           referring to the program proficiency target, indicate the current status of program SLOs as Met, 
           Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.`,
-          "minItems": 1,
+          "minItems": 4,
           "items": {
             "properties": {
               "dataSLOName":{
@@ -303,7 +303,7 @@ const schema: RJSFSchema = {
       What are the effects of your previously stated changes from your last report? 
       What did you do in response to your previous assessment report feedback?
       How have you made progress since the last assessment report? `,
-      "minItems": 1,
+      "minItems": 4,
       "items": {
         "properties":{
           "decisionsAndActionsSLO":{

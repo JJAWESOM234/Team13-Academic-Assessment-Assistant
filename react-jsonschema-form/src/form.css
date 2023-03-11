@@ -1,0 +1,23 @@
+.body{
+    display: grid;  
+    justify-content: center; /* Horizontal */  
+    align-content: center; 
+}
+
+.rjsfForm{
+    margin: auto;
+    width: 50%;
+}
+
+.array-item{
+    display: grid;
+}
+.headerInfo{
+    display: inline;
+    width: 25%;
+}
+.array-item .array-item{
+    float: left;
+    width: 50%;
+    padding: 0 1em;
+}
