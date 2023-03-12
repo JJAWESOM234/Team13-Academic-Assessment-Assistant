@@ -3,7 +3,8 @@ import { RJSFSchema } from "@rjsf/utils";
 import Form from "@rjsf/core";
 import validator from "@rjsf/validator-ajv8";
 import { ArrayFieldTitleTemplateProps,ArrayFieldTemplateItemType, titleId, Registry } from "@rjsf/utils";
-import './form.css';
+import React, {useState} from "react"
+import './NonAccGradForm.css';
 
 const schema: RJSFSchema = {
   "title": "Non-Accredited Graduate Assessment Report Template",
@@ -13,14 +14,14 @@ const schema: RJSFSchema = {
       "type": "object",
       "properties": {
         "college": {"type": "string", "title": "College"},
-        "program": {"type": "string", "title": "Program"},
-        "academicYear": {"type": "string", "title": "Academic Year of Report"},
-        "preparer": {"type": "string", "title": "Person Preparing the Report"},
         "deptSchool": {"type": "string", "title": "Department/School"},
+        "program": {"type": "string", "title": "Program"},
         "degreeLevel": {"type": "string", "title": "Degree Level"},
+        "academicYear": {"type": "string", "title": "Academic Year of Report"},
         "dateRange": {"type": "string", "title": "Date Range of Reported Data"},
-
-      }
+        "preparer": {"type": "string", "title": "Person Preparing the Report"},
+        
+      },
       
     },
     
@@ -42,7 +43,6 @@ const schema: RJSFSchema = {
             "properties": {
               "programSLODesc":{
                 "type": "string",
-                "title": "SLODesc",
               },
               "programSLOBloom":{
                 "type": "string",
@@ -342,9 +342,12 @@ const uiSchema = {
     "degreeLevel":{
       "classNames": "headerInput"
     },
-    "dataRange":{
+    "dateRange":{
       "classNames": "headerInput"
     },
+    "ui:options":{
+      "title": false
+    }
   },
   "studentLearningOutcomes": {
     "stakeholders":{
@@ -356,16 +359,24 @@ const uiSchema = {
     },
 
     "programSLOTable":{
+      "classNames": "slo-table",
       "items": {
-        "programSLO":{
-          "ui:widget": "textarea"
+        "programSLODesc":{
+          "ui:widget": "textarea",
+          "classNames": "table-slo-input",
+          "ui:options": {
+            rows: 5, 
+            cols: 100
+          }
         },
         "programSLOBloom":{
           "ui:widget": "radio",
-          "ui:template": "table"
+          "ui:template": "table",
+          "classNames": "table-slo-bloom"
         },
         "programSLOCommon":{
-          "ui:widget": "CheckboxesWidget"
+          "ui:widget": "CheckboxesWidget",
+          "classNames": "table-slo-common"
         }
       }
     }
@@ -409,9 +420,7 @@ const uiSchema = {
   },
 
   "decisionsAndActions":{
-    "ui:options":{
-      "label": false
-    },
+    
   },
 
   "additionalInformation":{
@@ -420,7 +429,7 @@ const uiSchema = {
   }
 }
 
-const formData = {
+/*const formData = {
   "college": "College of IS&T",
   "program": "Computer Science",
   "academicYear": "2022-2023",
@@ -593,7 +602,7 @@ const formData = {
   ],
 
   "additionalInformation": "Additional info here"
-}
+}*/
 
 
 function TitleFieldTemplate(props: TitleFieldProps) {
@@ -618,18 +627,37 @@ const fields: RegistryFieldsType = {
   ArraySchemaField: CustomArraySchemaField
 };
 
+  
 function NonAccGradForm() {
-    return (
-      <div className='body'>
-        <div className='rjsfForm'>
-          <Form 
-            schema={schema} validator={validator} uiSchema={uiSchema} 
-            fields={fields}
-            onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}/>
-        </div>
+
+  //Use state to track formData, set initial formData with 1 SLO
+  const [formData, setFormData] = useState({ 
+    studentLearningOutcomes: { programSLOTable: [""] } });
+
+  //use formData to track changes to number of SLOs
+  const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
+ 
+  //Track changes to formData and numSLOs using updated formData
+  const onChange = ({ formData: newFormData}) => {
+    setFormData(newFormData);
+    setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
+  };
+
+  
+
+  return (
+    <div className='body'>
+      <div className='rjsfForm'>
+        <p>Number of SLOS: {numSLO} </p>
+        <Form 
+          schema={schema} validator={validator} uiSchema={uiSchema} 
+          fields={fields} formData={formData}
+          onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
+          onChange={onChange}/>
       </div>
-    );
-  }
+    </div>
+  );
+}
   
   export default NonAccGradForm;
   
