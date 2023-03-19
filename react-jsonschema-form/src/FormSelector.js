@@ -1,5 +1,6 @@
 import NonAccGradForm from './forms/NonAccGradForm';
-import AccGradForm from './forms/AccGradForm'
+import AccGradForm from './forms/AccGradForm';
+import AccUnGradForm from './forms/AccUnGradForm';
 import React, { useState } from 'react';
 import "./FormSelector.css"
 
@@ -18,6 +19,8 @@ function FormSelector () {
                 return <NonAccGradForm/>;
             case 'AG':
                 return <AccGradForm/>;
+            case 'AUG':
+                return <AccUnGradForm/>;
             default:
                 return null;
         }
@@ -31,7 +34,8 @@ function FormSelector () {
                     <h2>Assessment Reports</h2>
                     <button class="list-group-item"
                     onClick={() => handleFormSelect('AG')}>Accredited Graduate</button>
-                    <button class="list-group-item">Accredited Undergraduate</button>
+                    <button class="list-group-item"
+                     onClick={() => handleFormSelect('AUG')}>Accredited Undergraduate</button>
                     <button class="list-group-item"
                     onClick={() => handleFormSelect('NAG')}>Non-Accredited Graduate</button>
                     <button class="list-group-item">Non-Accredited Undergraduate</button>

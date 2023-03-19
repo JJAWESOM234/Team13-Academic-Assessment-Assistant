@@ -7,7 +7,7 @@ import React, {useState} from "react"
 import './NonAccGradForm.css';
 
 const schema: RJSFSchema = {
-  "title": "Accredited Graduate Assessment Report Template",
+  "title": "Accredited Undergraduate Assessment Report Template",
   "type": "object",
   "properties": {
     "headerInfo": {
@@ -57,21 +57,6 @@ const schema: RJSFSchema = {
                   {"const": "Application", "title": "Application"},
                   {"const": "Evaluation", "title": "Evaluation"}
                   ]
-              },
-              "programSLOCommon":{
-                "type": "array",
-                "title": "Common Graduate Program SLOs",
-                "items" : {
-                  "type": "string",
-                  "enum": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "Not Applicable for SLO",
-                  ]
-                },
-                "uniqueItems": true
               },
             }
           }
@@ -229,10 +214,6 @@ const uiSchema = {
           "ui:template": "table",
           "classNames": "table-slo-bloom"
         },
-        "programSLOCommon":{
-          "ui:widget": "CheckboxesWidget",
-          "classNames": "table-slo-common"
-        }
       }
     }
   },
@@ -291,7 +272,7 @@ function TitleFieldTemplate(props: TitleFieldProps) {
   };
   
     
-  function AccGradForm() {
+  function AccUnGradForm() {
   
     //Use state to track formData, set initial formData with 1 SLO
     const [formData, setFormData] = useState({ 
@@ -322,4 +303,4 @@ function TitleFieldTemplate(props: TitleFieldProps) {
     );
   }
 
-  export default AccGradForm;
+  export default AccUnGradForm;
