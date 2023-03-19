@@ -8,7 +8,7 @@ import { Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 import { useCallback } from 'react';
 
-let SLOnum = 4;
+// let SLOnum = 0;
 
 const surveyJson = {
 
@@ -93,7 +93,7 @@ const surveyJson = {
               colCount: 2,
             }
           ],
-          "rowCount": SLOnum
+          "rowCount": 4
         }
       ]
     },
@@ -104,100 +104,105 @@ const surveyJson = {
       title: "II. Assessment Methods",
       elements: [
       {
-        type: "matrixdynamic",
+        type: "paneldynamic",
         name: "methods",
         title: "A. [Insert Description]",
-        addRowText: "Add Method",
-        columns: [
-          // {
-          // type: "panel",
-          // name: "methodPanel",
-          // title: " ",
-          // elements: [
-        //       {
-        //         type: "text",
-        //         name: "measureTitle",
-        //         title: "Title of the Measure:",
-        //       },
-        //       {
-        //         type: "comment",
-        //         name: "measureAlignment",
-        //         title: "Describe How the Measure Aligns to the SLO:",
-        //       },
-        //       {
-        //         type: "checkbox",
-        //         name: "domain",
-        //         title: "Domain:",
-        //         choices: [ "Examination", "Product", "Performance" ],
-        //         colCount: 3,
-        //       },
-        //       {
-        //         type: "checkbox",
-        //         name: "type",
-        //         title: "Type:",
-        //         choices: [ "Direct Measure", "Indirect Measure" ],
-        //         colCount: 2,
-        //       },
-        //       {
-        //         type: "panel",
-        //         name: "administeredPanel",
-        //         title: "Point in Program Assessment is Administered:",
-        //         elements: [
-        //           {
-        //             type: "checkbox",
-        //             name: "point",
-        //             title: " ",
-        //             choices: [ "In final term of program", "In final year of program" ],
-        //             colCount: 2,
-        //           },
-        //           {
-        //             type: "text",
-        //             name: "where",
-        //             title: "Where does the assessment occur:",
-        //           }
-        //         ]
-        //       },
-        //       {
-        //         type: "checkbox",
-        //         name: "population",
-        //         title: "Population Measured:",
-        //         choices: [ "All students", "Sample of students [Dynamic element]" ],
-        //         colCount: 2,
-        //       },
-        //       {
-        //         type: "checkbox",
-        //         name: "frequency",
-        //         title: "Frequency of Data Collection:",
-        //         choices: [ "Once/semester", "Once/year", "Other [Dynamic element]" ],
-        //         colCount: 3,
-        //       },
-        //       {
-        //         type: "text",
-        //         name: "threshold",
-        //         title: "Proficiency Threshold:",
-        //         placeholder: "Describe here",
-        //       },
-        //       {
-        //         type: "text",
-        //         name: "target",
-        //         title: "Program Proficiency Target:",
-        //         placeholder: "Describe here",
-        //       },
-        //       {
-        //         type: "comment",
-        //         name: "complements",
-        //         title: "B.  Describe any indirect measures or additional data the program uses to complement the direct measures of SLOs.",
-        //       }
-          //   ],
-          // },
+        templateElements: [
+        {
+          type: "panel",
+          name: "methodPanel",
+          title: " ",
+          elements: [
+            {
+              type: "text",
+              name: "measureTitle",
+              title: "Title of the Measure:",
+            },
+            {
+              type: "comment",
+              name: "measureAlignment",
+              title: "Describe How the Measure Aligns to the SLO:",
+            },
+            {
+              type: "checkbox",
+              name: "domain",
+              title: "Domain:",
+              choices: [ "Examination", "Product", "Performance" ],
+              colCount: 3,
+            },
+            {
+              type: "checkbox",
+              name: "type",
+              title: "Type:",
+              choices: [ "Direct Measure", "Indirect Measure" ],
+              colCount: 2,
+            },
+            {
+              type: "panel",
+              name: "administeredPanel",
+              title: "Point in Program Assessment is Administered:",
+              elements: [
+                {
+                  type: "checkbox",
+                  name: "point",
+                  title: " ",
+                  choices: [ "In final term of program", "In final year of program" ],
+                  colCount: 2,
+                },
+                {
+                  type: "text",
+                  name: "where",
+                  title: "Where does the assessment occur:",
+                }
+              ]
+            },
+            {
+              type: "checkbox",
+              name: "population",
+              title: "Population Measured:",
+              choices: [ "All students", "Sample of students [Dynamic element]" ],
+              colCount: 2,
+            },
+            {
+              type: "checkbox",
+              name: "frequency",
+              title: "Frequency of Data Collection:",
+              choices: [ "Once/semester", "Once/year", "Other [Dynamic element]" ],
+              colCount: 3,
+            },
+            {
+              type: "text",
+              name: "threshold",
+              title: "Proficiency Threshold:",
+              placeholder: "Describe here",
+            },
+            {
+              type: "text",
+              name: "target",
+              title: "Program Proficiency Target:",
+              placeholder: "Describe here",
+            },
+          ]
+        },
         ],
+        panelCount: 4
       },
-      ],
+      {
+        type: "comment",
+        name: "complements",
+        title: "B.  Describe any indirect measures or additional data the program uses to complement the direct measures of SLOs.",
+      }
+      ]
     },
 
 
   ]
-};
+  };
+
+
+          // ],
+          // },
+
 // // ------------------------------------------------- Data Collection and Analysis 
 //     {
 //       type: "panel",
@@ -300,11 +305,11 @@ function App() {
   const survey = new Model(surveyJson);
 
   survey.onMatrixCellCreated.add((sender, options) => {
-      if(options.column.name === "SLO") {
-        options.cellQuestion.placeHolder = options.column.name + " "
-        + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-      }
-    });
+    if(options.column.name === "SLO") {
+      options.cellQuestion.placeHolder = options.column.name + " "
+      + (options.question.visibleRows.indexOf(options.row) + 1).toString();
+    }
+  });
 
   const alertResults = useCallback((sender) => {
     const results = JSON.stringify(sender.data);
