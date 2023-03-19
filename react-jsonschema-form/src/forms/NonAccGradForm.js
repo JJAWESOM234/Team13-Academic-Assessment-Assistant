@@ -108,7 +108,7 @@ const schema: RJSFSchema = {
       "properties": {
         "assessmentMeasure": {
           "type": "array",
-          "minItems": 0,
+          "minItems": 1,
           "items": {
             "type": "object",
             "properties": {
@@ -366,7 +366,7 @@ const uiSchema = {
           "classNames": "table-slo-input",
           "ui:options": {
             rows: 5, 
-            cols: 100
+            cols: 10
           }
         },
         "programSLOBloom":{

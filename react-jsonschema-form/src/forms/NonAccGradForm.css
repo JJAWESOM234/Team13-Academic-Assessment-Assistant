@@ -42,6 +42,6 @@
 .table-slo-input{
     float: left;
     resize: none;
-    
+    width: 400px;
     overflow:auto;
 }
