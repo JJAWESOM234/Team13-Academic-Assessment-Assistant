@@ -1,4 +1,6 @@
-var iSLOCount = 0
+var iSLOWorking = 2
+var iSLOid = []
+var iSLOMax = 0
 document.getElementById("nonAccGradContainer").style.display = "none"
 document.getElementById("AccGradContainer").style.display = "none"
 document.getElementById("nonAccUndGradContainer").style.display = "none"
@@ -61,15 +63,16 @@ $("#nonAccGradSampleJson").jsonForm({
                             "A.  Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.",
                     },
                     studentLearning: {
-                        type: "array",
+                        type: "tabarray",
                         title: "SLO Entries",
+                        id: "SLOEntry",
                         items: {
                             type: "object",
-                            title: "SLO#",
                             properties: {
                                 programSLOsSLO1: {
                                     type: "string",
-                                    title: "SLO#",
+                                    title: "SLO Title",
+                                    required: true,
                                 },
                                 programSLOsSLO1Bloom: {
                                     title: "Bloom’s Taxonomy Cognitive Level",
@@ -102,7 +105,7 @@ $("#nonAccGradSampleJson").jsonForm({
                     bSegment: {
                         title: "B. SLOs reflect professional standards as dictated by an accreditation or other external body.",
                         type: "string",
-                        enum: ["yes", "No"],
+                        enum: ["Yes", "No"],
                     },
                     cSegment: {
                         title: "C. Describe how stakeholders (both internal and external) are involved in the creation and/or review of SLOs as well as how SLOs are communicated to stakeholders.",
@@ -121,6 +124,8 @@ $("#nonAccGradSampleJson").jsonForm({
                     assessmentMeasure: {
                         type: "array",
                         title: "SLO Measurements",
+                        minItems: iSLOMax,
+                        maxItems: iSLOMax,
                         items: {
                             type: "object",
                             title: "SLO# Measures",
@@ -314,38 +319,80 @@ $("#nonAccGradSampleJson").jsonForm({
     },
     form: [
         {
-            key: "college",
+            type: "fieldset",
+            title: "Reporting Details",
+            expandable: false,
+            items: [
+                "college",
+                "program",
+                "academicYear",
+                "preparer",
+                "deptSchool",
+                "degreeLevel",
+                "dateRange",
+            ],
         },
+
         {
-            key: "program",
-        },
-        {
-            key: "academicYear",
-        },
-        {
-            key: "preparer",
-        },
-        {
-            key: "deptSchool",
-        },
-        {
-            key: "degreeLevel",
-        },
-        {
-            key: "dateRange",
-        },
-        {
-            key: "studentLearningOutcomes",
-            onChange: function (evt) {
-                // iSLOCount = $(evt.target).studentLearning.length;
-                // console.log(evt.currentTarget);
-                console.log(
-                    $(
-                        evt.target.parentElement.parentElement.parentElement
-                            .parentElement.parentElement.childElementCount
-                    )
-                )
-            },
+            type: "fieldset",
+            title: "I. Degree Program & Common Graduate Student Learning Outcomes (SLOs)",
+            items: [
+                {
+                    type: "tabarray",
+                    items: [
+                        {
+                            type: "section",
+                            legend: "SLO {{idx}}",
+                            items: [
+                                {
+                                    key: "studentLearningOutcomes.studentLearning[].programSLOsSLO1",
+                                },
+                                {
+                                    type: "checkboxes",
+                                    key: "studentLearningOutcomes.studentLearning[].programSLOsSLO1Bloom",
+                                },
+                                {
+                                    type: "radios",
+                                    key: "studentLearningOutcomes.studentLearning[].programSLOsSLO1Common",
+                                },
+                            ],
+                        },
+                    ],
+                    onChange: function (evt) {
+                        console.log(evt)
+                        console.log(evt.target)
+                        console.log(evt.target.id)
+                        if (
+                            evt.target.id != null &&
+                            evt.target.id != undefined &&
+                            evt.target.id !== ""
+                        ) {
+                            iSLOWorking = parseInt(
+                                evt.target.id
+                                    .match(/studentLearning\[\d\]/)[0]
+                                    .match(/\d/)[0]
+                            )
+                        } else {
+                            iSLOWorking = 0
+                        }
+
+                        console.log("Current SLO ID:" + iSLOWorking)
+                        if (!iSLOid.includes(iSLOWorking)) {
+                            iSLOid.push(iSLOWorking)
+                            iSLOMax = iSLOid.length
+                        }
+                        console.log("Count " + iSLOid)
+                        console.log("Count max " + iSLOMax)
+                    },
+                },
+                {
+                    type: "radios",
+                    key: "studentLearningOutcomes.bSegment",
+                },
+                {
+                    key: "studentLearningOutcomes.cSegment",
+                },
+            ],
         },
         {
             key: "assessmentMethods",
@@ -360,12 +407,8 @@ $("#nonAccGradSampleJson").jsonForm({
             key: "additionalInformation",
         },
         {
-            type: "button",
+            type: "submit",
             title: "Submit",
-            onClick: function (evt) {
-                console.log(evt.target)
-                evt.target.submit
-            },
         },
     ],
 
@@ -373,7 +416,7 @@ $("#nonAccGradSampleJson").jsonForm({
         console.log(errors)
         console.log(values)
         if (errors) {
-            $("#res").html("<p>I beg your pardon?</p>")
+            $("#res").html("<p>Missing Required Fields</p>")
         } else {
             $("#res").html("<p>" + JSON.stringify(values, null, 4) + "</p>")
         }
@@ -607,12 +650,8 @@ $("#AccGradSampleJson").jsonForm({
             key: "additionalInformation",
         },
         {
-            type: "button",
+            type: "submit",
             title: "Submit",
-            onClick: function (evt) {
-                console.log(evt.target)
-                evt.target.submit
-            },
         },
     ],
 
@@ -949,12 +988,8 @@ $("#nonAccUndGradSampleJson").jsonForm({
             key: "additionalInformation",
         },
         {
-            type: "button",
+            type: "submit",
             title: "Submit",
-            onClick: function (evt) {
-                console.log(evt.target)
-                evt.target.submit
-            },
         },
     ],
 
@@ -1189,12 +1224,8 @@ $("#AccUndGradSampleJson").jsonForm({
             key: "additionalInformation",
         },
         {
-            type: "button",
+            type: "submit",
             title: "Submit",
-            onClick: function (evt) {
-                console.log(evt.target)
-                evt.target.submit
-            },
         },
     ],
 
