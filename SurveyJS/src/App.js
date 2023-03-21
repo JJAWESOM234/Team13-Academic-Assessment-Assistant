@@ -8,8 +8,6 @@ import { Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 import { useCallback } from 'react';
 
-// let SLOnum = 0;
-
 const surveyJson = {
 
   title: "Non-Accredited Graduate Assessment Report Template",
@@ -69,8 +67,9 @@ const surveyJson = {
       elements: [
         {
           type: "matrixdynamic",
-          name: "SLOs",
+          name: "SLO-matrix",
           title: "A. [Insert Description]",
+          valueName: "SLOs",
           addRowText: "Add SLO",
           columns: [
             {
@@ -93,7 +92,7 @@ const surveyJson = {
               colCount: 2,
             }
           ],
-          "rowCount": 4
+          rowCount: 4
         }
       ]
     },
@@ -107,6 +106,7 @@ const surveyJson = {
         type: "paneldynamic",
         name: "methods",
         title: "A. [Insert Description]",
+        valueName: "SLOs",
         templateElements: [
         {
           type: "panel",
@@ -185,7 +185,8 @@ const surveyJson = {
           ]
         },
         ],
-        panelCount: 4
+        templateTitle: "SLO {panelIndex}: {panel.SLO}",
+        // panelCount: 4
       },
       {
         type: "comment",
@@ -194,73 +195,79 @@ const surveyJson = {
       }
       ]
     },
+// ------------------------------------------------- Data Collection and Analysis 
+    {
+      type: "panel",
+      name: "III",
+      title: "III. Data Collection and Analysis",
+      elements: [
+        {
+          type: "matrixdynamic",
+          name: "data",
+          title: "A. [Insert Description]",
+          allowAddRows: false,
+          columns: [
+          {
+            name: "SLO#Measure#",
+            cellType: "text",
+            title: "Measurements:",
+            placeholder: "DYNAMIC"
+          },
+          {
+            name: "dateRange",
+            cellType: "text",
+            title: "Data Collection Date Range:",
+          },
+          {
+            name: "numberOfStudents",
+            cellType: "text",
+            title: "Number of Students Assessed:",
+          },
+          {
+            name: "percentage",
+            cellType: "text",
+            title: "Percentage of Students Who Met/Exceeded Threshold Proficiency:",
+          },
+          ],
+          "rowCount": 4
+        },
+        {
+          type: "matrixdynamic",
+          name: "status",
+          title: "B. SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.",
+          allowAddRows: false,
+          columns: [
+            {
+              name: "SLO-name",
+              title: " ",
+              cellType: "text",
+              placeholder: "DYNAMIC"
+            },
+            {
+              cellType: "checkbox",
+              name: "frequency",
+              title: " ",
+              choices: [ "Met", "Partially Met", "Not Met", "Unknown" ],
+              colCount: 4,
+            },
+          ],
+          "rowCount": 4
+        },
+        {
+          type: "comment",
+          name: "communication",
+          title: "C: Describe how results are communicated within the program. Address each SLO. If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.",
+        }
+      ]
+    },
 
 
-  ]
+  ],
   };
 
 
           // ],
           // },
-
-// // ------------------------------------------------- Data Collection and Analysis 
-//     {
-//       type: "panel",
-//       name: "panel3",
-//       title: "III. Data Collection and Analysis",
-//       elements: [
-//         {
-//           type: "matrixdynamic",
-//           name: "data",
-//           title: "A. [Insert Description]",
-//           addRowText: "Add SLO Measure",
-//           columns: [
-//           {
-//             name: "SLO#Measure#",
-//             cellType: "text",
-//             title: "[Dynamic SLO# Measure#]",
-//           },
-//           {
-//             name: "dateRange",
-//             cellType: "text",
-//             title: "Data Collection Date Range:",
-//           },
-//           {
-//             name: "numberOfStudents",
-//             cellType: "text",
-//             title: "Number of Students Assessed:",
-//           },
-//           {
-//             name: "percentage",
-//             cellType: "text",
-//             title: "Percentage of Students who Met/Exceeded Threshold Proficiency:",
-//           },
-//           ],
-//           "rowCount": 4
-//         },
-//         {
-//           type: "matrixdynamic",
-//           name: "status",
-//           title: "B. SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.",
-//           addRowText: "Add Row",
-//           columns: [
-//             {
-//               cellType: "checkbox",
-//               name: "frequency",
-//               title: " ",
-//               choices: [ "Met", "Partially Met", "Not Met", "Unknown" ],
-//               colCount: 4,
-//             },
-//           ],
-//           "rowCount": 4
-//         },
-//         {
-//           type: "comment",
-//           name: "communication",
-//           title: "C: Describe how results are communicated within the program. Address each SLO. If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.",
-//         }
-//       ]
-//     },
 // // ------------------------------------------------- Decisions and Actions
 //     {
 //       type: "panel",
