@@ -64,7 +64,6 @@ $("#nonAccGradSampleJson").jsonForm({
                     },
                     studentLearning: {
                         type: "tabarray",
-                        title: "SLO Entries",
                         id: "SLOEntry",
                         items: {
                             type: "object",
@@ -122,13 +121,9 @@ $("#nonAccGradSampleJson").jsonForm({
                     "A.  Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.",
                 properties: {
                     assessmentMeasure: {
-                        type: "array",
-                        title: "SLO Measurements",
-                        minItems: iSLOMax,
-                        maxItems: iSLOMax,
+                        type: "tabarray",
                         items: {
                             type: "object",
-                            title: "SLO# Measures",
                             properties: {
                                 measureTitle: {
                                     title: "Title of the Measure",
@@ -159,11 +154,10 @@ $("#nonAccGradSampleJson").jsonForm({
                                     uniqueItems: true,
                                 },
                                 measurePoint: {
-                                    title: "Point In Program Assessment is Administered",
                                     type: "object",
                                     properties: {
                                         measurePointInProgram: {
-                                            title: "notitle",
+                                            title: "Measure Point",
                                             type: "string",
                                             enum: [
                                                 "In Final Term of Program",
@@ -171,18 +165,28 @@ $("#nonAccGradSampleJson").jsonForm({
                                             ],
                                         },
                                         measurePointLocation: {
-                                            title: "notitle",
+                                            title: "Point Description",
                                             type: "string",
                                         },
                                     },
                                 },
                                 measurePopulation: {
-                                    title: "Population Measured",
-                                    type: "string",
-                                    enum: [
-                                        "All Students",
-                                        "Sample of Students - Describe below",
-                                    ],
+                                    type: "object",
+                                    properties: {
+                                        measurePopulationDropDown: {
+                                            type: "string",
+                                            title: "Population Measured Details",
+                                            enum: [
+                                                "All Students",
+                                                "Sample of Students - Describe below",
+                                            ],
+                                        },
+                                        measurePopulationDesc: {
+                                            type: "string",
+                                            title: "Describe here",
+                                        },
+                                    },
+
                                     uniqueItems: true,
                                 },
                                 measureDataFreq: {
@@ -394,8 +398,71 @@ $("#nonAccGradSampleJson").jsonForm({
                 },
             ],
         },
+        // {
+        //     key: "assessmentMethods",
+        // },
         {
-            key: "assessmentMethods",
+            type: "fieldset",
+            title: "II. Assessment Methods",
+            items: [
+                {
+                    type: "tabarray",
+                    items: [
+                        {
+                            type: "tabarray",
+                            legend: "SLO {{idx}}",
+                            items: [
+                                {
+                                    type: "section",
+                                    legend: "Measure {{idx}}",
+                                    notitle: true,
+                                    items: [
+                                        {
+                                            key: "assessmentMethods.assessmentMeasure[].measureTitle",
+                                        },
+                                        {
+                                            key: "assessmentMethods.assessmentMeasure[].measureDescription",
+                                        },
+                                        {
+                                            key: "assessmentMethods.assessmentMeasure[].measureDomain",
+                                            type: "checkboxes",
+                                        },
+                                        {
+                                            key: "assessmentMethods.assessmentMeasure[].measureType",
+                                        },
+                                        {
+                                            key: "assessmentMethods.assessmentMeasure[].measurePoint",
+                                            notitle: true,
+                                        },
+                                        {
+                                            key: "assessmentMethods.assessmentMeasure[].measurePopulation.measurePopulationDropDown",
+                                        },
+                                        {
+                                            key: "assessmentMethods.assessmentMeasure[].measurePopulation.measurePopulationDesc",
+                                        },
+                                        {
+                                            key: "assessmentMethods.assessmentMeasure[].measureDataFreq",
+                                        },
+                                        {
+                                            key: "assessmentMethods.assessmentMeasure[].measureProficiencyThreshold",
+                                        },
+                                        {
+                                            key: "assessmentMethods.assessmentMeasure[].measureProficiencyTarget",
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "radios",
+                    key: "assessmentMethods.measureComplementDirect",
+                },
+                {
+                    key: "studentLearningOutcomes.cSegment",
+                },
+            ],
         },
         {
             key: "dataCollection",
@@ -1026,7 +1093,7 @@ $("#AccUndGradSampleJson").jsonForm({
                 type: "string",
                 title: "Person Preparing the Report",
             },
-            degreeLevel: { type: "string", title: "Accreditation Body" },
+            accreditationBody: { type: "string", title: "Accreditation Body" },
 
             studentLearningOutcomes: {
                 type: "object",
@@ -1196,7 +1263,7 @@ $("#AccUndGradSampleJson").jsonForm({
             key: "personPreparingReport",
         },
         {
-            key: "degreeLevel",
+            key: "accreditationBody",
         },
         {
             key: "studentLearningOutcomes",
@@ -1226,6 +1293,7 @@ $("#AccUndGradSampleJson").jsonForm({
         {
             type: "submit",
             title: "Submit",
+            id: "submitForm"
         },
     ],
 
@@ -1235,7 +1303,7 @@ $("#AccUndGradSampleJson").jsonForm({
         if (errors) {
             $("#res").html("<p>I beg your pardon?</p>")
         } else {
-            $("#res").html("<p>" + JSON.stringify(values, null, 4) + "</p>")
+            $("#res").html("<p id=\"returnJSON\">" + JSON.stringify(values, null, 4) + "</p>")
         }
         console.log(values.studentLearningOutcomes.studentLearning.length)
     },
