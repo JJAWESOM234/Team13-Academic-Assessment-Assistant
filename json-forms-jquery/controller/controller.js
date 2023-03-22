@@ -222,19 +222,19 @@ $("#nonAccGradSampleJson").jsonForm({
                 properties: {
                     dataResultsTable: {
                         title: "SLO Measure Table",
-                        type: "array",
+                        type: "tabarray",
                         description:
                             "A.    Results Table – Report results for each SLO. If an SLO was assessed by multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.",
                         items: {
                             type: "object",
-                            title: "SLO#",
+                            title: "SLO {{idx}}",
                             properties: {
                                 SLOmeasure: {
                                     title: "notitle",
-                                    type: "array",
+                                    type: "tabarray",
                                     items: {
                                         type: "object",
-                                        title: "Measure #",
+                                        title: "Measure {{idx}}",
                                         properties: {
                                             dataResultsSLO1Range: {
                                                 type: "string",
@@ -260,10 +260,10 @@ $("#nonAccGradSampleJson").jsonForm({
                         properties: {
                             dataSLOStatustable: {
                                 title: "notitle",
-                                type: "array",
+                                type: "tabarray",
                                 items: {
                                     type: "object",
-                                    title: "SLO #",
+                                    title: "SLO {{idx}}",
                                     properties: {
                                         dataSLOStatus: {
                                             type: "string",
@@ -288,27 +288,19 @@ $("#nonAccGradSampleJson").jsonForm({
                 },
             },
             decisionsAndActions: {
-                type: "object",
+                type: "tabarray",
                 title: "IV. Decisions and Actions",
                 description:
                     "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions:  What are the effects of your previously stated changes from your last report?  What did you do in response to your previous assessment report feedback? How have you made progress since the last assessment report? ",
 
-                properties: {
-                    decisionsAndActionsSLO1: {
-                        type: "string",
-                        title: "SLO 1",
-                    },
-                    decisionsAndActionsSLO2: {
-                        type: "string",
-                        title: "SLO 2",
-                    },
-                    decisionsAndActionsSLO3: {
-                        type: "string",
-                        title: "SLO 3",
-                    },
-                    decisionsAndActionsSLO4: {
-                        type: "string",
-                        title: "SLO 4",
+                items: {
+                    type: "object",
+                    title: "SLO {{idx}}",
+                    properties: {
+                        decisionsAndActionsSLO1: {
+                            type: "string",
+                            title: "SLO 1",
+                        },
                     },
                 },
             },
@@ -363,9 +355,9 @@ $("#nonAccGradSampleJson").jsonForm({
                         },
                     ],
                     onChange: function (evt) {
-                        console.log(evt)
-                        console.log(evt.target)
-                        console.log(evt.target.id)
+                        // console.log(evt)
+                        // console.log(evt.target)
+                        // console.log(evt.target.id)
                         if (
                             evt.target.id != null &&
                             evt.target.id != undefined &&
@@ -380,12 +372,12 @@ $("#nonAccGradSampleJson").jsonForm({
                             iSLOWorking = 0
                         }
 
-                        console.log("Current SLO ID:" + iSLOWorking)
+                        // console.log("Current SLO ID:" + iSLOWorking)
                         if (!iSLOid.includes(iSLOWorking)) {
                             iSLOid.push(iSLOWorking)
                             iSLOMax = iSLOid.length
                         }
-                        console.log("Count " + iSLOid)
+                        // console.log("Count " + iSLOid)
                         console.log("Count max " + iSLOMax)
                     },
                 },
@@ -456,11 +448,7 @@ $("#nonAccGradSampleJson").jsonForm({
                     ],
                 },
                 {
-                    type: "radios",
                     key: "assessmentMethods.measureComplementDirect",
-                },
-                {
-                    key: "studentLearningOutcomes.cSegment",
                 },
             ],
         },
@@ -512,7 +500,7 @@ $("#AccGradSampleJson").jsonForm({
                 type: "string",
                 title: "Person Preparing the Report",
             },
-            degreeLevel: { type: "string", title: "Accreditation Body" },
+            accreditationBody: { type: "string", title: "Accreditation Body" },
 
             studentLearningOutcomes: {
                 type: "object",
@@ -521,15 +509,15 @@ $("#AccGradSampleJson").jsonForm({
                     "List each program SLO and indicate the highest cognitive level it represents. To accommodate more than four SLOs, add rows as needed.",
                 properties: {
                     studentLearning: {
-                        type: "array",
-                        title: "SLO Entries",
+                        type: "tabarray",
+                        id: "SLOEntry",
                         items: {
                             type: "object",
-                            title: "SLO#",
                             properties: {
                                 programSLOsSLO1: {
                                     type: "string",
-                                    title: "SLO#",
+                                    title: "SLO Title",
+                                    required: true,
                                 },
                                 programSLOsSLO1Bloom: {
                                     title: "Bloom’s Taxonomy Cognitive Level",
@@ -568,11 +556,11 @@ $("#AccGradSampleJson").jsonForm({
                     "List the assessment measures used.  For each measure, indicate the domain and how often data is collected. Add rows as needed to accommodate additional SLOs.",
                 properties: {
                     assessmentMeasure: {
-                        type: "array",
+                        type: "tabarray",
                         title: "SLO Measurements",
                         items: {
                             type: "object",
-                            title: "SLO# Measures",
+                            title: "SLO {{idx}} Measures",
                             properties: {
                                 measureTitle: {
                                     title: "Measure",
@@ -609,10 +597,10 @@ $("#AccGradSampleJson").jsonForm({
                         properties: {
                             dataSLOStatustable: {
                                 title: "notitle",
-                                type: "array",
+                                type: "tabarray",
                                 items: {
                                     type: "object",
-                                    title: "SLO #",
+                                    title: "SLO {{idx}}",
                                     properties: {
                                         dataSLOStatus: {
                                             type: "string",
@@ -633,27 +621,19 @@ $("#AccGradSampleJson").jsonForm({
                 },
             },
             decisionsAndActions: {
-                type: "object",
+                type: "tabarray",
                 title: "IV. Decisions and Actions",
                 description:
-                    "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken.<br>Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions:<br>What are the effects of your previously stated changes from your last report?<br>What did you do in response to your previous assessment report feedback?<br>How have you made progress since the last assessment report?",
+                    "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions:  What are the effects of your previously stated changes from your last report?  What did you do in response to your previous assessment report feedback? How have you made progress since the last assessment report? ",
 
-                properties: {
-                    decisionsAndActionsSLO1: {
-                        type: "string",
-                        title: "SLO 1",
-                    },
-                    decisionsAndActionsSLO2: {
-                        type: "string",
-                        title: "SLO 2",
-                    },
-                    decisionsAndActionsSLO3: {
-                        type: "string",
-                        title: "SLO 3",
-                    },
-                    decisionsAndActionsSLO4: {
-                        type: "string",
-                        title: "SLO 4",
+                items: {
+                    type: "object",
+                    title: "SLO {{idx}}",
+                    properties: {
+                        decisionsAndActionsSLO1: {
+                            type: "string",
+                            title: "SLO 1",
+                        },
                     },
                 },
             },
@@ -668,42 +648,51 @@ $("#AccGradSampleJson").jsonForm({
     },
     form: [
         {
-            key: "college",
+            type: "fieldset",
+            title: "Reporting Details",
+            expandable: false,
+            items: [
+                "college",
+                "program",
+                "academicYear",
+                "lastAccReview",
+                "deptSchool",
+                "degreeLevel",
+                "personPreparingReport",
+                "accreditationBody",
+            ],
         },
+
         {
-            key: "program",
+            type: "fieldset",
+            title: "I. Degree Program & Common Graduate Student Learning Outcomes (SLOs)",
+            items: [
+                {
+                    type: "tabarray",
+                    items: [
+                        {
+                            type: "section",
+                            legend: "SLO {{idx}}",
+                            items: [
+                                {
+                                    key: "studentLearningOutcomes.studentLearning[].programSLOsSLO1",
+                                },
+                                {
+                                    type: "checkboxes",
+                                    key: "studentLearningOutcomes.studentLearning[].programSLOsSLO1Bloom",
+                                },
+                                {
+                                    type: "radios",
+                                    key: "studentLearningOutcomes.studentLearning[].programSLOsSLO1Common",
+                                },
+                            ],
+                        },
+                    ],
+                    onChange: function (evt) {},
+                },
+            ],
         },
-        {
-            key: "academicYear",
-        },
-        {
-            key: "lastAccReview",
-        },
-        {
-            key: "deptSchool",
-        },
-        {
-            key: "degreeLevel",
-        },
-        {
-            key: "personPreparingReport",
-        },
-        {
-            key: "degreeLevel",
-        },
-        {
-            key: "studentLearningOutcomes",
-            onChange: function (evt) {
-                // iSLOCount = $(evt.target).studentLearning.length;
-                // console.log(evt.currentTarget);
-                console.log(
-                    $(
-                        evt.target.parentElement.parentElement.parentElement
-                            .parentElement.parentElement.childElementCount
-                    )
-                )
-            },
-        },
+
         {
             key: "assessmentMethods",
         },
@@ -766,15 +755,15 @@ $("#nonAccUndGradSampleJson").jsonForm({
                             "A.  List each program SLO and indicate the highest cognitive level it represents. To accommodate more than four SLOs, add rows as needed.",
                     },
                     studentLearning: {
-                        type: "array",
-                        title: "SLO Entries",
+                        type: "tabarray",
+                        id: "SLOEntry",
                         items: {
                             type: "object",
-                            title: "SLO#",
                             properties: {
                                 programSLOsSLO1: {
                                     type: "string",
-                                    title: "SLO#",
+                                    title: "SLO Title",
+                                    required: true,
                                 },
                                 programSLOsSLO1Bloom: {
                                     title: "Bloom’s Taxonomy Cognitive Level",
@@ -812,11 +801,11 @@ $("#nonAccUndGradSampleJson").jsonForm({
                     "A.  Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.",
                 properties: {
                     assessmentMeasure: {
-                        type: "array",
+                        type: "tabarray",
                         title: "SLO Measurements",
                         items: {
                             type: "object",
-                            title: "SLO# Measures",
+                            title: "SLO {{idx}} Measures",
                             properties: {
                                 measureTitle: {
                                     title: "Title of the Measure",
@@ -906,19 +895,19 @@ $("#nonAccUndGradSampleJson").jsonForm({
                 properties: {
                     dataResultsTable: {
                         title: "SLO Measure Table",
-                        type: "array",
+                        type: "tabarray",
                         description:
                             "A.    Results Table – Report results for each SLO. If an SLO was assessed by multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.",
                         items: {
                             type: "object",
-                            title: "SLO#",
+                            title: "SLO {{idx}}",
                             properties: {
                                 SLOmeasure: {
                                     title: "notitle",
-                                    type: "array",
+                                    type: "tabarray",
                                     items: {
                                         type: "object",
-                                        title: "Measure #",
+                                        title: "Measure {{idx}}",
                                         properties: {
                                             dataResultsSLO1Range: {
                                                 type: "string",
@@ -946,7 +935,7 @@ $("#nonAccUndGradSampleJson").jsonForm({
                         properties: {
                             dataSLOStatustable: {
                                 title: "notitle",
-                                type: "array",
+                                type: "tabarray",
                                 items: {
                                     type: "object",
                                     title: "SLO #",
@@ -974,27 +963,19 @@ $("#nonAccUndGradSampleJson").jsonForm({
                 },
             },
             decisionsAndActions: {
-                type: "object",
+                type: "tabarray",
                 title: "IV. Decisions and Actions",
                 description:
-                    "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken.<br>Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions:<br>What are the effects of your previously stated changes from your last report?<br>What did you do in response to your previous assessment report feedback?<br>How have you made progress since the last assessment report?",
+                    "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions:  What are the effects of your previously stated changes from your last report?  What did you do in response to your previous assessment report feedback? How have you made progress since the last assessment report? ",
 
-                properties: {
-                    decisionsAndActionsSLO1: {
-                        type: "string",
-                        title: "SLO 1",
-                    },
-                    decisionsAndActionsSLO2: {
-                        type: "string",
-                        title: "SLO 2",
-                    },
-                    decisionsAndActionsSLO3: {
-                        type: "string",
-                        title: "SLO 3",
-                    },
-                    decisionsAndActionsSLO4: {
-                        type: "string",
-                        title: "SLO 4",
+                items: {
+                    type: "object",
+                    title: "SLO {{idx}}",
+                    properties: {
+                        decisionsAndActionsSLO1: {
+                            type: "string",
+                            title: "SLO 1",
+                        },
                     },
                 },
             },
@@ -1009,38 +990,51 @@ $("#nonAccUndGradSampleJson").jsonForm({
     },
     form: [
         {
-            key: "college",
+            type: "fieldset",
+            title: "Reporting Details",
+            expandable: false,
+            items: [
+                "college",
+                "program",
+                "academicYear",
+                "preparer",
+                "deptSchool",
+                "degreeLevel",
+                "dateRange",
+            ],
         },
+
         {
-            key: "program",
-        },
-        {
-            key: "academicYear",
-        },
-        {
-            key: "preparer",
-        },
-        {
-            key: "deptSchool",
-        },
-        {
-            key: "degreeLevel",
-        },
-        {
-            key: "dateRange",
-        },
-        {
-            key: "studentLearningOutcomes",
-            onChange: function (evt) {
-                // iSLOCount = $(evt.target).studentLearning.length;
-                // console.log(evt.currentTarget);
-                console.log(
-                    $(
-                        evt.target.parentElement.parentElement.parentElement
-                            .parentElement.parentElement.childElementCount
-                    )
-                )
-            },
+            type: "fieldset",
+            title: "I. Degree Program & Common Graduate Student Learning Outcomes (SLOs)",
+            items: [
+                {
+                    type: "tabarray",
+                    items: [
+                        {
+                            type: "section",
+                            legend: "SLO {{idx}}",
+                            items: [
+                                {
+                                    key: "studentLearningOutcomes.studentLearning[].programSLOsSLO1",
+                                },
+                                {
+                                    type: "checkboxes",
+                                    key: "studentLearningOutcomes.studentLearning[].programSLOsSLO1Bloom",
+                                },
+                            ],
+                        },
+                    ],
+                    onChange: function (evt) {},
+                },
+                {
+                    type: "radios",
+                    key: "studentLearningOutcomes.bSegment",
+                },
+                {
+                    key: "studentLearningOutcomes.cSegment",
+                },
+            ],
         },
         {
             key: "assessmentMethods",
@@ -1097,23 +1091,20 @@ $("#AccUndGradSampleJson").jsonForm({
 
             studentLearningOutcomes: {
                 type: "object",
-                title: "I. Program Student Learning Outcomes (SLOs)",
+                title: "I. Degree Program & Common Graduate Student Learning Outcomes (SLOs)",
+                description:
+                    "List each program SLO and indicate the highest cognitive level it represents. To accommodate more than four SLOs, add rows as needed.",
                 properties: {
-                    aSegmentDesc: {
-                        type: "hidden",
-                        description:
-                            "List each program SLO and indicate the highest cognitive level it represents. To accommodate more than four SLOs, add rows as needed.",
-                    },
                     studentLearning: {
-                        type: "array",
-                        title: "SLO Entries",
+                        type: "tabarray",
+                        id: "SLOEntry",
                         items: {
                             type: "object",
-                            title: "SLO#",
                             properties: {
                                 programSLOsSLO1: {
                                     type: "string",
-                                    title: "SLO#",
+                                    title: "SLO Title",
+                                    required: true,
                                 },
                                 programSLOsSLO1Bloom: {
                                     title: "Bloom’s Taxonomy Cognitive Level",
@@ -1140,11 +1131,11 @@ $("#AccUndGradSampleJson").jsonForm({
                     "List the assessment measures used.  For each measure, indicate the domain and how often data is collected. Add rows as needed to accommodate additional SLOs.",
                 properties: {
                     assessmentMeasure: {
-                        type: "array",
+                        type: "tabarray",
                         title: "SLO Measurements",
                         items: {
                             type: "object",
-                            title: "SLO# Measures",
+                            title: "SLO {{idx}} Measures",
                             properties: {
                                 measureTitle: {
                                     title: "Measure",
@@ -1183,10 +1174,10 @@ $("#AccUndGradSampleJson").jsonForm({
                         properties: {
                             dataSLOStatustable: {
                                 title: "notitle",
-                                type: "array",
+                                type: "tabarray",
                                 items: {
                                     type: "object",
-                                    title: "SLO #",
+                                    title: "SLO {{idx}}",
                                     properties: {
                                         dataSLOStatus: {
                                             type: "string",
@@ -1207,27 +1198,19 @@ $("#AccUndGradSampleJson").jsonForm({
                 },
             },
             decisionsAndActions: {
-                type: "object",
+                type: "tabarray",
                 title: "IV. Decisions and Actions",
                 description:
-                    "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken.<br>Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions:<br>What are the effects of your previously stated changes from your last report?<br>What did you do in response to your previous assessment report feedback?<br>How have you made progress since the last assessment report?",
+                    "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions:  What are the effects of your previously stated changes from your last report?  What did you do in response to your previous assessment report feedback? How have you made progress since the last assessment report? ",
 
-                properties: {
-                    decisionsAndActionsSLO1: {
-                        type: "string",
-                        title: "SLO 1",
-                    },
-                    decisionsAndActionsSLO2: {
-                        type: "string",
-                        title: "SLO 2",
-                    },
-                    decisionsAndActionsSLO3: {
-                        type: "string",
-                        title: "SLO 3",
-                    },
-                    decisionsAndActionsSLO4: {
-                        type: "string",
-                        title: "SLO 4",
+                items: {
+                    type: "object",
+                    title: "SLO {{idx}}",
+                    properties: {
+                        decisionsAndActionsSLO1: {
+                            type: "string",
+                            title: "SLO 1",
+                        },
                     },
                 },
             },
@@ -1242,41 +1225,45 @@ $("#AccUndGradSampleJson").jsonForm({
     },
     form: [
         {
-            key: "college",
+            type: "fieldset",
+            title: "Reporting Details",
+            expandable: false,
+            items: [
+                "college",
+                "program",
+                "academicYear",
+                "lastAccReview",
+                "deptSchool",
+                "degreeLevel",
+                "personPreparingReport",
+                "accreditationBody",
+            ],
         },
+
         {
-            key: "program",
-        },
-        {
-            key: "academicYear",
-        },
-        {
-            key: "lastAccReview",
-        },
-        {
-            key: "deptSchool",
-        },
-        {
-            key: "degreeLevel",
-        },
-        {
-            key: "personPreparingReport",
-        },
-        {
-            key: "accreditationBody",
-        },
-        {
-            key: "studentLearningOutcomes",
-            onChange: function (evt) {
-                // iSLOCount = $(evt.target).studentLearning.length;
-                // console.log(evt.currentTarget);
-                console.log(
-                    $(
-                        evt.target.parentElement.parentElement.parentElement
-                            .parentElement.parentElement.childElementCount
-                    )
-                )
-            },
+            type: "fieldset",
+            title: "I. Degree Program & Common Graduate Student Learning Outcomes (SLOs)",
+            items: [
+                {
+                    type: "tabarray",
+                    items: [
+                        {
+                            type: "section",
+                            legend: "SLO {{idx}}",
+                            items: [
+                                {
+                                    key: "studentLearningOutcomes.studentLearning[].programSLOsSLO1",
+                                },
+                                {
+                                    type: "checkboxes",
+                                    key: "studentLearningOutcomes.studentLearning[].programSLOsSLO1Bloom",
+                                },
+                            ],
+                        },
+                    ],
+                    onChange: function (evt) {},
+                },
+            ],
         },
         {
             key: "assessmentMethods",
@@ -1293,7 +1280,7 @@ $("#AccUndGradSampleJson").jsonForm({
         {
             type: "submit",
             title: "Submit",
-            id: "submitForm"
+            id: "submitForm",
         },
     ],
 
@@ -1303,7 +1290,9 @@ $("#AccUndGradSampleJson").jsonForm({
         if (errors) {
             $("#res").html("<p>I beg your pardon?</p>")
         } else {
-            $("#res").html("<p id=\"returnJSON\">" + JSON.stringify(values, null, 4) + "</p>")
+            $("#res").html(
+                '<p id="returnJSON">' + JSON.stringify(values, null, 4) + "</p>"
+            )
         }
         console.log(values.studentLearningOutcomes.studentLearning.length)
     },
