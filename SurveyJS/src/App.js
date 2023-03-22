@@ -10,12 +10,20 @@ import { useCallback } from 'react';
 
 const surveyJson = {
 
-  title: "Non-Accredited Graduate Assessment Report Template",
+  title: "{program-group} Assessment Report",
   type: "object",
 
 // ------------------------------------------------- Heading
   showQuestionNumbers: false,
   elements: [
+    {
+      type: "radiogroup",
+      name: "program-group",
+      title: "Choose Program:",
+      defaultValue: "Non-Accredited Undergraduate",
+      colCount: 4,
+      choices: ["Non-Accredited Undergraduate", "Accredited Undergraduate", "Non-Accredited Graduate", "Accredited Graduate" ]
+    },
     {
       type: "multipletext",
       name: "heading",
@@ -68,27 +76,28 @@ const surveyJson = {
         {
           type: "matrixdynamic",
           name: "SLO-matrix",
-          title: "A. [Insert Description]",
+          title: "{panelIDesc}",
           valueName: "SLOs",
           addRowText: "Add SLO",
           columns: [
             {
-                name: "SLO",
-                cellType: "text",
-                title: "Student Learning Outcomes:",
+              name: "SLO",
+              cellType: "text",
+              title: "Student Learning Outcomes:",
             },
             {
-                name: "bloom",
-                cellType: "checkbox",
-                title: "Bloom’s Taxonomy Cognitive Level:",
-                choices: [ "Knowledge", "Comprehension", "Application", "Analysis", "Synthesis", "Evaluation" ],
-                colCount: 2,
+              name: "bloom",
+              cellType: "checkbox",
+              title: "Bloom’s Taxonomy Cognitive Level:",
+              choices: [ "Knowledge", "Comprehension", "Application", "Analysis", "Synthesis", "Evaluation" ],
+              colCount: 2,
             },
             {
               name: "graduateSLOs",
               cellType: "checkbox",
               title: "Common Graduate Program SLOs:",
               choices: [ "1", "2", "3", "4", "Not applicable for SLO" ],
+              visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Accredited Graduate'",
               colCount: 2,
             }
           ],
@@ -103,10 +112,39 @@ const surveyJson = {
       title: "II. Assessment Methods",
       elements: [
       {
-        type: "paneldynamic",
-        name: "methods",
-        title: "A. [Insert Description]",
+        type: "matrixdynamic",
+        name: "accrMethods",
+        title: "{panelIIDesc}",
+        visibleIf: "{program-group} = 'Accredited Graduate' or {program-group} = 'Accredited Undergraduate'",
         valueName: "SLOs",
+        allowAddRows: false,
+        columns: [
+        {
+          name: "accrSLO#Measure#",
+          cellType: "text",
+          title: "Measurements:",
+          placeholder: "DYNAMIC"
+        },
+        {
+          name: "accrMethods-domain",
+          cellType: "text",
+          title: "Domain (Product, Performance, Examination):",
+        },
+        {
+          name: "accrMethods-collection",
+          cellType: "text",
+          title: "Data Collection (i.e. annually, by semester) :",
+        },
+        ],
+        rowCount: 4
+      },
+      {
+        type: "paneldynamic",
+        name: "nonMethods",
+        title: "{panelIIDesc}",
+        renderMode: "progressTopBottom",
+        valueName: "SLOs",
+        visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
         templateElements: [
         {
           type: "panel",
@@ -186,12 +224,12 @@ const surveyJson = {
         },
         ],
         templateTitle: "SLO {panelIndex}: {panel.SLO}",
-        // panelCount: 4
       },
       {
         type: "comment",
         name: "complements",
         title: "B.  Describe any indirect measures or additional data the program uses to complement the direct measures of SLOs.",
+        visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
       }
       ]
     },
@@ -204,7 +242,8 @@ const surveyJson = {
         {
           type: "matrixdynamic",
           name: "data",
-          title: "A. [Insert Description]",
+          title: "A. Results Table – Report results for each SLO. If an SLO was assessed by multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.",
+          visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
           allowAddRows: false,
           columns: [
           {
@@ -229,12 +268,12 @@ const surveyJson = {
             title: "Percentage of Students Who Met/Exceeded Threshold Proficiency:",
           },
           ],
-          "rowCount": 4
+          rowCount: 4
         },
         {
           type: "matrixdynamic",
           name: "status",
-          title: "B. SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.",
+          title: "{panelIIIStsTblDesc}",
           allowAddRows: false,
           columns: [
             {
@@ -257,55 +296,71 @@ const surveyJson = {
           type: "comment",
           name: "communication",
           title: "C: Describe how results are communicated within the program. Address each SLO. If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.",
+          visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
         }
       ]
     },
-
-
+// ------------------------------------------------- Decisions and Actions
+    {
+      type: "panel",
+      name: "panelIV",
+      title: "IV. Decisions and Actions",
+      elements: [
+        {
+          type: "matrixdynamic",
+          name: "decisions&Actions",
+          title: "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions: What are the effects of your previously stated changes from your last report? What did you do in response to your previous assessment report feedback? How have you made progress since the last assessment report?",
+          valueName: "SLOs",
+          allowAddRows: false,
+          columns: [
+            {
+              cellType: "text",
+              name: "frequency",
+              title: " ",
+              colCount: 4,
+              placeholder: "DYNAMIC"
+            },
+          ],
+          "rowCount": 4
+        },
+      ]
+    },
+// ------------------------------------------------- V. Additional Information
+    {
+      type: "panel",
+      name: "panelV",
+      title: "V. Additional Information",
+      elements: [
+        {
+          type: "comment",
+          name: "additionalInfo",
+          title: " ",
+          placeholder: "OPTIONAL: Provide additional information that may be helpful to reviewers.",
+        }
+      ]
+    },
+  // end of elements
   ],
-  };
 
+  calculatedValues: [
+    {
+      name: "panelIDesc",
+      expression: "iif({program-group} = 'Non-Accredited Graduate' or {program-group} = 'Accredited Graduate', 'A. List degree program SLOs. For each, SLO, indicate the highest cognitive level and Common Graduate Program SLO it represents.  To accommodate more than four SLOs, add rows as needed. The Common Graduate SLOs for master’s programs (adopted 2/2017) are listed below.', 'A. List each program SLO and indicate the highest cognitive level it represents. To accommodate more than four SLOs, add rows as needed.')"
+    },
+    {
+      name: "panelIIDesc",
+      expression: "iif({program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate', 'A. Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.','List the assessment measures used. For each measure, indicate the domain and how often data is collected. Rows are automatically added to accommodate additional SLOs.' )"
+    },
+    {
+      name: "panelIIIStsTblDesc",
+      expression: "iif({program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate', 'B.  SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.','SLO Status Table – Indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.' )"
+    }
+  // end of calculated values
+  ]
 
-          // ],
-          // },
-// // ------------------------------------------------- Decisions and Actions
-//     {
-//       type: "panel",
-//       name: "panel4",
-//       title: "IV. Decisions and Actions",
-//       elements: [
-//         {
-//           type: "matrixdynamic",
-//           name: "decisions&Actions",
-//           title: "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions: What are the effects of your previously stated changes from your last report? What did you do in response to your previous assessment report feedback? How have you made progress since the last assessment report?",
-//           addRowText: "Add Row",
-//           columns: [
-//             {
-//               cellType: "text",
-//               name: "frequency",
-//               title: " ",
-//               colCount: 4,
-//               placeholder: "[SLO #]"
-//             },
-//           ],
-//           "rowCount": 4
-//         },
-//       ]
-//     },
-// // ------------------------------------------------- V. Additional Information
-//     {
-//       type: "panel",
-//       name: "panel5",
-//       title: "V. Additional Information",
-//       elements: [
-//         {
-//           type: "comment",
-//           name: "additionalInfo",
-//           title: " ",
-//           placeholder: "OPTIONAL: Provide additional information that may be helpful to reviewers.",
-//         }
-//       ]
-//     },
+// end of surveyConst
+};
+
 
 function App() {
 
