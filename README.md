@@ -22,6 +22,10 @@ respesctive library to auto generate a form. On completing the form, the applica
 
 Each application besides JSON Forms(React) allows users to add and subtract SLO entries, assessment methods, etc.
 
+### Milestone 2
+Each application now reads a JSON schema for each of the four assessment reports and auto generates the respective forms.
+Each application allows users to add and subtract SLO entries, assessment methods, etc.
+Users can easily switch between forms, enter information, and receive that form's output back to them on submitting the form.
 
   
   
