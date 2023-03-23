@@ -10,9 +10,12 @@ This library aims to implement form autogeneration using the jQuery library "jso
 5. Open the VS console and run `npm install` to get the required packages.
 
 ## Use 
-The applications as of now is a simple html form that is generated using the library. To use this application you just need to run the index.html file on the server, this can be done using VS code. VS code will start the server and display the html elemetns which have been modified by the form generation library. To modify the displayed form you must change the json model that is being read in `controller.js`. Note: the JSON model must be updated with valid objects conforming to the jsonform library. 
+The applications as of now is a simple html form that is generated using the library. To use this application you just need to run the index.html file on the server, this can be done using VS code. VS code will start the server and display the html elements which have been modified by the form generation library. To modify the displayed form you must change the json model that is being read in `controller.js`. Note: the JSON model must be updated with valid objects conforming to the jsonform library. 
 
 ## Release Notes
+### Milestone 2
+The program now has the ability to display all four forms and can track the number of SLO created in real time. Additionally, this iteration of the forms uses tabarrays isntead of the usual arrays which removes some clutter and makes the form shorter. 
+
 ### Milestone 1 
 The code when executed runs the website which displays the Non-accredidted Gradutate form and returns any input values in an easy to use object.
 
