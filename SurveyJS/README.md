@@ -11,9 +11,9 @@ src folder in template react app should be replaced with src folder from SurveyJ
 Move into react app directory and run `npm start`, the rendered form should open in a new browser
 
 **Release Notes**
-- Generates non-accredited graduate report
+- All four program forms are available
 - Ability to add and remove Student Learning Outcome (SLO) elements is available
-- Dynamic SLO tags are not implemented
+- Dynamic SLOs are partially implemented
 
 # Getting Started with Create React App [Auto-Generated]
 
