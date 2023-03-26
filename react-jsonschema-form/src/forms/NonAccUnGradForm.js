@@ -6,7 +6,7 @@ import { ArrayFieldTitleTemplateProps,ArrayFieldTemplateItemType, titleId, Regis
 import React, {useState} from "react"
 import './NonAccGradForm.css';
 
-const schema: RJSFSchema = {
+const NAUGschema: RJSFSchema = {
   "title": "Non-Accredited Undergraduate Assessment Report Template",
   "type": "object",
   "properties": {
@@ -238,10 +238,6 @@ const schema: RJSFSchema = {
           "minItems": 1,
           "items": {
             "properties": {
-              "dataSLOName":{
-                "type": "string",
-                "title": "SLO Name/#"
-              },
               "dataSLOStatus":{
                 "type": "string",
                 "oneOf": [
@@ -285,10 +281,6 @@ const schema: RJSFSchema = {
       "minItems": 1,
       "items": {
         "properties":{
-          "decisionsAndActionsSLO":{
-            "type": "string",
-            "title": "SLO #"
-          },
           "decisionsAndActionsSLODesc":{
             "type": "string",
             "title": "Description"
@@ -427,7 +419,8 @@ function TitleFieldTemplate(props: TitleFieldProps) {
 const CustomArraySchemaField = function(props: FieldProps) {
   const { index, registry } = props;
   const { SchemaField } = registry.fields;
-  const name = `SLO ${index+1}`;
+  const name = `SLO ${index+1}`.replace(/\*$/, '');
+  //console.log(props)
   return <SchemaField {...props} name={name} />;
 };
 
@@ -440,18 +433,52 @@ const fields: RegistryFieldsType = {
 function NonAccUnGradForm() {
 
   //Use state to track formData, set initial formData with 1 SLO
+  const [schema, setSchema] = useState(NAUGschema);
   const [formData, setFormData] = useState({ 
-    studentLearningOutcomes: { programSLOTable: [""] } });
+    studentLearningOutcomes: { programSLOTable: [{}] }});
 
   //use formData to track changes to number of SLOs
   const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
+
  
   //Track changes to formData and numSLOs using updated formData
   const onChange = ({ formData: newFormData}) => {
-    setFormData(newFormData);
     setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
-  };
+    
+    
+    //if DecisionsAndActions not equal to SLOs, add or subtract 
+    const updatedFormData = {}
+    const dnaLength = newFormData.decisionsAndActions.length;
+    if (dnaLength < numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+      
+      for (let i = dnaLength; i < numSLO; i++){
+        updatedFormData.decisionsAndActions.push("")
+      }
+      setFormData(updatedFormData);
+    }
+    else if (dnaLength > numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
 
+      for (let i = dnaLength; i > numSLO; i--){
+        updatedFormData.decisionsAndActions.pop()
+      }
+      setFormData(updatedFormData)
+    }
+    else{
+      setFormData(newFormData);
+    }
+    
+
+    
+    console.log(formData.decisionsAndActions)
+  };
   
 
   return (

@@ -3,10 +3,10 @@ import { RJSFSchema } from "@rjsf/utils";
 import Form from "@rjsf/core";
 import validator from "@rjsf/validator-ajv8";
 import { ArrayFieldTitleTemplateProps,ArrayFieldTemplateItemType, titleId, Registry } from "@rjsf/utils";
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import './NonAccGradForm.css';
 
-const schema: RJSFSchema = {
+const NAGschema: RJSFSchema = {
   "title": "Non-Accredited Graduate Assessment Report Template",
   "type": "object",
   "properties": {
@@ -254,10 +254,6 @@ const schema: RJSFSchema = {
           "minItems": 1,
           "items": {
             "properties": {
-              "dataSLOName":{
-                "type": "string",
-                "title": "SLO Name/#"
-              },
               "dataSLOStatus":{
                 "type": "string",
                 "oneOf": [
@@ -301,10 +297,6 @@ const schema: RJSFSchema = {
       "minItems": 1,
       "items": {
         "properties":{
-          "decisionsAndActionsSLO":{
-            "type": "string",
-            "title": "SLO #"
-          },
           "decisionsAndActionsSLODesc":{
             "type": "string",
             "title": "Description"
@@ -618,7 +610,8 @@ function TitleFieldTemplate(props: TitleFieldProps) {
 const CustomArraySchemaField = function(props: FieldProps) {
   const { index, registry } = props;
   const { SchemaField } = registry.fields;
-  const name = `SLO ${index+1}`;
+  const name = `SLO ${index+1}`.replace(/\*$/, '');
+  //console.log(props)
   return <SchemaField {...props} name={name} />;
 };
 
@@ -631,19 +624,54 @@ const fields: RegistryFieldsType = {
 function NonAccGradForm() {
 
   //Use state to track formData, set initial formData with 1 SLO
+  const [schema, setSchema] = useState(NAGschema);
   const [formData, setFormData] = useState({ 
-    studentLearningOutcomes: { programSLOTable: [""] } });
+    studentLearningOutcomes: { programSLOTable: [{}] }});
 
   //use formData to track changes to number of SLOs
   const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
+
  
   //Track changes to formData and numSLOs using updated formData
   const onChange = ({ formData: newFormData}) => {
-    setFormData(newFormData);
     setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
+    
+    
+    //if DecisionsAndActions not equal to SLOs, add or subtract 
+    const updatedFormData = {}
+    const dnaLength = newFormData.decisionsAndActions.length;
+    if (dnaLength < numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+      
+      for (let i = dnaLength; i < numSLO; i++){
+        updatedFormData.decisionsAndActions.push("")
+      }
+      setFormData(updatedFormData);
+    }
+    else if (dnaLength > numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+
+      for (let i = dnaLength; i > numSLO; i--){
+        updatedFormData.decisionsAndActions.pop()
+      }
+      setFormData(updatedFormData)
+    }
+    else{
+      setFormData(newFormData);
+    }
+    
+
+    
+    console.log(formData.decisionsAndActions)
   };
 
-  
+
 
   return (
     <div className='body'>
@@ -651,7 +679,7 @@ function NonAccGradForm() {
         <p>Number of SLOS: {numSLO} </p>
         <Form 
           schema={schema} validator={validator} uiSchema={uiSchema} 
-          fields={fields} formData={formData}
+          fields={fields} formData={formData} key={JSON.stringify(schema)}
           onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
           onChange={onChange}/>
       </div>

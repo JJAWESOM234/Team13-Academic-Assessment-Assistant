@@ -6,7 +6,7 @@ import { ArrayFieldTitleTemplateProps,ArrayFieldTemplateItemType, titleId, Regis
 import React, {useState} from "react"
 import './NonAccGradForm.css';
 
-const schema: RJSFSchema = {
+const AGschema: RJSFSchema = {
   "title": "Accredited Graduate Assessment Report Template",
   "type": "object",
   "properties": {
@@ -100,7 +100,7 @@ const schema: RJSFSchema = {
                 "type": "string"
               },
               "measureDataFreq": {
-                "title": "Frequency of Data Collection",
+                "title": "Data Collection (i.e. anually, by semester)",
                 "type": "string",
               },
             }
@@ -158,10 +158,6 @@ const schema: RJSFSchema = {
       "minItems": 1,
       "items": {
         "properties":{
-          "decisionsAndActionsSLO":{
-            "type": "string",
-            "title": "SLO #"
-          },
           "decisionsAndActionsSLODesc":{
             "type": "string",
             "title": "Description"
@@ -240,9 +236,6 @@ const uiSchema = {
   "assessmentMethods":{
     "assessmentMeasure":{
       "items": {
-        "measureDataFreq":{
-            "ui:widget": "RadioWidget"
-        }
       }
     }
   },
@@ -294,17 +287,53 @@ function TitleFieldTemplate(props: TitleFieldProps) {
   function AccGradForm() {
   
     //Use state to track formData, set initial formData with 1 SLO
-    const [formData, setFormData] = useState({ 
-      studentLearningOutcomes: { programSLOTable: [""] } });
-  
-    //use formData to track changes to number of SLOs
-    const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
-   
-    //Track changes to formData and numSLOs using updated formData
-    const onChange = ({ formData: newFormData}) => {
+  const [schema, setSchema] = useState(AGschema);
+  const [formData, setFormData] = useState({ 
+    studentLearningOutcomes: { programSLOTable: [{}] }});
+
+  //use formData to track changes to number of SLOs
+  const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
+
+ 
+  //Track changes to formData and numSLOs using updated formData
+  const onChange = ({ formData: newFormData}) => {
+    setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
+    
+    
+    //if DecisionsAndActions not equal to SLOs, add or subtract 
+    const updatedFormData = {}
+    const dnaLength = newFormData.decisionsAndActions.length;
+    if (dnaLength < numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+      
+      for (let i = dnaLength; i < numSLO; i++){
+        updatedFormData.decisionsAndActions.push("")
+      }
+      setFormData(updatedFormData);
+    }
+    else if (dnaLength > numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+
+      for (let i = dnaLength; i > numSLO; i--){
+        updatedFormData.decisionsAndActions.pop()
+      }
+      setFormData(updatedFormData)
+    }
+    else{
       setFormData(newFormData);
-      setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
-    };
+    }
+    
+
+    
+    console.log(formData.decisionsAndActions)
+  };
+  
   
     
   
