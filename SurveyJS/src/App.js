@@ -20,7 +20,7 @@ const surveyJson = {
       type: "radiogroup",
       name: "program-group",
       title: "Choose Program:",
-      defaultValue: "Non-Accredited Undergraduate",
+      defaultValue: "Accredited Undergraduate",
       colCount: 4,
       choices: ["Non-Accredited Undergraduate", "Accredited Undergraduate", "Non-Accredited Graduate", "Accredited Graduate" ]
     },
@@ -122,8 +122,13 @@ const surveyJson = {
         {
           name: "accrSLO#Measure#",
           cellType: "text",
-          title: "Measurements:",
-          placeholder: "DYNAMIC"
+          title: "Measurement Title:",
+        },
+        {
+          name: "SLO-selection",
+          cellType: "dropdown",
+          choices: [],
+          title: "SLO:",
         },
         {
           name: "accrMethods-domain",
@@ -154,7 +159,7 @@ const surveyJson = {
             {
               type: "text",
               name: "measureTitle",
-              title: "Title of the Measure:",
+              title: "Title of Measure:",
             },
             {
               type: "comment",
@@ -250,7 +255,6 @@ const surveyJson = {
             name: "SLO#Measure#",
             cellType: "text",
             title: "Measurements:",
-            placeholder: "DYNAMIC"
           },
           {
             name: "dateRange",
@@ -280,7 +284,6 @@ const surveyJson = {
               name: "SLO-name",
               title: " ",
               cellType: "text",
-              placeholder: "DYNAMIC"
             },
             {
               cellType: "checkbox",
@@ -318,7 +321,6 @@ const surveyJson = {
               name: "frequency",
               title: " ",
               colCount: 4,
-              placeholder: "DYNAMIC"
             },
           ],
           "rowCount": 4
@@ -367,10 +369,32 @@ function App() {
   const survey = new Model(surveyJson);
 
   survey.onMatrixCellCreated.add((sender, options) => {
+
     if(options.column.name === "SLO") {
       options.cellQuestion.placeHolder = options.column.name + " "
       + (options.question.visibleRows.indexOf(options.row) + 1).toString();
     }
+
+    // if(options.column.name === "accrSLO#Measure#") {
+    //   options.cellQuestion.placeHolder = "SLO "
+    //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
+    // }
+
+    if(options.column.name === "SLO#Measure#") {
+      options.cellQuestion.placeHolder = "SLO "
+      + (options.question.visibleRows.indexOf(options.row) + 1).toString();
+    }
+
+    if(options.column.name === "SLO-name") {
+      options.cellQuestion.placeHolder = "SLO "
+      + (options.question.visibleRows.indexOf(options.row) + 1).toString();
+    }
+
+    if(options.column.name === "frequency") {
+      options.cellQuestion.placeHolder = "SLO "
+      + (options.question.visibleRows.indexOf(options.row) + 1).toString();
+    }
+
   });
 
   const alertResults = useCallback((sender) => {
