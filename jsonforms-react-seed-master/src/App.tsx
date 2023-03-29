@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import logo from './logo.svg';
 import './App.css';
 import schema from './schema.json';
+import uischema from './uischema.json';
 
 import {
   materialCells,
@@ -15,6 +16,7 @@ import RatingControl from './RatingControl';
 import ratingControlTester from './ratingControlTester';
 import { makeStyles } from '@mui/styles';
 import MyGroupRenderer, { myGroupTester } from './MyGroup';
+import { update } from '@jsonforms/core';
 
 const useStyles = makeStyles({
   container: {
@@ -42,13 +44,7 @@ const useStyles = makeStyles({
   },
 });
 
-const initialData = {
-  name: 'Send email to Adrian',
-  description: 'Confirm if you have passed the subject\nHereby ...',
-  done: true,
-  recurrence: 'Daily',
-  rating: 3,
-};
+
 
 const renderers = [
   ...materialRenderers,
@@ -59,12 +55,24 @@ const renderers = [
 
 const App = () => {
   const classes = useStyles();
-  const [data, setData] = useState<any>(initialData);
+  const [data, setData] = useState<any>();
   const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
+
 
   const clearData = () => {
     setData({});
   };
+
+  function clickMe() {
+    alert(stringifiedData);
+    console.log(stringifiedData);
+  }
+
+  function updatearraysize() {
+    data.AccreditedGraduate.assessmentMethods.assessmentMeasure.length=data.AccreditedGraduate.studentLearningOutcomes.programSLOs.length;
+    data.AccreditedGraduate.decisionsAndActions.decisionOrAction.length=data.AccreditedGraduate.studentLearningOutcomes.programSLOs.length;
+    data.AccreditedGraduate.dataCollection.dataSLOStatusTable.length=data.AccreditedGraduate.studentLearningOutcomes.programSLOs.length;
+  }
 
   return (
     <Fragment>
@@ -82,25 +90,46 @@ const App = () => {
         spacing={1}
         className={classes.container}
       >
-
+        {/*
         <Grid item sm={6}>
           <Typography variant={'h4'} className={classes.title}>
-            Rendered form
+            Bound data
+          </Typography>
+          <div className={classes.dataContent}>
+            <pre id='boundData'>{stringifiedData}</pre>
+          </div>
+          <Button
+            className={classes.resetButton}
+            onClick={clearData}
+            color='primary'
+            variant='contained'
+          >
+            Clear data
+          </Button>
+        </Grid>
+  */}
+        <Grid item sm={10}>
+          <Typography variant={'h4'} className={classes.title}>
+            Academic Assesment Assistant
           </Typography>
           <div className={classes.demoform}>
             <JsonForms
               schema={schema}
-
+              uischema={uischema}
               data={data}
               renderers={renderers}
               cells={materialCells}
-              onChange={({ errors, data }) => setData(data)}
+              onChange={({ errors, data }) => {setData(data); console.log(data); updatearraysize();}}
             />
+          </div>
+          <div>
+            <Button onClick={clickMe}>Submit Form</Button>
           </div>
         </Grid>
       </Grid>
     </Fragment>
   );
 };
+
 
 export default App;
