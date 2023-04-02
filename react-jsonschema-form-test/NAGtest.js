@@ -9,32 +9,19 @@ var expectedFormData = {
     degreeLevel: "Master's",
     dateRange: "August 15, 2022 - May 15, 2023",
   
-    studentLearningOutcomes:{
-      programSLOTable:[
-        {
-        programSLODesc: "Students will learn XYZ",
-        programSLOBloom: "Knowledge",
-        programSLOCommon: ["1", "3"]
+    studentLearningOutcomes:{    
+        programSLOTable:{
+            items:[
+                {
+                programSLODesc: "Students will learn XYZ",
+                programSLOBloom: "Knowledge",
+                programSLOCommon: ["1", "3"]
+                }
+            ]
         },
-        {
-        programSLODesc: "Students will learn ABC",
-        programSLOBloom: "Comprehension",
-        programSLOCommon: ["3", "4"]
-        },
-        {
-        programSLODesc: "Students have TUV",
-        programSLOBloom: "Analysis",
-        programSLOCommon: ["2"]
-        },
-        {
-        programSLODesc: "Students know JKL",
-        programSLOBloom: "Evaluation",
-        programSLOCommon: ["Not Applicable for SLO"]
-        },
-      ],
-      
-      proStandardsQuestion: true,
-      "stakeholders": `When it comes to the creation and review of Student Learning Outcomes (SLOs), stakeholders play a crucial role in ensuring that these outcomes accurately reflect the needs and expectations of the educational community. This includes both internal stakeholders such as faculty, staff, and students, as well as external stakeholders such as employers, accrediting bodies, and community partners.`
+        
+        proStandardsQuestion: true,
+        stakeholders: `When it comes to the creation and review of Student Learning Outcomes (SLOs), stakeholders play a crucial role in ensuring that these outcomes accurately reflect the needs and expectations of the educational community. This includes both internal stakeholders such as faculty, staff, and students, as well as external stakeholders such as employers, accrediting bodies, and community partners.`
     },
   
     "assessmentMethods":{
@@ -52,48 +39,6 @@ var expectedFormData = {
           "measureDataFreq": "other",
           "measureProficiencyThreshold": "Proficiency Threshold is ###",
           "measureProficiencyTarget": "Proficiency Target is ##%"
-        },
-        {
-          "measureTitle": "Surveys",
-          "measureDescription": "This is the measure of exit surveys.",
-          "measureDomain": ["Product"],
-          "measureType": "direct",
-          "measurePoint":{
-            "measurePointInProgram": "finalTerm",
-            "measurePointLocation": "Dodge Campus"
-          },
-          "measurePopulation": "sampleStudents",
-          "measureDataFreq": "oncePerYear",
-          "measureProficiencyThreshold": "Proficiency Threshold is ###",
-          "measureProficiencyTarget": "Proficiency Target is ##%"
-        },
-        {
-          "measureTitle": "Tests and Exams",
-          "measureDescription": "This is the measure of all tests and exams",
-          "measureDomain": ["Examination"],
-          "measureType": "direct",
-          "measurePoint":{
-            "measurePointInProgram": "finalTerm",
-            "measurePointLocation": "Dodge Campus"
-          },
-          "measurePopulation": "allStudents",
-          "measureDataFreq": "other",
-          "measureProficiencyThreshold": "Proficiency Threshold is ###",
-          "measureProficiencyTarget": "Proficiency Target is ##%"
-        },
-        {
-          "measureTitle": "Surveys",
-          "measureDescription": "This is the measure of exit surveys.",
-          "measureDomain": ["Product"],
-          "measureType": "direct",
-          "measurePoint":{
-            "measurePointInProgram": "finalTerm",
-            "measurePointLocation": "Dodge Campus"
-          },
-          "measurePopulation": "sampleStudents",
-          "measureDataFreq": "oncePerSemester",
-          "measureProficiencyThreshold": "Proficiency Threshold is ###",
-          "measureProficiencyTarget": "Proficiency Target is ##%"
         }
       ],
       "measureComplementDirect": "Describe indirect measures here."
@@ -106,59 +51,17 @@ var expectedFormData = {
             "dataResultsEntryRange": "August 15, 2022 - December 15, 2022",
             "dataResultsEntryNumStudents": 242,
             "dataResultsEntryPercStudents": "78%"    
-        },
-        {
-            "dataResultsEntryName": "SLO 1 - Measure Two",
-            "dataResultsEntryRange": "January 5, 2023 - May 15, 2023",
-            "dataResultsEntryNumStudents": 100,
-            "dataResultsEntryPercStudents": "45%"    
-        },
-        {
-            "dataResultsEntryName": "SLO 2 - Measure One",
-            "dataResultsEntryRange": "August 15, 2022 - December 15, 2022",
-            "dataResultsEntryNumStudents": 23,
-            "dataResultsEntryPercStudents": "56%"    
-        },
-        {
-            "dataResultsEntryName": "SLO 3 - Measure One",
-            "dataResultsEntryRange": "August 15, 2022 - December 15, 2022",
-            "dataResultsEntryNumStudents": 77,
-            "dataResultsEntryPercStudents": "79%"    
-        },
-        {
-            "dataResultsEntryName": "SLO 4 - Measure One",
-            "dataResultsEntryRange": "January 5, 2023 - May 15, 2023",
-            "dataResultsEntryNumStudents": 156,
-            "dataResultsEntryPercStudents": "92%"    
-        },
+        }
       ],
       "dataSLOStatusTable":[
         {
           "dataSLOStatus": "met"
-        },
-        {
-          "dataSLOStatus": "partiallyMet"
-        },
-        {
-          "dataSLOStatus": "met"
-        },
-        {
-          "dataSLOStatus": "unknown"
         },
       ],
       "dataResultsDescription": "A description of the data results and how they are communicated."
     },
     
     "decisionsAndActions":[
-      {
-        "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
-      },
-      {
-        "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
-      },
-      {
-        "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
-      },
       {
         "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
       }
@@ -173,6 +76,11 @@ async function test () {
         const browser = await puppeteer.launch()
         const page = await browser.newPage()
         await page.goto("http://localhost:3000/")
+        await page.setViewport({
+            width: 1920,
+            height: 1080,
+            deviceScaleFactor: 1,
+            });
 
         //Select Non Accred Grad Form
         await page.click(".nag-button")
@@ -184,9 +92,29 @@ async function test () {
         await page.type("#root_headerInfo_degreeLevel", expectedFormData.degreeLevel)
         await page.type("#root_headerInfo_dateRange", expectedFormData.dateRange)
         await page.type("#root_headerInfo_preparer", expectedFormData.preparer)
+        await page.screenshot({ path: "header.png" })
 
+        //Complete Section 1A - Fill out 1 SLO
+        await page.type("#root.form-control", 
+        expectedFormData.studentLearningOutcomes.programSLOTable.items[0].programSLODesc)
 
-        await page.screenshot({ path: "example.png" })
+        await page.click("#root_studentLearningOutcomes_programSLOTable_0 .radio:nth-child(1) span > span")
+        await page.click("#root_studentLearningOutcomes_programSLOTable_0 .checkbox #root-0")
+        await page.click("#root_studentLearningOutcomes_programSLOTable_0 .checkbox #root-2")
+
+        // Complete Sections 1B and 1C
+        await page.click("#root_studentLearningOutcomes_proStandardsQuestion-0")
+        await page.type("#root_studentLearningOutcomes_stakeholders", expectedFormData.studentLearningOutcomes.stakeholders)
+         await page.screenshot({ path: "slo.png" })
+        //
+        
+        
+        /* Testing that adding another SLO and inputting works as intended
+        await page.click("#root_studentLearningOutcomes_programSLOTable .col-xs-3 > .btn")
+        
+        await page.type("#root_studentLearningOutcomes_programSLOTable_1 > .table-slo-input > #root", "desc 2")
+        */
+       
         await browser.close()
 
     };
