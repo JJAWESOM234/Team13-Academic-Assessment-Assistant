@@ -24,24 +24,26 @@ var expectedFormData = {
         stakeholders: `When it comes to the creation and review of Student Learning Outcomes (SLOs), stakeholders play a crucial role in ensuring that these outcomes accurately reflect the needs and expectations of the educational community. This includes both internal stakeholders such as faculty, staff, and students, as well as external stakeholders such as employers, accrediting bodies, and community partners.`
     },
   
-    "assessmentMethods":{
-      "assessmentMeasure":[
-        {
-          "measureTitle": "Tests and Exams",
-          "measureDescription": "This is the measure of all tests and exams",
-          "measureDomain": ["Examination"],
-          "measureType": "direct",
-          "measurePoint":{
-            "measurePointInProgram": "finalTerm",
-            "measurePointLocation": "Dodge Campus"
-          },
-          "measurePopulation": "allStudents",
-          "measureDataFreq": "other",
-          "measureProficiencyThreshold": "Proficiency Threshold is ###",
-          "measureProficiencyTarget": "Proficiency Target is ##%"
-        }
-      ],
-      "measureComplementDirect": "Describe indirect measures here."
+    assessmentMethods:{
+        assessmentMeasure:{
+            items:[
+                {
+                measureTitle: "Tests and Exams",
+                measureDescription: "This is the measure of all tests and exams",
+                measureDomain: ["Examination"],
+                measureType: "direct",
+                measurePoint:{
+                    measurePointInProgram: "finalTerm",
+                    measurePointLocation: "Dodge Campus"
+                },
+                measurePopulation: "allStudents",
+                measureDataFreq: "other",
+                measureProficiencyThreshold: "Proficiency Threshold is ###",
+                measureProficiencyTarget: "Proficiency Target is ##%"
+                }
+            ]
+        },
+      measureComplementDirect: "Describe indirect measures here."
     },
   
     "dataCollection":{
@@ -92,7 +94,7 @@ async function test () {
         await page.type("#root_headerInfo_degreeLevel", expectedFormData.degreeLevel)
         await page.type("#root_headerInfo_dateRange", expectedFormData.dateRange)
         await page.type("#root_headerInfo_preparer", expectedFormData.preparer)
-        await page.screenshot({ path: "header.png" })
+        //await page.screenshot({ path: "header.png" })
 
         //Complete Section 1A - Fill out 1 SLO
         await page.type("#root.form-control", 
@@ -105,16 +107,38 @@ async function test () {
         // Complete Sections 1B and 1C
         await page.click("#root_studentLearningOutcomes_proStandardsQuestion-0")
         await page.type("#root_studentLearningOutcomes_stakeholders", expectedFormData.studentLearningOutcomes.stakeholders)
-         await page.screenshot({ path: "slo.png" })
+        //await page.screenshot({ path: "slo.png" })
         //
-        
         
         /* Testing that adding another SLO and inputting works as intended
         await page.click("#root_studentLearningOutcomes_programSLOTable .col-xs-3 > .btn")
         
         await page.type("#root_studentLearningOutcomes_programSLOTable_1 > .table-slo-input > #root", "desc 2")
         */
-       
+
+        // Complete Section 2 - Assessment Measure
+
+        await page.type("#root_assessmentMethods_assessmentMeasure_0_measureTitle",
+        expectedFormData.assessmentMethods.assessmentMeasure.items[0].measureTitle)
+        await page.type("#root_assessmentMethods_assessmentMeasure_0_measureDescription",
+        expectedFormData.assessmentMethods.assessmentMeasure.items[0].measureDescription)
+        await page.click("#root_assessmentMethods_assessmentMeasure_0_measureDomain > .checkbox:nth-child(1) span > span")
+        await page.click("#root_assessmentMethods_assessmentMeasure_0_measureType > .radio:nth-child(1) span > span")
+        await page.click("#root_assessmentMethods_assessmentMeasure_0_measurePoint_measurePointInProgram > .radio:nth-child(1) span > span")
+        
+        await page.type("#root_assessmentMethods_assessmentMeasure_0_measurePoint_measurePointLocation",
+        expectedFormData.assessmentMethods.assessmentMeasure.items[0].measurePoint.measurePointLocation)
+        await page.click("#root_assessmentMethods_assessmentMeasure_0_measurePopulation > .radio:nth-child(1) span > span")
+        await page.click("#root_assessmentMethods_assessmentMeasure_0_measureDataFreq > .radio:nth-child(3) span > span")
+
+        await page.type("#root_assessmentMethods_assessmentMeasure_0_measureProficiencyThreshold",
+        expectedFormData.assessmentMethods.assessmentMeasure.items[0].measureProficiencyThreshold)
+        await page.type("#root_assessmentMethods_assessmentMeasure_0_measureProficiencyTarget",
+        expectedFormData.assessmentMethods.assessmentMeasure.items[0].measureProficiencyTarget)
+
+        await page.type("#root_assessmentMethods_measureComplementDirect",
+        expectedFormData.assessmentMethods.measureComplementDirect)
+        await page.screenshot({ path: "example.png" })
         await browser.close()
 
     };
