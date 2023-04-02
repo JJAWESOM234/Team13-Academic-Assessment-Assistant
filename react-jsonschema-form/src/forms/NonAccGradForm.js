@@ -317,25 +317,25 @@ const uiSchema = {
   "headerInfo":{
     "classNames": "headerInfo",
     "college":{
-      "classNames": "headerInput"
+      "classNames": "headerInput college"
     },
     "program":{
-      "classNames": "headerInput"
+      "classNames": "headerInput program"
     },
     "academicYear":{
-      "classNames": "headerInput"
+      "classNames": "headerInput academicYear"
     },
     "preparer":{
-      "classNames": "headerInput"
+      "classNames": "headerInput preparer"
     },
     "deptSchool":{
-      "classNames": "headerInput"
+      "classNames": "headerInput deptSchool"
     },
     "degreeLevel":{
-      "classNames": "headerInput"
+      "classNames": "headerInput degreeLevel"
     },
     "dateRange":{
-      "classNames": "headerInput"
+      "classNames": "headerInput dateRange"
     },
     "ui:options":{
       "title": false

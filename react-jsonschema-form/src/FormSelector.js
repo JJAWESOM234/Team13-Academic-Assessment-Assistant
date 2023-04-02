@@ -35,13 +35,13 @@ function FormSelector () {
             <div className='FormSelector-sidebar'>
                 <div class='list-group' className=""  style={{ textAlign: 'center' }}>
                     <h2>Assessment Reports</h2>
-                    <button class="list-group-item"
+                    <button class="list-group-item ag-button"
                     onClick={() => handleFormSelect('AG')}>Accredited Graduate</button>
-                    <button class="list-group-item"
+                    <button class="list-group-item aug-button"
                      onClick={() => handleFormSelect('AUG')}>Accredited Undergraduate</button>
-                    <button class="list-group-item"
+                    <button class="list-group-item nag-button"
                     onClick={() => handleFormSelect('NAG')}>Non-Accredited Graduate</button>
-                    <button class="list-group-item"
+                    <button class="list-group-item naug-button"
                     onClick={() => handleFormSelect('NAUG')}>Non-Accredited Undergraduate</button>
                 </div>
             </div>
