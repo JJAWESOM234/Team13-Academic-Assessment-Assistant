@@ -6,9 +6,40 @@
         <link rel="stylesheet" type="text/css" href="deps/opt/bootstrap.css" />
     </head>
     <body>
-        <h1>Graduate Assesment Report</h1>
-        <h3>Non-Accredited</h3>
-        <form id="jsonform"></form>
+        <div>
+            <button onclick="fnShowCorrectForm(1)">
+                Non-Accredited Graduate
+            </button>
+            <button onclick="fnShowCorrectForm(2)">Accredited Graduate</button>
+            <button onclick="fnShowCorrectForm(3)">
+                Non-Accredited Undergraduate
+            </button>
+            <button onclick="fnShowCorrectForm(4)">
+                Accredited Undergraduate
+            </button>
+        </div>
+
+        <div id="nonAccGradContainer">
+            <h1>Graduate Assesment Report</h1>
+            <h3>Non-Accredited</h3>
+            <form id="nonAccGradSampleJson"></form>
+        </div>
+        <div id="AccGradContainer">
+            <h1>Graduate Assesment Report</h1>
+            <h3>Accredited</h3>
+            <form id="AccGradSampleJson"></form>
+        </div>
+        <div id="nonAccUndGradContainer">
+            <h1>Undergraduate Assesment Report</h1>
+            <h3>Non-Accredited</h3>
+            <form id="nonAccUndGradSampleJson"></form>
+        </div>
+        <div id="AccUndGradContainer">
+            <h1>Undergraduate Assesment Report</h1>
+            <h3>Accredited</h3>
+            <form id="AccUndGradSampleJson"></form>
+        </div>
+
         <div id="res" class="alert"></div>
         <script type="text/javascript" src="deps/jquery.min.js"></script>
         <script type="text/javascript" src="deps/underscore.js"></script>

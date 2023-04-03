@@ -1,16 +1,12 @@
-import logo from './logo.svg';
+
 import { RJSFSchema } from "@rjsf/utils";
 import Form from "@rjsf/core";
 import validator from "@rjsf/validator-ajv8";
-import FormSelector from './FormSelector'
 import { ArrayFieldTitleTemplateProps,ArrayFieldTemplateItemType, titleId, Registry } from "@rjsf/utils";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
-const schema: RJSFSchema = {
+import React, {useState, useEffect} from "react"
+import './NonAccGradForm.css';
+
+const NAGschema: RJSFSchema = {
   "title": "Non-Accredited Graduate Assessment Report Template",
   "type": "object",
   "properties": {
@@ -18,14 +14,14 @@ const schema: RJSFSchema = {
       "type": "object",
       "properties": {
         "college": {"type": "string", "title": "College"},
-        "program": {"type": "string", "title": "Program"},
-        "academicYear": {"type": "string", "title": "Academic Year of Report"},
-        "preparer": {"type": "string", "title": "Person Preparing the Report"},
         "deptSchool": {"type": "string", "title": "Department/School"},
+        "program": {"type": "string", "title": "Program"},
         "degreeLevel": {"type": "string", "title": "Degree Level"},
+        "academicYear": {"type": "string", "title": "Academic Year of Report"},
         "dateRange": {"type": "string", "title": "Date Range of Reported Data"},
-
-      }
+        "preparer": {"type": "string", "title": "Person Preparing the Report"},
+        
+      },
       
     },
     
@@ -47,7 +43,6 @@ const schema: RJSFSchema = {
             "properties": {
               "programSLODesc":{
                 "type": "string",
-                "title": "SLODesc",
               },
               "programSLOBloom":{
                 "type": "string",
@@ -113,7 +108,7 @@ const schema: RJSFSchema = {
       "properties": {
         "assessmentMeasure": {
           "type": "array",
-          "minItems": 0,
+          "minItems": 1,
           "items": {
             "type": "object",
             "properties": {
@@ -259,10 +254,6 @@ const schema: RJSFSchema = {
           "minItems": 1,
           "items": {
             "properties": {
-              "dataSLOName":{
-                "type": "string",
-                "title": "SLO Name/#"
-              },
               "dataSLOStatus":{
                 "type": "string",
                 "oneOf": [
@@ -306,10 +297,6 @@ const schema: RJSFSchema = {
       "minItems": 1,
       "items": {
         "properties":{
-          "decisionsAndActionsSLO":{
-            "type": "string",
-            "title": "SLO #"
-          },
           "decisionsAndActionsSLODesc":{
             "type": "string",
             "title": "Description"
@@ -330,26 +317,29 @@ const uiSchema = {
   "headerInfo":{
     "classNames": "headerInfo",
     "college":{
-      "classNames": "headerInput"
+      "classNames": "headerInput college"
     },
     "program":{
-      "classNames": "headerInput"
+      "classNames": "headerInput program"
     },
     "academicYear":{
-      "classNames": "headerInput"
+      "classNames": "headerInput academicYear"
     },
     "preparer":{
-      "classNames": "headerInput"
+      "classNames": "headerInput preparer"
     },
     "deptSchool":{
-      "classNames": "headerInput"
+      "classNames": "headerInput deptSchool"
     },
     "degreeLevel":{
-      "classNames": "headerInput"
+      "classNames": "headerInput degreeLevel"
     },
-    "dataRange":{
-      "classNames": "headerInput"
+    "dateRange":{
+      "classNames": "headerInput dateRange"
     },
+    "ui:options":{
+      "title": false
+    }
   },
   "studentLearningOutcomes": {
     "stakeholders":{
@@ -361,16 +351,24 @@ const uiSchema = {
     },
 
     "programSLOTable":{
+      "classNames": "slo-table",
       "items": {
-        "programSLO":{
-          "ui:widget": "textarea"
+        "programSLODesc":{
+          "ui:widget": "textarea",
+          "classNames": "table-slo-input",
+          "ui:options": {
+            rows: 5, 
+            cols: 10
+          }
         },
         "programSLOBloom":{
           "ui:widget": "radio",
-          "ui:template": "table"
+          "ui:template": "table",
+          "classNames": "table-slo-bloom"
         },
         "programSLOCommon":{
-          "ui:widget": "CheckboxesWidget"
+          "ui:widget": "CheckboxesWidget",
+          "classNames": "table-slo-common"
         }
       }
     }
@@ -401,31 +399,54 @@ const uiSchema = {
   },
 
   "dataCollection":{
+    "dataResultsTable":{
+      "items":{
+        "dataResultsEntryName":{
+          "classNames": "dataResultsEntryName"
+        },
+        "dataResultsEntryRange":{
+          "classNames": "dataResultsEntryRange"
+        },
+        "dataResultsEntryNumStudents":{
+          "classNames": "dataResultsEntryNumStudents"
+        },
+        "dataResultsEntryPercStudents":{
+          "classNames": "dataResultsEntryPercStudents"
+        },
+      }
+    },
     "dataSLOStatusTable":{
       "items": {
         "dataSLOStatus":{
-          "ui:widget": "RadioWidget"
+          "ui:widget": "RadioWidget",
+          "classNames": "dataSLOStatus"
         },
       }
     },
     "dataResultsDescription":{
-      "ui:widget": "textarea"
+      "ui:widget": "textarea",
+      "classNames": "dataResultsDescription"
     }
   },
 
   "decisionsAndActions":{
-    "ui:options":{
-      "label": false
-    },
+    "decisionsAndActionsSLODesc":{
+      "classNames": "decisionsAndActionsSLODesc"
+    }
   },
 
   "additionalInformation":{
     "ui:widget": "textarea",
     "className": "addInfo"
+  },
+  "ui:submitButtonOptions":{
+    "props":{
+      "className": "form-submit-btn"
+    }
   }
 }
 
-const formData = {
+/*const formData = {
   "college": "College of IS&T",
   "program": "Computer Science",
   "academicYear": "2022-2023",
@@ -598,7 +619,7 @@ const formData = {
   ],
 
   "additionalInformation": "Additional info here"
-}
+}*/
 
 
 function TitleFieldTemplate(props: TitleFieldProps) {
@@ -614,7 +635,8 @@ function TitleFieldTemplate(props: TitleFieldProps) {
 const CustomArraySchemaField = function(props: FieldProps) {
   const { index, registry } = props;
   const { SchemaField } = registry.fields;
-  const name = `SLO ${index+1}`;
+  const name = `SLO ${index+1}`.replace(/\*$/, '');
+  //console.log(props)
   return <SchemaField {...props} name={name} />;
 };
 
@@ -623,16 +645,73 @@ const fields: RegistryFieldsType = {
   ArraySchemaField: CustomArraySchemaField
 };
 
+  
+function NonAccGradForm() {
 
-function App() {
+  //Use state to track formData, set initial formData with 1 SLO
+  const [schema, setSchema] = useState(NAGschema);
+  const [formData, setFormData] = useState({ 
+    studentLearningOutcomes: { programSLOTable: [{}] }});
+
+  //use formData to track changes to number of SLOs
+  const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
+
+ 
+  //Track changes to formData and numSLOs using updated formData
+  const onChange = ({ formData: newFormData}) => {
+    setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
+    
+    
+    //if DecisionsAndActions not equal to SLOs, add or subtract 
+    const updatedFormData = {}
+    const dnaLength = newFormData.decisionsAndActions.length;
+    if (dnaLength < numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+      
+      for (let i = dnaLength; i < numSLO; i++){
+        updatedFormData.decisionsAndActions.push("")
+      }
+      setFormData(updatedFormData);
+    }
+    else if (dnaLength > numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+
+      for (let i = dnaLength; i > numSLO; i--){
+        updatedFormData.decisionsAndActions.pop()
+      }
+      setFormData(updatedFormData)
+    }
+    else{
+      setFormData(newFormData);
+    }
+    
+
+    
+    console.log(formData.decisionsAndActions)
+  };
+
+
+
   return (
-    <div>
-      <div class="page-header" style={{ textAlign: 'center' }}>
-        <h1>Academic Assessment</h1>
+    <div className='body'>
+      <div className='rjsfForm'>
+        <p>Number of SLOS: {numSLO} </p>
+        <Form 
+          schema={schema} validator={validator} uiSchema={uiSchema} 
+          fields={fields} formData={formData} key={JSON.stringify(schema)}
+          onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
+          onChange={onChange}/>
+          <div className="formData">FormData: {JSON.stringify(formData)}</div>
       </div>
-      <FormSelector/>
     </div>
   );
 }
-
-export default App;
+  
+  export default NonAccGradForm;
+  

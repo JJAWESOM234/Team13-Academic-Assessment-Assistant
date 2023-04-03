@@ -1,31 +1,26 @@
-import logo from './logo.svg';
+
 import { RJSFSchema } from "@rjsf/utils";
 import Form from "@rjsf/core";
 import validator from "@rjsf/validator-ajv8";
-import FormSelector from './FormSelector'
 import { ArrayFieldTitleTemplateProps,ArrayFieldTemplateItemType, titleId, Registry } from "@rjsf/utils";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
-const schema: RJSFSchema = {
-  "title": "Non-Accredited Graduate Assessment Report Template",
+import React, {useState} from "react"
+import './NonAccGradForm.css';
+
+const NAUGschema: RJSFSchema = {
+  "title": "Non-Accredited Undergraduate Assessment Report Template",
   "type": "object",
   "properties": {
     "headerInfo": {
       "type": "object",
       "properties": {
         "college": {"type": "string", "title": "College"},
-        "program": {"type": "string", "title": "Program"},
-        "academicYear": {"type": "string", "title": "Academic Year of Report"},
-        "preparer": {"type": "string", "title": "Person Preparing the Report"},
         "deptSchool": {"type": "string", "title": "Department/School"},
+        "program": {"type": "string", "title": "Program"},
         "degreeLevel": {"type": "string", "title": "Degree Level"},
+        "academicYear": {"type": "string", "title": "Academic Year of Report"},
         "dateRange": {"type": "string", "title": "Date Range of Reported Data"},
-
-      }
+        "preparer": {"type": "string", "title": "Person Preparing the Report"},
+      },
       
     },
     
@@ -47,7 +42,6 @@ const schema: RJSFSchema = {
             "properties": {
               "programSLODesc":{
                 "type": "string",
-                "title": "SLODesc",
               },
               "programSLOBloom":{
                 "type": "string",
@@ -60,21 +54,6 @@ const schema: RJSFSchema = {
                   {"const": "Application", "title": "Application"},
                   {"const": "Evaluation", "title": "Evaluation"}
                   ]
-              },
-              "programSLOCommon":{
-                "type": "array",
-                "title": "Common Graduate Program SLOs",
-                "items" : {
-                  "type": "string",
-                  "enum": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "Not Applicable for SLO",
-                  ]
-                },
-                "uniqueItems": true
               },
             }
           }
@@ -113,7 +92,7 @@ const schema: RJSFSchema = {
       "properties": {
         "assessmentMeasure": {
           "type": "array",
-          "minItems": 0,
+          "minItems": 1,
           "items": {
             "type": "object",
             "properties": {
@@ -259,10 +238,6 @@ const schema: RJSFSchema = {
           "minItems": 1,
           "items": {
             "properties": {
-              "dataSLOName":{
-                "type": "string",
-                "title": "SLO Name/#"
-              },
               "dataSLOStatus":{
                 "type": "string",
                 "oneOf": [
@@ -306,10 +281,6 @@ const schema: RJSFSchema = {
       "minItems": 1,
       "items": {
         "properties":{
-          "decisionsAndActionsSLO":{
-            "type": "string",
-            "title": "SLO #"
-          },
           "decisionsAndActionsSLODesc":{
             "type": "string",
             "title": "Description"
@@ -347,9 +318,12 @@ const uiSchema = {
     "degreeLevel":{
       "classNames": "headerInput"
     },
-    "dataRange":{
+    "dateRange":{
       "classNames": "headerInput"
     },
+    "ui:options":{
+      "title": false
+    }
   },
   "studentLearningOutcomes": {
     "stakeholders":{
@@ -361,16 +335,24 @@ const uiSchema = {
     },
 
     "programSLOTable":{
+      "classNames": "slo-table",
       "items": {
-        "programSLO":{
-          "ui:widget": "textarea"
+        "programSLODesc":{
+          "ui:widget": "textarea",
+          "classNames": "table-slo-input",
+          "ui:options": {
+            rows: 5, 
+            cols: 10
+          }
         },
         "programSLOBloom":{
           "ui:widget": "radio",
-          "ui:template": "table"
+          "ui:template": "table",
+          "classNames": "table-slo-bloom"
         },
         "programSLOCommon":{
-          "ui:widget": "CheckboxesWidget"
+          "ui:widget": "CheckboxesWidget",
+          "classNames": "table-slo-common"
         }
       }
     }
@@ -414,190 +396,13 @@ const uiSchema = {
   },
 
   "decisionsAndActions":{
-    "ui:options":{
-      "label": false
-    },
+    
   },
 
   "additionalInformation":{
     "ui:widget": "textarea",
     "className": "addInfo"
   }
-}
-
-const formData = {
-  "college": "College of IS&T",
-  "program": "Computer Science",
-  "academicYear": "2022-2023",
-  "preparer": "John Doe",
-  "deptSchool": "Computer Science Department",
-  "degreeLevel": "Master's",
-  "dateRange": "August 15, 2022 - May 15, 2023",
-
-  "studentLearningOutcomes":{
-    "programSLOTable":[
-      {
-      "programSLODesc": "Students will learn XYZ",
-      "programSLOBloom": "Knowledge",
-      "programSLOCommon": ["1", "3"]
-      },
-      {
-      "programSLODesc": "Students will learn ABC",
-      "programSLOBloom": "Comprehension",
-      "programSLOCommon": ["3", "4"]
-      },
-      {
-      "programSLODesc": "Students have TUV",
-      "programSLOBloom": "Analysis",
-      "programSLOCommon": ["2"]
-      },
-      {
-      "programSLODesc": "Students know JKL",
-      "programSLOBloom": "Evaluation",
-      "programSLOCommon": ["Not Applicable for SLO"]
-      },
-    ],
-    
-    "proStandardsQuestion": true,
-    "stakeholders": `When it comes to the creation and review of Student Learning Outcomes (SLOs), stakeholders play a crucial role in ensuring that these outcomes accurately reflect the needs and expectations of the educational community. This includes both internal stakeholders such as faculty, staff, and students, as well as external stakeholders such as employers, accrediting bodies, and community partners.`
-  },
-
-  "assessmentMethods":{
-    "assessmentMeasure":[
-      {
-        "measureTitle": "Tests and Exams",
-        "measureDescription": "This is the measure of all tests and exams",
-        "measureDomain": ["Examination"],
-        "measureType": "direct",
-        "measurePoint":{
-          "measurePointInProgram": "finalTerm",
-          "measurePointLocation": "Dodge Campus"
-        },
-        "measurePopulation": "allStudents",
-        "measureDataFreq": "other",
-        "measureProficiencyThreshold": "Proficiency Threshold is ###",
-        "measureProficiencyTarget": "Proficiency Target is ##%"
-      },
-      {
-        "measureTitle": "Surveys",
-        "measureDescription": "This is the measure of exit surveys.",
-        "measureDomain": ["Product"],
-        "measureType": "direct",
-        "measurePoint":{
-          "measurePointInProgram": "finalTerm",
-          "measurePointLocation": "Dodge Campus"
-        },
-        "measurePopulation": "sampleStudents",
-        "measureDataFreq": "oncePerYear",
-        "measureProficiencyThreshold": "Proficiency Threshold is ###",
-        "measureProficiencyTarget": "Proficiency Target is ##%"
-      },
-      {
-        "measureTitle": "Tests and Exams",
-        "measureDescription": "This is the measure of all tests and exams",
-        "measureDomain": ["Examination"],
-        "measureType": "direct",
-        "measurePoint":{
-          "measurePointInProgram": "finalTerm",
-          "measurePointLocation": "Dodge Campus"
-        },
-        "measurePopulation": "allStudents",
-        "measureDataFreq": "other",
-        "measureProficiencyThreshold": "Proficiency Threshold is ###",
-        "measureProficiencyTarget": "Proficiency Target is ##%"
-      },
-      {
-        "measureTitle": "Surveys",
-        "measureDescription": "This is the measure of exit surveys.",
-        "measureDomain": ["Product"],
-        "measureType": "direct",
-        "measurePoint":{
-          "measurePointInProgram": "finalTerm",
-          "measurePointLocation": "Dodge Campus"
-        },
-        "measurePopulation": "sampleStudents",
-        "measureDataFreq": "oncePerSemester",
-        "measureProficiencyThreshold": "Proficiency Threshold is ###",
-        "measureProficiencyTarget": "Proficiency Target is ##%"
-      }
-    ],
-    "measureComplementDirect": "Describe indirect measures here."
-  },
-
-  "dataCollection":{
-    "dataResultsTable":[
-      {
-          "dataResultsEntryName": "SLO 1 - Measure One",
-          "dataResultsEntryRange": "August 15, 2022 - December 15, 2022",
-          "dataResultsEntryNumStudents": 242,
-          "dataResultsEntryPercStudents": "78%"    
-      },
-      {
-          "dataResultsEntryName": "SLO 1 - Measure Two",
-          "dataResultsEntryRange": "January 5, 2023 - May 15, 2023",
-          "dataResultsEntryNumStudents": 100,
-          "dataResultsEntryPercStudents": "45%"    
-      },
-      {
-          "dataResultsEntryName": "SLO 2 - Measure One",
-          "dataResultsEntryRange": "August 15, 2022 - December 15, 2022",
-          "dataResultsEntryNumStudents": 23,
-          "dataResultsEntryPercStudents": "56%"    
-      },
-      {
-          "dataResultsEntryName": "SLO 3 - Measure One",
-          "dataResultsEntryRange": "August 15, 2022 - December 15, 2022",
-          "dataResultsEntryNumStudents": 77,
-          "dataResultsEntryPercStudents": "79%"    
-      },
-      {
-          "dataResultsEntryName": "SLO 4 - Measure One",
-          "dataResultsEntryRange": "January 5, 2023 - May 15, 2023",
-          "dataResultsEntryNumStudents": 156,
-          "dataResultsEntryPercStudents": "92%"    
-      },
-    ],
-    "dataSLOStatusTable":[
-      {
-        "dataSLOName": "SLO 1",
-        "dataSLOStatus": "met"
-      },
-      {
-        "dataSLOName": "SLO 2",
-        "dataSLOStatus": "partiallyMet"
-      },
-      {
-        "dataSLOName": "SLO 3",
-        "dataSLOStatus": "met"
-      },
-      {
-        "dataSLOName": "SLO 4",
-        "dataSLOStatus": "unknown"
-      },
-    ],
-    "dataResultsDescription": "A description of the data results and how they are communicated."
-  },
-  
-  "decisionsAndActions":[
-    {
-      "decisionsAndActionsSLO": "SLO 1",
-      "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
-    },
-    {
-      "decisionsAndActionsSLO": "SLO 2",
-      "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
-    },
-    {
-      "decisionsAndActionsSLO": "SLO 3",
-      "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
-    },
-    {
-      "decisionsAndActionsSLO": "SLO 4",
-      "decisionsAndActionsSLODesc": "A description of the specific decisions and actions"
-    }
-  ],
-
-  "additionalInformation": "Additional info here"
 }
 
 
@@ -614,7 +419,8 @@ function TitleFieldTemplate(props: TitleFieldProps) {
 const CustomArraySchemaField = function(props: FieldProps) {
   const { index, registry } = props;
   const { SchemaField } = registry.fields;
-  const name = `SLO ${index+1}`;
+  const name = `SLO ${index+1}`.replace(/\*$/, '');
+  //console.log(props)
   return <SchemaField {...props} name={name} />;
 };
 
@@ -623,16 +429,71 @@ const fields: RegistryFieldsType = {
   ArraySchemaField: CustomArraySchemaField
 };
 
+  
+function NonAccUnGradForm() {
 
-function App() {
+  //Use state to track formData, set initial formData with 1 SLO
+  const [schema, setSchema] = useState(NAUGschema);
+  const [formData, setFormData] = useState({ 
+    studentLearningOutcomes: { programSLOTable: [{}] }});
+
+  //use formData to track changes to number of SLOs
+  const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
+
+ 
+  //Track changes to formData and numSLOs using updated formData
+  const onChange = ({ formData: newFormData}) => {
+    setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
+    
+    
+    //if DecisionsAndActions not equal to SLOs, add or subtract 
+    const updatedFormData = {}
+    const dnaLength = newFormData.decisionsAndActions.length;
+    if (dnaLength < numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+      
+      for (let i = dnaLength; i < numSLO; i++){
+        updatedFormData.decisionsAndActions.push("")
+      }
+      setFormData(updatedFormData);
+    }
+    else if (dnaLength > numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+
+      for (let i = dnaLength; i > numSLO; i--){
+        updatedFormData.decisionsAndActions.pop()
+      }
+      setFormData(updatedFormData)
+    }
+    else{
+      setFormData(newFormData);
+    }
+    
+
+    
+    console.log(formData.decisionsAndActions)
+  };
+  
+
   return (
-    <div>
-      <div class="page-header" style={{ textAlign: 'center' }}>
-        <h1>Academic Assessment</h1>
+    <div className='body'>
+      <div className='rjsfForm'>
+        <p>Number of SLOS: {numSLO} </p>
+        <Form 
+          schema={schema} validator={validator} uiSchema={uiSchema} 
+          fields={fields} formData={formData}
+          onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
+          onChange={onChange}/>
       </div>
-      <FormSelector/>
     </div>
   );
 }
-
-export default App;
+  
+  export default NonAccUnGradForm;
+  

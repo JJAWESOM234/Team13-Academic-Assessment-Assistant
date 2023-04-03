@@ -1,0 +1,47 @@
+.body{
+    display: grid;  
+    justify-content: center; /* Horizontal */  
+    align-content: center; 
+}
+
+.rjsfForm{
+    margin: auto;
+}
+
+.array-item{
+    display: grid;
+}
+
+.array-item .array-item{
+    float: left;
+    width: 50%;
+    padding: 0 1em;
+}
+
+.headerInfo{
+    display:flex;
+}
+
+.headerInput{
+    width: 40%;
+    float: left;
+    margin: 0 20px 10px 0px;
+}
+
+.slo-table{
+    display: inline-block;
+    width: 100%;
+}
+
+.table-slo-bloom, .table-slo-common{
+    width: 25%;
+    float: left;
+    margin-left: 20px;
+}
+
+.table-slo-input{
+    float: left;
+    resize: none;
+    width: 400px;
+    overflow:auto;
+}

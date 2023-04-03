@@ -1,0 +1,21 @@
+{
+  "name": "pupdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "qunit"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "jest": "^29.5.0",
+    "mocha": "^10.2.0",
+    "puppeteer": "^19.7.5",
+    "selenium-webdriver": "^4.8.1"
+  },
+  "devDependencies": {
+    "qunit": "^2.19.4"
+  }
+}
