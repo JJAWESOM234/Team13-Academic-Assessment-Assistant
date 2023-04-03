@@ -399,25 +399,50 @@ const uiSchema = {
   },
 
   "dataCollection":{
+    "dataResultsTable":{
+      "items":{
+        "dataResultsEntryName":{
+          "classNames": "dataResultsEntryName"
+        },
+        "dataResultsEntryRange":{
+          "classNames": "dataResultsEntryRange"
+        },
+        "dataResultsEntryNumStudents":{
+          "classNames": "dataResultsEntryNumStudents"
+        },
+        "dataResultsEntryPercStudents":{
+          "classNames": "dataResultsEntryPercStudents"
+        },
+      }
+    },
     "dataSLOStatusTable":{
       "items": {
         "dataSLOStatus":{
-          "ui:widget": "RadioWidget"
+          "ui:widget": "RadioWidget",
+          "classNames": "dataSLOStatus"
         },
       }
     },
     "dataResultsDescription":{
-      "ui:widget": "textarea"
+      "ui:widget": "textarea",
+      "classNames": "dataResultsDescription"
     }
   },
 
   "decisionsAndActions":{
-    
+    "decisionsAndActionsSLODesc":{
+      "classNames": "decisionsAndActionsSLODesc"
+    }
   },
 
   "additionalInformation":{
     "ui:widget": "textarea",
     "className": "addInfo"
+  },
+  "ui:submitButtonOptions":{
+    "props":{
+      "className": "form-submit-btn"
+    }
   }
 }
 
@@ -682,6 +707,7 @@ function NonAccGradForm() {
           fields={fields} formData={formData} key={JSON.stringify(schema)}
           onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
           onChange={onChange}/>
+          <div className="formData">FormData: {JSON.stringify(formData)}</div>
       </div>
     </div>
   );
