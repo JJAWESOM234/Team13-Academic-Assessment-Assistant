@@ -20,7 +20,7 @@ const surveyJson = {
       type: "radiogroup",
       name: "program-group",
       title: "Choose Program:",
-      defaultValue: "Accredited Undergraduate",
+      defaultValue: "Non-Accredited Graduate",
       colCount: 4,
       choices: ["Non-Accredited Undergraduate", "Accredited Undergraduate", "Non-Accredited Graduate", "Accredited Graduate" ]
     },
@@ -289,6 +289,7 @@ const surveyJson = {
               cellType: "checkbox",
               name: "frequency",
               title: " ",
+              maxSelectedChoices: 1,
               choices: [ "Met", "Partially Met", "Not Met", "Unknown" ],
               colCount: 4,
             },
