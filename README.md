@@ -27,5 +27,7 @@ Each application now reads a JSON schema for each of the four assessment reports
 Each application allows users to add and subtract SLO entries, assessment methods, etc.
 Users can easily switch between forms, enter information, and receive that form's output back to them on submitting the form.
 
-  
+### Milestone 3
+Each application implemenets web automation testing via the puppeteer JavaScript library. Various scenarios for user actions are 
+tested and pdfs of the scenarios are created. Eventually QUnit testing will also be included to compare automated results to expected results.
   
