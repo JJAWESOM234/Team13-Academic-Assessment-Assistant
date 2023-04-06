@@ -14,6 +14,13 @@ The user first selects one of the forms by clicking on a button on the side of t
 
 # Release Notes
 
+## Milestone 3
+
 The application displays a main page where users can select from four assessment forms. Users can input information,
-add and subtract SLO entries, assessment methods, decisions and actions, and data collection objects. On submitting
-the form, the user's input as a JSON string will be displayed in a browser alert.
+add and subtract SLO entries, assessment methods, decisions and actions, and data collection objects. FormData is displayed
+at the bottom of the page while user inputs information. There is a dynamic relationship between the number of SLOs and 
+the number of Decisions and Actions. On submitting the form, the user's input as a JSON string will be displayed in a browser alert. 
+
+### Testing
+Located in the react-jsonschema-form-test directory is the testing suite for this application. The puppeteer test runs through
+four different scenarios of the rjsf Non-Acc Graduate Assessment.
