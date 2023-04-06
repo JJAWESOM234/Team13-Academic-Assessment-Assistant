@@ -261,7 +261,8 @@ function TitleFieldTemplate(props: TitleFieldProps) {
   
   
   const fields: RegistryFieldsType = {
-    ArraySchemaField: CustomArraySchemaField
+    ArraySchemaField: CustomArraySchemaField,
+    TitleField: TitleFieldTemplate
   };
   
     

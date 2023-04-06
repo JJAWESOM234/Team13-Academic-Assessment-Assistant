@@ -110,8 +110,8 @@ const NAGschema: RJSFSchema = {
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "object",
-            "properties": {
+            "properties":{
+              "type": "object",
               "measureTitle": {
                 "title": "Title of the Measure",
                 "type": "string"
@@ -206,6 +206,7 @@ const NAGschema: RJSFSchema = {
                 "title": "Program Proficiency Target",
                 "type": "string"
               }
+            
             }
           }
         },
@@ -376,25 +377,32 @@ const uiSchema = {
 
   "assessmentMethods":{
     "assessmentMeasure":{
-      "items": {
-        "measureDomain":{
-          "ui:widget": "checkboxes"
-        },
-        "measureType":{
-          "ui:widget": "radio"
-        },
-        "measurePoint":{
-          "measurePointInProgram":{
-            "ui:widget": "radio"
+        "items":{
+          "ui:field": "regular",
+          "measureDomain":{
+            "ui:widget": "checkboxes",
+            "classNames": "measureDomain"
+          },
+          "measureType":{
+            "ui:widget": "radio",
+            "classNames": "measureType"
+          },
+          "measurePoint":{
+            "measurePointInProgram":{
+              "ui:widget": "radio",
+              "classNames": "measurePointInProgram"
+            }
+          },
+          "measurePopulation":{
+              "ui:widget": "radio",
+              "classNames": "measurePopulation"
+          },
+          "measureDataFreq":{
+              "ui:widget": "RadioWidget",
+              "classNames": "measureDataFreq"
           }
-        },
-        "measurePopulation":{
-            "ui:widget": "radio"
-        },
-        "measureDataFreq":{
-            "ui:widget": "RadioWidget"
         }
-      }
+      
     }
   },
 
@@ -633,16 +641,21 @@ function TitleFieldTemplate(props: TitleFieldProps) {
 }
 
 const CustomArraySchemaField = function(props: FieldProps) {
-  const { index, registry } = props;
+  const { index, registry, className } = props;
   const { SchemaField } = registry.fields;
-  const name = `SLO ${index+1}`.replace(/\*$/, '');
-  //console.log(props)
-  return <SchemaField {...props} name={name} />;
+
+  var name = className
+  if (Boolean(className)){
+    name = `SLO ${index+1}`;
+  }
+  //
+  return <SchemaField {...props} name={name}/>;
 };
 
 
 const fields: RegistryFieldsType = {
-  ArraySchemaField: CustomArraySchemaField
+  ArraySchemaField: CustomArraySchemaField,
+  TitleField: TitleFieldTemplate
 };
 
   
@@ -705,9 +718,9 @@ function NonAccGradForm() {
         <Form 
           schema={schema} validator={validator} uiSchema={uiSchema} 
           fields={fields} formData={formData} key={JSON.stringify(schema)}
-          onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
+          //onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
           onChange={onChange}/>
-          <div className="formData">FormData: {JSON.stringify(formData)}</div>
+          <div className="formData">{JSON.stringify(formData)}</div>
       </div>
     </div>
   );
