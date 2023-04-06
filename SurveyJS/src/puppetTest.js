@@ -5,6 +5,10 @@ const puppeteer = require('puppeteer');
   const page = await browser.newPage();
   await page.goto('http://localhost:3000/');
 
+  // NON_ACCREDITED GRADUATE SCENARIO 1 TEST
+  // Click Non-Accredited Graduate radio button
+  await page.click('.sd-selectbase--multi-column:nth-child(1) > .sd-selectbase__column:nth-child(3)');
+
   // Non-Accredited Graduate heading
   await page.type('#sq_157i', 'University of Nebraska Omaha');
   await page.type('#sq_158i', 'IS&T');
@@ -33,7 +37,7 @@ const puppeteer = require('puppeteer');
   await page.type('#sq_190i', 'Description');
 
   // Panel III
-  await page.type('#sq_222i', 'SLO 1 Measurement');
+  await page.type('#sq_222i', 'SLO 1/Measurement');
   await page.click('.sd-table__row:nth-child(1) .sd-selectbase__column:nth-child(3) .sd-item__decorator');
   await page.type('#sq_238i', 'SLO 1');
   await page.type('#sq_205i', 'Result Description');
@@ -44,7 +48,23 @@ const puppeteer = require('puppeteer');
   // Panel V
   await page.type('#sq_209i', 'Additional Information');
 
-  await page.screenshot({ path: 'example.png' });
+  // await page.screenshot({ path: 'example.png' });
   await page.pdf({ path: "example.pdf", format: "A4" });
+
+  // NON_ACCREDITED GRADUATE SCENARIO 3 TEST ADD ON
+
+  // Panel I
+  await page.type('#sq_213i', 'SLO 2');
+  await page.click('.sd-table__row:nth-child(2) > .sd-table__cell:nth-child(2) .sd-selectbase__column:nth-child(1) > .sd-item:nth-child(3) .sd-item__decorator');
+  await page.click('.sd-table__row:nth-child(2) > .sd-table__cell:nth-child(3) .sd-item:nth-child(3) .sd-item__decorator');
+
+  // Panel II
+  await page.click('#sv-pd-next-btn .sd-action__title');
+
+  // Panel III
+
+  // await page.screenshot({ path: 'example2.png' });
+  await page.pdf({ path: "example2.pdf", format: "A4" });
+
   await browser.close();
 })();

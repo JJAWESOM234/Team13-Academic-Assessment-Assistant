@@ -117,7 +117,7 @@ const surveyJson = {
         title: "{panelIIDesc}",
         visibleIf: "{program-group} = 'Accredited Graduate' or {program-group} = 'Accredited Undergraduate'",
         valueName: "SLOs",
-        allowAddRows: false,
+        // allowAddRows: false,
         columns: [
         {
           name: "accrSLO#Measure#",
@@ -249,12 +249,12 @@ const surveyJson = {
           name: "data",
           title: "A. Results Table – Report results for each SLO. If an SLO was assessed by multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.",
           visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
-          allowAddRows: false,
+          // allowAddRows: false,
           columns: [
           {
             name: "SLO#Measure#",
             cellType: "text",
-            title: "Measurements:",
+            title: "SLO/Title of Measure:",
           },
           {
             name: "dateRange",
@@ -371,30 +371,30 @@ function App() {
 
   survey.onMatrixCellCreated.add((sender, options) => {
 
-    if(options.column.name === "SLO") {
-      options.cellQuestion.placeHolder = options.column.name + " "
-      + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-    }
+    // if(options.column.name === "SLO") {
+    //   options.cellQuestion.placeHolder = options.column.name + " "
+    //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
+    // }
 
     // if(options.column.name === "accrSLO#Measure#") {
     //   options.cellQuestion.placeHolder = "SLO "
     //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
     // }
 
-    if(options.column.name === "SLO#Measure#") {
-      options.cellQuestion.placeHolder = "SLO "
-      + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-    }
+    // if(options.column.name === "SLO#Measure#") {
+    //   options.cellQuestion.placeHolder = "SLO "
+    //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
+    // }
 
-    if(options.column.name === "SLO-name") {
-      options.cellQuestion.placeHolder = "SLO "
-      + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-    }
+    // if(options.column.name === "SLO-name") {
+    //   options.cellQuestion.placeHolder = "SLO "
+    //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
+    // }
 
-    if(options.column.name === "frequency") {
-      options.cellQuestion.placeHolder = "SLO "
-      + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-    }
+    // if(options.column.name === "frequency") {
+    //   options.cellQuestion.placeHolder = "SLO "
+    //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
+    // }
 
   });
 
