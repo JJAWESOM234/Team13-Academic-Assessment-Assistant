@@ -4,18 +4,37 @@
         <meta charset="utf-8" />
         <title>Getting started with JSON Form</title>
         <link rel="stylesheet" type="text/css" href="deps/opt/bootstrap.css" />
+        <style>
+            form {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            h1,
+            h3 {
+                margin: auto;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
         <div>
-            <button onclick="fnShowCorrectForm(1)">
+            <button id="nonAccGradButton" onclick="fnShowCorrectForm(1)">
                 Non-Accredited Graduate
             </button>
-            <button onclick="fnShowCorrectForm(2)">Accredited Graduate</button>
-            <button onclick="fnShowCorrectForm(3)">
+            <button id="AccGradButton" onclick="fnShowCorrectForm(2)">
+                Accredited Graduate
+            </button>
+            <button id="nonAccUndGradButton" onclick="fnShowCorrectForm(3)">
                 Non-Accredited Undergraduate
             </button>
-            <button onclick="fnShowCorrectForm(4)">
+            <button id="AccGradUndButton" onclick="fnShowCorrectForm(4)">
                 Accredited Undergraduate
+            </button>
+            <button id="TestingDesign" onclick="fnShowCorrectForm(5)">
+                Testing Design Accredited Graduate
+            </button>
+            <button id="TestingDesign2" onclick="fnShowCorrectForm(6)">
+                Testing Design Non-Accredited Graduate
             </button>
         </div>
 
@@ -38,6 +57,16 @@
             <h1>Undergraduate Assesment Report</h1>
             <h3>Accredited</h3>
             <form id="AccUndGradSampleJson"></form>
+        </div>
+        <div id="TestingDesignContainer">
+            <h1>Graduate Assesment Report</h1>
+            <h3>Accredited</h3>
+            <form id="TestingDesignJson"></form>
+        </div>
+        <div id="TestingDesignContainer2">
+            <h1>Graduate Assesment Report</h1>
+            <h3>Non-Accredited</h3>
+            <form id="TestingDesign2Json"></form>
         </div>
 
         <div id="res" class="alert"></div>
