@@ -165,21 +165,21 @@ var oJSONModelTest3 = {
               measurePointLocation: "Dodge Campus"
           },
           measurePopulation: "allStudents",
-          measureDataFreq: "other",
+          measureDataFreq: "oncePerSemester",
           measureProficiencyThreshold: "Proficiency Threshold is ###",
           measureProficiencyTarget: "Proficiency Target is ##%"
         },
         {
           measureTitle: "Surveys",
           measureDescription: "This is the measure of all surveys",
-          measureDomain: ["Performance"],
-          measureType: "direct",
+          measureDomain: ["Product"],
+          measureType: "indirect",
           measurePoint:{
               measurePointInProgram: "finalYear",
               measurePointLocation: "Dodge Campus"
           },
-          measurePopulation: "allStudents",
-          measureDataFreq: "other",
+          measurePopulation: "sampleStudents",
+          measureDataFreq: "oncePerYear",
           measureProficiencyThreshold: "Proficiency Threshold is ###",
           measureProficiencyTarget: "Proficiency Target is ##%"
         },
@@ -187,12 +187,12 @@ var oJSONModelTest3 = {
           measureTitle: "Measure 3",
           measureDescription: "Measure 3 Desc",
           measureDomain: ["Performance"],
-          measureType: "direct",
+          measureType: "indirect",
           measurePoint:{
               measurePointInProgram: "finalYear",
               measurePointLocation: "Dodge Campus"
           },
-          measurePopulation: "allStudents",
+          measurePopulation: "sampleStudents",
           measureDataFreq: "other",
           measureProficiencyThreshold: "Proficiency Threshold is ###",
           measureProficiencyTarget: "Proficiency Target is ##%"
@@ -212,9 +212,6 @@ var oJSONModelTest3 = {
 }
 
 var oJSONModelTest4 = {
-  headerInfo: {
-  },
-  
   studentLearningOutcomes:{    
     programSLOTable:[
         {
@@ -265,7 +262,7 @@ var oJSONModelTest4 = {
           measureDomain: ["Performance"],
           measureType: "direct",
           measurePoint:{
-              measurePointInProgram: "finalTerm",
+              measurePointInProgram: "finalYear",
               measurePointLocation: "Dodge Campus"
           },
           measurePopulation: "allStudents",
@@ -276,7 +273,21 @@ var oJSONModelTest4 = {
         {
           measureTitle: "Measure 3",
           measureDescription: "Measure 3 Desc",
-          measureDomain: ["Product", "Performance"],
+          measureDomain: ["Performance"],
+          measureType: "direct",
+          measurePoint:{
+              measurePointInProgram: "finalYear",
+              measurePointLocation: "Dodge Campus"
+          },
+          measurePopulation: "allStudents",
+          measureDataFreq: "other",
+          measureProficiencyThreshold: "Proficiency Threshold is ###",
+          measureProficiencyTarget: "Proficiency Target is ##%"
+        },
+        {
+          measureTitle: "Measure 4",
+          measureDescription: "Measure 4 Desc",
+          measureDomain: ["Examination", "Product", "Performance"],
           measureType: "indirect",
           measurePoint:{
               measurePointInProgram: "finalYear",
@@ -287,34 +298,17 @@ var oJSONModelTest4 = {
           measureProficiencyThreshold: "Proficiency Threshold is ###",
           measureProficiencyTarget: "Proficiency Target is ##%"
         },
-        {
-          measureTitle: "Measure 4",
-          measureDescription: "Measure 4 Desc",
-          measureDomain: ["Product"],
-          measureType: "indirect",
-          measurePoint:{
-              measurePointInProgram: "finalYear",
-              measurePointLocation: "Dodge Campus"
-          },
-          measurePopulation: "sampleStudents",
-          measureDataFreq: "oncePerSemester",
-          measureProficiencyThreshold: "Proficiency Threshold is ###",
-          measureProficiencyTarget: "Proficiency Target is ##%"
-        },
       ],
     measureComplementDirect: "Describe indirect measures here."
   },
 
   dataCollection:{
+    dataResultsTable: [ {} ], dataSLOStatusTable: [ {} ]
   },
   
   decisionsAndActions:[
-    {
-      
-    },
-  ],
-
-  additionalInformation: "Additional info here"
+    {}, '', '', ''
+  ]
 }
 function fnTest1(callback) {
     ;(async () => {
@@ -830,10 +824,12 @@ function fnTest4(callback) {
     oJSONModelTest4.assessmentMethods.assessmentMeasure[3].measureTitle)
     await page.type("#root_assessmentMethods_assessmentMeasure_3 > .form-group:nth-child(2) > #root",
     oJSONModelTest4.assessmentMethods.assessmentMeasure[3].measureDescription)
-    await page.click("#root_assessmentMethods_assessmentMeasure_2 .checkbox #root-1")
-    await page.click("#root_assessmentMethods_assessmentMeasure_2 .checkbox #root-2")
-    await page.click("#root_assessmentMethods_assessmentMeasure_2 > .measureType > #root > .radio:nth-child(2) span > span")
-    await page.click("#root_assessmentMethods_assessmentMeasure_2 #root_measurePointInProgram > .radio:nth-child(2) span > span")
+    await page.click("#root_assessmentMethods_assessmentMeasure_3 .checkbox #root-0")
+    await page.click("#root_assessmentMethods_assessmentMeasure_3 .checkbox #root-1")
+    await page.click("#root_assessmentMethods_assessmentMeasure_3 .checkbox #root-2")
+
+    await page.click("#root_assessmentMethods_assessmentMeasure_3 > .measureType > #root > .radio:nth-child(2) span > span")
+    await page.click("#root_assessmentMethods_assessmentMeasure_3 #root_measurePointInProgram > .radio:nth-child(2) span > span")
     
 
     await page.type("#root_assessmentMethods_assessmentMeasure_3 #root_measurePointLocation", 
@@ -851,7 +847,7 @@ function fnTest4(callback) {
     await page.type("#root_assessmentMethods_measureComplementDirect",
     oJSONModelTest4.assessmentMethods.measureComplementDirect)
 
-    await page.pdf({ path: "test4.pdf", format: "A4" })
+    await page.pdf({ path: "test4.pdf", format: "A1" })
     //Submit Form
     page.on('dialog', async dialog => {
         await dialog.accept();
@@ -870,10 +866,10 @@ function fnTest4(callback) {
     callback && callback(jsonReturnActual)
   })()
 }
-/*
+
 QUnit.config.testTimeout = 600000;
 
-/*
+
 QUnit.module("fnTest1", (hooks) => {
     QUnit.test("Test Case 1", (assert) => {
         var done = assert.async()
@@ -884,7 +880,7 @@ QUnit.module("fnTest1", (hooks) => {
     })
 })
 
-/*
+
 QUnit.module("fnTest2", (hooks) => {
   QUnit.test("Test Case 2", (assert) => {
       var done = assert.async()
@@ -894,7 +890,7 @@ QUnit.module("fnTest2", (hooks) => {
       })
   })
 })
-*
+
 QUnit.module("fnTest3", (hooks) => {
   QUnit.test("Test Case 3", (assert) => {
       var done = assert.async()
@@ -904,7 +900,7 @@ QUnit.module("fnTest3", (hooks) => {
       })
   })
 })
-/*
+
 QUnit.module("fnTest4", (hooks) => {
   QUnit.test("Test Case 4", (assert) => {
       var done = assert.async()
@@ -913,7 +909,7 @@ QUnit.module("fnTest4", (hooks) => {
           done()
       })
   })
-})*/
+})
 
 function fnCompareJSONModels(oJSONModelExpected, sJSONActual) {
     // console.log("\n\n\n\n\n")
@@ -933,10 +929,10 @@ function fnCompareJSONModels(oJSONModelExpected, sJSONActual) {
     var foo2 = { a: 1, b: 2, c: { a: 1, b: 3, c: { a: 1, b: 2 } } };
     var foo3 = {c: { a: 1, c: { a: 1, b: 2 }, b: 3 },  a: 1, b: 2 };
 
-    console.log(_.isEqual(foo1, foo2))
-    console.log(_.isEqual(foo2, foo3))
+    //console.log(_.isEqual(foo1, foo2))
+    //console.log(_.isEqual(foo2, foo3))
     bSameModel = _.isEqual(oJSONActual, oJSONModelExpected)
     return bSameModel
 }
 
-fnTest3();
+fnTest4();
