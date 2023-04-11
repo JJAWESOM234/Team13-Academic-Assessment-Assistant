@@ -1299,6 +1299,15 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     await page.pdf({ path: "./test-pdfs/TestCaseOne.pdf", format: "A4" })
     await browser.close();
 
+    /**
+     * Function to wait for the selector to appear in the frame.
+     * @async
+     * @param {Array} Array - Selector array Doc HTML selectors 
+     * @param {Object} frame - Frame object representing the current HTML frame
+     * @param {Object} options - Selector options object
+     * @returns {Promise} Promise for a function to find selectors with the given conditions 
+     * @throws {Error} Element with the given selector could not be found. 
+     */
     async function waitForSelectors(selectors, frame, options) {
       for (const selector of selectors) {
         try {
@@ -1310,6 +1319,15 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
     }
 
+    /**
+     * Function to scroll the selector into frame.
+     * @async
+     * @param {Array} selectors - Selector array Doc HTML selectors 
+     * @param {Object} frame - Frame object representing the current HTML frame
+     * @param {Object} timeout - Wait timeout
+     * @returns {Object} Returns nothing, is used to break our of the function
+     * @throws {Error} Element with the given selector could not be found. 
+     */
     async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
       const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
       if (!element) {
@@ -1332,18 +1350,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       await waitForInViewport(element, timeout);
     }
 
+     /**
+     * Function to scroll the selector into frame.
+     * @async
+     * @param {Object} element - HTML element object
+     * @param {Object} timeout - Wait timeout
+     * @returns {Promise} Promise of getting a property
+     * @throws {Error} Element with the given selector could not be found. 
+     */
     async function waitForConnected(element, timeout) {
       await waitForFunction(async () => {
         return await element.getProperty('isConnected');
       }, timeout);
     }
 
+    /**
+     * Function that waits for the element to be viewable or until a timeout period.
+     * @async
+     * @param {Object} element - HTML element object 
+     * @param {Object} timeout - Wait timeout 
+     */
     async function waitForInViewport(element, timeout) {
       await waitForFunction(async () => {
         return await element.isIntersectingViewport({threshold: 0});
       }, timeout);
     }
 
+    /**
+     * Function to wait for the selector to be visible or selectable or until a timeout period. 
+     * @async
+     * @param {Object} selector - Selector Object Doc HTML selectors 
+     * @param {Object} frame - Frame object representing the current HTML frame 
+     * @param {Object} options - Selector options object 
+     * @returns {Object} Element that was found and waited for
+     */
     async function waitForSelector(selector, frame, options) {
       if (!Array.isArray(selector)) {
         selector = [selector];
@@ -1372,6 +1412,14 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       return element;
     }
 
+    /**
+     * Funtion to wait for the visibility of an element or until a timeout period. 
+     * @async
+     * @param {Object} step - Object containing HTML selectors
+     * @param {Object} frame - Frame object representing the current HTML frame 
+     * @param {Object} timeout - Wait timeout 
+     * @return {Boolean} Denotes if the element was loaded or found within the timeout
+     */
     async function waitForElement(step, frame, timeout) {
       const {
         count = 1,
@@ -1438,6 +1486,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       }, timeout);
     }
 
+    /**
+     * Function that uses the selectors and the frame to find all matching elements.
+     * @async
+     * @param {Array} selectors - Selector array Doc HTML selectorss 
+     * @param {Object} frame - Frame object representing the current HTML frame 
+     * @returns {Array} All elements that match the given selectors and frame 
+     */
     async function querySelectorsAll(selectors, frame) {
       for (const selector of selectors) {
         const result = await querySelectorAll(selector, frame);
@@ -1448,6 +1503,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       return [];
     }
 
+    /**
+     * Function that uses the selector and the greame to find the matching element.
+     * @async
+     * @param {Object} selector - Selector Object Doc HTML selectors 
+     * @param {Object} frame - Frame object representing the current HTML frame 
+     * @returns {Array} All elements that match the given selector and frame 
+     */
     async function querySelectorAll(selector, frame) {
       if (!Array.isArray(selector)) {
         selector = [selector];
@@ -1484,6 +1546,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       return elements;
     }
 
+    /**
+     * Function to wait for the promise of an asnyc function or until a timeout period. 
+     * @async
+     * @param {Function} fn - A function with a promise to wait for the handshake to complete
+     * @param {Object} timeout - Wait timeout 
+     * @returns {Object} Returns nothing, is used to break our of the function
+     */
     async function waitForFunction(fn, timeout) {
       let isActive = true;
       const timeoutId = setTimeout(() => {
@@ -1500,6 +1569,12 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       throw new Error('Timed out');
     }
 
+    /**
+     * Function to update the value of an HTML select element.
+     * @async
+     * @param {Object} element - HTML element object 
+     * @param {Object} value - Value to update the HTML element with 
+     */
     async function changeSelectElement(element, value) {
       await element.select(value);
       await element.evaluateHandle((e) => {
@@ -1508,6 +1583,12 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       });
     }
 
+    /**
+     * Function to update the value of an input element.
+     * @async
+     * @param {Object} element - HTML element object 
+     * @param {Object} value - Value to update the HTML element with 
+     */
     async function changeElementValue(element, value) {
       await element.focus();
       await element.evaluate((input, value) => {
@@ -1517,6 +1598,12 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       }, value);
     }
 
+    /**
+     * Function to update the value of an input text element.
+     * @async
+     * @param {Object} element - HTML element object 
+     * @param {Object} value - Value to update the HTML element with 
+     */
     async function typeIntoElement(element, value) {
       const textToType = await element.evaluate((input, newValue) => {
         if (
@@ -1537,3 +1624,6 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     console.error(err);
     process.exit(1);
 });
+
+
+//lodash

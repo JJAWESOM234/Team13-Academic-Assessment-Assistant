@@ -5,14 +5,21 @@ var iSLOMax = 0
 var iMeasureWorking = 0
 var aMeasureid = []
 var iMeasureMax = 0
-
-document.getElementById("nonAccGradContainer").style.display = "none"
-document.getElementById("AccGradContainer").style.display = "none"
-document.getElementById("nonAccUndGradContainer").style.display = "none"
-document.getElementById("AccUndGradContainer").style.display = "none"
-document.getElementById("TestingDesignContainer").style.display = "none"
-document.getElementById("TestingDesignContainer2").style.display = "none"
-
+/**
+ * Initilizes each form to be invisible.
+ */
+{
+    document.getElementById("nonAccGradContainer").style.display = "none"
+    document.getElementById("AccGradContainer").style.display = "none"
+    document.getElementById("nonAccUndGradContainer").style.display = "none"
+    document.getElementById("AccUndGradContainer").style.display = "none"
+    document.getElementById("TestingDesignContainer").style.display = "none"
+    document.getElementById("TestingDesignContainer2").style.display = "none"
+}
+/**
+ * Function to handle the display change of selecting the different forms.
+ * @param {Integer} iForm - Integer representing which form is being selected. 
+ */
 function fnShowCorrectForm(iForm) {
     if (iForm === 1) {
         document.getElementById("nonAccGradContainer").style.display = "block"
@@ -67,6 +74,9 @@ function fnShowCorrectForm(iForm) {
     }
 }
 
+/**
+ * Initial proof of concept of the new design implementing on the Accredited Graduate Assessment Report. This is the portion to bind the Accredited Graduate Assessment Report JSON model to the certain form using the id.
+ */
 $("#TestingDesignJson").jsonForm({
     schema: {
         title: "Accredited Graduate Assessment Report",
@@ -268,6 +278,9 @@ $("#TestingDesignJson").jsonForm({
     },
 })
 
+/**
+ * Initial proof of concept of the new design implementing on the Non-Accredited Graduate Assessment Report. This is the portion to bind the Non-Accredited Graduate Assessment Report JSON model to the certain form using the id.
+ */
 $("#TestingDesign2Json").jsonForm({
     schema: {
         title: "Accredited Graduate Assessment Report",
@@ -621,6 +634,9 @@ $("#TestingDesign2Json").jsonForm({
     },
 })
 
+/**
+ * This is the portion to bind the Non-Accredited Graduate Assessment Report JSON model to the certain form using the id.
+ */
 $("#nonAccGradSampleJson").jsonForm({
     schema: {
         title: "Non-Accredited Graduate Assessment Report",
@@ -1121,6 +1137,9 @@ $("#nonAccGradSampleJson").jsonForm({
     },
 })
 
+/**
+ * This is the portion to bind the Accredited Graduate Assessment Report JSON model to the certain form using the id.
+ */
 $("#AccGradSampleJson").jsonForm({
     schema: {
         title: "Accredited Graduate Assessment Report",
@@ -1365,6 +1384,9 @@ $("#AccGradSampleJson").jsonForm({
     },
 })
 
+/**
+ * This is the portion to bind the Non-Accredited Undergraduate Assessment Report JSON model to the certain form using the id.
+ */
 $("#nonAccUndGradSampleJson").jsonForm({
     schema: {
         title: "Non-Accredited Undergraduate Assessment Report",
@@ -1708,6 +1730,9 @@ $("#nonAccUndGradSampleJson").jsonForm({
     },
 })
 
+/**
+ * This is the portion to bind the Accredited Undergraduate Assessment Report JSON model to the certain form using the id.
+ */
 $("#AccUndGradSampleJson").jsonForm({
     schema: {
         title: "Accredited Undergraduate Assessment Report Template",
