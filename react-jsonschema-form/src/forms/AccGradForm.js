@@ -4,9 +4,13 @@ import Form from "@rjsf/core";
 import validator from "@rjsf/validator-ajv8";
 import { ArrayFieldTitleTemplateProps,ArrayFieldTemplateItemType, titleId, Registry } from "@rjsf/utils";
 import React, {useState} from "react"
-import './NonAccGradForm.css';
+import './AccGradForm.css';
 
-const AGschema: RJSFSchema = {
+/**
+ * Defines the react-jsonschema-form JSON schema for the Accredited Graduate assessment Form.
+ * @constant
+ */
+const AGschema = {
   "title": "Accredited Graduate Assessment Report Template",
   "type": "object",
   "properties": {
@@ -173,7 +177,10 @@ const AGschema: RJSFSchema = {
     }
   }
 };
-
+/**
+ * Defines the react-jsonschema-form UI schema for the Accredited Graduate assessment form.
+ * @constant
+ */
 const uiSchema = {
   "headerInfo":{
     "classNames": "headerInfo",
@@ -261,94 +268,113 @@ const uiSchema = {
 }
 
 
-function TitleFieldTemplate(props: TitleFieldProps) {
-    const { id, required, title } = props;
-    return (
-      <header id={id}>
-        {title}
-        {required}
-      </header>
-    );
+/**
+ * Defines a custom title "SLO #" for array items.
+ * @constant
+ * @param {FieldProps} props - The RJSF attributes for a given form array item.
+ * @returns The array item's schema field with an updated name.
+ */
+const CustomArraySchemaField = function(props) {
+  const { index, registry } = props;
+  const { SchemaField } = registry.fields;
+  const name = `SLO ${index+1}`;
+  return <SchemaField {...props} name={name} />;
+};
+  
+/**
+ * Defines the custom fields that the RJSF form references.
+ * @constant
+ */
+const fields = {
+  ArraySchemaField: CustomArraySchemaField
+};
+
+/**
+ * @function
+ * @returns The auto generated Accredited Graduate assessment form.
+ */    
+function AccGradForm() {
+
+//Use state to track formData, set initial formData with 1 SLO
+/**
+ * Uses React state to track changes to the initally defined JSON schema.
+ * @constant
+ */
+const [schema] = useState(AGschema);
+
+/**
+ * Uses React state to track changes to user inputted form data.
+ * @constant
+ */
+const [formData, setFormData] = useState({ 
+  studentLearningOutcomes: { programSLOTable: [{}] }});
+
+//use formData to track changes to number of SLOs
+/**
+ * U@constantses React state to track the number of items in the Student Learning Outcomes array.
+ * 
+ */
+const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
+
+/**
+ * Updates form data state after detecting changes.
+ * @constant
+ * @param {formData} newFormData - The most recently updated user form data.
+ */
+//Track changes to formData and numSLOs using updated formData
+const onChange = ({ formData: newFormData}) => {
+  setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
+  
+  
+  //if DecisionsAndActions not equal to SLOs, add or subtract 
+  const updatedFormData = {}
+  const dnaLength = newFormData.decisionsAndActions.length;
+  if (dnaLength < numSLO){
+    const updatedFormData = {
+      ...newFormData,
+      decisionsAndActions: [...newFormData.decisionsAndActions]
+    };
+    
+    for (let i = dnaLength; i < numSLO; i++){
+      updatedFormData.decisionsAndActions.push("")
+    }
+    setFormData(updatedFormData);
+  }
+  else if (dnaLength > numSLO){
+    const updatedFormData = {
+      ...newFormData,
+      decisionsAndActions: [...newFormData.decisionsAndActions]
+    };
+
+    for (let i = dnaLength; i > numSLO; i--){
+      updatedFormData.decisionsAndActions.pop()
+    }
+    setFormData(updatedFormData)
+  }
+  else{
+    setFormData(newFormData);
   }
   
-  const CustomArraySchemaField = function(props: FieldProps) {
-    const { index, registry } = props;
-    const { SchemaField } = registry.fields;
-    const name = `SLO ${index+1}`;
-    return <SchemaField {...props} name={name} />;
-  };
-  
-  
-  const fields: RegistryFieldsType = {
-    ArraySchemaField: CustomArraySchemaField
-  };
-  
-    
-  function AccGradForm() {
-  
-    //Use state to track formData, set initial formData with 1 SLO
-  const [schema, setSchema] = useState(AGschema);
-  const [formData, setFormData] = useState({ 
-    studentLearningOutcomes: { programSLOTable: [{}] }});
 
-  //use formData to track changes to number of SLOs
-  const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
-
- 
-  //Track changes to formData and numSLOs using updated formData
-  const onChange = ({ formData: newFormData}) => {
-    setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
-    
-    
-    //if DecisionsAndActions not equal to SLOs, add or subtract 
-    const updatedFormData = {}
-    const dnaLength = newFormData.decisionsAndActions.length;
-    if (dnaLength < numSLO){
-      const updatedFormData = {
-        ...newFormData,
-        decisionsAndActions: [...newFormData.decisionsAndActions]
-      };
-      
-      for (let i = dnaLength; i < numSLO; i++){
-        updatedFormData.decisionsAndActions.push("")
-      }
-      setFormData(updatedFormData);
-    }
-    else if (dnaLength > numSLO){
-      const updatedFormData = {
-        ...newFormData,
-        decisionsAndActions: [...newFormData.decisionsAndActions]
-      };
-
-      for (let i = dnaLength; i > numSLO; i--){
-        updatedFormData.decisionsAndActions.pop()
-      }
-      setFormData(updatedFormData)
-    }
-    else{
-      setFormData(newFormData);
-    }
-    
-
-    
-    console.log(formData.decisionsAndActions)
-  };
   
+  console.log(formData.decisionsAndActions)
+};
+
+
   
-    
-  
-    return (
-      <div className='body'>
-        <div className='rjsfForm'>
-          <p>Number of SLOS: {numSLO} </p>
-          <Form 
-            schema={schema} validator={validator}  uiSchema={uiSchema}
-            fields={fields} formData={formData}
-            onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
-            onChange={onChange}/>
-        </div>
+
+  return (
+    <div className='body'>
+      <div className='rjsfForm'>
+        <p>Number of SLOS: {numSLO} </p>
+        <Form 
+          schema={schema} validator={validator}  uiSchema={uiSchema}
+          fields={fields} formData={formData}
+          onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
+          onChange={onChange}/>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
-  export default AccGradForm;
+export default AccGradForm;

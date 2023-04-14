@@ -6,14 +6,25 @@ import React, { useState } from 'react';
 import "./FormSelector.css"
 
 
-
+/**
+ * @function
+ * @returns A selection page w/ buttons to render forms.
+ */
 function FormSelector () {
     const [selectedForm, setSelectedForm] = useState(null);
     
+    /**
+     * @function
+     * @param {String} formName - Form the user has selected.
+     */
     function handleFormSelect(formName) {
         setSelectedForm(formName);
     }
 
+    /**
+     * @function
+     * @returns One of the four assessment forms.
+     */
     function renderForm(){
         switch(selectedForm){
             case 'NAG':

@@ -1,17 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: forms/AccGradForm.js</title>
 
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: forms/AccGradForm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
 import { RJSFSchema } from "@rjsf/utils";
 import Form from "@rjsf/core";
 import validator from "@rjsf/validator-ajv8";
 import { ArrayFieldTitleTemplateProps,ArrayFieldTemplateItemType, titleId, Registry } from "@rjsf/utils";
 import React, {useState} from "react"
-import './AccUnGradForm.css';
+import './NonAccGradForm.css';
 
 /**
- * Defines the react-jsonschema-form JSON schema for the Accredited Undergraduate assessment Form.
+ * Defines the react-jsonschema-form JSON schema for the Accredited Graduate assessment Form.
  * @constant
  */
-const AUGschema = {
-  "title": "Accredited Undergraduate Assessment Report Template",
+const AGschema = {
+  "title": "Accredited Graduate Assessment Report Template",
   "type": "object",
   "properties": {
     "headerInfo": {
@@ -33,7 +61,7 @@ const AUGschema = {
     
     "studentLearningOutcomes": {
       "type": "object",
-      "title": "I. Degree Program & Common Graduate Student Learning Outcomes (SLOs)",
+      "title": "I. Degree Program &amp; Common Graduate Student Learning Outcomes (SLOs)",
       "description": `A.List degree program SLOs.  For each, SLO, indicate the highest cognitive level and Common Graduate Program SLO it represents.
       To accommodate more than four SLOs, add rows as needed.  The Common Graduate SLOs for master’s programs (adopted 2/2017) are listed below.
       Students shall demonstrate at the graduate level:
@@ -62,6 +90,21 @@ const AUGschema = {
                   {"const": "Evaluation", "title": "Evaluation"}
                   ]
               },
+              "programSLOCommon":{
+                "type": "array",
+                "title": "Common Graduate Program SLOs",
+                "items" : {
+                  "type": "string",
+                  "enum": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "Not Applicable for SLO",
+                  ]
+                },
+                "uniqueItems": true
+              },
             }
           }
         },
@@ -89,7 +132,7 @@ const AUGschema = {
                 "type": "string"
               },
               "measureDataFreq": {
-                "title": "Data Collection (i.e. annually, by semester)",
+                "title": "Data Collection (i.e. anually, by semester)",
                 "type": "string",
               },
             }
@@ -162,9 +205,8 @@ const AUGschema = {
     }
   }
 };
-
 /**
- * Defines the react-jsonschema-form UI schema for the Accredited Undergraduate assessment form.
+ * Defines the react-jsonschema-form UI schema for the Accredited Graduate assessment form.
  * @constant
  */
 const uiSchema = {
@@ -218,6 +260,10 @@ const uiSchema = {
           "ui:template": "table",
           "classNames": "table-slo-bloom"
         },
+        "programSLOCommon":{
+          "ui:widget": "CheckboxesWidget",
+          "classNames": "table-slo-common"
+        }
       }
     }
   },
@@ -249,114 +295,136 @@ const uiSchema = {
   }
 }
 
+
 /**
  * Defines a custom title "SLO #" for array items.
  * @constant
  * @param {FieldProps} props - The RJSF attributes for a given form array item.
  * @returns The array item's schema field with an updated name.
  */
-  const CustomArraySchemaField = function(props) {
-    const { index, registry } = props;
-    const { SchemaField } = registry.fields;
-    const name = `SLO ${index+1}`;
-    return <SchemaField {...props} name={name} />;
-  };
+const CustomArraySchemaField = function(props) {
+  const { index, registry } = props;
+  const { SchemaField } = registry.fields;
+  const name = `SLO ${index+1}`;
+  return &lt;SchemaField {...props} name={name} />;
+};
   
-  /**
-   * Defines the custom fields that the RJSF form references.
-   * @constant
-   */
-  const fields = {
-    ArraySchemaField: CustomArraySchemaField
-  };
-  
-  /**
-   * @function
-   * @returns The auto generated Accredited Undergraduate assessment form.
-   */   
-  function AccUnGradForm() {
-  
-    //Use state to track formData, set initial formData with 1 SLO
-  /**
-   * Uses React state to track changes to the initally defined JSON schema.
-   * @constant
-   */
-  const [schema] = useState(AUGschema);
-  /**
-   * Uses React state to track changes to user inputted form data.
-   * @constant
-   */
-  const [formData, setFormData] = useState({ 
-    studentLearningOutcomes: { programSLOTable: [{}] }});
+/**
+ * Defines the custom fields that the RJSF form references.
+ * @constant
+ */
+const fields = {
+  ArraySchemaField: CustomArraySchemaField
+};
 
-  /**
-   * Uses React state to track the number of items in the Student Learning Outcomes array.
-   * @constant
-   */
-  //use formData to track changes to number of SLOs
-  const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
+/**
+ * @function
+ * @returns The auto generated Accredited Graduate assessment form.
+ */    
+function AccGradForm() {
 
- 
-  //Track changes to formData and numSLOs using updated formData
-  /**
-   * Updates form data state after detecting changes.
-   * @constant
-   * @param {formData} newFormData - The most recently updated user form data.
-   */
-  //Track changes to formData and numSLOs using updated formData
-  const onChange = ({ formData: newFormData}) => {
-    setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
+//Use state to track formData, set initial formData with 1 SLO
+/**
+ * Uses React state to track changes to the initally defined JSON schema.
+ * @constant
+ */
+const [schema] = useState(AGschema);
+
+/**
+ * Uses React state to track changes to user inputted form data.
+ * @constant
+ */
+const [formData, setFormData] = useState({ 
+  studentLearningOutcomes: { programSLOTable: [{}] }});
+
+//use formData to track changes to number of SLOs
+/**
+ * U@constantses React state to track the number of items in the Student Learning Outcomes array.
+ * 
+ */
+const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
+
+/**
+ * Updates form data state after detecting changes.
+ * @constant
+ * @param {formData} newFormData - The most recently updated user form data.
+ */
+//Track changes to formData and numSLOs using updated formData
+const onChange = ({ formData: newFormData}) => {
+  setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
+  
+  
+  //if DecisionsAndActions not equal to SLOs, add or subtract 
+  const updatedFormData = {}
+  const dnaLength = newFormData.decisionsAndActions.length;
+  if (dnaLength &lt; numSLO){
+    const updatedFormData = {
+      ...newFormData,
+      decisionsAndActions: [...newFormData.decisionsAndActions]
+    };
     
-    
-    //if DecisionsAndActions not equal to SLOs, add or subtract 
-    const updatedFormData = {}
-    const dnaLength = newFormData.decisionsAndActions.length;
-    if (dnaLength < numSLO){
-      const updatedFormData = {
-        ...newFormData,
-        decisionsAndActions: [...newFormData.decisionsAndActions]
-      };
-      
-      for (let i = dnaLength; i < numSLO; i++){
-        updatedFormData.decisionsAndActions.push("")
-      }
-      setFormData(updatedFormData);
+    for (let i = dnaLength; i &lt; numSLO; i++){
+      updatedFormData.decisionsAndActions.push("")
     }
-    else if (dnaLength > numSLO){
-      const updatedFormData = {
-        ...newFormData,
-        decisionsAndActions: [...newFormData.decisionsAndActions]
-      };
-
-      for (let i = dnaLength; i > numSLO; i--){
-        updatedFormData.decisionsAndActions.pop()
-      }
-      setFormData(updatedFormData)
-    }
-    else{
-      setFormData(newFormData);
-    }
-    
-
-    
-    console.log(formData.decisionsAndActions)
-  };
-  
-  
-    
-  
-    return (
-      <div className='body'>
-        <div className='rjsfForm'>
-          <p>Number of SLOS: {numSLO} </p>
-          <Form 
-            schema={schema} validator={validator}  uiSchema={uiSchema}
-            fields={fields} formData={formData}
-            onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
-            onChange={onChange}/>
-        </div>
-      </div>
-    );
+    setFormData(updatedFormData);
   }
+  else if (dnaLength > numSLO){
+    const updatedFormData = {
+      ...newFormData,
+      decisionsAndActions: [...newFormData.decisionsAndActions]
+    };
 
-  export default AccUnGradForm;
+    for (let i = dnaLength; i > numSLO; i--){
+      updatedFormData.decisionsAndActions.pop()
+    }
+    setFormData(updatedFormData)
+  }
+  else{
+    setFormData(newFormData);
+  }
+  
+
+  
+  console.log(formData.decisionsAndActions)
+};
+
+
+  
+
+  return (
+    &lt;div className='body'>
+      &lt;div className='rjsfForm'>
+        &lt;p>Number of SLOS: {numSLO} &lt;/p>
+        &lt;Form 
+          schema={schema} validator={validator}  uiSchema={uiSchema}
+          fields={fields} formData={formData}
+          onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
+          onChange={onChange}/>
+      &lt;/div>
+    &lt;/div>
+  );
+}
+
+export default AccGradForm;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AGschema">AGschema</a></li><li><a href="global.html#AUGschem">AUGschem</a></li><li><a href="global.html#AccGradForm">AccGradForm</a></li><li><a href="global.html#AccUnGradForm">AccUnGradForm</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomArraySchemaField">CustomArraySchemaField</a></li><li><a href="global.html#FormSelector">FormSelector</a></li><li><a href="global.html#NAGschema">NAGschema</a></li><li><a href="global.html#NAUGschema">NAUGschema</a></li><li><a href="global.html#NonAccGradForm">NonAccGradForm</a></li><li><a href="global.html#NonAccUnGradForm">NonAccUnGradForm</a></li><li><a href="global.html#fields">fields</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#uiSchema">uiSchema</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Apr 10 2023 21:09:08 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

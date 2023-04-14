@@ -5,7 +5,14 @@ import App from './App';
 import FormSelector from './FormSelector';
 import reportWebVitals from './reportWebVitals';
 
+/**
+ * Makes index.js DOM element for the application.
+ * @constant
+ */
 const root = ReactDOM.createRoot(document.getElementById('root'));
+/**
+ * Renders the App component.
+ */
 root.render(
   <React.StrictMode>
     <App />
