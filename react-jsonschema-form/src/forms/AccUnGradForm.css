@@ -45,19 +45,3 @@
     width: 400px;
     overflow:auto;
 }
-
-.dataResultsEntryName, .dataResultsEntryRange,
-.dataResultsEntryNumStudents, .dataResultsEntryPercStudents {
-    width: 25%;
-    margin: 0 0 0 0;
-    float: left;
-}
-
-.dataResultsEntryName > label, .dataResultsEntryRange > label,
-.dataResultsEntryNumStudents > label {
-    padding-bottom: 18px;
-}
-
-.dataResultsEntryPercStudents > label {
-    
-}

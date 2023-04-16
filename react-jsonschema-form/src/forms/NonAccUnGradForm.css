@@ -8,15 +8,7 @@
     margin: auto;
 }
 
-.array-item{
-    display: grid;
-}
 
-.array-item .array-item{
-    float: left;
-    width: 50%;
-    padding: 0 1em;
-}
 
 .headerInfo{
     display:flex;
@@ -46,18 +38,3 @@
     overflow:auto;
 }
 
-.dataResultsEntryName, .dataResultsEntryRange,
-.dataResultsEntryNumStudents, .dataResultsEntryPercStudents {
-    width: 25%;
-    margin: 0 0 0 0;
-    float: left;
-}
-
-.dataResultsEntryName > label, .dataResultsEntryRange > label,
-.dataResultsEntryNumStudents > label {
-    padding-bottom: 18px;
-}
-
-.dataResultsEntryPercStudents > label {
-    
-}

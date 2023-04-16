@@ -4,9 +4,13 @@ import Form from "@rjsf/core";
 import validator from "@rjsf/validator-ajv8";
 import { ArrayFieldTitleTemplateProps,ArrayFieldTemplateItemType, titleId, Registry } from "@rjsf/utils";
 import React, {useState} from "react"
-import './NonAccGradForm.css';
+import './NonAccUnGradForm.css';
 
-const NAUGschema: RJSFSchema = {
+/**
+ * Defines the react-jsonschema-form JSON schema for the Non-Accredited Undergraduate assessment Form.
+ * 
+ */
+const NAUGschema = {
   "title": "Non-Accredited Undergraduate Assessment Report Template",
   "type": "object",
   "properties": {
@@ -297,6 +301,11 @@ const NAUGschema: RJSFSchema = {
   }
 };
 
+
+/**
+ * Defines the react-jsonschema-form UI schema for the Non-Accredited Undergraduate assessment form.
+ * 
+ */
 const uiSchema = {
   "headerInfo":{
     "classNames": "headerInfo",
@@ -406,17 +415,13 @@ const uiSchema = {
 }
 
 
-function TitleFieldTemplate(props: TitleFieldProps) {
-  const { id, required, title } = props;
-  return (
-    <header id={id}>
-      {title}
-      {required}
-    </header>
-  );
-}
-
-const CustomArraySchemaField = function(props: FieldProps) {
+/**
+ * Defines a custom title "SLO #" for array items.
+ * @constant
+ * @param {FieldProps} props - The RJSF attributes for a given form array item.
+ * @returns The array item's schema field with an updated name.
+ */
+const CustomArraySchemaField = function(props) {
   const { index, registry } = props;
   const { SchemaField } = registry.fields;
   const name = `SLO ${index+1}`.replace(/\*$/, '');
@@ -424,23 +429,45 @@ const CustomArraySchemaField = function(props: FieldProps) {
   return <SchemaField {...props} name={name} />;
 };
 
-
-const fields: RegistryFieldsType = {
+/**
+ * Defines the custom fields that the RJSF form references.
+ * 
+ */
+const fields = {
   ArraySchemaField: CustomArraySchemaField
 };
 
-  
+/**
+ * @function
+ * @returns The auto generated Non-Accredited Undergraduate assessment form.
+ */ 
 function NonAccUnGradForm() {
 
   //Use state to track formData, set initial formData with 1 SLO
+  /**
+   * Uses React state to track changes to the initally defined JSON schema.
+   * 
+   */
   const [schema, setSchema] = useState(NAUGschema);
+  /**
+   * Uses React state to track changes to user inputted form data.
+   * 
+   */
   const [formData, setFormData] = useState({ 
     studentLearningOutcomes: { programSLOTable: [{}] }});
 
+  /**
+   * Uses React state to track the number of items in the Student Learning Outcomes array.
+   * 
+   */
   //use formData to track changes to number of SLOs
   const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
 
- 
+  
+  /**
+   * Updates form data state after detecting changes.
+   * @param {formData} newFormData - The most recently updated user form data.
+   */
   //Track changes to formData and numSLOs using updated formData
   const onChange = ({ formData: newFormData}) => {
     setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)

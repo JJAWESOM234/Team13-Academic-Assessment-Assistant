@@ -8,6 +8,9 @@ import { Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 import { useCallback } from 'react';
 
+/**
+ * JSON element used to generate an AAC form; utilizes the surveyJS library.
+ */
 const surveyJson = {
 
   title: "{program-group} Assessment Report",
@@ -19,7 +22,7 @@ const surveyJson = {
     {
       type: "radiogroup",
       name: "program-group",
-      title: "Choose Program:",
+      title: "Choose Program: ",
       defaultValue: "Non-Accredited Graduate",
       colCount: 4,
       choices: ["Non-Accredited Undergraduate", "Accredited Undergraduate", "Non-Accredited Graduate", "Accredited Graduate" ]
@@ -125,10 +128,10 @@ const surveyJson = {
           title: "Measurement Title:",
         },
         {
-          name: "SLO-selection",
+          name: "accrSLO",
           cellType: "dropdown",
-          choices: [],
           title: "SLO:",
+          choices: ["1", "2", "3", "4"]
         },
         {
           name: "accrMethods-domain",
@@ -156,6 +159,12 @@ const surveyJson = {
           name: "methodPanel",
           title: " ",
           elements: [
+            {
+              type: "dropdown",
+              name: "measureSLO",
+              title: "SLO:",
+              choices: ["1", "2", "3", "4"]
+            },
             {
               type: "text",
               name: "measureTitle",
@@ -228,7 +237,8 @@ const surveyJson = {
           ]
         },
         ],
-        templateTitle: "SLO {panelIndex}: {panel.SLO}",
+        templateTitle : " ",
+        // templateTitle: "SLO {panelIndex}: {panel.SLO}",
       },
       {
         type: "comment",
@@ -249,12 +259,18 @@ const surveyJson = {
           name: "data",
           title: "A. Results Table – Report results for each SLO. If an SLO was assessed by multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.",
           visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
-          // allowAddRows: false,
+          allowAddRows: true,
           columns: [
           {
-            name: "SLO#Measure#",
+            name: "measureTitle",
             cellType: "text",
-            title: "SLO/Title of Measure:",
+            title: "Title of Measure:",
+          },
+          {
+            name: "SLONumber",
+            cellType: "dropdown",
+            title: "SLO:",
+            choices: ["1", "2", "3", "4"]
           },
           {
             name: "dateRange",
@@ -314,7 +330,6 @@ const surveyJson = {
           type: "matrixdynamic",
           name: "decisions&Actions",
           title: "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions: What are the effects of your previously stated changes from your last report? What did you do in response to your previous assessment report feedback? How have you made progress since the last assessment report?",
-          valueName: "SLOs",
           allowAddRows: false,
           columns: [
             {
@@ -357,29 +372,30 @@ const surveyJson = {
     {
       name: "panelIIIStsTblDesc",
       expression: "iif({program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate', 'B.  SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.','SLO Status Table – Indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.' )"
-    }
+    },
   // end of calculated values
   ]
 
 // end of surveyConst
 };
 
-
+/**
+ * Function that creates a model from surveyJson; is exported to index.js.
+ * @function
+ * @returns survey model
+ */
 function App() {
 
   const survey = new Model(surveyJson);
 
   survey.onMatrixCellCreated.add((sender, options) => {
 
-    // if(options.column.name === "SLO") {
-    //   options.cellQuestion.placeHolder = options.column.name + " "
-    //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-    // }
+    if(options.column.name === "SLO") {
+      options.cellQuestion.placeHolder = options.column.name + " "
+      + (options.question.visibleRows.indexOf(options.row) + 1).toString();
 
-    // if(options.column.name === "accrSLO#Measure#") {
-    //   options.cellQuestion.placeHolder = "SLO "
-    //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-    // }
+      survey.setVariable("numOfSLOs", options.question.visibleRows.indexOf(options.row) + 1);
+    }
 
     // if(options.column.name === "SLO#Measure#") {
     //   options.cellQuestion.placeHolder = "SLO "
@@ -395,6 +411,14 @@ function App() {
     //   options.cellQuestion.placeHolder = "SLO "
     //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
     // }
+
+  });
+
+  survey.onMatrixRowRemoved.add((sender, options) => {
+
+    if(options.question.name == "SLO-matrix") {
+      survey.setVariable("numOfSLOs", options.question.visibleRows.indexOf(options.row) - 1);
+    }
 
   });
 

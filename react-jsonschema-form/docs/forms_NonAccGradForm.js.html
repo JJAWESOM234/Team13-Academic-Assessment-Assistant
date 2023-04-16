@@ -1,4 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: forms/NonAccGradForm.js</title>
 
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: forms/NonAccGradForm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
 import { RJSFSchema } from "@rjsf/utils";
 import Form from "@rjsf/core";
 import validator from "@rjsf/validator-ajv8";
@@ -31,7 +59,7 @@ const NAGschema = {
     
     "studentLearningOutcomes": {
       "type": "object",
-      "title": "I. Degree Program & Common Graduate Student Learning Outcomes (SLOs)",
+      "title": "I. Degree Program &amp; Common Graduate Student Learning Outcomes (SLOs)",
       "description": `A.List degree program SLOs.  For each, SLO, indicate the highest cognitive level and Common Graduate Program SLO it represents.
       To accommodate more than four SLOs, add rows as needed.  The Common Graduate SLOs for master’s programs (adopted 2/2017) are listed below.
       Students shall demonstrate at the graduate level:
@@ -110,114 +138,109 @@ const NAGschema = {
       "description": `A.  Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. 
       Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.`,
       "properties": {
-        "assessmentMeasureArray": {
+        "assessmentMeasure": {
           "type": "array",
           "minItems": 1,
           "items": {
             "properties":{
-              "assessmentMeasure":{
+              "type": "object",
+              "measureTitle": {
+                "title": "Title of the Measure",
+                "type": "string"
+              },
+              "measureDescription": {
+                "title": "Describe How the Measure Aligns to the SLO",
+                "type": "string",
+              },
+              "measureDomain":{
+                "title": "Domain",
                 "type": "array",
-                "minItems": 0,
-                "items":{
-                  "properties": {
-                    "measureTitle": {
-                      "title": "Title of the Measure",
-                      "type": "string"
-                    },
-                    "measureDescription": {
-                      "title": "Describe How the Measure Aligns to the SLO",
-                      "type": "string",
-                    },
-                    "measureDomain":{
-                      "title": "Domain",
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "enum": ["Examination", "Product", "Performance"]
-                      },
-                      "uniqueItems": true,
-                      "description": "Check all that apply",
-                    },
-                    "measureType":{
-                      "title": "Type",
-                      "type": "string",
-                      "oneOf": [
-                        {
-                          "title": "Direct Measure",
-                          "const": "direct"
-                        },
-                        {
-                          "title": "Indirect Measure",
-                          "const": "indirect"
-                        }
-                      ]
-                    },
-                    "measurePoint":{
-                      "title": "Point In Program Assessment is Administered",
-                      "type": "object",
-                      "properties": {
-                        "measurePointInProgram": {
-                          "type": "string",
-                          "oneOf": [
-                            {
-                              "title": "In final term of program",
-                              "const": "finalTerm"
-                            },
-                            {
-                              "title": "In final year of program",
-                              "const": "finalYear"
-                            }
-                          ]
-                        },
-                        "measurePointLocation": {
-                          "type": "string"
-                        },
-                      }
-                    },
-                    "measurePopulation": {
-                      "title": "Population Measured",
-                      "type": "string",
-                      "oneOf": [
-                        {
-                          "title": "All Students",
-                          "const": "allStudents"
-                        },
-                        {
-                          "title": "Sample of Students - Describe below",
-                          "const": "sampleStudents"
-                        }
-                      ]
-                    },
-                    "measureDataFreq": {
-                      "title": "Frequency of Data Collection",
-                      "type": "string",
-                      "oneOf": [
-                        {
-                          "title": "Once/semester",
-                          "const": "oncePerSemester"
-                        },
-                        {
-                          "title": "Once/year",
-                          "const": "oncePerYear"
-                        },
-                        {
-                          "title": "Other - Describe Below",
-                          "const": "other"
-                        }
-                      ]
-                    },
-                    "measureProficiencyThreshold": {
-                      "title": "Proficiency Threshold",
-                      "type":"string"
-                    },
-                    "measureProficiencyTarget":{
-                      "title": "Program Proficiency Target",
-                      "type": "string"
-                    }
+                "items": {
+                  "type": "string",
+                  "enum": ["Examination", "Product", "Performance"]
+                },
+                "uniqueItems": true,
+                "description": "Check all that apply",
+              },
+              "measureType":{
+                "title": "Type",
+                "type": "string",
+                "oneOf": [
+                  {
+                    "title": "Direct Measure",
+                    "const": "direct"
+                  },
+                  {
+                    "title": "Indirect Measure",
+                    "const": "indirect"
                   }
+                ]
+              },
+              "measurePoint":{
+                "title": "Point In Program Assessment is Administered",
+                "type": "object",
+                "properties": {
+                  "measurePointInProgram": {
+                    "type": "string",
+                    "oneOf": [
+                      {
+                        "title": "In final term of program",
+                        "const": "finalTerm"
+                      },
+                      {
+                        "title": "In final year of program",
+                        "const": "finalYear"
+                      }
+                    ]
+                  },
+                  "measurePointLocation": {
+                    "type": "string"
+                  },
                 }
+              },
+              "measurePopulation": {
+                "title": "Population Measured",
+                "type": "string",
+                "oneOf": [
+                  {
+                    "title": "All Students",
+                    "const": "allStudents"
+                  },
+                  {
+                    "title": "Sample of Students - Describe below",
+                    "const": "sampleStudents"
+                  }
+                ]
+              },
+              "measureDataFreq": {
+                "title": "Frequency of Data Collection",
+                "type": "string",
+                "oneOf": [
+                  {
+                    "title": "Once/semester",
+                    "const": "oncePerSemester"
+                  },
+                  {
+                    "title": "Once/year",
+                    "const": "oncePerYear"
+                  },
+                  {
+                    "title": "Other - Describe Below",
+                    "const": "other"
+                  }
+                ]
+              },
+              "measureProficiencyThreshold": {
+                "title": "Proficiency Threshold",
+                "type":"string"
+              },
+              "measureProficiencyTarget":{
+                "title": "Program Proficiency Target",
+                "type": "string"
               }
+            
             }
+          }
         },
         "measureComplementDirect":{
           "type": "string",
@@ -225,22 +248,21 @@ const NAGschema = {
         }
       }
     },
-  },
 
     "dataCollection":{
       "type": "object",
       "title": "III. Data Collection and Analysis",
       "properties": {
-        "dataResultsArray":{
+        "dataResultsTable":{
           "type": "array",
           "description": `A.    Results Table – Report results for each SLO. If an SLO was assessed by 
           multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.`,
           "minItems": 1,
           "items": {
-            "properties": {
+            "properties":{
               "dataResultsEntryName":{
                 "type": "string",
-                "title": "SLO Number & Measure Number"
+                "title": "SLO Number &amp; Measure Number"
               },
               "dataResultsEntryRange":{
                 "type": "string",
@@ -389,53 +411,39 @@ const uiSchema = {
     }
   },
 
-  
   "assessmentMethods":{
-    "assessmentMeasureArray":{
-      "items":{
-        "assessmentMeasure":{
-          "classNames": "assessmentMeasure",
-          "items":{
-            "ui:field": "regular",
-            "measureDomain":{
-              "ui:widget": "checkboxes",
-              "classNames": "measureDomain",
-              "ui:options":{
-                "inline": true
-              }
-            },
-            "measureType":{
+    "assessmentMeasure":{
+        "items":{
+          "ui:field": "regular",
+          "measureDomain":{
+            "ui:widget": "checkboxes",
+            "classNames": "measureDomain"
+          },
+          "measureType":{
+            "ui:widget": "radio",
+            "classNames": "measureType"
+          },
+          "measurePoint":{
+            "measurePointInProgram":{
               "ui:widget": "radio",
-              "classNames": "measureType",
-              "ui:options":{
-                "inline": true
-              }
-            },
-            "measurePoint":{
-              "measurePointInProgram":{
-                "ui:widget": "radio",
-                "classNames": "measurePointInProgram",
-                
-              }
-            },
-            "measurePopulation":{
-                "ui:widget": "radio",
-                "classNames": "measurePopulation"
-            },
-            "measureDataFreq":{
-                "ui:widget": "RadioWidget",
-                "classNames": "measureDataFreq",
-                
+              "classNames": "measurePointInProgram"
             }
+          },
+          "measurePopulation":{
+              "ui:widget": "radio",
+              "classNames": "measurePopulation"
+          },
+          "measureDataFreq":{
+              "ui:widget": "RadioWidget",
+              "classNames": "measureDataFreq"
           }
-      }
-      }
+        }
+      
     }
-    
   },
 
   "dataCollection":{
-    "dataResultsArray":{
+    "dataResultsTable":{
       "items":{
         "dataResultsEntryName":{
           "classNames": "dataResultsEntryName"
@@ -496,7 +504,7 @@ const CustomArraySchemaField = function(props) {
     name = `SLO ${index+1}`;
   }
   //
-  return <SchemaField {...props} name={name}/>;
+  return &lt;SchemaField {...props} name={name}/>;
 };
 
 /**
@@ -535,7 +543,6 @@ function NonAccGradForm() {
   const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
 
  
- 
   //Track changes to formData and numSLOs using updated formData
   /**
    * Updates form data state after detecting changes.
@@ -547,66 +554,77 @@ function NonAccGradForm() {
     
     
     //if DecisionsAndActions not equal to SLOs, add or subtract 
-    const updatedFormData = {
-      ...newFormData,
-      decisionsAndActions: [...newFormData.decisionsAndActions],
-      assessmentMeasureArray: [...newFormData.assessmentMethods.assessmentMeasureArray]
-
-   };
-
+    const updatedFormData = {}
     const dnaLength = newFormData.decisionsAndActions.length;
-    const amlength = newFormData.assessmentMethods.assessmentMeasureArray.length;
-    if (dnaLength < numSLO){
-      for (let i = dnaLength; i < numSLO; i++){
+    if (dnaLength &lt; numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+      
+      for (let i = dnaLength; i &lt; numSLO; i++){
         updatedFormData.decisionsAndActions.push("")
       }
       setFormData(updatedFormData);
     }
     else if (dnaLength > numSLO){
+      const updatedFormData = {
+        ...newFormData,
+        decisionsAndActions: [...newFormData.decisionsAndActions]
+      };
+
       for (let i = dnaLength; i > numSLO; i--){
         updatedFormData.decisionsAndActions.pop()
       }
       setFormData(updatedFormData)
     }
-    else {
-      setFormData(newFormData)
+    else{
+      setFormData(newFormData);
     }
+    
 
-    if (amlength > numSLO){
-      for (let i = amlength; i > numSLO; i--){
-        updatedFormData.assessmentMethods.assessmentMeasureArray.pop()
-        setFormData(updatedFormData)
-      }
-    }
-    else if (amlength < numSLO){
-      for (let i = amlength; i < numSLO; i++){
-        updatedFormData.assessmentMethods.assessmentMeasureArray.push({})
-        setFormData(updatedFormData)
-      }
-    }
-    else {
-      setFormData(newFormData)
-    }
-
+    
     console.log(formData.decisionsAndActions)
   };
 
 
 
   return (
-    <div className='body'>
-      <div className='rjsfForm'>
-        <p>Number of SLOS: {numSLO} </p>
-        <Form 
+    &lt;div className='body'>
+      &lt;div className='rjsfForm'>
+        &lt;p>Number of SLOS: {numSLO} &lt;/p>
+        &lt;Form 
           schema={schema} validator={validator} uiSchema={uiSchema} 
           fields={fields} formData={formData} key={JSON.stringify(schema)}
           //onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
           onChange={onChange}/>
-          <div className="formData">{JSON.stringify(formData)}</div>
-      </div>
-    </div>
+          &lt;div className="formData">{JSON.stringify(formData)}&lt;/div>
+      &lt;/div>
+    &lt;/div>
   );
 }
   
   export default NonAccGradForm;
-  
+  </code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AGschema">AGschema</a></li><li><a href="global.html#AUGschem">AUGschem</a></li><li><a href="global.html#AccGradForm">AccGradForm</a></li><li><a href="global.html#AccUnGradForm">AccUnGradForm</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomArraySchemaField">CustomArraySchemaField</a></li><li><a href="global.html#FormSelector">FormSelector</a></li><li><a href="global.html#NAGschema">NAGschema</a></li><li><a href="global.html#NAUGschema">NAUGschema</a></li><li><a href="global.html#NonAccGradForm">NonAccGradForm</a></li><li><a href="global.html#NonAccUnGradForm">NonAccUnGradForm</a></li><li><a href="global.html#fields">fields</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#uiSchema">uiSchema</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Apr 10 2023 21:09:08 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
