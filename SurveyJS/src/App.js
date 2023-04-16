@@ -259,12 +259,18 @@ const surveyJson = {
           name: "data",
           title: "A. Results Table – Report results for each SLO. If an SLO was assessed by multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.",
           visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
-          allowAddRows: false,
+          allowAddRows: true,
           columns: [
           {
-            name: "SLO#Measure#",
+            name: "measureTitle",
             cellType: "text",
-            title: "SLO/Title of Measure:",
+            title: "Title of Measure:",
+          },
+          {
+            name: "SLONumber",
+            cellType: "dropdown",
+            title: "SLO:",
+            choices: ["1", "2", "3", "4"]
           },
           {
             name: "dateRange",
