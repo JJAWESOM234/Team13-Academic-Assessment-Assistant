@@ -51,13 +51,16 @@
     width: 25%;
     margin: 0 0 0 0;
     float: left;
+    display: grid;
 }
 
 .dataResultsEntryName > label, .dataResultsEntryRange > label,
 .dataResultsEntryNumStudents > label {
     padding-bottom: 18px;
+    
 }
 
-.dataResultsEntryPercStudents > label {
-    
+.dataResultsEntryName > input, .dataResultsEntryRange > input,
+.dataResultsEntryNumStudents > input, .dataResultsEntryPercStudents > input {
+    border-radius: 0%;
 }

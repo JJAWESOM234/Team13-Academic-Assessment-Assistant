@@ -45,3 +45,21 @@
     width: 400px;
     overflow:auto;
 }
+.dataResultsEntryName, .dataResultsEntryRange,
+.dataResultsEntryNumStudents, .dataResultsEntryPercStudents {
+    width: 25%;
+    margin: 0 0 0 0;
+    float: left;
+    display: grid;
+}
+
+.dataResultsEntryName > label, .dataResultsEntryRange > label,
+.dataResultsEntryNumStudents > label {
+    padding-bottom: 18px;
+    
+}
+
+.dataResultsEntryName > input, .dataResultsEntryRange > input,
+.dataResultsEntryNumStudents > input, .dataResultsEntryPercStudents > input {
+    border-radius: 0%;
+}

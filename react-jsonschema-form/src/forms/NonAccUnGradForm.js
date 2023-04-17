@@ -94,108 +94,114 @@ const NAUGschema = {
       "description": `A.  Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. 
       Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.`,
       "properties": {
-        "assessmentMeasure": {
+        "assessmentMeasureArray": {
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "object",
-            "properties": {
-              "measureTitle": {
-                "title": "Title of the Measure",
-                "type": "string"
-              },
-              "measureDescription": {
-                "title": "Describe How the Measure Aligns to the SLO",
-                "type": "string",
-              },
-              "measureDomain":{
-                "title": "Domain",
+            "properties":{
+              "assessmentMeasure":{
                 "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": ["Examination", "Product", "Performance"]
-                },
-                "uniqueItems": true,
-                "description": "Check all that apply",
-              },
-              "measureType":{
-                "title": "Type",
-                "type": "string",
-                "oneOf": [
-                  {
-                    "title": "Direct Measure",
-                    "const": "direct"
-                  },
-                  {
-                    "title": "Indirect Measure",
-                    "const": "indirect"
-                  }
-                ]
-              },
-              "measurePoint":{
-                "title": "Point In Program Assessment is Administered",
-                "type": "object",
-                "properties": {
-                  "measurePointInProgram": {
-                    "type": "string",
-                    "oneOf": [
-                      {
-                        "title": "In final term of program",
-                        "const": "finalTerm"
+                "minItems": 1,
+                "items":{
+                  "properties": {
+                    "measureTitle": {
+                      "title": "Title of the Measure",
+                      "type": "string"
+                    },
+                    "measureDescription": {
+                      "title": "Describe How the Measure Aligns to the SLO",
+                      "type": "string",
+                    },
+                    "measureDomain":{
+                      "title": "Domain",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": ["Examination", "Product", "Performance"]
                       },
-                      {
-                        "title": "In final year of program",
-                        "const": "finalYear"
+                      "uniqueItems": true,
+                      "description": "Check all that apply",
+                    },
+                    "measureType":{
+                      "title": "Type",
+                      "type": "string",
+                      "oneOf": [
+                        {
+                          "title": "Direct Measure",
+                          "const": "direct"
+                        },
+                        {
+                          "title": "Indirect Measure",
+                          "const": "indirect"
+                        }
+                      ]
+                    },
+                    "measurePoint":{
+                      "title": "Point In Program Assessment is Administered",
+                      "type": "object",
+                      "properties": {
+                        "measurePointInProgram": {
+                          "type": "string",
+                          "oneOf": [
+                            {
+                              "title": "In final term of program",
+                              "const": "finalTerm"
+                            },
+                            {
+                              "title": "In final year of program",
+                              "const": "finalYear"
+                            }
+                          ]
+                        },
+                        "measurePointLocation": {
+                          "type": "string"
+                        },
                       }
-                    ]
-                  },
-                  "measurePointLocation": {
-                    "type": "string"
-                  },
+                    },
+                    "measurePopulation": {
+                      "title": "Population Measured",
+                      "type": "string",
+                      "oneOf": [
+                        {
+                          "title": "All Students",
+                          "const": "allStudents"
+                        },
+                        {
+                          "title": "Sample of Students - Describe below",
+                          "const": "sampleStudents"
+                        }
+                      ]
+                    },
+                    "measureDataFreq": {
+                      "title": "Frequency of Data Collection",
+                      "type": "string",
+                      "oneOf": [
+                        {
+                          "title": "Once/semester",
+                          "const": "oncePerSemester"
+                        },
+                        {
+                          "title": "Once/year",
+                          "const": "oncePerYear"
+                        },
+                        {
+                          "title": "Other - Describe Below",
+                          "const": "other"
+                        }
+                      ]
+                    },
+                    "measureProficiencyThreshold": {
+                      "title": "Proficiency Threshold",
+                      "type":"string"
+                    },
+                    "measureProficiencyTarget":{
+                      "title": "Program Proficiency Target",
+                      "type": "string"
+                    }
+                  }
                 }
-              },
-              "measurePopulation": {
-                "title": "Population Measured",
-                "type": "string",
-                "oneOf": [
-                  {
-                    "title": "All Students",
-                    "const": "allStudents"
-                  },
-                  {
-                    "title": "Sample of Students - Describe below",
-                    "const": "sampleStudents"
-                  }
-                ]
-              },
-              "measureDataFreq": {
-                "title": "Frequency of Data Collection",
-                "type": "string",
-                "oneOf": [
-                  {
-                    "title": "Once/semester",
-                    "const": "oncePerSemester"
-                  },
-                  {
-                    "title": "Once/year",
-                    "const": "oncePerYear"
-                  },
-                  {
-                    "title": "Other - Describe Below",
-                    "const": "other"
-                  }
-                ]
-              },
-              "measureProficiencyThreshold": {
-                "title": "Proficiency Threshold",
-                "type":"string"
-              },
-              "measureProficiencyTarget":{
-                "title": "Program Proficiency Target",
-                "type": "string"
               }
             }
-          }
         },
         "measureComplementDirect":{
           "type": "string",
@@ -203,12 +209,13 @@ const NAUGschema = {
         }
       }
     },
+  },
 
     "dataCollection":{
       "type": "object",
       "title": "III. Data Collection and Analysis",
       "properties": {
-        "dataResultsTable":{
+        "dataResultsArray":{
           "type": "array",
           "description": `A.    Results Table – Report results for each SLO. If an SLO was assessed by 
           multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.`,
@@ -368,34 +375,75 @@ const uiSchema = {
   },
 
   "assessmentMethods":{
-    "assessmentMeasure":{
-      "items": {
-        "measureDomain":{
-          "ui:widget": "checkboxes"
-        },
-        "measureType":{
-          "ui:widget": "radio"
-        },
-        "measurePoint":{
-          "measurePointInProgram":{
-            "ui:widget": "radio"
+    "assessmentMeasureArray":{
+      "items":{
+        "assessmentMeasure":{
+          "classNames": "assessmentMeasure",
+          "items":{
+            "ui:field": "regular",
+            "measureDomain":{
+              "ui:widget": "checkboxes",
+              "classNames": "measureDomain",
+              "ui:options":{
+                "inline": true
+              }
+            },
+            "measureType":{
+              "ui:widget": "radio",
+              "classNames": "measureType",
+              "ui:options":{
+                "inline": true
+              }
+            },
+            "measurePoint":{
+              "measurePointInProgram":{
+                "ui:widget": "radio",
+                "classNames": "measurePointInProgram",
+                
+              }
+            },
+            "measurePopulation":{
+                "ui:widget": "radio",
+                "classNames": "measurePopulation"
+            },
+            "measureDataFreq":{
+                "ui:widget": "RadioWidget",
+                "classNames": "measureDataFreq",
+                
+            }
           }
-        },
-        "measurePopulation":{
-            "ui:widget": "radio"
-        },
-        "measureDataFreq":{
-            "ui:widget": "RadioWidget"
-        }
+      }
       }
     }
+    
   },
 
   "dataCollection":{
+    "dataResultsArray":{
+      "classNames": "dataResultsArray",
+      "items":{
+        "dataResultsEntryName":{
+          "classNames": "dataResultsEntryName"
+        },
+        "dataResultsEntryRange":{
+          "classNames": "dataResultsEntryRange"
+        },
+        "dataResultsEntryNumStudents":{
+          "classNames": "dataResultsEntryNumStudents"
+        },
+        "dataResultsEntryPercStudents":{
+          "classNames": "dataResultsEntryPercStudents"
+        },
+      }
+    },
     "dataSLOStatusTable":{
       "items": {
         "dataSLOStatus":{
-          "ui:widget": "RadioWidget"
+          "ui:widget": "RadioWidget",
+          "classNames": "dataSLOStatus",
+          "ui:options":{
+            "inline": true
+          }
         },
       }
     },
@@ -463,7 +511,13 @@ function NonAccUnGradForm() {
   //use formData to track changes to number of SLOs
   const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
 
-  
+  //use formData to track changes to number of assessment measures
+  /**
+   * Uses React state to track the number of items in the Assessment Measures array.
+   * @constant
+   */
+  const [numAM, setNumAM] = useState(1)
+
   /**
    * Updates form data state after detecting changes.
    * @param {formData} newFormData - The most recently updated user form data.
@@ -471,41 +525,84 @@ function NonAccUnGradForm() {
   //Track changes to formData and numSLOs using updated formData
   const onChange = ({ formData: newFormData}) => {
     setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
+    setNumAM(newFormData.assessmentMethods.assessmentMeasureArray.length)
     
     
     //if DecisionsAndActions not equal to SLOs, add or subtract 
-    const updatedFormData = {}
+    const updatedFormData = {
+      ...newFormData,
+      decisionsAndActions: [...newFormData.decisionsAndActions],
+      assessmentMeasureArray: [...newFormData.assessmentMethods.assessmentMeasureArray],
+      dataResultsArray: [...newFormData.dataCollection.dataResultsArray],
+      dataSLOStatusTable: [...newFormData.dataCollection.dataSLOStatusTable]
+   };
+
     const dnaLength = newFormData.decisionsAndActions.length;
+    const amlength = newFormData.assessmentMethods.assessmentMeasureArray.length;
     if (dnaLength < numSLO){
-      const updatedFormData = {
-        ...newFormData,
-        decisionsAndActions: [...newFormData.decisionsAndActions]
-      };
-      
       for (let i = dnaLength; i < numSLO; i++){
         updatedFormData.decisionsAndActions.push("")
       }
       setFormData(updatedFormData);
     }
     else if (dnaLength > numSLO){
-      const updatedFormData = {
-        ...newFormData,
-        decisionsAndActions: [...newFormData.decisionsAndActions]
-      };
-
       for (let i = dnaLength; i > numSLO; i--){
         updatedFormData.decisionsAndActions.pop()
       }
       setFormData(updatedFormData)
     }
-    else{
-      setFormData(newFormData);
+    else {
+      setFormData(newFormData)
     }
     
+    //Match length of assessment measure array to number of SLOs
+    if (amlength > numSLO){
+      for (let i = amlength; i > numSLO; i--){
+        updatedFormData.assessmentMethods.assessmentMeasureArray.pop()
+        setFormData(updatedFormData)
+      }
+    }
+    else if (amlength < numSLO){
+      for (let i = amlength; i < numSLO; i++){
+        updatedFormData.assessmentMethods.assessmentMeasureArray.push({})
+        setFormData(updatedFormData)
+      }
+    }
+    else {
+      setFormData(newFormData)
+    }
 
-    
-    console.log(formData.decisionsAndActions)
+    //Match length of data results array to number of total assessment measures
+
+    let drlength = newFormData.dataCollection.dataResultsArray.length;
+    console.log("Number of AM: " + numAM)
+    console.log("Number of DR: " + drlength)
+    if (drlength < numAM){
+      for (let i = drlength; i < numAM; i++){
+        updatedFormData.dataCollection.dataResultsArray.push({})
+        setFormData(updatedFormData)
+      }
+    }
+
+    //Match length of Data Status table to SLO number
+    const dslength = newFormData.dataCollection.dataSLOStatusTable.length
+    if (dslength > numSLO){
+      for (let i = dslength; i > numSLO; i--){
+        updatedFormData.dataCollection.dataSLOStatusTable.pop()
+        setFormData(updatedFormData)
+      }
+    }
+    else if (dslength < numSLO){
+      for (let i = dslength; i < numSLO; i++){
+        updatedFormData.dataCollection.dataSLOStatusTable.push({})
+        setFormData(updatedFormData)
+      }
+    }
+    else{
+      setFormData(newFormData)
+    }
   };
+  
   
 
   return (

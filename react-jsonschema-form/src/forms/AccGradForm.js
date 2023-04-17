@@ -88,28 +88,36 @@ const AGschema = {
       "title": "II. Assessment Methods",
       "description": `A.  Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. 
       Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.`,
-      "properties": {
-        "assessmentMeasure": {
+      "properties":{
+        "assessmentMeasureArray":{
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "object",
             "properties": {
-              "measureTitle": {
-                "title": "Measure",
-                "type": "string"
-              },
-              "measureDomain":{
-                "title": "Domain (Product, Performance, Examination)",
-                "type": "string"
-              },
-              "measureDataFreq": {
-                "title": "Data Collection (i.e. anually, by semester)",
-                "type": "string",
+              "assessmentMeasure": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "measureTitle": {
+                      "title": "Measure",
+                      "type": "string"
+                    },
+                    "measureDomain":{
+                      "title": "Domain (Product, Performance, Examination)",
+                      "type": "string"
+                    },
+                    "measureDataFreq": {
+                      "title": "Data Collection (i.e. annually, by semester)",
+                      "type": "string",
+                    },
+                  }
+                }
               },
             }
           }
-        },
+        }
       }
     },
 
@@ -241,8 +249,22 @@ const uiSchema = {
   },
 
   "assessmentMethods":{
-    "assessmentMeasure":{
+    "assessmentMeasureArray":{
       "items": {
+        "assessmentMeasure":{
+          "items": {
+            "ui:field": "regular",
+            "measureTitle": {
+              "classNames": "measureTitle"
+            },
+            "measureDomain":{
+              "classNames": "measureDomain",
+            },
+            "measureDataFreq": {
+              "classNames": "measureDataFreq"
+            },
+          }
+        }
       }
     }
   },
@@ -251,7 +273,10 @@ const uiSchema = {
     "dataSLOStatusTable":{
       "items": {
         "dataSLOStatus":{
-          "ui:widget": "RadioWidget"
+          "ui:widget": "RadioWidget",
+          "ui:options":{
+            "inline": true
+          }
         },
       }
     },
@@ -327,37 +352,64 @@ const onChange = ({ formData: newFormData}) => {
   
   
   //if DecisionsAndActions not equal to SLOs, add or subtract 
-  const updatedFormData = {}
+  const updatedFormData = {
+    ...newFormData,
+    decisionsAndActions: [...newFormData.decisionsAndActions],
+    assessmentMeasureArray: [...newFormData.assessmentMethods.assessmentMeasureArray],
+    dataSLOStatusTable: [...newFormData.dataCollection.dataSLOStatusTable]
+
+ };
+
   const dnaLength = newFormData.decisionsAndActions.length;
   if (dnaLength < numSLO){
-    const updatedFormData = {
-      ...newFormData,
-      decisionsAndActions: [...newFormData.decisionsAndActions]
-    };
-    
     for (let i = dnaLength; i < numSLO; i++){
-      updatedFormData.decisionsAndActions.push("")
+      updatedFormData.decisionsAndActions.push({})
     }
     setFormData(updatedFormData);
   }
   else if (dnaLength > numSLO){
-    const updatedFormData = {
-      ...newFormData,
-      decisionsAndActions: [...newFormData.decisionsAndActions]
-    };
-
     for (let i = dnaLength; i > numSLO; i--){
       updatedFormData.decisionsAndActions.pop()
     }
     setFormData(updatedFormData)
   }
-  else{
-    setFormData(newFormData);
+  else {
+    setFormData(newFormData)
   }
-  
 
-  
-  console.log(formData.decisionsAndActions)
+  //Match length of assessment measure array to number of SLOs
+  const amlength = newFormData.assessmentMethods.assessmentMeasureArray.length;
+  if (amlength > numSLO){
+    for (let i = amlength; i > numSLO; i--){
+      updatedFormData.assessmentMethods.assessmentMeasureArray.pop()
+      setFormData(updatedFormData)
+    }
+  }
+  else if (amlength < numSLO){
+    for (let i = amlength; i < numSLO; i++){
+      updatedFormData.assessmentMethods.assessmentMeasureArray.push({})
+      setFormData(updatedFormData)
+    }
+  }
+  else {
+    setFormData(newFormData)
+  }
+
+  //Match length of Data Status table to SLO number
+  const dslength = newFormData.dataCollection.dataSLOStatusTable.length
+  if (dslength > numSLO){
+    for (let i = dslength; i > numSLO; i--){
+      updatedFormData.dataCollection.dataSLOStatusTable.pop()
+      setFormData(updatedFormData)
+    }
+  }
+  else if (dslength < numSLO){
+    for (let i = dslength; i < numSLO; i++){
+      updatedFormData.dataCollection.dataSLOStatusTable.push({})
+      setFormData(updatedFormData)
+    }
+  }
+
 };
 
 

@@ -117,7 +117,7 @@ const NAGschema = {
             "properties":{
               "assessmentMeasure":{
                 "type": "array",
-                "minItems": 0,
+                "minItems": 1,
                 "items":{
                   "properties": {
                     "measureTitle": {
@@ -436,6 +436,7 @@ const uiSchema = {
 
   "dataCollection":{
     "dataResultsArray":{
+      "classNames": "dataResultsArray",
       "items":{
         "dataResultsEntryName":{
           "classNames": "dataResultsEntryName"
@@ -455,7 +456,10 @@ const uiSchema = {
       "items": {
         "dataSLOStatus":{
           "ui:widget": "RadioWidget",
-          "classNames": "dataSLOStatus"
+          "classNames": "dataSLOStatus",
+          "ui:options":{
+            "inline": true
+          }
         },
       }
     },
@@ -534,6 +538,12 @@ function NonAccGradForm() {
    */
   const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
 
+  //use formData to track changes to number of assessment measures
+  /**
+   * Uses React state to track the number of items in the Assessment Measures array.
+   * @constant
+   */
+  const [numAM, setNumAM] = useState(1)
  
  
   //Track changes to formData and numSLOs using updated formData
@@ -544,14 +554,15 @@ function NonAccGradForm() {
    */
   const onChange = ({ formData: newFormData}) => {
     setNumSLO(newFormData.studentLearningOutcomes.programSLOTable.length)
-    
+    setNumAM(newFormData.assessmentMethods.assessmentMeasureArray.length)
     
     //if DecisionsAndActions not equal to SLOs, add or subtract 
     const updatedFormData = {
       ...newFormData,
       decisionsAndActions: [...newFormData.decisionsAndActions],
-      assessmentMeasureArray: [...newFormData.assessmentMethods.assessmentMeasureArray]
-
+      assessmentMeasureArray: [...newFormData.assessmentMethods.assessmentMeasureArray],
+      dataResultsArray: [...newFormData.dataCollection.dataResultsArray],
+      dataSLOStatusTable: [...newFormData.dataCollection.dataSLOStatusTable]
    };
 
     const dnaLength = newFormData.decisionsAndActions.length;
@@ -561,6 +572,7 @@ function NonAccGradForm() {
         updatedFormData.decisionsAndActions.push("")
       }
       setFormData(updatedFormData);
+      
     }
     else if (dnaLength > numSLO){
       for (let i = dnaLength; i > numSLO; i--){
@@ -572,6 +584,7 @@ function NonAccGradForm() {
       setFormData(newFormData)
     }
 
+    //Match length of assessment measure array to number of SLOs
     if (amlength > numSLO){
       for (let i = amlength; i > numSLO; i--){
         updatedFormData.assessmentMethods.assessmentMeasureArray.pop()
@@ -588,7 +601,37 @@ function NonAccGradForm() {
       setFormData(newFormData)
     }
 
-    console.log(formData.decisionsAndActions)
+    //Match length of data results array to number of total assessment measures
+
+    let drlength = newFormData.dataCollection.dataResultsArray.length;
+    console.log("Number of AM: " + numAM)
+    console.log("Number of DR: " + drlength)
+    if (drlength < numAM){
+      for (let i = drlength; i < numAM; i++){
+        updatedFormData.dataCollection.dataResultsArray.push({})
+        setFormData(updatedFormData)
+      }
+    }
+
+    //Match length of Data Status table to SLO number
+    const dslength = newFormData.dataCollection.dataSLOStatusTable.length
+    if (dslength > numSLO){
+      for (let i = dslength; i > numSLO; i--){
+        updatedFormData.dataCollection.dataSLOStatusTable.pop()
+        setFormData(updatedFormData)
+      }
+    }
+    else if (dslength < numSLO){
+      for (let i = dslength; i < numSLO; i++){
+        updatedFormData.dataCollection.dataSLOStatusTable.push({})
+        setFormData(updatedFormData)
+      }
+    }
+    else{
+      setFormData(newFormData)
+    }
+
+    //console.log(formData)
   };
 
 
