@@ -5,6 +5,55 @@ var iSLOMax = 0
 var iMeasureWorking = 0
 var aMeasureid = []
 var iMeasureMax = 0
+
+var oJSONModelExpected = {
+    college: "University of Nebraska at Omaha",
+    program: "Computer Science",
+    academicYear: "2023",
+    preparer: "Josh Smith",
+    deptSchool: "IS&T",
+    degreeLevel: "Bachelors",
+    dateRange: "01/01/2023 to 04/01/2023",
+    SLOInformation: [
+        {
+            programSLOsSLO1: "Students will learn python",
+            programSLOsSLO1Common: "2",
+            assessmentMeasure: [
+                {
+                    measureTitle: "Weekly Python Projects",
+                    measureDescription:
+                        "Students will complete projects in python",
+                    measureDomain: "Examination",
+                    measureType: "Direct Measure",
+                    measurePoint: {
+                        measurePointInProgram: "In Final Term of Program",
+                        measurePointLocation: "N/A",
+                    },
+                    measurePopulation: {
+                        measurePopulationDropDown: "All Students",
+                        measurePopulationDesc: "N/A",
+                    },
+                    measureDataFreq: "Once/semester",
+                    measureProficiencyThreshold: "80%",
+                    measureProficiencyTarget: "90%",
+                    datacollection: {
+                        dataResultsSLO1Range: "01/01/2023 to 04/01/2023",
+                        dataResultsSLO1NumStudents: 10,
+                        dataResultsSLO1PercStudents: "85%",
+                    },
+                },
+            ],
+            dataSLOStatus: "Met",
+            decisionActions: "Continue with SLO",
+        },
+    ],
+    bSegment: "Yes",
+    cSegment: "No stakeholders",
+    measureComplementDirect: "No additional measures",
+    dataResultsDescription: "No results will be communicated",
+    additionalInformation: "No additional Information ",
+}
+
 /**
  * Initilizes each form to be invisible.
  */
@@ -15,10 +64,12 @@ var iMeasureMax = 0
     document.getElementById("AccUndGradContainer").style.display = "none"
     document.getElementById("TestingDesignContainer").style.display = "none"
     document.getElementById("TestingDesignContainer2").style.display = "none"
+    document.getElementById("TestingDesignContainer2AutoFill").style.display =
+        "none"
 }
 /**
  * Function to handle the display change of selecting the different forms.
- * @param {Integer} iForm - Integer representing which form is being selected. 
+ * @param {Integer} iForm - Integer representing which form is being selected.
  */
 function fnShowCorrectForm(iForm) {
     if (iForm === 1) {
@@ -29,6 +80,9 @@ function fnShowCorrectForm(iForm) {
         document.getElementById("TestingDesignContainer").style.display = "none"
         document.getElementById("TestingDesignContainer2").style.display =
             "none"
+        document.getElementById(
+            "TestingDesignContainer2AutoFill"
+        ).style.display = "none"
     } else if (iForm === 2) {
         document.getElementById("AccGradContainer").style.display = "block"
         document.getElementById("nonAccGradContainer").style.display = "none"
@@ -37,6 +91,9 @@ function fnShowCorrectForm(iForm) {
         document.getElementById("TestingDesignContainer").style.display = "none"
         document.getElementById("TestingDesignContainer2").style.display =
             "none"
+        document.getElementById(
+            "TestingDesignContainer2AutoFill"
+        ).style.display = "none"
     } else if (iForm === 3) {
         document.getElementById("nonAccUndGradContainer").style.display =
             "block"
@@ -46,6 +103,9 @@ function fnShowCorrectForm(iForm) {
         document.getElementById("TestingDesignContainer").style.display = "none"
         document.getElementById("TestingDesignContainer2").style.display =
             "none"
+        document.getElementById(
+            "TestingDesignContainer2AutoFill"
+        ).style.display = "none"
     } else if (iForm === 4) {
         document.getElementById("AccUndGradContainer").style.display = "block"
         document.getElementById("nonAccGradContainer").style.display = "none"
@@ -54,6 +114,9 @@ function fnShowCorrectForm(iForm) {
         document.getElementById("TestingDesignContainer").style.display = "none"
         document.getElementById("TestingDesignContainer2").style.display =
             "none"
+        document.getElementById(
+            "TestingDesignContainer2AutoFill"
+        ).style.display = "none"
     } else if (iForm === 5) {
         document.getElementById("AccUndGradContainer").style.display = "none"
         document.getElementById("nonAccGradContainer").style.display = "none"
@@ -63,6 +126,17 @@ function fnShowCorrectForm(iForm) {
             "block"
         document.getElementById("TestingDesignContainer2").style.display =
             "none"
+    } else if (iForm === 6) {
+        document.getElementById("AccUndGradContainer").style.display = "none"
+        document.getElementById("nonAccGradContainer").style.display = "none"
+        document.getElementById("AccGradContainer").style.display = "none"
+        document.getElementById("nonAccUndGradContainer").style.display = "none"
+        document.getElementById("TestingDesignContainer").style.display = "none"
+        document.getElementById("TestingDesignContainer2").style.display =
+            "block"
+        document.getElementById(
+            "TestingDesignContainer2AutoFill"
+        ).style.display = "none"
     } else {
         document.getElementById("nonAccUndGradContainer").style.display = "none"
         document.getElementById("nonAccGradContainer").style.display = "none"
@@ -70,7 +144,10 @@ function fnShowCorrectForm(iForm) {
         document.getElementById("AccUndGradContainer").style.display = "none"
         document.getElementById("TestingDesignContainer").style.display = "none"
         document.getElementById("TestingDesignContainer2").style.display =
-            "block"
+            "none"
+        document.getElementById(
+            "TestingDesignContainer2AutoFill"
+        ).style.display = "block"
     }
 }
 
@@ -286,7 +363,10 @@ $("#TestingDesign2Json").jsonForm({
         title: "Accredited Graduate Assessment Report",
         type: "object",
         properties: {
-            college: { type: "string", title: "College" },
+            college: {
+                type: "string",
+                title: "College",
+            },
             program: { type: "string", title: "Program" },
             academicYear: {
                 type: "string",
@@ -304,7 +384,6 @@ $("#TestingDesign2Json").jsonForm({
             },
             SLOInformation: {
                 type: "tabarray",
-                id: "SLOEntry",
                 minItems: 1,
                 items: {
                     type: "object",
@@ -312,6 +391,7 @@ $("#TestingDesign2Json").jsonForm({
                         programSLOsSLO1: {
                             type: "string",
                             title: "SLO Title",
+                            value: "lmao",
                             required: true,
                         },
                         programSLOsSLO1Bloom: {
@@ -501,13 +581,27 @@ $("#TestingDesign2Json").jsonForm({
             title: "Reporting Details",
             expandable: false,
             items: [
-                "college",
-                "program",
-                "academicYear",
-                "preparer",
-                "deptSchool",
-                "degreeLevel",
-                "dateRange",
+                {
+                    key: "college",
+                },
+                {
+                    key: "program",
+                },
+                {
+                    key: "academicYear",
+                },
+                {
+                    key: "preparer",
+                },
+                {
+                    key: "deptSchool",
+                },
+                {
+                    key: "degreeLevel",
+                },
+                {
+                    key: "dateRange",
+                },
             ],
         },
         {
@@ -535,7 +629,6 @@ $("#TestingDesign2Json").jsonForm({
                                 },
                                 {
                                     type: "tabarray",
-
                                     items: [
                                         {
                                             type: "fieldset",
@@ -617,6 +710,7 @@ $("#TestingDesign2Json").jsonForm({
         {
             type: "submit",
             title: "Submit",
+            id: "submitForm",
         },
     ],
 
@@ -630,7 +724,488 @@ $("#TestingDesign2Json").jsonForm({
                 '<p id="returnJSON">' + JSON.stringify(values, null, 4) + "</p>"
             )
         }
-        console.log(values.studentLearningOutcomes.studentLearning.length)
+    },
+})
+
+/**
+ * Initial proof of concept of the new design implementing on the Non-Accredited Graduate Assessment Report. This is the portion to bind the Non-Accredited Graduate Assessment Report JSON model to the certain form using the id.
+ */
+$("#TestingDesign2JsonAutoFill").jsonForm({
+    schema: {
+        title: "Accredited Graduate Assessment Report",
+        type: "object",
+        properties: {
+            college: {
+                type: "string",
+                title: "College",
+            },
+            program: { type: "string", title: "Program" },
+            academicYear: {
+                type: "string",
+                title: "Academic Year of Report",
+            },
+            preparer: {
+                type: "string",
+                title: "Person Preparing the Report",
+            },
+            deptSchool: { type: "string", title: "Department/School" },
+            degreeLevel: { type: "string", title: "Degree Level" },
+            dateRange: {
+                type: "string",
+                title: "Date Range of Reported Data",
+            },
+            SLOInformation: {
+                type: "tabarray",
+                minItems: 1,
+                items: {
+                    type: "object",
+                    properties: {
+                        programSLOsSLO1: {
+                            type: "string",
+                            title: "SLO Title",
+                            value: "lmao",
+                            required: true,
+                        },
+                        programSLOsSLO1Bloom: {
+                            title: "Bloom’s Taxonomy Cognitive Level",
+                            type: "string",
+                            enum: [
+                                "Knowledge",
+                                "Analysis",
+                                "Comprehension",
+                                "Synthesis",
+                                "Application",
+                                "Evaluation",
+                            ],
+                            uniqueItems: true,
+                        },
+                        programSLOsSLO1Common: {
+                            title: "Common Graduate Program SLOs",
+                            type: "string",
+                            enum: [
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "Not Applicable for SLO",
+                            ],
+                            uniqueItems: true,
+                        },
+                        assessmentMeasure: {
+                            type: "tabarray",
+                            title: "II. Assessment Methods",
+                            items: {
+                                type: "object",
+                                properties: {
+                                    measureTitle: {
+                                        title: "Title of the Measure",
+                                        type: "string",
+                                    },
+                                    measureDescription: {
+                                        title: "Describe How the Measure Aligns to the SLO",
+                                        type: "string",
+                                    },
+                                    measureDomain: {
+                                        title: "Domain",
+                                        type: "string",
+                                        enum: [
+                                            "Examination",
+                                            "Product",
+                                            "Performance",
+                                        ],
+                                        description: "Check all that apply",
+                                        uniqueItems: true,
+                                    },
+                                    measureType: {
+                                        title: "Type",
+                                        type: "string",
+                                        enum: [
+                                            "Direct Measure",
+                                            "Indirect Measure",
+                                        ],
+                                        uniqueItems: true,
+                                    },
+                                    measurePoint: {
+                                        type: "object",
+                                        properties: {
+                                            measurePointInProgram: {
+                                                title: "Measure Point",
+                                                type: "string",
+                                                enum: [
+                                                    "In Final Term of Program",
+                                                    "In Final Year of Program",
+                                                ],
+                                            },
+                                            measurePointLocation: {
+                                                title: "Point Description",
+                                                type: "string",
+                                            },
+                                        },
+                                    },
+                                    measurePopulation: {
+                                        type: "object",
+                                        properties: {
+                                            measurePopulationDropDown: {
+                                                type: "string",
+                                                title: "Population Measured Details",
+                                                enum: [
+                                                    "All Students",
+                                                    "Sample of Students - Describe below",
+                                                ],
+                                            },
+                                            measurePopulationDesc: {
+                                                type: "string",
+                                                title: "Describe here",
+                                            },
+                                        },
+
+                                        uniqueItems: true,
+                                    },
+                                    measureDataFreq: {
+                                        title: "Frequency of Data Collection",
+                                        type: "string",
+                                        enum: [
+                                            "Once/semester",
+                                            "Once/year",
+                                            "Other - Describe below",
+                                        ],
+                                    },
+                                    measureProficiencyThreshold: {
+                                        title: "Proficiency Threshold",
+                                        type: "string",
+                                    },
+                                    measureProficiencyTarget: {
+                                        title: "Program Proficiency Target",
+                                        type: "string",
+                                    },
+                                    datacollection: {
+                                        type: "object",
+                                        title: "Data Collection",
+                                        properties: {
+                                            dataResultsSLO1Range: {
+                                                type: "string",
+                                                title: "Data Collection Date Range",
+                                            },
+                                            dataResultsSLO1NumStudents: {
+                                                type: "number",
+                                                title: "Number of Students Assessed",
+                                            },
+                                            dataResultsSLO1PercStudents: {
+                                                type: "string",
+                                                title: "Percentage of Students who Met/Exceeded Threshold Proficiency",
+                                            },
+                                        },
+                                        uniqueItems: true,
+                                    },
+                                },
+                            },
+                        },
+
+                        dataSLOStatus: {
+                            type: "string",
+                            title: "notitle",
+                            enum: [
+                                "Met",
+                                "Partially Met",
+                                "Not Met",
+                                "Unknown",
+                            ],
+                            uniqueItems: true,
+                        },
+
+                        decisionActions: {
+                            type: "textarea",
+                        },
+                    },
+                },
+            },
+
+            bSegment: {
+                title: "B. SLOs reflect professional standards as dictated by an accreditation or other external body.",
+                type: "select",
+                enum: ["Yes", "No"],
+            },
+            cSegment: {
+                title: "C. Describe how stakeholders (both internal and external) are involved in the creation and/or review of SLOs as well as how SLOs are communicated to stakeholders.",
+                type: "textarea",
+                description:
+                    "A few examples of internal stakeholders (and communication methods) could include full-time/adjunct faculty and staff (departmental meetings or retreats), and/or current students (syllabi, advising documents, student organizations).\nSome examples of external stakeholders (and communication methods) could include prospective students (recruitment materials), alumni (advisory boards, focus groups, surveys, newsletters), employers (internship evaluation forms, focus groups, surveys, advisory boards, newsletters), and/or community members/groups (advisory boards, focus groups, surveys).",
+            },
+            measureComplementDirect: {
+                title: "B.  Describe any indirect measures or additional data the program uses to complement the direct measures of SLOs.",
+                type: "textarea",
+            },
+            dataResultsDescription: {
+                type: "textarea",
+                title: "C. Describe how results are communicated within the program. Address each SLO. If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.",
+            },
+            additionalInformation: {
+                type: "textarea",
+                title: "Additional Information",
+                description:
+                    "OPTONAL:  Provide additional information that may be helpful to reviewers.",
+            },
+        },
+    },
+    form: [
+        {
+            type: "fieldset",
+            title: "Reporting Details",
+            expandable: false,
+            items: [
+                {
+                    key: "college",
+                    value: oJSONModelExpected.college,
+                },
+                {
+                    key: "program",
+                    value: oJSONModelExpected.program,
+                },
+                {
+                    key: "academicYear",
+                    value: oJSONModelExpected.academicYear,
+                },
+                {
+                    key: "preparer",
+                    value: oJSONModelExpected.preparer,
+                },
+                {
+                    key: "deptSchool",
+                    value: oJSONModelExpected.deptSchool,
+                },
+                {
+                    key: "degreeLevel",
+                    value: oJSONModelExpected.degreeLevel,
+                },
+                {
+                    key: "dateRange",
+                    value: oJSONModelExpected.dateRange,
+                },
+            ],
+        },
+        {
+            type: "fieldset",
+            title: "Student Learning Outcome Information",
+            items: [
+                {
+                    type: "tabarray",
+                    items: [
+                        {
+                            type: "section",
+                            legend: "SLO {{idx}}",
+
+                            items: [
+                                {
+                                    value: oJSONModelExpected.SLOInformation[0]
+                                        .programSLOsSLO1,
+                                    key: "SLOInformation[].programSLOsSLO1",
+                                },
+                                {
+                                    type: "checkboxes",
+                                    key: "SLOInformation[].programSLOsSLO1Bloom",
+                                },
+                                {
+                                    type: "radios",
+                                    value: oJSONModelExpected.SLOInformation[0]
+                                        .programSLOsSLO1Common,
+                                    key: "SLOInformation[].programSLOsSLO1Common",
+                                },
+                                {
+                                    type: "tabarray",
+                                    items: [
+                                        {
+                                            type: "fieldset",
+                                            legend: "Measure {{idx}}",
+                                            items: [
+                                                {
+                                                    value: oJSONModelExpected
+                                                        .SLOInformation[0]
+                                                        .assessmentMeasure[0]
+                                                        .measureTitle,
+                                                    key: "SLOInformation[].assessmentMeasure[].measureTitle",
+                                                },
+                                                {
+                                                    value: oJSONModelExpected
+                                                        .SLOInformation[0]
+                                                        .assessmentMeasure[0]
+                                                        .measureDescription,
+                                                    key: "SLOInformation[].assessmentMeasure[].measureDescription",
+                                                },
+                                                {
+                                                    value: oJSONModelExpected
+                                                        .SLOInformation[0]
+                                                        .assessmentMeasure[0]
+                                                        .measureDomain,
+                                                    key: "SLOInformation[].assessmentMeasure[].measureDomain",
+                                                },
+                                                {
+                                                    value: oJSONModelExpected
+                                                        .SLOInformation[0]
+                                                        .assessmentMeasure[0]
+                                                        .measureType,
+                                                    key: "SLOInformation[].assessmentMeasure[].measureType",
+                                                },
+                                                {
+                                                    type: "section",
+                                                    items: [
+                                                        {
+                                                            key: "SLOInformation[].assessmentMeasure[].measurePoint.measurePointInProgram",
+                                                            value: oJSONModelExpected
+                                                                .SLOInformation[0]
+                                                                .assessmentMeasure[0]
+                                                                .measurePoint
+                                                                .measurePointInProgram,
+                                                        },
+                                                        {
+                                                            key: "SLOInformation[].assessmentMeasure[].measurePoint.measurePointLocation",
+                                                            value: oJSONModelExpected
+                                                                .SLOInformation[0]
+                                                                .assessmentMeasure[0]
+                                                                .measurePoint
+                                                                .measurePointLocation,
+                                                        },
+                                                    ],
+                                                },
+                                                {
+                                                    type: "section",
+                                                    items: [
+                                                        {
+                                                            key: "SLOInformation[].assessmentMeasure[].measurePopulation.measurePopulationDropDown",
+                                                            value: oJSONModelExpected
+                                                                .SLOInformation[0]
+                                                                .assessmentMeasure[0]
+                                                                .measurePopulation
+                                                                .measurePopulationDropDown,
+                                                        },
+                                                        {
+                                                            key: "SLOInformation[].assessmentMeasure[].measurePopulation.measurePopulationDesc",
+                                                            value: oJSONModelExpected
+                                                                .SLOInformation[0]
+                                                                .assessmentMeasure[0]
+                                                                .measurePopulation
+                                                                .measurePopulationDesc,
+                                                        },
+                                                    ],
+                                                },
+
+                                                {
+                                                    value: oJSONModelExpected
+                                                        .SLOInformation[0]
+                                                        .assessmentMeasure[0]
+                                                        .measureDataFreq,
+                                                    key: "SLOInformation[].assessmentMeasure[].measureDataFreq",
+                                                },
+                                                {
+                                                    value: oJSONModelExpected
+                                                        .SLOInformation[0]
+                                                        .assessmentMeasure[0]
+                                                        .measureProficiencyThreshold,
+                                                    key: "SLOInformation[].assessmentMeasure[].measureProficiencyThreshold",
+                                                },
+                                                {
+                                                    value: oJSONModelExpected
+                                                        .SLOInformation[0]
+                                                        .assessmentMeasure[0]
+                                                        .measureProficiencyTarget,
+                                                    key: "SLOInformation[].assessmentMeasure[].measureProficiencyTarget",
+                                                },
+                                                {
+                                                    type: "tabarray",
+                                                    items: [
+                                                        {
+                                                            type: "fieldset",
+                                                            legend: "Data Entry {{idx}}",
+                                                            items: [
+                                                                {
+                                                                    value: oJSONModelExpected
+                                                                        .SLOInformation[0]
+                                                                        .assessmentMeasure[0]
+                                                                        .datacollection
+                                                                        .dataResultsSLO1Range,
+                                                                    key: "SLOInformation[].assessmentMeasure[].datacollection.dataResultsSLO1Range",
+                                                                },
+                                                                {
+                                                                    value: oJSONModelExpected
+                                                                        .SLOInformation[0]
+                                                                        .assessmentMeasure[0]
+                                                                        .datacollection
+                                                                        .dataResultsSLO1NumStudents,
+                                                                    key: "SLOInformation[].assessmentMeasure[].datacollection.dataResultsSLO1NumStudents",
+                                                                },
+                                                                {
+                                                                    value: oJSONModelExpected
+                                                                        .SLOInformation[0]
+                                                                        .assessmentMeasure[0]
+                                                                        .datacollection
+                                                                        .dataResultsSLO1PercStudents,
+                                                                    key: "SLOInformation[].assessmentMeasure[].datacollection.dataResultsSLO1PercStudents",
+                                                                },
+                                                            ],
+                                                        },
+                                                    ],
+                                                },
+                                            ],
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: "SLO Status - Indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown.",
+                                    type: "radios",
+                                    key: "SLOInformation[].dataSLOStatus",
+                                    value: oJSONModelExpected.SLOInformation[0].dataSLOStatus,
+                                },
+                                {
+                                    title: "Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                                    description:
+                                        "Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions:  What are the effects of your previously stated changes from your last report?  What did you do in response to your previous assessment report feedback? How have you made progress since the last assessment report? ",
+                                    key: "SLOInformation[].decisionActions",
+                                    value: oJSONModelExpected.SLOInformation[0].decisionActions,
+                                },
+
+                            ],
+                        },
+                    ],
+                    onChange: function (evt) {},
+                },
+            ],
+        },
+        {
+            key: "bSegment",
+            value: oJSONModelExpected.bSegment
+        },
+        {
+            key: "cSegment",
+            value: oJSONModelExpected.cSegment
+        },
+        {
+            key: "measureComplementDirect",
+            value: oJSONModelExpected.measureComplementDirect
+        },
+        {
+            key: "dataResultsDescription",
+            value: oJSONModelExpected.dataResultsDescription
+        },
+        {
+            key: "additionalInformation",
+            value: oJSONModelExpected.additionalInformation
+        },
+        {
+            type: "submit",
+            title: "Submit",
+            id: "submitForm",
+        },
+    ],
+
+    onSubmit: function (errors, values) {
+        console.log(errors)
+        console.log(values)
+        if (errors) {
+            $("#res").html("<p>I beg your pardon?</p>")
+        } else {
+            $("#res").html(
+                '<p id="returnJSON">' + JSON.stringify(values, null, 4) + "</p>"
+            )
+        }
     },
 })
 
