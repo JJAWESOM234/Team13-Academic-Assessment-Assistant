@@ -1,5 +1,53 @@
 const puppeteer = require('puppeteer');
 
+var JSONExpected = {
+  
+  "programs": "Non-Accredited Graduate",
+  "heading": {
+      "college": "University of Nebraska Omaha",
+      "departmentSchool": "IS&T",
+      "degreeLevel": "Bachelor",
+      "date Range": "August 22' - May 23'",
+      "program": "Computer Science",
+      "year":"Spring 23",
+      "reporter":"John Doe"
+  },
+  "SLOs": [{
+    "SLO": "SLO 1 Test",
+    "bloom": ["Analysis"],
+    "graduateSLOs": ["1"],
+    "nonAccrMeasureTitle": "Title 1",
+    "nonAccrAlignment": "Measure 1",
+    "nonAccrDomain": ["Examination"],
+    "nonAccrType": ["Direct Measure"],
+    "nonAccrPoint": ["In final year of program"],
+    "nonAccrLocation": "Occur 1",
+    "nonAccrPopulation": ["All students"],
+    "nonAccrFrequency": ["Once/semester"],
+    "nonAccrThreshold":"Threshold 1",
+    "nonAccrTarget":"Target 1" 
+  }, {}, {}, {}],
+  "nonAccrComplements": "Description 1",
+  "dataMatrix": [{
+    "measureTitle": "SLO 1/Measure",
+    "SLO#": "1",
+    "dateRange": "2022-2023",
+    "numberOfStudents": "724",
+    "proficiency%": "30%"
+  }, {}, {}, {}],
+  "statusMatrix": [{
+    "SLO#": "1",
+    "SLOStatus": ["Not Met"]
+  }, {}, {}, {}],
+  "resultsCommunication": "Results 1",
+  "decisionsMatrix": [{
+    "SLO#": "1",
+    "decisionsActions": "Decision 1"
+  }, {}, {}, {}],
+  "additionalInfo": "No additional information"
+
+}
+
 /**
  * Initial testing scenario with Puppeteer.
  */
@@ -55,7 +103,7 @@ const puppeteer = require('puppeteer');
   await page.type('#sq_248i', 'Decision 1');
 
   // // Panel V
-  await page.type('textarea[placeholder="OPTIONAL: Provide additional information that may be helpful to reviewers."]', 'Lorem ipsum');
+  await page.type('textarea[placeholder="OPTIONAL: Provide additional information that may be helpful to reviewers."]', 'No additional information');
 
   await page.pdf({ path: "example1.pdf", format: "A4" });
 
@@ -96,4 +144,5 @@ const puppeteer = require('puppeteer');
   await page.pdf({ path: "example2.pdf", format: "A4" });
 
   await browser.close();
+
 })();
