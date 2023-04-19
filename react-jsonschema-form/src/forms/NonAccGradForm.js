@@ -32,13 +32,13 @@ const NAGschema = {
     "studentLearningOutcomes": {
       "type": "object",
       "title": "I. Degree Program & Common Graduate Student Learning Outcomes (SLOs)",
-      "description": `A.List degree program SLOs.  For each, SLO, indicate the highest cognitive level and Common Graduate Program SLO it represents.
+      "description": `A. List degree program SLOs.  For each, SLO, indicate the highest cognitive level and Common Graduate Program SLO it represents.
       To accommodate more than four SLOs, add rows as needed.  The Common Graduate SLOs for master’s programs (adopted 2/2017) are listed below.
-      Students shall demonstrate at the graduate level:
+      \nStudents shall demonstrate at the graduate level:
       1. Mastery of discipline content
-    2. Proficiency in analyzing, evaluating and synthesizing information
-    3. Effective oral and written communication
-    4. Knowledge of discipline’s ethics and standards`,
+      2. Proficiency in analyzing, evaluating and synthesizing information
+      3. Effective oral and written communication
+      4. Knowledge of discipline’s ethics and standards`,
       "properties": {
         "programSLOTable": {
           "minItems": 1,
@@ -51,6 +51,7 @@ const NAGschema = {
               "programSLOBloom":{
                 "type": "string",
                 "title": "Bloom’s Taxonomy Cognitive Level",
+                "description": "(Check the highest level represented in the SLO)",
                 "oneOf": [
                   {"const": "Knowledge", "title": "Knowledge"},
                   {"const": "Analysis", "title": "Analysis"},
@@ -63,6 +64,7 @@ const NAGschema = {
               "programSLOCommon":{
                 "type": "array",
                 "title": "Common Graduate Program SLOs",
+                "description": "(Check as many as possible)",
                 "items" : {
                   "type": "string",
                   "enum": [
@@ -80,8 +82,7 @@ const NAGschema = {
         },
         "proStandardsQuestion": {
           "type": "boolean",
-          "title": "B.",
-          "description": "SLOs reflect professional standards as dictated by an accreditation or other external body.",
+          "description": "B. SLOs reflect professional standards as dictated by an accreditation or other external body.",
           "oneOf": [
             {
               "title": "Yes",
@@ -95,8 +96,7 @@ const NAGschema = {
           },
           "stakeholders": {
             "type": "string",
-            "title": "C.",
-            "description": `Describe how stakeholders (both internal and external) are involved in the creation and/or review of SLOs as well as how SLOs are communicated to stakeholders.
+            "description": `C. Describe how stakeholders (both internal and external) are involved in the creation and/or review of SLOs as well as how SLOs are communicated to stakeholders.
             A few examples of internal stakeholders (and communication methods) could include full-time/adjunct faculty and staff (departmental meetings or retreats), and/or current students (syllabi, advising documents, student organizations). 
             Some examples of external stakeholders (and communication methods) could include prospective students (recruitment materials), alumni (advisory boards, focus groups, surveys, newsletters), employers (internship evaluation forms, focus groups, surveys, advisory boards, 
             `
@@ -153,11 +153,11 @@ const NAGschema = {
                       ]
                     },
                     "measurePoint":{
-                      "title": "Point In Program Assessment is Administered",
                       "type": "object",
                       "properties": {
                         "measurePointInProgram": {
                           "type": "string",
+                          "title": "Point In Program Assessment is Administered",
                           "oneOf": [
                             {
                               "title": "In final term of program",
@@ -170,7 +170,8 @@ const NAGschema = {
                           ]
                         },
                         "measurePointLocation": {
-                          "type": "string"
+                          "type": "string",
+                          "title": "Where does the assessment occur:"
                         },
                       }
                     },
@@ -301,7 +302,9 @@ const NAGschema = {
       "type": "array",
       "title": "IV. Decisions and Actions",
       "description": `Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. 
+      
       Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions: 
+      
       What are the effects of your previously stated changes from your last report? 
       What did you do in response to your previous assessment report feedback?
       How have you made progress since the last assessment report? `,
@@ -310,16 +313,20 @@ const NAGschema = {
         "properties":{
           "decisionsAndActionsSLODesc":{
             "type": "string",
-            "title": "Description"
           }
         }
       }
     },
 
     "additionalInformation":{
-      "type": "string",
+      "type": "object",
       "title": "V. Additional Information",
-      "description": `OPTONAL:  Provide additional information that may be helpful to reviewers.`
+      "description": `OPTIONAL:  Provide additional information that may be helpful to reviewers.`,
+      "properties":{
+        "additionalInformationDesc":{
+          "type": "string"
+        }
+      }
     }
   }
 };
@@ -330,27 +337,27 @@ const NAGschema = {
  */
 const uiSchema = {
   "headerInfo":{
-    "classNames": "headerInfo",
+    "classNames": "nag-headerInfo",
     "college":{
-      "classNames": "headerInput college"
+      "classNames": "nag-headerInput"
     },
     "program":{
-      "classNames": "headerInput program"
+      "classNames": "nag-headerInput"
     },
     "academicYear":{
-      "classNames": "headerInput academicYear"
+      "classNames": "nag-headerInput"
     },
     "preparer":{
-      "classNames": "headerInput preparer"
+      "classNames": "nag-headerInput"
     },
     "deptSchool":{
-      "classNames": "headerInput deptSchool"
+      "classNames": "nag-headerInput"
     },
     "degreeLevel":{
-      "classNames": "headerInput degreeLevel"
+      "classNames": "nag-headerInput"
     },
     "dateRange":{
-      "classNames": "headerInput dateRange"
+      "classNames": "nag-headerInput"
     },
     "ui:options":{
       "title": false
@@ -358,32 +365,35 @@ const uiSchema = {
   },
   "studentLearningOutcomes": {
     "stakeholders":{
-      "ui:widget": "textarea"
+      "ui:widget": "textarea",
+      "classNames": "stakeholdersQuestion"
     },
 
     "proStandardsQuestion":{
-      "ui:widget": "radio"
+      "ui:widget": "radio",
+      "classNames": "proStandardsQuestion"
     },
 
     "programSLOTable":{
-      "classNames": "slo-table",
+      "classNames": "nag-slo-table",
       "items": {
         "programSLODesc":{
           "ui:widget": "textarea",
-          "classNames": "table-slo-input",
+          "classNames": "nag-table-slo-input",
           "ui:options": {
-            rows: 5, 
-            cols: 10
+            label: false,
+            cols: 5,
+            rows: 8
           }
         },
         "programSLOBloom":{
           "ui:widget": "radio",
           "ui:template": "table",
-          "classNames": "table-slo-bloom"
+          "classNames": "nag-table-slo-bloom"
         },
         "programSLOCommon":{
           "ui:widget": "CheckboxesWidget",
-          "classNames": "table-slo-common"
+          "classNames": "nag-table-slo-common"
         }
       }
     }
@@ -394,19 +404,19 @@ const uiSchema = {
     "assessmentMeasureArray":{
       "items":{
         "assessmentMeasure":{
-          "classNames": "assessmentMeasure",
+          "classNames": "nag-assessmentMeasure",
           "items":{
             "ui:field": "regular",
             "measureDomain":{
               "ui:widget": "checkboxes",
-              "classNames": "measureDomain",
+              "classNames": "nag-measureDomain",
               "ui:options":{
                 "inline": true
               }
             },
             "measureType":{
               "ui:widget": "radio",
-              "classNames": "measureType",
+              "classNames": "nag-measureType",
               "ui:options":{
                 "inline": true
               }
@@ -414,17 +424,17 @@ const uiSchema = {
             "measurePoint":{
               "measurePointInProgram":{
                 "ui:widget": "radio",
-                "classNames": "measurePointInProgram",
+                "classNames": "nag-measurePointInProgram",
                 
               }
             },
             "measurePopulation":{
                 "ui:widget": "radio",
-                "classNames": "measurePopulation"
+                "classNames": "nag-measurePopulation"
             },
             "measureDataFreq":{
                 "ui:widget": "RadioWidget",
-                "classNames": "measureDataFreq",
+                "classNames": "nag-measureDataFreq",
                 
             }
           }
@@ -436,19 +446,19 @@ const uiSchema = {
 
   "dataCollection":{
     "dataResultsArray":{
-      "classNames": "dataResultsArray",
+      "classNames": "nag-dataResultsArray",
       "items":{
         "dataResultsEntryName":{
-          "classNames": "dataResultsEntryName"
+          "classNames": "nag-dataResultsEntryName"
         },
         "dataResultsEntryRange":{
-          "classNames": "dataResultsEntryRange"
+          "classNames": "nag-dataResultsEntryRange"
         },
         "dataResultsEntryNumStudents":{
-          "classNames": "dataResultsEntryNumStudents"
+          "classNames": "nag-dataResultsEntryNumStudents"
         },
         "dataResultsEntryPercStudents":{
-          "classNames": "dataResultsEntryPercStudents"
+          "classNames": "nag-dataResultsEntryPercStudents"
         },
       }
     },
@@ -456,52 +466,155 @@ const uiSchema = {
       "items": {
         "dataSLOStatus":{
           "ui:widget": "RadioWidget",
-          "classNames": "dataSLOStatus",
+          "classNames": "nag-dataSLOStatus",
           "ui:options":{
-            "inline": true
+            "inline": true,
+            "label": false
           }
         },
       }
     },
     "dataResultsDescription":{
       "ui:widget": "textarea",
-      "classNames": "dataResultsDescription"
+      "classNames": "nag-dataResultsDescription",
+      
     }
   },
 
   "decisionsAndActions":{
-    "decisionsAndActionsSLODesc":{
-      "classNames": "decisionsAndActionsSLODesc"
+    "items":{
+      "decisionsAndActionsSLODesc":{
+        "ui:options":{
+          "label": false,
+          rows: 5,
+          cols: 15
+        },
+        "ui:widget": "textarea",
+        "classNames": "nag-decisionsAndActionsSLODesc"
+      }
     }
+    
   },
 
   "additionalInformation":{
-    "ui:widget": "textarea",
-    "className": "addInfo"
+    "additionalInformationDesc":{
+      "classNames": "nag-additionalInformationDesc",
+      "ui:widget": "textarea",
+      "ui:options": {
+        "label": false,
+        rows: 5
+      },
+      "className": "nag-addInfo"
+    }
+    
   },
   "ui:submitButtonOptions":{
     "props":{
-      "className": "form-submit-btn"
+      "className": "nag-form-submit-btn"
     }
   }
 }
 
+function TitleFieldTemplate(props: TitleFieldProps) {
+  const { id, required, title } = props;
+  //console.log(title)
+
+  let returnTitle = title;
+  let checkSLO = title.substring(0, 3);
+  switch(title){
+    case "headerInfo":
+      returnTitle = ``;
+      break;
+    case "programSLOTable":
+      returnTitle = ``;
+      break;
+    case "assessmentMeasureArray":
+      returnTitle = ``;
+      break;
+    case "assessmentMeasure":
+      returnTitle = ``;
+      break;
+    case "measurePoint":
+      returnTitle = ``;
+      break;
+    case "dataResultsArray":
+      returnTitle = ``;
+      break;
+    case "dataSLOStatusTable":
+      returnTitle = ``;
+      break;
+    case "dataResultsDescription":
+      returnTitle = ``;
+      break;
+  }
+
+  if (checkSLO === "SLO"){
+    return (
+      <header id={id} className="nag-slo-header">
+      {returnTitle}
+    </header>
+    )
+  }
+  console.log(checkSLO)
+  return (
+    <header id={id} className="nag-header">
+      {returnTitle}
+    </header>
+  );
+}
 /**
  * Defines a custom title "SLO #" for array items.
  * @param {FieldProps} props - The RJSF attributes for a given form array item.
  * @returns The array item's schema field with an updated name.
  */
 const CustomArraySchemaField = function(props) {
-  const { index, registry, className } = props;
+  const { index, registry, name } = props;
   const { SchemaField } = registry.fields;
 
-  var name = className
-  if (Boolean(className)){
-    name = `SLO ${index+1}`;
+  let newName = name
+
+  const arrayItem = name.split("-");
+
+  switch(arrayItem[0]){
+    case "programSLOTable":
+      newName = `SLO ${index+1}:`;
+      break;
+    case "assessmentMeasureArray":
+      newName = `SLO ${index+1}`;
+      break;
+    case "assessmentMeasure":
+      newName = ``;
+      break;
+    case "decisionsAndActions":
+      newName = `SLO ${index+1}:`;
+      break;
+    case "dataResultsArray":
+      newName = ``;
+      break;
+    case "dataSLOStatusTable":
+      newName = `SLO ${index+1}:`;
+      break;
+
   }
-  //
-  return <SchemaField {...props} name={name}/>;
+  //console.log(name)
+  return <SchemaField {...props} name={newName} className={newName}/>;
 };
+
+function MoveDownButton(props: IconButtonProps) {
+  const { icon, iconType, ...btnProps } = props;
+  return (
+    <>
+    </>
+  );
+}
+
+function MoveUpButton(props: IconButtonProps) {
+  const { icon, iconType, ...btnProps } = props;
+  return (
+    <>
+    </>
+  );
+}
 
 /**
  * Defines the custom fields that the RJSF form references.
@@ -510,6 +623,14 @@ const CustomArraySchemaField = function(props) {
 const fields = {
   ArraySchemaField: CustomArraySchemaField
 };
+
+const templates = {
+  ButtonTemplates:{
+    MoveDownButton,
+    MoveUpButton
+  },
+  TitleFieldTemplate
+}
 
 /**
  * @function
@@ -638,14 +759,13 @@ function NonAccGradForm() {
 
   return (
     <div className='body'>
-      <div className='rjsfForm'>
-        <p>Number of SLOS: {numSLO} </p>
+      <div className='nag-form'>
         <Form 
           schema={schema} validator={validator} uiSchema={uiSchema} 
           fields={fields} formData={formData} key={JSON.stringify(schema)}
           //onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
-          onChange={onChange}/>
-          <div className="formData">{JSON.stringify(formData)}</div>
+          onChange={onChange} templates={templates}/>
+          
       </div>
     </div>
   );

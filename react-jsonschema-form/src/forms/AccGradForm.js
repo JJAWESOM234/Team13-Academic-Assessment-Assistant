@@ -34,13 +34,7 @@ const AGschema = {
     "studentLearningOutcomes": {
       "type": "object",
       "title": "I. Degree Program & Common Graduate Student Learning Outcomes (SLOs)",
-      "description": `A.List degree program SLOs.  For each, SLO, indicate the highest cognitive level and Common Graduate Program SLO it represents.
-      To accommodate more than four SLOs, add rows as needed.  The Common Graduate SLOs for master’s programs (adopted 2/2017) are listed below.
-      Students shall demonstrate at the graduate level:
-      1. Mastery of discipline content
-    2. Proficiency in analyzing, evaluating and synthesizing information
-    3. Effective oral and written communication
-    4. Knowledge of discipline’s ethics and standards`,
+      "description": `List each program SLO and indicate the highest cognitive level it represents. To accommodate more than four SLOs, add rows as needed.`,
       "properties": {
         "programSLOTable": {
           "minItems": 1,
@@ -53,6 +47,7 @@ const AGschema = {
               "programSLOBloom":{
                 "type": "string",
                 "title": "Bloom’s Taxonomy Cognitive Level",
+                "description": "(Check highest level represented in the SLO)",
                 "oneOf": [
                   {"const": "Knowledge", "title": "Knowledge"},
                   {"const": "Analysis", "title": "Analysis"},
@@ -65,6 +60,7 @@ const AGschema = {
               "programSLOCommon":{
                 "type": "array",
                 "title": "Common Graduate Program SLOs",
+                "description": "(Check as many as necessary)",
                 "items" : {
                   "type": "string",
                   "enum": [
@@ -86,8 +82,8 @@ const AGschema = {
     "assessmentMethods": {
       "type": "object",
       "title": "II. Assessment Methods",
-      "description": `A.  Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. 
-      Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.`,
+      "description": `List the assessment measures used.  For each measure, indicate the domain and how often data is collected. 
+      Add rows as needed to accommodate additional SLOs.`,
       "properties":{
         "assessmentMeasureArray":{
           "type": "array",
@@ -127,9 +123,10 @@ const AGschema = {
       "properties": {
         "dataSLOStatusTable":{
           "type": "array",
-          "description": `B.  SLO Status Table – Based on the results reported in the above table and 
+          "description": `SLO Status Table – Based on the results reported in the above table and 
           referring to the program proficiency target, indicate the current status of program SLOs as Met, 
-          Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.`,
+          Partially Met, Not Met, or Unknown. 
+          Add rows as needed to accommodate additional SLOs.`,
           "minItems": 1,
           "items": {
             "properties": {
@@ -163,8 +160,8 @@ const AGschema = {
       "type": "array",
       "title": "IV. Decisions and Actions",
       "description": `Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. 
-      Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions: 
-      What are the effects of your previously stated changes from your last report? 
+      \nFurthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions: 
+      \nWhat are the effects of your previously stated changes from your last report? 
       What did you do in response to your previous assessment report feedback?
       How have you made progress since the last assessment report? `,
       "minItems": 1,
@@ -179,9 +176,14 @@ const AGschema = {
     },
 
     "additionalInformation":{
-      "type": "string",
+      "type": "object",
       "title": "V. Additional Information",
-      "description": `OPTONAL:  Provide additional information that may be helpful to reviewers.`
+      "description": `OPTIONAL:  Provide additional information that may be helpful to reviewers.`,
+      "properties":{
+        "additionalInformationDesc":{
+          "type": "string"
+        }
+      }
     }
   }
 };
@@ -191,33 +193,33 @@ const AGschema = {
  */
 const uiSchema = {
   "headerInfo":{
-    "classNames": "headerInfo",
+    "classNames": "ag-headerInfo",
     "college":{
-      "classNames": "headerInput"
+      "classNames": "ag-headerInput"
     },
     "program":{
-      "classNames": "headerInput"
+      "classNames": "ag-headerInput"
     },
     "academicYear":{
-      "classNames": "headerInput"
+      "classNames": "ag-headerInput"
     },
     "preparer":{
-      "classNames": "headerInput"
+      "classNames": "ag-headerInput"
     },
     "deptSchool":{
-      "classNames": "headerInput"
+      "classNames": "ag-headerInput"
     },
     "degreeLevel":{
-      "classNames": "headerInput"
+      "classNames": "ag-headerInput"
     },
     "dateRange":{
-      "classNames": "headerInput"
+      "classNames": "ag-headerInput"
     },
     "lastReview":{
-      "classNames": "headerInput"
+      "classNames": "ag-headerInput"
     },
     "accredBody":{
-        "classNames": "headerInput"
+        "classNames": "ag-headerInput"
       },
     "ui:options":{
       "title": false
@@ -225,24 +227,25 @@ const uiSchema = {
   },
   "studentLearningOutcomes": {
     "programSLOTable":{
-      "classNames": "slo-table",
+      "classNames": "ag-slo-table",
       "items": {
         "programSLODesc":{
           "ui:widget": "textarea",
-          "classNames": "table-slo-input",
+          "classNames": "ag-table-slo-input",
           "ui:options": {
             rows: 5, 
-            cols: 10
+            cols: 10,
+            "label": false
           }
         },
         "programSLOBloom":{
           "ui:widget": "radio",
           "ui:template": "table",
-          "classNames": "table-slo-bloom"
+          "classNames": "ag-table-slo-bloom"
         },
         "programSLOCommon":{
           "ui:widget": "CheckboxesWidget",
-          "classNames": "table-slo-common"
+          "classNames": "ag-table-slo-common"
         }
       }
     }
@@ -255,13 +258,13 @@ const uiSchema = {
           "items": {
             "ui:field": "regular",
             "measureTitle": {
-              "classNames": "measureTitle"
+              "classNames": "ag-measureTitle"
             },
             "measureDomain":{
-              "classNames": "measureDomain",
+              "classNames": "ag-measureDomain",
             },
             "measureDataFreq": {
-              "classNames": "measureDataFreq"
+              "classNames": "ag-measureDataFreq"
             },
           }
         }
@@ -275,23 +278,95 @@ const uiSchema = {
         "dataSLOStatus":{
           "ui:widget": "RadioWidget",
           "ui:options":{
-            "inline": true
-          }
+            "inline": true,
+            "label": false
+          },
+          "classNames": "ag-dataSLOStatus"
         },
       }
     },
   },
 
   "decisionsAndActions":{
-    
+    "items":{
+      "decisionsAndActionsSLODesc":{
+        "ui:options":{
+          "label": false,
+          rows: 5,
+          cols: 15
+        },
+        "ui:widget": "textarea",
+        "classNames": "ag-decisionsAndActionsSLODesc"
+      }
+    }
   },
 
   "additionalInformation":{
-    "ui:widget": "textarea",
-    "className": "addInfo"
+    "additionalInformationDesc":{
+      "classNames": "ag-additionalInformationDesc",
+      "ui:widget": "textarea",
+      "ui:options": {
+        "label": false,
+        rows: 5
+      },
+      "className": "ag-addInfo"
+    }
+    
+  },
+  "ui:submitButtonOptions":{
+    "props":{
+      "className": "ag-form-submit-btn"
+    }
   }
 }
 
+function TitleFieldTemplate(props: TitleFieldProps) {
+  const { id, required, title } = props;
+  //console.log(title)
+
+  let returnTitle = title;
+  let checkSLO = title.substring(0, 3);
+  switch(title){
+    case "headerInfo":
+      returnTitle = ``;
+      break;
+    case "programSLOTable":
+      returnTitle = ``;
+      break;
+    case "assessmentMeasureArray":
+      returnTitle = ``;
+      break;
+    case "assessmentMeasure":
+      returnTitle = ``;
+      break;
+    case "measurePoint":
+      returnTitle = ``;
+      break;
+    case "dataResultsArray":
+      returnTitle = ``;
+      break;
+    case "dataSLOStatusTable":
+      returnTitle = ``;
+      break;
+    case "dataResultsDescription":
+      returnTitle = ``;
+      break;
+  }
+
+  if (checkSLO === "SLO"){
+    return (
+      <header id={id} className="ag-slo-header">
+      {returnTitle}
+    </header>
+    )
+  }
+  console.log(checkSLO)
+  return (
+    <header id={id} className="ag-header">
+      {returnTitle}
+    </header>
+  );
+}
 
 /**
  * Defines a custom title "SLO #" for array items.
@@ -300,12 +375,53 @@ const uiSchema = {
  * @returns The array item's schema field with an updated name.
  */
 const CustomArraySchemaField = function(props) {
-  const { index, registry } = props;
+  const { index, registry, name } = props;
   const { SchemaField } = registry.fields;
-  const name = `SLO ${index+1}`;
-  return <SchemaField {...props} name={name} />;
+
+  let newName = name
+
+  const arrayItem = name.split("-");
+
+  switch(arrayItem[0]){
+    case "programSLOTable":
+      newName = `SLO ${index+1}:`;
+      break;
+    case "assessmentMeasureArray":
+      newName = `SLO ${index+1}`;
+      break;
+    case "assessmentMeasure":
+      newName = ``;
+      break;
+    case "decisionsAndActions":
+      newName = `SLO ${index+1}:`;
+      break;
+    case "dataResultsArray":
+      newName = ``;
+      break;
+    case "dataSLOStatusTable":
+      newName = `SLO ${index+1}:`;
+      break;
+  }
+  //console.log(name)
+  return <SchemaField {...props} name={newName} className={newName}/>;
+
 };
-  
+
+function MoveDownButton(props: IconButtonProps) {
+  const { icon, iconType, ...btnProps } = props;
+  return (
+    <>
+    </>
+  );
+}
+
+function MoveUpButton(props: IconButtonProps) {
+  const { icon, iconType, ...btnProps } = props;
+  return (
+    <>
+    </>
+  );
+}
 /**
  * Defines the custom fields that the RJSF form references.
  * @constant
@@ -314,6 +430,13 @@ const fields = {
   ArraySchemaField: CustomArraySchemaField
 };
 
+const templates = {
+  ButtonTemplates:{
+    MoveDownButton,
+    MoveUpButton
+  },
+  TitleFieldTemplate
+}
 /**
  * @function
  * @returns The auto generated Accredited Graduate assessment form.
@@ -417,11 +540,10 @@ const onChange = ({ formData: newFormData}) => {
 
   return (
     <div className='body'>
-      <div className='rjsfForm'>
-        <p>Number of SLOS: {numSLO} </p>
+      <div className='ag-form'>
         <Form 
           schema={schema} validator={validator}  uiSchema={uiSchema}
-          fields={fields} formData={formData}
+          fields={fields} formData={formData} templates={templates}
           onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
           onChange={onChange}/>
       </div>

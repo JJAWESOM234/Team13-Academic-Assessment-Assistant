@@ -1,0 +1,83 @@
+.body{
+    margin: auto;
+}
+
+.nag-form{
+    margin: auto;
+}
+
+.nag-headerInfo{
+    margin: auto;
+}
+
+.nag-headerInput{
+    width: 45%;
+    float: left;
+    margin: 0 20px 10px 0px;
+}
+
+.array-item .array-item{
+    float: left;
+    width: 50%;
+    padding: 0 1em;
+}
+
+
+.slo-table{
+    display: inline-block;
+    width: 100%;
+}
+.table-slo-bloom, .table-slo-common{
+    width: 25%;
+    float: left;
+    margin: 0px;
+}
+
+
+.table-slo-input{
+    float: left;
+    resize: none;
+    overflow:auto;
+    margin: 0px;
+}
+
+.dataResultsEntryName, .dataResultsEntryRange,
+.dataResultsEntryNumStudents, .dataResultsEntryPercStudents {
+    width: 25%;
+    margin: 0 0 0 0;
+    float: left;
+    display: grid;
+}
+
+.dataResultsEntryName > label, .dataResultsEntryRange > label,
+.dataResultsEntryNumStudents > label {
+    padding-bottom: 18px;
+    
+}
+
+.dataResultsEntryName > input, .dataResultsEntryRange > input,
+.dataResultsEntryNumStudents > input, .dataResultsEntryPercStudents > input {
+    border-radius: 0%;
+}
+
+span.required {
+    display: none;
+}
+
+header{
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+
+p {
+    white-space:pre-line;
+}
+
+.table-slo-bloom > .field-description{
+    font-size: small;
+}
+
+.table-slo-bloom > .control-label, .table-slo-common > .control-label{
+    font-size: large;
+}

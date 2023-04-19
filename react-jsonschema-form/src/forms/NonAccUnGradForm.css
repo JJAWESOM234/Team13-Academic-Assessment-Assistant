@@ -1,58 +1,147 @@
 .body{
-    display: grid;  
-    justify-content: center; /* Horizontal */  
-    align-content: center; 
+    margin: auto;
+    color: black;
 }
 
-.rjsfForm{
+.naug-form{
     margin: auto;
 }
-
-
-
-.headerInfo{
-    display:flex;
+/*CSS for header inputs*/
+.naug-headerInfo{
+    margin: auto;
 }
-
-.headerInput{
-    width: 40%;
+.naug-headerInput{
+    width: 45%;
     float: left;
     margin: 0 20px 10px 0px;
 }
 
-.slo-table{
-    display: inline-block;
-    width: 100%;
+.naug-headerInput > .control-label{
+    font-weight: bold;
+}
+.naug-header{
+    font-size: x-large;
+    font-weight: bold;
+}
+/*CSS for section 1*/
+.naug-slo-header{
+    font-size:large;
+    font-weight: bold;
+    width: fit-content;
+    float: left;
 }
 
-.table-slo-bloom, .table-slo-common{
-    width: 25%;
-    float: left;
-    margin-left: 20px;
+#root_studentLearningOutcomes__description{
+    font-size: larger;
+    white-space: pre-line;
 }
 
-.table-slo-input{
+.naug-slo-table > .array-item {
     float: left;
+}
+
+.naug-table-slo-input{
+    width: 60%;
+    float: left;
+}
+.naug-table-slo-bloom{
+    width: 30%;
+    float: left;
+    margin-left: 10px;
+}
+.naug-table-slo-bloom > .control-label{
+    font-weight: bold;
+}
+.naug-proStandardsQuestion > .control-label{
+    display: none;
+}
+.naug-proStandardsQuestion > .field-description{
+    font-size: larger;
+}
+.naug-stakeholders> .control-label{
+    display: none;
+}
+.naug-stakeholders > .field-description{
+    font-size: larger;
+    white-space: pre-line;
+}
+
+.naug-stakeholders > textarea{
     resize: none;
-    width: 400px;
-    overflow:auto;
 }
 
-.dataResultsEntryName, .dataResultsEntryRange,
-.dataResultsEntryNumStudents, .dataResultsEntryPercStudents {
+/*CSS for section 2*/
+.array-item .array-item{
+    float: left;
+    width: 50%;
+    padding: 0 1em;
+}
+
+#root_assessmentMethods__description{
+    font-size: larger;
+}
+
+.control-label{
+    font-weight: bold;
+}
+
+/*CSS for section 3 */
+.naug-dataResultsEntryName, .naug-dataResultsEntryRange,
+.naug-dataResultsEntryNumStudents, .naug-dataResultsEntryPercStudents {
     width: 25%;
     margin: 0 0 0 0;
     float: left;
     display: grid;
 }
 
-.dataResultsEntryName > label, .dataResultsEntryRange > label,
-.dataResultsEntryNumStudents > label {
+.naug-dataResultsEntryName > label, .naug-dataResultsEntryRange > label,
+.naug-dataResultsEntryNumStudents > label {
     padding-bottom: 18px;
     
 }
 
-.dataResultsEntryName > input, .dataResultsEntryRange > input,
-.dataResultsEntryNumStudents > input, .dataResultsEntryPercStudents > input {
-    border-radius: 0%;
+.naug-dataSLOStatus{
+    margin-top: 2px;
+    margin-left: 10px;
+    width: max-content;
+    float: left;
+}
+#root_dataCollection_dataResultsArray__description,
+#root_dataCollection_dataSLOStatusTable__description{
+    font-size: larger;
+}
+.naug-dataResultsDescription > .control-label{
+    display: none;
+}
+.naug-dataResultsDescription > .field-description{
+    font-size: larger;
+}
+
+.naug-dataResultsDescription > textArea{
+    resize: none;
+}
+/*CSS for section 4 */
+#root_decisionsAndActions__description{
+    font-size: larger;
+    white-space: pre-line;
+}
+
+.naug-decisionsAndActionsSLODesc{
+    float: left;
+    width: 70%;
+}
+
+.naug-decisionsAndActionsSLODesc > textarea{
+    resize: none;
+}
+
+/*CSS for section 5*/
+
+#root_additionalInformation__description{
+    font-size: larger;
+}
+
+.naug-additionalInformationDesc > textarea{
+    font-size: larger;
+    resize: none;
 }

@@ -1,47 +1,119 @@
 .body{
-    display: grid;  
-    justify-content: center; /* Horizontal */  
-    align-content: center; 
+    margin: auto;
+    color: black;
 }
 
-.rjsfForm{
+.ag-form{
     margin: auto;
 }
 
-.array-item{
-    display: grid;
+.ag-headerInfo{
+    margin: auto;
 }
 
+.ag-headerInput{
+    width: 45%;
+    float: left;
+    margin: 0 20px 10px 0px;
+}
+
+.ag-headerInput > .control-label{
+    font-weight: bold;
+}
+.ag-header{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+/*CSS for section 1*/
+.ag-slo-header{
+    font-size:large;
+    font-weight: bold;
+    width: fit-content;
+    float: left;
+}
+
+#root_studentLearningOutcomes__description{
+    font-size: larger;
+    white-space: pre-line;
+}
+
+.ag-slo-table > .array-item {
+    float: left;
+}
+
+.ag-table-slo-input, .ag-table-slo-bloom, .ag-table-slo-common{
+    width: 30%;
+    float: left;
+}
+
+.ag-table-slo-input > textarea{
+    resize: none;
+}
+
+.ag-table-slo-bloom{
+    margin-left: 5px;
+}
+
+.ag-table-slo-bloom > .control-label{
+    font-weight: bold;
+}
+
+.ag-table-slo-common{
+    margin-left: 5px;
+}
+
+.ag-table-slo-common > .control-label{
+    font-weight: bold;
+}
+
+/*CSS for section 2*/
 .array-item .array-item{
     float: left;
     width: 50%;
     padding: 0 1em;
 }
 
-.headerInfo{
-    display:flex;
+#root_assessmentMethods__description{
+    font-size: larger;
 }
 
-.headerInput{
-    width: 40%;
+.control-label{
+   font-weight: bold;
+}
+
+/*CSS for section 3 */
+.ag-dataSLOStatus{
+    margin-top: 2px;
+    margin-left: 10px;
+    width: max-content;
     float: left;
-    margin: 0 20px 10px 0px;
 }
 
-.slo-table{
-    display: inline-block;
-    width: 100%;
+#root_dataCollection_dataSLOStatusTable__description{
+    font-size: larger;
 }
 
-.table-slo-bloom, .table-slo-common{
-    width: 25%;
+/*CSS for section 4 */
+#root_decisionsAndActions__description{
+    font-size: larger;
+    white-space: pre-line;
+}
+
+.ag-decisionsAndActionsSLODesc{
     float: left;
-    margin-left: 20px;
+    width: 70%;
 }
 
-.table-slo-input{
-    float: left;
+.ag-decisionsAndActionsSLODesc > textarea{
     resize: none;
-    width: 400px;
-    overflow:auto;
+}
+
+/*CSS for section 5*/
+#root_additionalInformation__description{
+    font-size: larger;
+}
+.ag-additionalInformationDesc > textarea{
+    font-size: larger;
+    resize: none;
 }
