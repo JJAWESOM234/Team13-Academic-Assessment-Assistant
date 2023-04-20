@@ -28,6 +28,10 @@ Each application allows users to add and subtract SLO entries, assessment method
 Users can easily switch between forms, enter information, and receive that form's output back to them on submitting the form.
 
 ### Milestone 3
-Each application implemenets web automation testing via the puppeteer JavaScript library. Various scenarios for user actions are 
+Each application implements web automation testing via the puppeteer JavaScript library. Various scenarios for user actions are 
 tested and pdfs of the scenarios are created. Eventually QUnit testing will also be included to compare automated results to expected results.
   
+### Milestone 4
+All four applications represent a near fully realized representation of the assessment report forms within the respective auto generation libraries.
+There is now an deep understanding of how the Academic Assessment Assistant application would appear if it were to adopt the use of any of these libraries. 
+Beyond this, automated web tools have also been utilized to record test cases and watch various user scenarios.
