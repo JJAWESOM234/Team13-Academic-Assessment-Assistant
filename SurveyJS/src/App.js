@@ -13,15 +13,14 @@ import { useCallback } from 'react';
  */
 const surveyJson = {
 
-  title: "{program-group} Assessment Report",
+  title: "{programs} Assessment Report",
   type: "object",
-
 // ------------------------------------------------- Heading
   showQuestionNumbers: false,
   elements: [
     {
       type: "radiogroup",
-      name: "program-group",
+      name: "programs",
       title: "Choose Program: ",
       defaultValue: "Non-Accredited Graduate",
       colCount: 4,
@@ -78,7 +77,7 @@ const surveyJson = {
       elements: [
         {
           type: "matrixdynamic",
-          name: "SLO-matrix",
+          name: "SLOMatrix",
           title: "{panelIDesc}",
           valueName: "SLOs",
           addRowText: "Add SLO",
@@ -100,7 +99,7 @@ const surveyJson = {
               cellType: "checkbox",
               title: "Common Graduate Program SLOs:",
               choices: [ "1", "2", "3", "4", "Not applicable for SLO" ],
-              visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Accredited Graduate'",
+              visibleIf: "{programs} = 'Non-Accredited Graduate' or {programs} = 'Accredited Graduate'",
               colCount: 2,
             }
           ],
@@ -118,12 +117,12 @@ const surveyJson = {
         type: "matrixdynamic",
         name: "accrMethods",
         title: "{panelIIDesc}",
-        visibleIf: "{program-group} = 'Accredited Graduate' or {program-group} = 'Accredited Undergraduate'",
+        visibleIf: "{programs} = 'Accredited Graduate' or {programs} = 'Accredited Undergraduate'",
         valueName: "SLOs",
         // allowAddRows: false,
         columns: [
         {
-          name: "accrSLO#Measure#",
+          name: "accrMeasureTitle",
           cellType: "text",
           title: "Measurement Title:",
         },
@@ -134,12 +133,12 @@ const surveyJson = {
           choices: ["1", "2", "3", "4"]
         },
         {
-          name: "accrMethods-domain",
+          name: "accrDomain",
           cellType: "text",
           title: "Domain (Product, Performance, Examination):",
         },
         {
-          name: "accrMethods-collection",
+          name: "accrCollection",
           cellType: "text",
           title: "Data Collection (i.e. annually, by semester) :",
         },
@@ -148,89 +147,89 @@ const surveyJson = {
       },
       {
         type: "paneldynamic",
-        name: "nonMethods",
+        name: "nonAccrMethods",
         title: "{panelIIDesc}",
         renderMode: "progressTopBottom",
         valueName: "SLOs",
-        visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
+        visibleIf: "{programs} = 'Non-Accredited Graduate' or {programs} = 'Non-Accredited Undergraduate'",
         templateElements: [
         {
           type: "panel",
-          name: "methodPanel",
+          name: "nonAccrTemplate",
           title: " ",
           elements: [
             {
               type: "dropdown",
-              name: "measureSLO",
+              name: "nonAccrSLO",
               title: "SLO:",
               choices: ["1", "2", "3", "4"]
             },
             {
               type: "text",
-              name: "measureTitle",
+              name: "nonAccrMeasureTitle",
               title: "Title of Measure:",
             },
             {
               type: "comment",
-              name: "measureAlignment",
+              name: "nonAccrAlignment",
               title: "Describe How the Measure Aligns to the SLO:",
             },
             {
               type: "checkbox",
-              name: "domain",
+              name: "nonAccrDomain",
               title: "Domain:",
               choices: [ "Examination", "Product", "Performance" ],
               colCount: 3,
             },
             {
               type: "checkbox",
-              name: "type",
+              name: "nonAccrType",
               title: "Type:",
               choices: [ "Direct Measure", "Indirect Measure" ],
               colCount: 2,
             },
             {
               type: "panel",
-              name: "administeredPanel",
+              name: "nonAccrAdministeredPanel",
               title: "Point in Program Assessment is Administered:",
               elements: [
                 {
                   type: "checkbox",
-                  name: "point",
+                  name: "nonAccrPoint",
                   title: " ",
                   choices: [ "In final term of program", "In final year of program" ],
                   colCount: 2,
                 },
                 {
                   type: "text",
-                  name: "where",
+                  name: "nonAccrLocation",
                   title: "Where does the assessment occur:",
                 }
               ]
             },
             {
               type: "checkbox",
-              name: "population",
+              name: "nonAccrPopulation",
               title: "Population Measured:",
               choices: [ "All students", "Sample of students [Dynamic element]" ],
               colCount: 2,
             },
             {
               type: "checkbox",
-              name: "frequency",
+              name: "nonAccrFrequency",
               title: "Frequency of Data Collection:",
               choices: [ "Once/semester", "Once/year", "Other [Dynamic element]" ],
               colCount: 3,
             },
             {
               type: "text",
-              name: "threshold",
+              name: "nonAccrThreshold",
               title: "Proficiency Threshold:",
               placeholder: "Describe here",
             },
             {
               type: "text",
-              name: "target",
+              name: "nonAccrTarget",
               title: "Program Proficiency Target:",
               placeholder: "Describe here",
             },
@@ -242,9 +241,9 @@ const surveyJson = {
       },
       {
         type: "comment",
-        name: "complements",
+        name: "nonAccrComplements",
         title: "B.  Describe any indirect measures or additional data the program uses to complement the direct measures of SLOs.",
-        visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
+        visibleIf: "{programs} = 'Non-Accredited Graduate' or {programs} = 'Non-Accredited Undergraduate'",
       }
       ]
     },
@@ -256,9 +255,9 @@ const surveyJson = {
       elements: [
         {
           type: "matrixdynamic",
-          name: "data",
+          name: "dataMatrix",
           title: "A. Results Table – Report results for each SLO. If an SLO was assessed by multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.",
-          visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
+          visibleIf: "{programs} = 'Non-Accredited Graduate' or {programs} = 'Non-Accredited Undergraduate'",
           allowAddRows: true,
           columns: [
           {
@@ -267,7 +266,7 @@ const surveyJson = {
             title: "Title of Measure:",
           },
           {
-            name: "SLONumber",
+            name: "SLO#",
             cellType: "dropdown",
             title: "SLO:",
             choices: ["1", "2", "3", "4"]
@@ -283,7 +282,7 @@ const surveyJson = {
             title: "Number of Students Assessed:",
           },
           {
-            name: "percentage",
+            name: "proficiency%",
             cellType: "text",
             title: "Percentage of Students Who Met/Exceeded Threshold Proficiency:",
           },
@@ -292,18 +291,19 @@ const surveyJson = {
         },
         {
           type: "matrixdynamic",
-          name: "status",
+          name: "statusMatrix",
           title: "{panelIIIStsTblDesc}",
           allowAddRows: false,
           columns: [
             {
-              name: "SLO-name",
-              title: " ",
-              cellType: "text",
+              name: "SLO#",
+              cellType: "dropdown",
+              title: "SLO:",
+              choices: ["1", "2", "3", "4"]
             },
             {
               cellType: "checkbox",
-              name: "frequency",
+              name: "SLOStatus",
               title: " ",
               maxSelectedChoices: 1,
               choices: [ "Met", "Partially Met", "Not Met", "Unknown" ],
@@ -314,9 +314,9 @@ const surveyJson = {
         },
         {
           type: "comment",
-          name: "communication",
+          name: "resultsCommunication",
           title: "C: Describe how results are communicated within the program. Address each SLO. If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.",
-          visibleIf: "{program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate'",
+          visibleIf: "{programs} = 'Non-Accredited Graduate' or {programs} = 'Non-Accredited Undergraduate'",
         }
       ]
     },
@@ -328,14 +328,20 @@ const surveyJson = {
       elements: [
         {
           type: "matrixdynamic",
-          name: "decisions&Actions",
+          name: "decisionsMatrix",
           title: "Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions: What are the effects of your previously stated changes from your last report? What did you do in response to your previous assessment report feedback? How have you made progress since the last assessment report?",
           allowAddRows: false,
           columns: [
             {
+              name: "SLO#",
+              cellType: "dropdown",
+              title: "SLO:",
+              choices: ["1", "2", "3", "4"]
+            },
+            {
               cellType: "text",
-              name: "frequency",
-              title: " ",
+              name: "decisionsActions",
+              title: "Decision and/or Actions",
               colCount: 4,
             },
           ],
@@ -363,16 +369,20 @@ const surveyJson = {
   calculatedValues: [
     {
       name: "panelIDesc",
-      expression: "iif({program-group} = 'Non-Accredited Graduate' or {program-group} = 'Accredited Graduate', 'A. List degree program SLOs. For each, SLO, indicate the highest cognitive level and Common Graduate Program SLO it represents.  To accommodate more than four SLOs, add rows as needed. The Common Graduate SLOs for master’s programs (adopted 2/2017) are listed below.', 'A. List each program SLO and indicate the highest cognitive level it represents. To accommodate more than four SLOs, add rows as needed.')"
+      expression: "iif({programs} = 'Non-Accredited Graduate' or {programs} = 'Accredited Graduate', 'A. List degree program SLOs. For each, SLO, indicate the highest cognitive level and Common Graduate Program SLO it represents.  To accommodate more than four SLOs, add rows as needed. The Common Graduate SLOs for master’s programs (adopted 2/2017) are listed below.', 'A. List each program SLO and indicate the highest cognitive level it represents. To accommodate more than four SLOs, add rows as needed.')"
     },
     {
       name: "panelIIDesc",
-      expression: "iif({program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate', 'A. Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.','List the assessment measures used. For each measure, indicate the domain and how often data is collected. Rows are automatically added to accommodate additional SLOs.' )"
+      expression: "iif({programs} = 'Non-Accredited Graduate' or {programs} = 'Non-Accredited Undergraduate', 'A. Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.','List the assessment measures used. For each measure, indicate the domain and how often data is collected. Rows are automatically added to accommodate additional SLOs.' )"
     },
     {
       name: "panelIIIStsTblDesc",
-      expression: "iif({program-group} = 'Non-Accredited Graduate' or {program-group} = 'Non-Accredited Undergraduate', 'B.  SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.','SLO Status Table – Indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.' )"
+      expression: "iif({programs} = 'Non-Accredited Graduate' or {programs} = 'Non-Accredited Undergraduate', 'B.  SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.','SLO Status Table – Indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.' )"
     },
+    {
+      name:"numOfSLOs",
+      expression: "countInArray({SLOMatrix.bloom} == 'Knowledge')",
+    }
   // end of calculated values
   ]
 
@@ -393,37 +403,13 @@ function App() {
     if(options.column.name === "SLO") {
       options.cellQuestion.placeHolder = options.column.name + " "
       + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-
-      survey.setVariable("numOfSLOs", options.question.visibleRows.indexOf(options.row) + 1);
-    }
-
-    // if(options.column.name === "SLO#Measure#") {
-    //   options.cellQuestion.placeHolder = "SLO "
-    //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-    // }
-
-    // if(options.column.name === "SLO-name") {
-    //   options.cellQuestion.placeHolder = "SLO "
-    //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-    // }
-
-    // if(options.column.name === "frequency") {
-    //   options.cellQuestion.placeHolder = "SLO "
-    //   + (options.question.visibleRows.indexOf(options.row) + 1).toString();
-    // }
-
-  });
-
-  survey.onMatrixRowRemoved.add((sender, options) => {
-
-    if(options.question.name == "SLO-matrix") {
-      survey.setVariable("numOfSLOs", options.question.visibleRows.indexOf(options.row) - 1);
     }
 
   });
 
   const alertResults = useCallback((sender) => {
     const results = JSON.stringify(sender.data);
+    navigator.clipboard.writeText(results);
     alert(results);
   }, []);
 
