@@ -166,6 +166,9 @@ const NAUGschema = {
                         }
                       ]
                     },
+                    "measurePopDescribe": {
+                      "type": "string"
+                    },
                     "measureDataFreq": {
                       "title": "Frequency of Data Collection",
                       "type": "string",
@@ -183,6 +186,9 @@ const NAUGschema = {
                           "const": "other"
                         }
                       ]
+                    },
+                    "measureDFDescribe": {
+                      "type": "string"
                     },
                     "measureProficiencyThreshold": {
                       "title": "Proficiency Threshold",
@@ -415,6 +421,18 @@ const uiSchema = {
                 "ui:widget": "RadioWidget",
                 "classNames": "naug-measureDataFreq",
                 
+            },
+            "measureDFDescribe":{
+              "classNames": "naug-measureDFDescribe",
+              "ui:options":{
+                "label": false
+              }
+            },
+            "measurePopDescribe":{
+              "classNames": "naug-measurePopDescribe",
+              "ui:options":{
+                "label": false
+              }
             }
           }
       }

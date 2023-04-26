@@ -189,6 +189,9 @@ const NAGschema = {
                         }
                       ]
                     },
+                    "measurePopDescribe": {
+                      "type": "string"
+                    },
                     "measureDataFreq": {
                       "title": "Frequency of Data Collection",
                       "type": "string",
@@ -205,7 +208,10 @@ const NAGschema = {
                           "title": "Other - Describe Below",
                           "const": "other"
                         }
-                      ]
+                      ],
+                    },
+                    "measureDFDescribe": {
+                      "type": "string"
                     },
                     "measureProficiencyThreshold": {
                       "title": "Proficiency Threshold",
@@ -214,6 +220,24 @@ const NAGschema = {
                     "measureProficiencyTarget":{
                       "title": "Program Proficiency Target",
                       "type": "string"
+                    }
+                  },
+                  "dependencies":{
+                    "measureDataFreq":{
+                      "oneOf":[
+                        {
+                          "properties":{
+                            "measureDataFreq":{
+                              "enum": [
+                                "other"
+                              ]
+                            },
+                            "dependent2":{
+                              "type": "string"
+                            }
+                          }
+                        }
+                      ]
                     }
                   }
                 }
@@ -435,7 +459,18 @@ const uiSchema = {
             "measureDataFreq":{
                 "ui:widget": "RadioWidget",
                 "classNames": "nag-measureDataFreq",
-                
+            },
+            "measureDFDescribe":{
+              "classNames": "nag-measureDFDescribe",
+              "ui:options":{
+                "label": false
+              }
+            },
+            "measurePopDescribe":{
+              "classNames": "nag-measurePopDescribe",
+              "ui:options":{
+                "label": false
+              }
             }
           }
       }
@@ -763,7 +798,7 @@ function NonAccGradForm() {
         <Form 
           schema={schema} validator={validator} uiSchema={uiSchema} 
           fields={fields} formData={formData} key={JSON.stringify(schema)}
-          //onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
+          onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
           onChange={onChange} templates={templates}/>
           
       </div>
