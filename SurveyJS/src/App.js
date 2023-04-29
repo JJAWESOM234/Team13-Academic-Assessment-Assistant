@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+// import ReactDOM from 'react-dom/client';
 
 // Default V2 theme
 import 'survey-core/defaultV2.min.css';
 
+import { ItemValue} from 'survey-core';
 import { Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 import { useCallback } from 'react';
@@ -98,7 +99,7 @@ const surveyJson = {
               name: "graduateSLOs",
               cellType: "checkbox",
               title: "Common Graduate Program SLOs:",
-              choices: [ "1", "2", "3", "4", "Not applicable for SLO" ],
+              choices: [ "1", "2", "3", "4", "Not applicable" ],
               visibleIf: "{programs} = 'Non-Accredited Graduate' or {programs} = 'Accredited Graduate'",
               colCount: 2,
             }
@@ -130,7 +131,6 @@ const surveyJson = {
           name: "accrSLO",
           cellType: "dropdown",
           title: "SLO:",
-          choices: ["1", "2", "3", "4"]
         },
         {
           name: "accrDomain",
@@ -162,7 +162,6 @@ const surveyJson = {
               type: "dropdown",
               name: "nonAccrSLO",
               title: "SLO:",
-              choices: ["1", "2", "3", "4"]
             },
             {
               type: "text",
@@ -269,7 +268,6 @@ const surveyJson = {
             name: "SLO#",
             cellType: "dropdown",
             title: "SLO:",
-            choices: ["1", "2", "3", "4"]
           },
           {
             name: "dateRange",
@@ -299,7 +297,6 @@ const surveyJson = {
               name: "SLO#",
               cellType: "dropdown",
               title: "SLO:",
-              choices: ["1", "2", "3", "4"]
             },
             {
               cellType: "checkbox",
@@ -336,7 +333,6 @@ const surveyJson = {
               name: "SLO#",
               cellType: "dropdown",
               title: "SLO:",
-              choices: ["1", "2", "3", "4"]
             },
             {
               cellType: "text",
@@ -378,11 +374,8 @@ const surveyJson = {
     {
       name: "panelIIIStsTblDesc",
       expression: "iif({programs} = 'Non-Accredited Graduate' or {programs} = 'Non-Accredited Undergraduate', 'B.  SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.','SLO Status Table – Indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.' )"
-    },
-    {
-      name:"numOfSLOs",
-      expression: "countInArray({SLOMatrix.bloom} == 'Knowledge')",
     }
+
   // end of calculated values
   ]
 
@@ -398,9 +391,40 @@ function App() {
 
   const survey = new Model(surveyJson);
 
-  survey.onMatrixCellCreated.add((sender, options) => {
+  survey.onMatrixCellValueChanged.add((sender, options) => {     
 
-    if(options.column.name === "SLO") {
+    if(options.columnName === 'SLO') {
+
+      let itemValue = new ItemValue(options.value);
+      // get array of current SLOs
+
+      // should not push duplicates
+      if (itemValue != '' && itemValue != ' ' && itemValue != null)
+      {
+        let dropdownQuestion = sender.getQuestionByName('nonAccrMethods').templateElements[0].elements[0];
+        dropdownQuestion.choices.push(itemValue);
+
+        dropdownQuestion = sender.getQuestionByName('accrMethods');
+        dropdownQuestion.choices.push(itemValue);
+
+        dropdownQuestion = sender.getQuestionByName('dataMatrix');
+        dropdownQuestion.choices.push(itemValue);
+
+        dropdownQuestion = sender.getQuestionByName('statusMatrix');
+        dropdownQuestion.choices.push(itemValue);
+
+        dropdownQuestion = sender.getQuestionByName('decisionsMatrix');
+        dropdownQuestion.choices.push(itemValue);
+      }
+
+      // somehow check each dropdown option against SLO array and remove uneeded elements in dropdown
+    }
+
+  });
+
+  survey.onMatrixCellCreated.add((sender, options) => {
+    
+    if(options.column.name === 'SLO') {
       options.cellQuestion.placeHolder = options.column.name + " "
       + (options.question.visibleRows.indexOf(options.row) + 1).toString();
     }
