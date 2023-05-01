@@ -1,0 +1,30 @@
+{
+    "elements": [
+        {
+            "name": "email",
+            "type": "text",
+            "title": "E-mail address",
+            "inputType": "email",
+            "placeholder": "foobar@example.com",
+            "isRequired": true,
+            "autocomplete": "email"
+        },
+        {
+            "name": "password",
+            "type": "text",
+            "title": "Password",
+            "description": "Enter 8 characters minimum.",
+            "inputType": "password",
+            "isRequired": true,
+            "autocomplete": "password",
+            "validators": [
+                {
+                    "type": "text",
+                    "minLength": 8,
+                    "text": "Your password must be at least 8 characters long."
+                }
+            ]
+        }
+    ],
+    "showQuestionNumbers": false
+}

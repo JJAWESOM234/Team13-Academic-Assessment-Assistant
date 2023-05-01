@@ -1,19 +1,11 @@
-.FormSelect-main{border: 3px solid #fff;
+.FormSelector-main{
+    border: 3px solid #fff;
     padding: 20px;
-    display: flex;
     height: 100%;
+    margin: auto;
 }
-.FormSelector-sidebar{
-    position: relative;
-    top: 0;
-    width: 20%;
-    margin: 0;
-    padding: 0;
-    float: left;
-    padding: 20px;
-}
+
 .FormSelector-form{
-    width: 80%;
-    float: left;
+    width: 100%;
     padding: 20px;
 }

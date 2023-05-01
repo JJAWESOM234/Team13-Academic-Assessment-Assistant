@@ -1,63 +1,158 @@
 .body{
-    display: grid;  
-    justify-content: center; /* Horizontal */  
-    align-content: center; 
+    margin: auto;
+    color: black;
 }
 
-.rjsfForm{
+.nag-form{
+    margin: auto;
+}
+/*CSS for header inputs*/
+.nag-headerInfo{
     margin: auto;
 }
 
-.array-item{
-    display: grid;
+.nag-headerInput{
+    width: 45%;
+    float: left;
+    margin: 0 20px 10px 0px;
 }
 
+.nag-headerInput > .control-label{
+    font-weight: bold;
+}
+.nag-header{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+/*CSS for section 1*/
+.nag-slo-header{
+    font-size:large;
+    font-weight: bold;
+    width: fit-content;
+    float: left;
+}
+
+#root_studentLearningOutcomes__description{
+    font-size: larger;
+    white-space: pre-line;
+}
+
+.nag-slo-table > .array-item {
+    float: left;
+}
+
+.nag-table-slo-input, .nag-table-slo-bloom, .nag-table-slo-common{
+    width: 30%;
+    float: left;
+}
+
+.nag-table-slo-input > textarea{
+    resize: none;
+}
+
+.nag-table-slo-bloom{
+    margin-left: 5px;
+}
+
+.nag-table-slo-bloom > .control-label{
+    font-weight: bold;
+}
+
+.nag-table-slo-common{
+    margin-left: 5px;
+}
+
+.nag-table-slo-common > .control-label{
+    font-weight: bold;
+}
+
+.proStandardsQuestion > .control-label{
+    display: none;
+}
+.proStandardsQuestion > .field-description{
+    font-size: larger;
+}
+.stakeholdersQuestion > .control-label{
+    display: none;
+}
+.stakeholdersQuestion > .field-description{
+    font-size: larger;
+    white-space: pre-line;
+}
+
+/*CSS for section 2*/
 .array-item .array-item{
     float: left;
     width: 50%;
     padding: 0 1em;
 }
 
-.headerInfo{
-    display:flex;
+#root_assessmentMethods__description{
+    font-size: larger;
 }
 
-.headerInput{
-    width: 40%;
-    float: left;
-    margin: 0 20px 10px 0px;
+.control-label{
+    font-weight: bold;
 }
 
-.slo-table{
-    display: inline-block;
-    width: 100%;
-}
 
-.table-slo-bloom, .table-slo-common{
-    width: 25%;
-    float: left;
-    margin-left: 20px;
-}
-
-.table-slo-input{
-    float: left;
-    resize: none;
-    width: 400px;
-    overflow:auto;
-}
-
-.dataResultsEntryName, .dataResultsEntryRange,
-.dataResultsEntryNumStudents, .dataResultsEntryPercStudents {
+/*CSS for section 3 */
+.nag-dataResultsEntryName, .nag-dataResultsEntryRange,
+.nag-dataResultsEntryNumStudents, .nag-dataResultsEntryPercStudents {
     width: 25%;
     margin: 0 0 0 0;
     float: left;
+    display: grid;
 }
 
-.dataResultsEntryName > label, .dataResultsEntryRange > label,
-.dataResultsEntryNumStudents > label {
+.nag-dataResultsEntryName > label, .nag-dataResultsEntryRange > label,
+.nag-dataResultsEntryNumStudents > label {
     padding-bottom: 18px;
+    
 }
 
-.dataResultsEntryPercStudents > label {
-    
+.nag-dataSLOStatus{
+    margin-top: 2px;
+    margin-left: 10px;
+    width: max-content;
+    float: left;
+}
+#root_dataCollection_dataResultsArray__description,
+#root_dataCollection_dataSLOStatusTable__description{
+    font-size: larger;
+}
+
+.nag-dataResultsDescription > .control-label{
+    display: none;
+}
+.nag-dataResultsDescription > .field-description{
+    font-size: larger;
+}
+
+/*CSS for section 4 */
+#root_decisionsAndActions__description{
+    font-size: larger;
+    white-space: pre-line;
+}
+
+.nag-decisionsAndActionsSLODesc{
+    float: left;
+    width: 70%;
+}
+
+.nag-decisionsAndActionsSLODesc > textarea{
+    resize: none;
+}
+
+
+/*CSS for section 5*/
+
+#root_additionalInformation__description{
+    font-size: larger;
+}
+
+.nag-additionalInformationDesc > textarea{
+    font-size: larger;
+    resize: none;
 }

@@ -33,14 +33,8 @@ const AUGschema = {
     
     "studentLearningOutcomes": {
       "type": "object",
-      "title": "I. Degree Program & Common Graduate Student Learning Outcomes (SLOs)",
-      "description": `A.List degree program SLOs.  For each, SLO, indicate the highest cognitive level and Common Graduate Program SLO it represents.
-      To accommodate more than four SLOs, add rows as needed.  The Common Graduate SLOs for master’s programs (adopted 2/2017) are listed below.
-      Students shall demonstrate at the graduate level:
-      1. Mastery of discipline content
-    2. Proficiency in analyzing, evaluating and synthesizing information
-    3. Effective oral and written communication
-    4. Knowledge of discipline’s ethics and standards`,
+      "title": "I. Program Student Learning Outcomes (SLOs)",
+      "description": `List each program SLO and indicate the highest cognitive level it represents. To accommodate more than four SLOs, add rows as needed.`,
       "properties": {
         "programSLOTable": {
           "minItems": 1,
@@ -71,42 +65,47 @@ const AUGschema = {
     "assessmentMethods": {
       "type": "object",
       "title": "II. Assessment Methods",
-      "description": `A.  Complete a table for each SLO. If an SLO is assessed by more than one measure, complete tables for each measure. 
-      Duplicate the table as needed to accommodate the number of measures. Attach copies of rubrics.`,
-      "properties": {
-        "assessmentMeasure": {
+      "description": `List the assessment measures used.  For each measure, indicate the domain and how often data is collected. Add rows as needed to accommodate additional SLOs.`,
+      "properties":{
+        "assessmentMeasureArray":{
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "object",
             "properties": {
-              "measureTitle": {
-                "title": "Measure",
-                "type": "string"
-              },
-              "measureDomain":{
-                "title": "Domain (Product, Performance, Examination)",
-                "type": "string"
-              },
-              "measureDataFreq": {
-                "title": "Data Collection (i.e. annually, by semester)",
-                "type": "string",
+              "assessmentMeasure": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "measureTitle": {
+                      "title": "Measure",
+                      "type": "string"
+                    },
+                    "measureDomain":{
+                      "title": "Domain (Product, Performance, Examination)",
+                      "type": "string"
+                    },
+                    "measureDataFreq": {
+                      "title": "Data Collection (i.e. annually, by semester)",
+                      "type": "string",
+                    },
+                  }
+                }
               },
             }
           }
-        },
+        }
       }
     },
 
     "dataCollection":{
       "type": "object",
-      "title": "III. Data Collection and Analysis",
+      "title": "III. Data Analysis",
       "properties": {
         "dataSLOStatusTable":{
           "type": "array",
-          "description": `B.  SLO Status Table – Based on the results reported in the above table and 
-          referring to the program proficiency target, indicate the current status of program SLOs as Met, 
-          Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.`,
+          "description": `SLO Status Table – Indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs. `,
           "minItems": 1,
           "items": {
             "properties": {
@@ -140,8 +139,8 @@ const AUGschema = {
       "type": "array",
       "title": "IV. Decisions and Actions",
       "description": `Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.). Include who (e.g., program faculty, a faculty committee, etc.) made the decision, when the decision was made (e.g., faculty retreat, faculty meeting, etc.), what data informed the decision, and a timeline for actions taken or to be taken. 
-      Furthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions: 
-      What are the effects of your previously stated changes from your last report? 
+      \nFurthermore, please briefly describe how your program has demonstrated continuous improvement by considering the following questions: 
+      \nWhat are the effects of your previously stated changes from your last report? 
       What did you do in response to your previous assessment report feedback?
       How have you made progress since the last assessment report? `,
       "minItems": 1,
@@ -156,9 +155,14 @@ const AUGschema = {
     },
 
     "additionalInformation":{
-      "type": "string",
+      "type": "object",
       "title": "V. Additional Information",
-      "description": `OPTONAL:  Provide additional information that may be helpful to reviewers.`
+      "description": `OPTIONAL:  Provide additional information that may be helpful to reviewers.`,
+      "properties":{
+        "additionalInformationDesc":{
+          "type": "string"
+        }
+      }
     }
   }
 };
@@ -169,33 +173,33 @@ const AUGschema = {
  */
 const uiSchema = {
   "headerInfo":{
-    "classNames": "headerInfo",
+    "classNames": "aug-headerInfo",
     "college":{
-      "classNames": "headerInput"
+      "classNames": "aug-headerInput"
     },
     "program":{
-      "classNames": "headerInput"
+      "classNames": "aug-headerInput"
     },
     "academicYear":{
-      "classNames": "headerInput"
+      "classNames": "aug-headerInput"
     },
     "preparer":{
-      "classNames": "headerInput"
+      "classNames": "aug-headerInput"
     },
     "deptSchool":{
-      "classNames": "headerInput"
+      "classNames": "aug-headerInput"
     },
     "degreeLevel":{
-      "classNames": "headerInput"
+      "classNames": "aug-headerInput"
     },
     "dateRange":{
-      "classNames": "headerInput"
+      "classNames": "aug-headerInput"
     },
     "lastReview":{
-      "classNames": "headerInput"
+      "classNames": "aug-headerInput"
     },
     "accredBody":{
-        "classNames": "headerInput"
+        "classNames": "aug-headerInput"
       },
     "ui:options":{
       "title": false
@@ -203,28 +207,43 @@ const uiSchema = {
   },
   "studentLearningOutcomes": {
     "programSLOTable":{
-      "classNames": "slo-table",
+      "classNames": "aug-slo-table",
       "items": {
         "programSLODesc":{
           "ui:widget": "textarea",
-          "classNames": "table-slo-input",
+          "classNames": "aug-table-slo-input",
           "ui:options": {
             rows: 5, 
-            cols: 10
+            cols: 10,
+            "label": false
           }
         },
         "programSLOBloom":{
           "ui:widget": "radio",
           "ui:template": "table",
-          "classNames": "table-slo-bloom"
+          "classNames": "aug-table-slo-bloom"
         },
       }
     }
   },
 
   "assessmentMethods":{
-    "assessmentMeasure":{
+    "assessmentMeasureArray":{
       "items": {
+        "assessmentMeasure":{
+          "items": {
+            "ui:field": "regular",
+            "measureTitle": {
+              "classNames": "aug-measureTitle"
+            },
+            "measureDomain":{
+              "classNames": "aug-measureDomain",
+            },
+            "measureDataFreq": {
+              "classNames": "aug-measureDataFreq"
+            },
+          }
+        }
       }
     }
   },
@@ -233,20 +252,96 @@ const uiSchema = {
     "dataSLOStatusTable":{
       "items": {
         "dataSLOStatus":{
-          "ui:widget": "RadioWidget"
+          "ui:widget": "RadioWidget",
+          "ui:options":{
+            "inline": true,
+            "label": false
+          },
+          "classNames": "aug-dataSLOStatus"
         },
       }
     },
   },
 
   "decisionsAndActions":{
-    
+    "items":{
+      "decisionsAndActionsSLODesc":{
+        "ui:options":{
+          "label": false,
+          rows: 5,
+          cols: 15
+        },
+        "ui:widget": "textarea",
+        "classNames": "aug-decisionsAndActionsSLODesc"
+      }
+    }
   },
 
   "additionalInformation":{
-    "ui:widget": "textarea",
-    "className": "addInfo"
+    "additionalInformationDesc":{
+      "classNames": "aug-additionalInformationDesc",
+      "ui:widget": "textarea",
+      "ui:options": {
+        "label": false,
+        rows:5
+      },
+      "className": "aug-addInfo"
+    }
+    
+  },
+  "ui:submitButtonOptions":{
+    "props":{
+      "className": "aug-form-submit-btn"
+    }
   }
+}
+
+function TitleFieldTemplate(props: TitleFieldProps) {
+  const { id, required, title } = props;
+  //console.log(title)
+
+  let returnTitle = title;
+  let checkSLO = title.substring(0, 3);
+  switch(title){
+    case "headerInfo":
+      returnTitle = ``;
+      break;
+    case "programSLOTable":
+      returnTitle = ``;
+      break;
+    case "assessmentMeasureArray":
+      returnTitle = ``;
+      break;
+    case "assessmentMeasure":
+      returnTitle = ``;
+      break;
+    case "measurePoint":
+      returnTitle = ``;
+      break;
+    case "dataResultsArray":
+      returnTitle = ``;
+      break;
+    case "dataSLOStatusTable":
+      returnTitle = ``;
+      break;
+    case "dataResultsDescription":
+      returnTitle = ``;
+      break;
+  }
+
+  if (checkSLO === "SLO"){
+    return (
+      <header id={id} className="aug-slo-header">
+      {returnTitle}
+    </header>
+    )
+  }
+  console.log(checkSLO)
+  return (
+    <header id={id} className="aug-header">
+      {returnTitle}
+    </header>
+  );
 }
 
 /**
@@ -255,21 +350,69 @@ const uiSchema = {
  * @param {FieldProps} props - The RJSF attributes for a given form array item.
  * @returns The array item's schema field with an updated name.
  */
-  const CustomArraySchemaField = function(props) {
-    const { index, registry } = props;
-    const { SchemaField } = registry.fields;
-    const name = `SLO ${index+1}`;
-    return <SchemaField {...props} name={name} />;
-  };
-  
-  /**
-   * Defines the custom fields that the RJSF form references.
-   * @constant
-   */
-  const fields = {
-    ArraySchemaField: CustomArraySchemaField
-  };
-  
+const CustomArraySchemaField = function(props) {
+  const { index, registry, name } = props;
+  const { SchemaField } = registry.fields;
+
+  let newName = name
+
+  const arrayItem = name.split("-");
+
+  switch(arrayItem[0]){
+    case "programSLOTable":
+      newName = `SLO ${index+1}:`;
+      break;
+    case "assessmentMeasureArray":
+      newName = `SLO ${index+1}`;
+      break;
+    case "assessmentMeasure":
+      newName = ``;
+      break;
+    case "decisionsAndActions":
+      newName = `SLO ${index+1}:`;
+      break;
+    case "dataResultsArray":
+      newName = ``;
+      break;
+    case "dataSLOStatusTable":
+      newName = `SLO ${index+1}:`;
+      break;
+  }
+  //console.log(name)
+  return <SchemaField {...props} name={newName} className={newName}/>;
+
+};
+
+function MoveDownButton(props: IconButtonProps) {
+  const { icon, iconType, ...btnProps } = props;
+  return (
+    <>
+    </>
+  );
+}
+
+function MoveUpButton(props: IconButtonProps) {
+  const { icon, iconType, ...btnProps } = props;
+  return (
+    <>
+    </>
+  );
+}
+/**
+ * Defines the custom fields that the RJSF form references.
+ * @constant
+ */
+const fields = {
+  ArraySchemaField: CustomArraySchemaField
+};
+
+const templates = {
+  ButtonTemplates:{
+    MoveDownButton,
+    MoveUpButton
+  },
+  TitleFieldTemplate
+}
   /**
    * @function
    * @returns The auto generated Accredited Undergraduate assessment form.
@@ -296,6 +439,7 @@ const uiSchema = {
   //use formData to track changes to number of SLOs
   const [numSLO, setNumSLO] = useState(formData.studentLearningOutcomes.programSLOTable.length)
 
+  
  
   //Track changes to formData and numSLOs using updated formData
   /**
@@ -309,37 +453,67 @@ const uiSchema = {
     
     
     //if DecisionsAndActions not equal to SLOs, add or subtract 
-    const updatedFormData = {}
+    const updatedFormData = {
+      ...newFormData,
+      decisionsAndActions: [...newFormData.decisionsAndActions],
+      assessmentMeasureArray: [...newFormData.assessmentMethods.assessmentMeasureArray],
+      dataSLOStatusTable: [...newFormData.dataCollection.dataSLOStatusTable]
+
+   };
+
     const dnaLength = newFormData.decisionsAndActions.length;
     if (dnaLength < numSLO){
-      const updatedFormData = {
-        ...newFormData,
-        decisionsAndActions: [...newFormData.decisionsAndActions]
-      };
-      
       for (let i = dnaLength; i < numSLO; i++){
         updatedFormData.decisionsAndActions.push("")
       }
       setFormData(updatedFormData);
     }
     else if (dnaLength > numSLO){
-      const updatedFormData = {
-        ...newFormData,
-        decisionsAndActions: [...newFormData.decisionsAndActions]
-      };
-
       for (let i = dnaLength; i > numSLO; i--){
         updatedFormData.decisionsAndActions.pop()
       }
       setFormData(updatedFormData)
     }
-    else{
-      setFormData(newFormData);
+    else {
+      setFormData(newFormData)
     }
-    
 
     
-    console.log(formData.decisionsAndActions)
+    //Match length of assessment measure array to number of SLOs
+    const amlength = newFormData.assessmentMethods.assessmentMeasureArray.length;
+    if (amlength > numSLO){
+      for (let i = amlength; i > numSLO; i--){
+        updatedFormData.assessmentMethods.assessmentMeasureArray.pop()
+        setFormData(updatedFormData)
+      }
+    }
+    else if (amlength < numSLO){
+      for (let i = amlength; i < numSLO; i++){
+        updatedFormData.assessmentMethods.assessmentMeasureArray.push({})
+        setFormData(updatedFormData)
+      }
+    }
+    else {
+      setFormData(newFormData)
+    }
+
+    //Match length of Data Status table to SLO number
+    const dslength = newFormData.dataCollection.dataSLOStatusTable.length
+    if (dslength > numSLO){
+      for (let i = dslength; i > numSLO; i--){
+        updatedFormData.dataCollection.dataSLOStatusTable.pop()
+        setFormData(updatedFormData)
+      }
+    }
+    else if (dslength < numSLO){
+      for (let i = dslength; i < numSLO; i++){
+        updatedFormData.dataCollection.dataSLOStatusTable.push({})
+        setFormData(updatedFormData)
+      }
+    }
+    else{
+      setFormData(newFormData)
+    }
   };
   
   
@@ -347,11 +521,10 @@ const uiSchema = {
   
     return (
       <div className='body'>
-        <div className='rjsfForm'>
-          <p>Number of SLOS: {numSLO} </p>
+        <div className='aug-form'>
           <Form 
             schema={schema} validator={validator}  uiSchema={uiSchema}
-            fields={fields} formData={formData}
+            formData={formData} templates={templates} fields={fields}
             onSubmit={({formData}) => alert(JSON.stringify(formData, null, 2))}
             onChange={onChange}/>
         </div>
