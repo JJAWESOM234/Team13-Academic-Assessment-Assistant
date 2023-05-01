@@ -45,7 +45,6 @@ const useStyles = makeStyles({
 });
 
 
-
 const renderers = [
   ...materialRenderers,
   //register custom renderers
@@ -59,28 +58,40 @@ const App = () => {
   const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 
 
+
   const clearData = () => {
     setData({});
   };
 
+//print form data to log
   function clickMe() {
-    alert(stringifiedData);
     console.log(stringifiedData);
   }
+  
+//update form array sizes for dynamic features
+  function updatearraysize(data: any) {
+    var numofSlo:number = data.AccreditedGraduate.studentLearningOutcomes.programSLOs.length;
+    var newdata = data;
+    
+    if (data.AccreditedGraduate.assessmentMethods.assessmentMeasure.length !== numofSlo)
+    {
+    newdata.AccreditedGraduate.assessmentMethods.assessmentMeasure.length=numofSlo;
+    newdata.AccreditedGraduate.decisionsAndActions.decisionOrAction.length=numofSlo;
+    newdata.AccreditedGraduate.dataCollection.dataSLOStatusTable.length=numofSlo;
+      setData(newdata);
+    }
+    else
+    {
+      setData(data);
+    }
 
-  function updatearraysize() {
-    data.AccreditedGraduate.assessmentMethods.assessmentMeasure.length=data.AccreditedGraduate.studentLearningOutcomes.programSLOs.length;
-    data.AccreditedGraduate.decisionsAndActions.decisionOrAction.length=data.AccreditedGraduate.studentLearningOutcomes.programSLOs.length;
-    data.AccreditedGraduate.dataCollection.dataSLOStatusTable.length=data.AccreditedGraduate.studentLearningOutcomes.programSLOs.length;
   }
 
   return (
     <Fragment>
       <div className='App'>
         <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Welcome to JSON Forms with React</h1>
-          <p className='App-intro'>More Forms. Less Code.</p>
+          <h1 className='App-title'>Academic Assesment Assistant</h1>
         </header>
       </div>
 
@@ -90,28 +101,7 @@ const App = () => {
         spacing={1}
         className={classes.container}
       >
-        {/*
-        <Grid item sm={6}>
-          <Typography variant={'h4'} className={classes.title}>
-            Bound data
-          </Typography>
-          <div className={classes.dataContent}>
-            <pre id='boundData'>{stringifiedData}</pre>
-          </div>
-          <Button
-            className={classes.resetButton}
-            onClick={clearData}
-            color='primary'
-            variant='contained'
-          >
-            Clear data
-          </Button>
-        </Grid>
-  */}
         <Grid item sm={10}>
-          <Typography variant={'h4'} className={classes.title}>
-            Academic Assesment Assistant
-          </Typography>
           <div className={classes.demoform}>
             <JsonForms
               schema={schema}
@@ -119,11 +109,12 @@ const App = () => {
               data={data}
               renderers={renderers}
               cells={materialCells}
-              onChange={({ errors, data }) => {setData(data); console.log(data); updatearraysize();}}
+              onChange={({ errors, data }) => {updatearraysize(data); console.log(data); }}
             />
           </div>
           <div>
             <Button onClick={clickMe}>Submit Form</Button>
+            <Button onClick={clearData}>Clear Data</Button>
           </div>
         </Grid>
       </Grid>

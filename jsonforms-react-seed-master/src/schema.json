@@ -47,6 +47,7 @@
               "type": "array",
               "title": "Program SLOs",
               "items": {
+
                 "type": "object",
                 "properties": {
                   "programSLOsSLO1": {
@@ -181,17 +182,13 @@
                     },
                     "uniqueItems": true
                   },
-                  "measureDataFreq": {
-                    "title": "Frequency of Data Collection",
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "Once/semester",
-                        "Once/year",
-                        "Other - Describe below"
-                      ]
-                    }
+                  "frequencyOfDataCollection": {
+                    "type": "string",
+                    "enum": [
+                      "Once/semester",
+                      "Once/year",
+                      "Other - Describe below"
+                    ]
                   },
                   "measureProficiencyThreshold": {
                     "title": "Proficiency Threshold",
@@ -218,73 +215,18 @@
               "type": "object",
               "description": "A.    Results Table – Report results for each SLO. If an SLO was assessed by multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.",
               "properties": {
-                "dataResultsSLO1": {
+                "dataResultsSLO": {
                   "type": "object",
-                  "title": "SLO 1 - Measure One",
                   "properties": {
-                    "dataResultsSLO1Range": {
+                    "dataResultsSLORange": {
                       "type": "string",
                       "title": "Data Collection Date Range"
                     },
-                    "dataResultsSLO1NumStudents": {
+                    "dataResultsSLONumStudents": {
                       "type": "number",
                       "title": "Number of Students Assessed"
                     },
-                    "dataResultsSLO1PercStudents": {
-                      "type": "string",
-                      "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
-                    }
-                  }
-                },
-                "dataResultsSLO2": {
-                  "type": "object",
-                  "title": "SLO 2 - Measure One",
-                  "properties": {
-                    "dataResultsSLO2Range": {
-                      "type": "string",
-                      "title": "Data Collection Date Range"
-                    },
-                    "dataResultsSLO2NumStudents": {
-                      "type": "number",
-                      "title": "Number of Students Assessed"
-                    },
-                    "dataResultsSLO2PercStudents": {
-                      "type": "string",
-                      "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
-                    }
-                  }
-                },
-                "dataResultsSLO3": {
-                  "type": "object",
-                  "title": "SLO 3 - Measure One",
-                  "properties": {
-                    "dataResultsSLO3Range": {
-                      "type": "string",
-                      "title": "Data Collection Date Range"
-                    },
-                    "dataResultsSLO3NumStudents": {
-                      "type": "number",
-                      "title": "Number of Students Assessed"
-                    },
-                    "dataResultsSLO3PercStudents": {
-                      "type": "string",
-                      "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
-                    }
-                  }
-                },
-                "dataResultsSLO4": {
-                  "type": "object",
-                  "title": "SLO 4 - Measure One",
-                  "properties": {
-                    "dataResultsSLO4Range": {
-                      "type": "string",
-                      "title": "Data Collection Date Range"
-                    },
-                    "dataResultsSLO4NumStudents": {
-                      "type": "number",
-                      "title": "Number of Students Assessed"
-                    },
-                    "dataResultsSLO4PercStudents": {
+                    "dataResultsSLOPercStudents": {
                       "type": "string",
                       "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
                     }
@@ -293,64 +235,24 @@
               }
             },
             "dataSLOStatusTable": {
-              "type": "object",
+              "type": "array",
               "description": "B.  SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.",
-              "properties": {
-                "dataSLO-1Status": {
-                  "type": "array",
-                  "title": "SLO 1",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "Met",
-                      "Partially Met",
-                      "Not Met",
-                      "Unknown"
-                    ]
-                  },
-                  "uniqueItems": true
-                },
-                "dataSLO-2Status": {
-                  "type": "array",
-                  "title": "SLO 2",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "Met",
-                      "Partially Met",
-                      "Not Met",
-                      "Unknown"
-                    ]
-                  },
-                  "uniqueItems": true
-                },
-                "dataSLO-3Status": {
-                  "type": "array",
-                  "title": "SLO 3",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "Met",
-                      "Partially Met",
-                      "Not Met",
-                      "Unknown"
-                    ]
-                  },
-                  "uniqueItems": true
-                },
-                "dataSLO-4Status": {
-                  "type": "array",
-                  "title": "SLO 4",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "Met",
-                      "Partially Met",
-                      "Not Met",
-                      "Unknown"
-                    ]
-                  },
-                  "uniqueItems": true
+              "items": {
+                "properties": {
+                  "dataSLO-1Status": {
+                    "type": "array",
+                    "title": "SLO 1",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "Met",
+                        "Partially Met",
+                        "Not Met",
+                        "Unknown"
+                      ]
+                    },
+                    "uniqueItems": true
+                  }
                 }
               }
             },
@@ -520,17 +422,13 @@
                     },
                     "uniqueItems": true
                   },
-                  "measureDataFreq": {
-                    "title": "Frequency of Data Collection",
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "Once/semester",
-                        "Once/year",
-                        "Other - Describe below"
-                      ]
-                    }
+                  "frequencyOfDataCollection": {
+                    "type": "string",
+                    "enum": [
+                      "Once/semester",
+                      "Once/year",
+                      "Other - Describe below"
+                    ]
                   },
                   "measureProficiencyThreshold": {
                     "title": "Proficiency Threshold",
@@ -554,88 +452,55 @@
           "title": "III. Data Collection and Analysis",
           "properties": {
             "dataResultsTable": {
-              "type": "object",
+              "type": "array",
               "description": "A.    Results Table – Report results for each SLO. If an SLO was assessed by multiple measures, report data for each measure. Add rows as needed to accommodate the number of SLOs and measures.",
-              "properties": {
-                "dataResultsSLO1": {
-                  "type": "object",
-                  "title": "SLO 1 - Measure One",
-                  "properties": {
-                    "dataResultsSLO1Range": {
-                      "type": "string",
-                      "title": "Data Collection Date Range"
-                    },
-                    "dataResultsSLO1NumStudents": {
-                      "type": "number",
-                      "title": "Number of Students Assessed"
-                    },
-                    "dataResultsSLO1PercStudents": {
-                      "type": "string",
-                      "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
+              "items": {
+                "properties": {
+
+                        "uniqueSLODataResult": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties":{
+                            "dataResultsSLO1Range": {
+                              "type": "string",
+                              "title": "Data Collection Date Range"
+                            },
+                            "dataResultsSLONumStudents": {
+                              "type": "number",
+                              "title": "Number of Students Assessed"
+                            },
+                            "dataResultsSLOPercStudents": {
+                              "type": "string",
+                              "title": "Percentage of Students who Met/Exceeded Threshold Proficiency"
+                            }
+                          }
+                        
+                        
+                      
                     }
                   }
                 }
               }
             },
             "dataSLOStatusTable": {
-              "type": "object",
+              "type": "array",
               "description": "B.  SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.",
-              "properties": {
-                "dataSLO-1Status": {
-                  "type": "array",
-                  "title": "SLO 1",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "Met",
-                      "Partially Met",
-                      "Not Met",
-                      "Unknown"
-                    ]
-                  },
-                  "uniqueItems": true
-                },
-                "dataSLO-2Status": {
-                  "type": "array",
-                  "title": "SLO 2",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "Met",
-                      "Partially Met",
-                      "Not Met",
-                      "Unknown"
-                    ]
-                  },
-                  "uniqueItems": true
-                },
-                "dataSLO-3Status": {
-                  "type": "array",
-                  "title": "SLO 3",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "Met",
-                      "Partially Met",
-                      "Not Met",
-                      "Unknown"
-                    ]
-                  },
-                  "uniqueItems": true
-                },
-                "dataSLO-4Status": {
-                  "type": "array",
-                  "title": "SLO 4",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "Met",
-                      "Partially Met",
-                      "Not Met",
-                      "Unknown"
-                    ]
-                  },
-                  "uniqueItems": true
+              "items": {
+                "properties": {
+                  "dataSLOStatus": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "Met",
+                        "Partially Met",
+                        "Not Met",
+                        "Unknown"
+                      ]
+                    },
+                    "uniqueItems": true
+                  }
                 }
               }
             },
@@ -774,17 +639,13 @@
                     "uniqueItems": true,
                     "description": "Check all that apply"
                   },
-                  "measureDataFreq": {
-                    "title": "Frequency of Data Collection",
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "Once/semester",
-                        "Once/year",
-                        "Other - Describe below"
-                      ]
-                    }
+                  "frequencyOfDataCollection": {
+                    "type": "string",
+                    "enum": [
+                      "Once/semester",
+                      "Once/year",
+                      "Other - Describe below"
+                    ]
                   }
                 }
               }
@@ -798,24 +659,23 @@
             "dataSLOStatusTable": {
               "type": "array",
               "description": "B.  SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.",
-              "items":{
-              "properties": {
-                "dataSLO-1Status": {
-                  "type": "array",
-                  "title": "SLO 1",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "Met",
-                      "Partially Met",
-                      "Not Met",
-                      "Unknown"
-                    ]
-                  },
-                  "uniqueItems": true
+              "items": {
+                "properties": {
+                  "dataSLOStatus": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "Met",
+                        "Partially Met",
+                        "Not Met",
+                        "Unknown"
+                      ]
+                    },
+                    "uniqueItems": true
+                  }
                 }
               }
-            }
             }
           }
         },
@@ -914,17 +774,13 @@
                     "uniqueItems": true,
                     "description": "Check all that apply"
                   },
-                  "measureDataFreq": {
-                    "title": "Frequency of Data Collection",
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "Once/semester",
-                        "Once/year",
-                        "Other - Describe below"
-                      ]
-                    }
+                  "frequencyOfDataCollection": {
+                    "type": "string",
+                    "enum": [
+                      "Once/semester",
+                      "Once/year",
+                      "Other - Describe below"
+                    ]
                   },
                   "measureProficiencyThreshold": {
                     "title": "Proficiency Threshold",
@@ -946,24 +802,23 @@
             "dataSLOStatusTable": {
               "type": "array",
               "description": "B.  SLO Status Table – Based on the results reported in the above table and referring to the program proficiency target, indicate the current status of program SLOs as Met, Partially Met, Not Met, or Unknown. Add rows as needed to accommodate additional SLOs.",
-              "items":{
-              "properties": {
-                "dataSLO-1Status": {
-                  "type": "array",
-                  "title": "SLO 1",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "Met",
-                      "Partially Met",
-                      "Not Met",
-                      "Unknown"
-                    ]
-                  },
-                  "uniqueItems": true
+              "items": {
+                "properties": {
+                  "dataSLOStatus": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "Met",
+                        "Partially Met",
+                        "Not Met",
+                        "Unknown"
+                      ]
+                    },
+                    "uniqueItems": true
+                  }
                 }
               }
-            }
             }
           }
         },
