@@ -13,9 +13,8 @@ Move into react app directory and run `npm start`, the rendered form should open
 **Release Notes**
 - All four program forms are available
 - Ability to add and remove Student Learning Outcome (SLO) elements is available
-- Dynamic SLOs are partially implemented
+- Dynamic SLOs are implemented
 - Each SLO can be assigned multiple measures using dropdown elements
-- Puppeteer test for cases 1 and 3 implemented; Qunit tests in progress
 
 # Getting Started with Create React App [Auto-Generated]
 
