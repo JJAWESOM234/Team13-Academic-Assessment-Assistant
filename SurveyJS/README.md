@@ -8,7 +8,7 @@ Run `npm install survey-react-ui --save` to install the *survey-react-ui* packag
 
 `src` folder in template react app should be replaced with src folder from SurveyJS
 
-`package-lock.json` and `package.json` in SurveyJS folder should not be copied over, creating a new react app will generate these for you
+`package-lock.json` and `package.json` in SurveyJS folder should **not** be copied over, creating a new react app will generate these for you
 
 Move into react app directory and run `npm start`, the rendered form should open in a new browser
 
