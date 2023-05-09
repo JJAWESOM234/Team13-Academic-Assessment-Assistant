@@ -2,7 +2,10 @@
     margin: auto;
     color: black;
 }
-
+.form-control{
+    color: black;
+    font: 1em sans-serif;
+}
 .nag-form{
     margin: auto;
 }
@@ -92,6 +95,13 @@
     font-size: larger;
 }
 
+.nag-measurePointLocation > textarea,
+.nag-measureMeasureDesc > textarea,
+.nag-measurePopDescribe > textarea,
+.nag-measureDFDescribe > textarea,
+.nag-measureProfThreshold > textarea{
+    resize: none;
+}
 .control-label{
     font-weight: bold;
 }
@@ -144,6 +154,7 @@
 .nag-decisionsAndActionsSLODesc > textarea{
     resize: none;
 }
+
 
 
 /*CSS for section 5*/

@@ -1,0 +1,40 @@
+GET http://localhost:4000/assessments
+
+###
+
+POST http://localhost:4000/assessments
+Content-Type: application/json
+
+{
+  "studentLearningOutcomes": {
+    "programSLOTable": [
+      {}
+    ]
+  },
+  "assessmentMethods": {
+    "assessmentMeasureArray": [
+      {
+        "assessmentMeasure": [
+          {}
+        ]
+      }
+    ]
+  },
+  "dataCollection": {
+    "dataResultsArray": [
+      {}
+    ],
+    "dataSLOStatusTable": [
+      {}
+    ]
+  },
+  "decisionsAndActions": [
+    {}
+  ],
+  "headerInfo": {
+    "college": "sfs"
+  },
+  "additionalInformation": {
+    "additionalInformationDesc": "d"
+  }
+}

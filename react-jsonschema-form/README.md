@@ -14,12 +14,10 @@ The user first selects one of the forms by clicking on a button on the side of t
 
 # Release Notes
 
-## Milestone 4
+## Milestone 5
 
-This version of the react-jsonschema-form application represents what is likely the final design of the four forms.
-There is a dynamic relationship between the number of SLOs and the number of Decisions and Actions.
-There is also a dynamic relationship between the number of SLOs and the assessment measures (AMs). For each SLO, there is an AM array of any length.
-The data results table has a dynamic relationship with the number of AM arrays, where the minimum number of data results is set to the number of AM arrays.
-The SLO status table has a one to one relationship with the number of SLOs.
-On submitting the form, the user's input as a JSON string will be displayed in a browser alert. 
+This version of the react-jsonschema-form application represents the final design of the four forms.
+
+The Non-Accredited Graduate Form autofills with example form data
+from a Mathematics assessment report from 2020-2021. 
 

@@ -222,24 +222,6 @@ const NAGschema = {
                       "type": "string"
                     }
                   },
-                  "dependencies":{
-                    "measureDataFreq":{
-                      "oneOf":[
-                        {
-                          "properties":{
-                            "measureDataFreq":{
-                              "enum": [
-                                "other"
-                              ]
-                            },
-                            "dependent2":{
-                              "type": "string"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
                 }
               }
             }
@@ -438,6 +420,14 @@ const uiSchema = {
                 "inline": true
               }
             },
+            "measureDescription": {
+              "ui:widget": "textarea",
+              "classNames": "nag-measureDesc",
+              "ui:options": {
+                cols: 5,
+                rows: 8
+              }
+            },
             "measureType":{
               "ui:widget": "radio",
               "classNames": "nag-measureType",
@@ -449,12 +439,28 @@ const uiSchema = {
               "measurePointInProgram":{
                 "ui:widget": "radio",
                 "classNames": "nag-measurePointInProgram",
-                
+              },
+              "measurePointLocation": {
+                "classNames": "nag-measurePointLocation",
+                "ui:widget": "textarea",
+                "ui:options": {
+                  cols: 5,
+                  rows: 3
+                }
               }
             },
             "measurePopulation":{
                 "ui:widget": "radio",
                 "classNames": "nag-measurePopulation"
+            },
+            "measurePopDescribe":{
+                "ui:widget": "textarea",
+                "classNames": "nag-measurePopDescribe",
+                "ui:options": {
+                  "label": false,
+                  cols: 5,
+                  rows: 3
+                }
             },
             "measureDataFreq":{
                 "ui:widget": "RadioWidget",
@@ -462,14 +468,19 @@ const uiSchema = {
             },
             "measureDFDescribe":{
               "classNames": "nag-measureDFDescribe",
+              "ui:widget": "textarea",
               "ui:options":{
-                "label": false
+                "label": false,
+                cols: 5,
+                rows: 3
               }
             },
-            "measurePopDescribe":{
-              "classNames": "nag-measurePopDescribe",
+            "measureProficiencyThreshold":{
+              "classNames": "nag-measureProfThreshold",
+              "ui:widget": "textarea",
               "ui:options":{
-                "label": false
+                cols: 5,
+                rows: 3
               }
             }
           }
@@ -658,7 +669,10 @@ function MoveUpButton(props: IconButtonProps) {
 const fields = {
   ArraySchemaField: CustomArraySchemaField
 };
-
+/**
+ * Defines custom templates that the RJSF form references.
+ * @constant
+ */
 const templates = {
   ButtonTemplates:{
     MoveDownButton,
@@ -667,6 +681,158 @@ const templates = {
   TitleFieldTemplate
 }
 
+/**
+ * Defines form data for Mathematics assesment form example.
+ * @const
+ */
+const mathExampleFormData = {
+  "headerInfo": {
+    "college": "A&S - College of Arts and Sciences",
+    "deptSchool": "Mathematics",
+    "program": "MS Mathematics",
+    "degreeLevel": "Graduate",
+    "academicYear": "2020-2021",
+    "dateRange": "1/1/20 - 12/31/20",
+    "preparer": "Andrew Swift",
+  },
+  "studentLearningOutcomes": {
+    "programSLOTable": [
+      {
+        "programSLODesc": "Mastery of discipline content",
+        "programSLOBloom": "Application",
+        "programSLOCommon": ["1"]
+      },
+      {
+        "programSLODesc": "Proficiency in analyzing, evaluation, and synthesizing information",
+        "programSLOBloom": "Evaluation",
+        "programSLOCommon": ["2"]
+      }
+    ],
+    "proStandardsQuestion": true,
+    "stakeholders": "On department website: https://www.unomaha.edu/college-of-arts-and-sciences/mathematics/academics/graduate.php"
+  },
+  "assessmentMethods": {
+    "assessmentMeasureArray": [
+      {
+        "assessmentMeasure": [
+          {
+            "measureTitle": "Project Rubrics",
+            "measureDescription": `If the student choose to complete the end of program project, then as part of the project they must demonstrate mastery of the discipline content.To complete a project the student must write a written report and give an oral presentation. \n\nEach project supervisor (2 per project) fills out a rubric for each student.`,
+            "measureDomain": ["Product", "Performance"],
+            "measureType": "direct",
+            "measurePoint":{
+              "measurePointInProgram": "finalTerm",
+              "measurePointLocation": "After completion of the project, each supervisor completes the rubric and submits it to the graduate program chair."
+            },
+            "measurePopulation": "sampleStudents",
+            "measurePopDescribe": "Students who choose the project option for completion of the degree.",
+            "measureDataFreq": "oncePerSemester",
+            "measureProficiencyThreshold": "Average over 2 for all questions addressing this SLO across both supervisors.",
+            "measureProficiencyTarget": "80%"
+
+          },
+          {
+            "measureTitle": "Exam Rubric",
+            "measureDescription": `If the student choose to do the comprehensive exam, then they are required to choose 3 courses to be tested on. The 3 instructors who writer the comprehensive exam also complete a rubric based on the student's performance on the exam and in the corresponding class.\n\nAs part of the exam and the corresponding coursework, the student must demonstrate mastery of the discipline content.`,
+            "measureDomain": ["Examination", "Performance"],
+            "measureType": "direct",
+            "measurePoint":{
+              "measurePointInProgram": "finalTerm",
+              "measurePointLocation": "After completion of the comprehensive exam, each of the three exam writers completes the rubric and submits it to the graduate program chair."
+            },
+            "measurePopulation": "sampleStudents",
+            "measurePopDescribe": "Students who choose the exam option for completion of the degree.",
+            "measureDataFreq": "oncePerSemester",
+            "measureProficiencyThreshold": "Average over 3 for all questions addressing this SLO across all exam writers.",
+            "measureProficiencyTarget": "80%"
+
+          }
+        ],
+      },
+      {
+        "assessmentMeasure": [
+          {
+            "measureTitle": "Project Rubrics",
+            "measureDescription": `If the student choose to complete the end of program project, then as part of the project they must demonstrate mastery of the discipline content.To complete a project the student must write a written report and give an oral presentation. \n\nEach project supervisor (2 per project) fills out a rubric for each student.`,
+            "measureDomain": ["Product", "Performance"],
+            "measureType": "direct",
+            "measurePoint":{
+              "measurePointInProgram": "finalTerm",
+              "measurePointLocation": "After completion of the project, each supervisor completes the rubric and submits it to the graduate program chair."
+            },
+            "measurePopulation": "sampleStudents",
+            "measurePopDescribe": "Students who choose the project option for completion of the degree.",
+            "measureDataFreq": "oncePerSemester",
+            "measureProficiencyThreshold": "Average over 2 for all questions addressing this SLO across both supervisors.",
+            "measureProficiencyTarget": "80%"
+
+          },
+          {
+            "measureTitle": "Exam Rubric",
+            "measureDescription": `If the student choose to do the comprehensive exam, then they are required to choose 3 courses to be tested on. The 3 instructors who writer the comprehensive exam also complete a rubric based on the student's performance on the exam and in the corresponding class.\n\nAs part of the exam and the corresponding coursework, the student must demonstrate mastery of the discipline content.`,
+            "measureDomain": ["Examination", "Performance"],
+            "measureType": "direct",
+            "measurePoint":{
+              "measurePointInProgram": "finalTerm",
+              "measurePointLocation": "After completion of the comprehensive exam, each of the three exam writers completes the rubric and submits it to the graduate program chair."
+            },
+            "measurePopulation": "sampleStudents",
+            "measurePopDescribe": "Students who choose the exam option for completion of the degree.",
+            "measureDataFreq": "oncePerSemester",
+            "measureProficiencyThreshold": "Average over 3 for all questions addressing this SLO across all exam writers.",
+            "measureProficiencyTarget": "80%"
+
+          }
+        ]
+      }
+    ]
+  },
+  "dataCollection": {
+    "dataResultsArray": [
+      {
+        "dataResultsEntryName": "SLO 1 - Measure 1, Project Rubrics",
+        "dataResultsEntryRange": "1/1/20 - 12/31/20",
+        "dataResultsEntryNumStudents": 5,
+        "dataResultsEntryPercStudents": "100%"
+      },
+      {
+        "dataResultsEntryName": "SLO 1 - Measure 2, Exam Rubric",
+        "dataResultsEntryRange": "1/1/20 - 12/31/20",
+        "dataResultsEntryNumStudents": 0,
+        "dataResultsEntryPercStudents": "100%"
+      },
+      {
+        "dataResultsEntryName": "SLO 2 - Measure 1, Project Rubrics",
+        "dataResultsEntryRange": "1/1/20 - 12/31/20",
+        "dataResultsEntryNumStudents": 5,
+        "dataResultsEntryPercStudents": "100%"
+      },
+      {
+        "dataResultsEntryName": "SLO 2 - Measure 2, Exam Rubric",
+        "dataResultsEntryRange": "1/1/20 - 12/31/20",
+        "dataResultsEntryNumStudents": 0,
+        "dataResultsEntryPercStudents": "100%"
+      }
+    ],
+    "dataSLOStatusTable": [
+      {
+        "dataSLOStatus": "met",
+      },
+      {
+        "dataSLOStatus": "met"
+      }
+    ],
+    "dataResultsDescription": "Results will be communicated at an open meeting of the graduate program committee and then stored in the department repository."
+  },
+  "decisionsAndActions": [
+    {
+      "decisionsAndActionsSLODesc": `The graduate program committee feel we have too few data to make any decisions or actions at this time. \nThe graduate program committee plan to have a discussion in the near future about how to use the graduate survey to provide some indirect data.`
+    },
+    {
+      "decisionsAndActionsSLODesc": `The graduate program committee feel we have too few data to make any decisions or actions at this time. \nThe graduate program committee plan to have a discussion in the near future about how to use the graduate survey to provide some indirect data.`
+    }
+  ]
+}
 /**
  * @function
  * @returns The auto generated Non-Accredited Graduate assessment form.
@@ -684,8 +850,7 @@ function NonAccGradForm() {
    * Uses React state to track changes to user inputted form data.
    * @constant
    */
-  const [formData, setFormData] = useState({ 
-    studentLearningOutcomes: { programSLOTable: [{}] }});
+  const [formData, setFormData] = useState(mathExampleFormData);
 
   //use formData to track changes to number of SLOs
   /**
@@ -790,7 +955,37 @@ function NonAccGradForm() {
     //console.log(formData)
   };
 
+  /**
+   * Sends form data JSON to backend via HTTP POST
+   * @constant
+   */
+  const postFormData = async () => {
+    const response = await fetch('http://localhost:4000/assessments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
 
+    if (response.status !== 201){
+      throw new Error(`Request Failed: ${response.status}`);
+    }
+  }
+
+  /**
+   * Submit button handler. Tries to send form data to backend and relays to user the result.
+   * @constant
+   * @param {event*} event 
+   */
+  const onSubmit = async (event) =>{
+    try {
+      await postFormData();
+      alert('Your Assessment Report was successfully submitted!');
+      setFormData({ 
+        studentLearningOutcomes: { programSLOTable: [{}] }});
+    } catch (err) {
+      alert(`Form Submission Failed: ${err.message}`);
+    }
+  }
 
   return (
     <div className='body'>

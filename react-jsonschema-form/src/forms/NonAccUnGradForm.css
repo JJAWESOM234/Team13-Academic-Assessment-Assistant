@@ -81,6 +81,13 @@
     font-size: larger;
 }
 
+.naug-measureDesc > textarea,
+.naug-measurePointLocation > textarea,
+.naug-measurePopDescribe > textarea,
+.naug-measureDFDescribe > textarea,
+.naug-measureProfThreshold > textarea{
+    resize: none;
+}
 .control-label{
     font-weight: bold;
 }

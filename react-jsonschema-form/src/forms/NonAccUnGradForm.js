@@ -396,6 +396,14 @@ const uiSchema = {
                 "inline": true
               }
             },
+            "measureDescription": {
+              "ui:widget": "textarea",
+              "classNames": "naug-measureDesc",
+              "ui:options": {
+                cols: 5,
+                rows: 8
+              }
+            },
             "measureType":{
               "ui:widget": "radio",
               "classNames": "naug-measureType",
@@ -411,11 +419,28 @@ const uiSchema = {
               },
               "ui:options":{
                 "label": false
+              },
+              "measurePointLocation": {
+                "classNames": "naug-measurePointLocation",
+                "ui:widget": "textarea",
+                "ui:options": {
+                  cols: 5,
+                  rows: 3
+                }
               }
             },
             "measurePopulation":{
                 "ui:widget": "radio",
                 "classNames": "naug-measurePopulation"
+            },
+            "measurePopDescribe":{
+              "ui:widget": "textarea",
+              "classNames": "naug-measurePopDescribe",
+              "ui:options": {
+                "label": false,
+                cols: 5,
+                rows: 3
+              }
             },
             "measureDataFreq":{
                 "ui:widget": "RadioWidget",
@@ -424,14 +449,19 @@ const uiSchema = {
             },
             "measureDFDescribe":{
               "classNames": "naug-measureDFDescribe",
+              "ui:widget": "textarea",
               "ui:options":{
-                "label": false
+                "label": false,
+                cols: 5,
+                rows: 3
               }
             },
-            "measurePopDescribe":{
-              "classNames": "naug-measurePopDescribe",
+            "measureProficiencyThreshold":{
+              "classNames": "naug-measureProfThreshold",
+              "ui:widget": "textarea",
               "ui:options":{
-                "label": false
+                cols: 5,
+                rows: 3
               }
             }
           }

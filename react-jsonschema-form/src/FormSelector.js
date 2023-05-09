@@ -11,6 +11,10 @@ import "./FormSelector.css"
  * @returns A selection page w/ buttons to render forms.
  */
 function FormSelector () {
+    /**
+     * React state to track which form user has selected.
+     * @constant
+     */
     const [selectedForm, setSelectedForm] = useState(null);
     
     /**
