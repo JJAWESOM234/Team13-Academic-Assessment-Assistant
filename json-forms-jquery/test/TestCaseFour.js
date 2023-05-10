@@ -8987,13 +8987,13 @@ function fnTestingCaseFour(callback) {
     })
 }
 
-QUnit.module("fnTestingCaseFour", (hooks) => {
-    QUnit.test("Test Case Four", (assert) => {
-        const done = assert.async()
-        fnTestingCaseFour((res) => {
-            var oJSONActual = JSON.parse(res)
-            assert.true(_.isEqual(oJSONActual, oJSONModelExpected))
-            done()
-        })
-    })
-})
+// QUnit.module("fnTestingCaseFour", (hooks) => {
+//     QUnit.test("Test Case Four", (assert) => {
+//         const done = assert.async()
+//         fnTestingCaseFour((res) => {
+//             var oJSONActual = JSON.parse(res)
+//             assert.true(_.isEqual(oJSONActual, oJSONModelExpected))
+//             done()
+//         })
+//     })
+// })

@@ -1,0 +1,17 @@
+{
+    "source": {
+        "includePattern": ".+\\.js(doc|x)?$",
+        "include": [
+            "controller/controller.js",
+            "test/test.js",
+            "test/testCaseOne.js",
+            "test/testCaseThree.js"
+        ],
+        "exclude": ["node_modules", "deps", "lib", "model", "test-pdfs", "docs"]
+    },
+    "recurseDepth": 20,
+    "opts": {
+        "destination": "./docs/",
+        "recurse": true
+    }
+}
