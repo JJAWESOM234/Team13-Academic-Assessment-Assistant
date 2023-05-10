@@ -1,0 +1,11 @@
+.FormSelector-main{
+    border: 3px solid #fff;
+    padding: 20px;
+    height: 100%;
+    margin: auto;
+}
+
+.FormSelector-form{
+    width: 100%;
+    padding: 20px;
+}
