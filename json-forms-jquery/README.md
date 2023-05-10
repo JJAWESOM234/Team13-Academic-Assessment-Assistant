@@ -33,5 +33,5 @@ The program now has the ability to display all four forms and can track the numb
 The code when executed runs the website which displays the Non-accredidted Gradutate form and returns any input values in an easy to use object.
 
 ## Dependencies 
-[Json Forms (JQuery) Library](https://github.com/jsonform/jsonform)
+[Json Forms (JQuery) Library](https://github.com/jsonform/jsonform)  
 [Puppeteer](https://pptr.dev/)
