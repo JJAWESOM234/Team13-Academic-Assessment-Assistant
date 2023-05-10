@@ -1,0 +1,234 @@
+{
+  "type": "VerticalLayout",
+  "options": {
+    "showUnfocusedDescription": true
+  }, 
+  "elements": [
+    {
+      "type": "HorizontalLayout",
+      
+      "elements": [
+        {
+        "type": "Control",
+        "label": "College",
+        "scope": "#/properties/head/properties/college"
+        },
+        {
+          "type": "Control",
+          "label": "Program",
+          "scope": "#/properties/head/properties/program"
+        },
+        {
+          "type": "Control",
+          "label": "AcademicYear",
+          "scope": "#/properties/head/properties/academicYear"
+        }
+      ]
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "label": "Person Preparing the Report",
+          "scope": "#/properties/head/properties/preparer"
+        },
+        {
+          "type": "Control",
+          "label": "Department/School",
+          "scope": "#/properties/head/properties/deptSchool"
+        }
+      ]
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "label": "Date Range of Reported Data",
+          "scope": "#/properties/head/properties/dateRange"
+        },
+        {
+          "type": "Control",
+          "label": "Degree Level",
+          "scope": "#/properties/head/properties/degreeLevel"
+        }
+      ]
+    },
+    {
+      "type": "Categorization",
+      "elements": [
+        {
+          "type": "Category",
+          "i18n":"Grad Accredited",
+          "label": "Graduate Accredited",
+          "elements": [
+            {
+              "type": "VerticalLayout",
+              "elements": [
+                {
+                  
+                  "type": "Control",
+                  "scope": "#/properties/AccreditedGraduate/properties/studentLearningOutcomes",
+                  "options": {
+                    "showUnfocusedDescription": true
+                  }
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/AccreditedGraduate/properties/assessmentMethods",
+                  "options": {
+                    "showUnfocusedDescription": true
+                  }
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/AccreditedGraduate/properties/dataCollection",
+                  "options": {
+                    "showUnfocusedDescription": true
+                  }
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/AccreditedGraduate/properties/decisionsAndActions",
+                  "options": {
+                    "dynamicEnumDb": true,
+                    "showUnfocusedDescription": true
+                  }
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/AccreditedGraduate/properties/additionalInformation",
+                  "options": {
+                    "showUnfocusedDescription": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Category",
+          "i18n": "Under-Grad Accredited",
+          "label": "Under-Graduate Accredited",
+          "elements": [
+            {
+              "type": "VerticalLayout",
+              "elements": [
+                {
+                  "options": {
+                    "showUnfocusedDescription": true
+                  },
+                  "type": "Control",
+                  "scope": "#/properties/AccreditedUndergraduate/properties/studentLearningOutcomes"
+                },
+                {
+                  "options": {
+                    "showUnfocusedDescription": true
+                  },
+                  "type": "Control",
+                  "scope": "#/properties/AccreditedUndergraduate/properties/assessmentMethods"
+                },
+                {
+                  "options": {
+                    "showUnfocusedDescription": true
+                  },
+                  "type": "Control",
+                  "scope": "#/properties/AccreditedUndergraduate/properties/dataCollection"
+                },
+                {
+                  
+                  "type": "Control",
+                  "scope": "#/properties/AccreditedUndergraduate/properties/decisionsAndActions",
+                  "options": {
+                    "dynamicEnumDb": true,
+                    "showUnfocusedDescription": true
+                  }
+                },
+                {
+                  "options": {
+                    "showUnfocusedDescription": true
+                  },
+                  "type": "Control",
+                  "scope": "#/properties/AccreditedUndergraduate/properties/additionalInformation"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Category",
+          "i18n": "Grad Unaccredited",
+          "label": "Graduate Unaccredited",
+          "elements": [
+            {
+              "type": "VerticalLayout",
+              "elements": [
+                {
+                  
+                  "type": "Control",
+                  "scope": "#/properties/NonAccreditedGraduate/properties/studentLearningOutcomes"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/NonAccreditedGraduate/properties/assessmentMethods"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/NonAccreditedGraduate/properties/dataCollection"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/NonAccreditedGraduate/properties/decisionsAndActions",
+                  "options": {
+                    "dynamicEnumDb": true
+                  }
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/NonAccreditedGraduate/properties/additionalInformation"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Category",
+          "i18n": "Under-Grad Unaccredited",
+          "label": "Under-Graduate Unaccredited",
+          "elements": [
+            {
+              "type": "VerticalLayout",
+              "elements": [
+                {
+                  
+                  "type": "Control",
+                  "scope": "#/properties/NonAccreditedUndergraduate/properties/studentLearningOutcomes"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/NonAccreditedUndergraduate/properties/assessmentMethods"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/NonAccreditedUndergraduate/properties/dataCollection"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/NonAccreditedUndergraduate/properties/decisionsAndActions",
+                  "options": {
+                    "dynamicEnumDb": true
+                  }
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/NonAccreditedUndergraduate/properties/additionalInformation"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

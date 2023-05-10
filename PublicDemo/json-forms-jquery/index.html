@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Academic Assessment Report</title>
+        <link rel="stylesheet" type="text/css" href="deps/opt/bootstrap.css" />
+        <style>
+            form {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            h1,
+            h3 {
+                margin: auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <button id="nonAccGradButton" onclick="fnShowCorrectForm(1)">
+                Non-Accredited Graduate
+            </button>
+            <button id="AccGradButton" onclick="fnShowCorrectForm(2)">
+                Accredited Graduate
+            </button>
+            <button id="nonAccUndGradButton" onclick="fnShowCorrectForm(3)">
+                Non-Accredited Undergraduate
+            </button>
+            <button id="AccGradUndButton" onclick="fnShowCorrectForm(4)">
+                Accredited Undergraduate
+            </button>
+            <!-- <button id="TestingDesign" onclick="fnShowCorrectForm(5)">
+                Accredited Graduate (New Design)
+            </button> -->
+            <!--<button id="TestingDesign2" onclick="fnShowCorrectForm(6)">
+                Non-Accredited Graduate (New Design)
+            </button>-->
+            <button id="TestingDesign2AutoFill" onclick="fnShowCorrectForm(7)">
+                Non-Accredited Graduate (New Design) (Autofilled)
+            </button>
+        </div>
+
+        <div id="nonAccGradContainer">
+            <h1>Graduate Assesment Report</h1>
+            <h3>Non-Accredited</h3>
+            <form id="nonAccGradSampleJson"></form>
+        </div>
+        <div id="AccGradContainer">
+            <h1>Graduate Assesment Report</h1>
+            <h3>Accredited</h3>
+            <form id="AccGradSampleJson"></form>
+        </div>
+        <div id="nonAccUndGradContainer">
+            <h1>Undergraduate Assesment Report</h1>
+            <h3>Non-Accredited</h3>
+            <form id="nonAccUndGradSampleJson"></form>
+        </div>
+        <div id="AccUndGradContainer">
+            <h1>Undergraduate Assesment Report</h1>
+            <h3>Accredited</h3>
+            <form id="AccUndGradSampleJson"></form>
+        </div>
+        <div id="TestingDesignContainer">
+            <h1>Graduate Assesment Report</h1>
+            <h3>Accredited</h3>
+            <form id="TestingDesignJson"></form>
+        </div>
+        <div id="TestingDesignContainer2">
+            <h1>Graduate Assesment Report</h1>
+            <h3>Non-Accredited</h3>
+            <form id="TestingDesign2Json"></form>
+        </div>
+        <div id="TestingDesignContainer2AutoFill">
+            <h1>Graduate Assesment Report</h1>
+            <h3>Non-Accredited</h3>
+            <form id="TestingDesign2JsonAutoFill"></form>
+        </div>
+
+        <div id="res" class="alert"></div>
+        <script type="text/javascript" src="deps/jquery.min.js"></script>
+        <script type="text/javascript" src="deps/underscore.js"></script>
+        <script type="text/javascript" src="deps/opt/jsv.js"></script>
+        <script type="text/javascript" src="lib/jsonform.js"></script>
+        <script type="text/javascript" src="controller/controller.js"></script>
+    </body>
+</html>
