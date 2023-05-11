@@ -11,7 +11,7 @@ Each library has a separate application in this repo.
   
 ## How To Use It
 
-To use the applications, clone the entire repository. Follow the instrusctions of the README.md of 
+To use the applications, clone the entire repository. Follow the instructions of the README.md of 
 each project in order to run them.
 
 ## Release Notes
