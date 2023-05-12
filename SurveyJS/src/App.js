@@ -120,7 +120,6 @@ const surveyJson = {
         title: "{panelIIDesc}",
         visibleIf: "{programs} = 'Accredited Graduate' or {programs} = 'Accredited Undergraduate'",
         valueName: "SLOs",
-        // allowAddRows: false,
         columns: [
         {
           name: "accrMeasureTitle",
@@ -185,6 +184,7 @@ const surveyJson = {
               name: "nonAccrType",
               title: "Type:",
               choices: [ "Direct Measure", "Indirect Measure" ],
+              maxSelectedChoices: 1,
               colCount: 2,
             },
             {
@@ -197,6 +197,7 @@ const surveyJson = {
                   name: "nonAccrPoint",
                   title: " ",
                   choices: [ "In final term of program", "In final year of program" ],
+                  maxSelectedChoices: 1,
                   colCount: 2,
                 },
                 {
@@ -210,14 +211,16 @@ const surveyJson = {
               type: "checkbox",
               name: "nonAccrPopulation",
               title: "Population Measured:",
-              choices: [ "All students", "Sample of students [Dynamic element]" ],
+              choices: [ "All students", "Sample of students" ],
+              maxSelectedChoices: 1,
               colCount: 2,
             },
             {
               type: "checkbox",
               name: "nonAccrFrequency",
               title: "Frequency of Data Collection:",
-              choices: [ "Once/semester", "Once/year", "Other [Dynamic element]" ],
+              choices: [ "Once/semester", "Once/year", "Other" ],
+              maxSelectedChoices: 1,
               colCount: 3,
             },
             {
@@ -236,7 +239,6 @@ const surveyJson = {
         },
         ],
         templateTitle : " ",
-        // templateTitle: "SLO {panelIndex}: {panel.SLO}",
       },
       {
         type: "comment",
@@ -396,10 +398,8 @@ function App() {
     if(options.columnName === 'SLO') {
 
       let itemValue = new ItemValue(options.value);
-      // get array of current SLOs
 
-      // should not push duplicates
-      if (itemValue != '' && itemValue != ' ' && itemValue != null)
+      if (itemValue !== '' && itemValue !== ' ' && itemValue !== null)
       {
         let dropdownQuestion = sender.getQuestionByName('nonAccrMethods').templateElements[0].elements[0];
         dropdownQuestion.choices.push(itemValue);
@@ -417,7 +417,6 @@ function App() {
         dropdownQuestion.choices.push(itemValue);
       }
 
-      // somehow check each dropdown option against SLO array and remove uneeded elements in dropdown
     }
 
   });
@@ -431,9 +430,13 @@ function App() {
 
   });
 
+  // const copyContent = useCallback((sender) => {
+  //   const results = JSON.stringify(sender.data);
+  //   navigator.clipboard.writeText(results);
+  // }, []);
+
   const alertResults = useCallback((sender) => {
     const results = JSON.stringify(sender.data);
-    navigator.clipboard.writeText(results);
     alert(results);
   }, []);
 
