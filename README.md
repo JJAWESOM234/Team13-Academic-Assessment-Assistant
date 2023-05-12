@@ -35,3 +35,9 @@ tested and pdfs of the scenarios are created. Eventually QUnit testing will also
 All four applications represent a near fully realized representation of the assessment report forms within the respective auto generation libraries.
 There is now an deep understanding of how the Academic Assessment Assistant application would appear if it were to adopt the use of any of these libraries. 
 Beyond this, automated web tools have also been utilized to record test cases and watch various user scenarios.
+
+### Milestone 5
+This milestone represents the most complete versions of each application. We have utilized the four form auto generation libraries to bring to replicate the design of each assessment report template. Each application has dynamic relationships between form sections. Each application has been tested using web automation. A variety of features have been implemented throughout the appllications:
+  - Tracking SLO Names
+  - Preserving entered information upon form switch
+  - Tabbed SLO structure
