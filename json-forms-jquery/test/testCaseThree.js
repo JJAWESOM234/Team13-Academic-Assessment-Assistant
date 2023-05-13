@@ -3,16 +3,16 @@ var _ = require("lodash")
 
 var oJSONModelExpected = {
     college: "University of Nebraska at Omaha",
-    program: "Computer Science ",
+    program: "Computer Science",
     academicYear: "2023",
     preparer: "Josh Smith",
     deptSchool: "IS&T",
-    degreeLevel: "bahelors",
+    degreeLevel: "Bachelors",
     dateRange: "01/01/2023 to 04/01/2023",
     SLOInformation: [
         {
             programSLOsSLO1: "Students will learn python",
-            programSLOsSLO1Common: "2",
+            programSLOsSLO1Bloom: "Comprehension",
             assessmentMeasure: [
                 {
                     measureTitle: "Weekly Python Projects",
@@ -43,7 +43,7 @@ var oJSONModelExpected = {
         },
         {
             programSLOsSLO1: "Students will understand Agile Processes",
-            programSLOsSLO1Common: "4",
+            programSLOsSLO1Bloom: "Synthesis",
             assessmentMeasure: [
                 {
                     measureTitle: "Weekly meetings",
@@ -52,7 +52,7 @@ var oJSONModelExpected = {
                     measureDomain: "Product",
                     measureType: "Indirect Measure",
                     measurePoint: {
-                        measurePointInProgram: "In Final Year of Program",
+                        measurePointInProgram: "In Final Term of Program",
                         measurePointLocation: "N/A",
                     },
                     measurePopulation: {
@@ -113,8 +113,8 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await targetPage.setViewport({
-                width: 1164,
-                height: 1009,
+                width: 810,
+                height: 1809,
             })
         }
         {
@@ -129,37 +129,57 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#TestingDesign2"]],
+                [
+                    ["aria/Non-Accredited Graduate"],
+                    ["#nonAccGradButton"],
+                    ['xpath///*[@id="nonAccGradButton"]'],
+                    ["pierce/#nonAccGradButton"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#TestingDesign2"]],
+                [
+                    ["aria/Non-Accredited Graduate"],
+                    ["#nonAccGradButton"],
+                    ['xpath///*[@id="nonAccGradButton"]'],
+                    ["pierce/#nonAccGradButton"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 158,
-                    y: 13,
+                    x: 70,
+                    y: 12,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-college"]],
+                [
+                    ["aria/College"],
+                    ["#jsonform-8-elt-college"],
+                    ['xpath///*[@id="jsonform-8-elt-college"]'],
+                    ["pierce/#jsonform-8-elt-college"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-college"]],
+                [
+                    ["aria/College"],
+                    ["#jsonform-8-elt-college"],
+                    ['xpath///*[@id="jsonform-8-elt-college"]'],
+                    ["pierce/#jsonform-8-elt-college"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 113,
+                    x: 142,
                     y: 16.015625,
                 },
             })
@@ -167,12 +187,22 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-college"]],
+                [
+                    ["aria/College"],
+                    ["#jsonform-8-elt-college"],
+                    ['xpath///*[@id="jsonform-8-elt-college"]'],
+                    ["pierce/#jsonform-8-elt-college"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-college"]],
+                [
+                    ["aria/College"],
+                    ["#jsonform-8-elt-college"],
+                    ['xpath///*[@id="jsonform-8-elt-college"]'],
+                    ["pierce/#jsonform-8-elt-college"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -208,37 +238,57 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-program"]],
+                [
+                    ["aria/Program"],
+                    ["#jsonform-8-elt-program"],
+                    ['xpath///*[@id="jsonform-8-elt-program"]'],
+                    ["pierce/#jsonform-8-elt-program"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-program"]],
+                [
+                    ["aria/Program"],
+                    ["#jsonform-8-elt-program"],
+                    ['xpath///*[@id="jsonform-8-elt-program"]'],
+                    ["pierce/#jsonform-8-elt-program"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 192,
-                    y: 10.015625,
+                    x: 111,
+                    y: 25.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-program"]],
+                [
+                    ["aria/Program"],
+                    ["#jsonform-8-elt-program"],
+                    ['xpath///*[@id="jsonform-8-elt-program"]'],
+                    ["pierce/#jsonform-8-elt-program"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-program"]],
+                [
+                    ["aria/Program"],
+                    ["#jsonform-8-elt-program"],
+                    ['xpath///*[@id="jsonform-8-elt-program"]'],
+                    ["pierce/#jsonform-8-elt-program"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             const inputType = await element.evaluate((el) => el.type)
             if (inputType === "select-one") {
-                await changeSelectElement(element, "Computer Science ")
+                await changeSelectElement(element, "Computer Science")
             } else if (
                 [
                     "textarea",
@@ -251,39 +301,59 @@ function fnTestingCaseThree(callback) {
                     "email",
                 ].includes(inputType)
             ) {
-                await typeIntoElement(element, "Computer Science ")
+                await typeIntoElement(element, "Computer Science")
             } else {
-                await changeElementValue(element, "Computer Science ")
+                await changeElementValue(element, "Computer Science")
             }
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-academicYear"]],
+                [
+                    ["aria/Academic Year of Report"],
+                    ["#jsonform-8-elt-academicYear"],
+                    ['xpath///*[@id="jsonform-8-elt-academicYear"]'],
+                    ["pierce/#jsonform-8-elt-academicYear"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-academicYear"]],
+                [
+                    ["aria/Academic Year of Report"],
+                    ["#jsonform-8-elt-academicYear"],
+                    ['xpath///*[@id="jsonform-8-elt-academicYear"]'],
+                    ["pierce/#jsonform-8-elt-academicYear"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 128,
-                    y: 14.015625,
+                    x: 111,
+                    y: 15.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-academicYear"]],
+                [
+                    ["aria/Academic Year of Report"],
+                    ["#jsonform-8-elt-academicYear"],
+                    ['xpath///*[@id="jsonform-8-elt-academicYear"]'],
+                    ["pierce/#jsonform-8-elt-academicYear"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-academicYear"]],
+                [
+                    ["aria/Academic Year of Report"],
+                    ["#jsonform-8-elt-academicYear"],
+                    ['xpath///*[@id="jsonform-8-elt-academicYear"]'],
+                    ["pierce/#jsonform-8-elt-academicYear"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -310,31 +380,51 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-preparer"]],
+                [
+                    ["aria/Person Preparing the Report"],
+                    ["#jsonform-8-elt-preparer"],
+                    ['xpath///*[@id="jsonform-8-elt-preparer"]'],
+                    ["pierce/#jsonform-8-elt-preparer"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-preparer"]],
+                [
+                    ["aria/Person Preparing the Report"],
+                    ["#jsonform-8-elt-preparer"],
+                    ['xpath///*[@id="jsonform-8-elt-preparer"]'],
+                    ["pierce/#jsonform-8-elt-preparer"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 131,
-                    y: 21.015625,
+                    x: 72,
+                    y: 15.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-preparer"]],
+                [
+                    ["aria/Person Preparing the Report"],
+                    ["#jsonform-8-elt-preparer"],
+                    ['xpath///*[@id="jsonform-8-elt-preparer"]'],
+                    ["pierce/#jsonform-8-elt-preparer"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-preparer"]],
+                [
+                    ["aria/Person Preparing the Report"],
+                    ["#jsonform-8-elt-preparer"],
+                    ['xpath///*[@id="jsonform-8-elt-preparer"]'],
+                    ["pierce/#jsonform-8-elt-preparer"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -361,31 +451,51 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-deptSchool"]],
+                [
+                    ["aria/Department/School"],
+                    ["#jsonform-8-elt-deptSchool"],
+                    ['xpath///*[@id="jsonform-8-elt-deptSchool"]'],
+                    ["pierce/#jsonform-8-elt-deptSchool"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-deptSchool"]],
+                [
+                    ["aria/Department/School"],
+                    ["#jsonform-8-elt-deptSchool"],
+                    ['xpath///*[@id="jsonform-8-elt-deptSchool"]'],
+                    ["pierce/#jsonform-8-elt-deptSchool"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 114,
-                    y: 18.015625,
+                    x: 93,
+                    y: 11.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-deptSchool"]],
+                [
+                    ["aria/Department/School"],
+                    ["#jsonform-8-elt-deptSchool"],
+                    ['xpath///*[@id="jsonform-8-elt-deptSchool"]'],
+                    ["pierce/#jsonform-8-elt-deptSchool"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-deptSchool"]],
+                [
+                    ["aria/Department/School"],
+                    ["#jsonform-8-elt-deptSchool"],
+                    ['xpath///*[@id="jsonform-8-elt-deptSchool"]'],
+                    ["pierce/#jsonform-8-elt-deptSchool"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -412,37 +522,57 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-degreeLevel"]],
+                [
+                    ["aria/Degree Level"],
+                    ["#jsonform-8-elt-degreeLevel"],
+                    ['xpath///*[@id="jsonform-8-elt-degreeLevel"]'],
+                    ["pierce/#jsonform-8-elt-degreeLevel"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-degreeLevel"]],
+                [
+                    ["aria/Degree Level"],
+                    ["#jsonform-8-elt-degreeLevel"],
+                    ['xpath///*[@id="jsonform-8-elt-degreeLevel"]'],
+                    ["pierce/#jsonform-8-elt-degreeLevel"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 84,
-                    y: 14.015625,
+                    x: 117,
+                    y: 21.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-degreeLevel"]],
+                [
+                    ["aria/Degree Level"],
+                    ["#jsonform-8-elt-degreeLevel"],
+                    ['xpath///*[@id="jsonform-8-elt-degreeLevel"]'],
+                    ["pierce/#jsonform-8-elt-degreeLevel"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-degreeLevel"]],
+                [
+                    ["aria/Degree Level"],
+                    ["#jsonform-8-elt-degreeLevel"],
+                    ['xpath///*[@id="jsonform-8-elt-degreeLevel"]'],
+                    ["pierce/#jsonform-8-elt-degreeLevel"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             const inputType = await element.evaluate((el) => el.type)
             if (inputType === "select-one") {
-                await changeSelectElement(element, "bahelors")
+                await changeSelectElement(element, "Bachelors")
             } else if (
                 [
                     "textarea",
@@ -455,39 +585,59 @@ function fnTestingCaseThree(callback) {
                     "email",
                 ].includes(inputType)
             ) {
-                await typeIntoElement(element, "bahelors")
+                await typeIntoElement(element, "Bachelors")
             } else {
-                await changeElementValue(element, "bahelors")
+                await changeElementValue(element, "Bachelors")
             }
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-dateRange"]],
+                [
+                    ["aria/Date Range of Reported Data"],
+                    ["#jsonform-8-elt-dateRange"],
+                    ['xpath///*[@id="jsonform-8-elt-dateRange"]'],
+                    ["pierce/#jsonform-8-elt-dateRange"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-dateRange"]],
+                [
+                    ["aria/Date Range of Reported Data"],
+                    ["#jsonform-8-elt-dateRange"],
+                    ['xpath///*[@id="jsonform-8-elt-dateRange"]'],
+                    ["pierce/#jsonform-8-elt-dateRange"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 92,
-                    y: 15.015625,
+                    x: 127,
+                    y: 23.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-dateRange"]],
+                [
+                    ["aria/Date Range of Reported Data"],
+                    ["#jsonform-8-elt-dateRange"],
+                    ['xpath///*[@id="jsonform-8-elt-dateRange"]'],
+                    ["pierce/#jsonform-8-elt-dateRange"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-dateRange"]],
+                [
+                    ["aria/Date Range of Reported Data"],
+                    ["#jsonform-8-elt-dateRange"],
+                    ['xpath///*[@id="jsonform-8-elt-dateRange"]'],
+                    ["pierce/#jsonform-8-elt-dateRange"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -514,31 +664,67 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-SLOInformation\\[0\\]\\.programSLOsSLO1"]],
+                [
+                    ["aria/SLO Title"],
+                    ["#jsonform-8-elt-SLOInformation\\[0\\]\\.programSLOsSLO1"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].programSLOsSLO1"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.programSLOsSLO1",
+                    ],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-SLOInformation\\[0\\]\\.programSLOsSLO1"]],
+                [
+                    ["aria/SLO Title"],
+                    ["#jsonform-8-elt-SLOInformation\\[0\\]\\.programSLOsSLO1"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].programSLOsSLO1"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.programSLOsSLO1",
+                    ],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 73,
-                    y: 28.015625,
+                    x: 124,
+                    y: 11.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-SLOInformation\\[0\\]\\.programSLOsSLO1"]],
+                [
+                    ["aria/SLO Title"],
+                    ["#jsonform-8-elt-SLOInformation\\[0\\]\\.programSLOsSLO1"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].programSLOsSLO1"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.programSLOsSLO1",
+                    ],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-SLOInformation\\[0\\]\\.programSLOsSLO1"]],
+                [
+                    ["aria/SLO Title"],
+                    ["#jsonform-8-elt-SLOInformation\\[0\\]\\.programSLOsSLO1"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].programSLOsSLO1"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.programSLOsSLO1",
+                    ],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -567,7 +753,13 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "#jsonform-5-elt-counter-7 > div.form-group.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Bloom > div > div > div:nth-child(1) > label",
+                        "#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Bloom div:nth-of-type(3) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].programSLOsSLO1Bloom"]/div[3]/label',
+                    ],
+                    [
+                        "pierce/#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Bloom div:nth-of-type(3) > label",
                     ],
                 ],
                 targetPage,
@@ -576,7 +768,13 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "#jsonform-5-elt-counter-7 > div.form-group.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Bloom > div > div > div:nth-child(1) > label",
+                        "#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Bloom div:nth-of-type(3) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].programSLOsSLO1Bloom"]/div[3]/label',
+                    ],
+                    [
+                        "pierce/#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Bloom div:nth-of-type(3) > label",
                     ],
                 ],
                 targetPage,
@@ -584,7 +782,87 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 57,
+                    x: 69,
+                    y: 15.015625,
+                },
+            })
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    [
+                        "#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Common div:nth-of-type(2) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-counter-10"]/div[3]/div/div/div[2]/label',
+                    ],
+                    [
+                        "pierce/#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Common div:nth-of-type(2) > label",
+                    ],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    [
+                        "#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Common div:nth-of-type(2) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-counter-10"]/div[3]/div/div/div[2]/label',
+                    ],
+                    [
+                        "pierce/#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Common div:nth-of-type(2) > label",
+                    ],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            await element.click({
+                offset: {
+                    x: 93,
+                    y: 11.015625,
+                },
+            })
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    ["aria/Title of the Measure"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureTitle"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                    ],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    ["aria/Title of the Measure"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureTitle"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                    ],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            await element.click({
+                offset: {
+                    x: 108,
                     y: 10.015625,
                 },
             })
@@ -593,8 +871,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Title of the Measure"],
                     [
-                        "#jsonform-5-elt-counter-7 > div.form-group.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Bloom > div > div > div:nth-child(3) > label",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureTitle"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
                     ],
                 ],
                 targetPage,
@@ -602,89 +887,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Title of the Measure"],
                     [
-                        "#jsonform-5-elt-counter-7 > div.form-group.jsonform-error-SLOInformation\\[0\\]---programSLOsSLO1Bloom > div > div > div:nth-child(3) > label",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
                     ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 70,
-                    y: 3.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.programSLOsSLO1Common > div:nth-child(2) > label",
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureTitle"]',
                     ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.programSLOsSLO1Common > div:nth-child(2) > label",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 15,
-                    y: 16.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 103,
-                    y: 18.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
                     ],
                 ],
                 targetPage,
@@ -714,8 +925,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
                     ],
                 ],
                 targetPage,
@@ -723,8 +941,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
                     ],
                 ],
                 targetPage,
@@ -732,8 +957,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 106,
-                    y: 28.015625,
+                    x: 148,
+                    y: 29.015625,
                 },
             })
         }
@@ -741,8 +966,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
                     ],
                 ],
                 targetPage,
@@ -750,8 +982,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
                     ],
                 ],
                 targetPage,
@@ -790,8 +1029,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measurePoint.measurePointLocation"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -799,8 +1045,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measurePoint.measurePointLocation"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -808,8 +1061,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 91,
-                    y: 14.015625,
+                    x: 152,
+                    y: 25.015625,
                 },
             })
         }
@@ -817,8 +1070,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measurePoint.measurePointLocation"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -826,8 +1086,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measurePoint.measurePointLocation"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -857,8 +1124,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -866,8 +1140,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -875,8 +1156,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 92,
-                    y: 26.015625,
+                    x: 122,
+                    y: 4.015625,
                 },
             })
         }
@@ -884,8 +1165,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -893,8 +1181,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -924,8 +1219,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Proficiency Threshold"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
                     ],
                 ],
                 targetPage,
@@ -933,8 +1235,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Proficiency Threshold"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
                     ],
                 ],
                 targetPage,
@@ -942,8 +1251,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 150,
-                    y: 17.015625,
+                    x: 103,
+                    y: 24.015625,
                 },
             })
         }
@@ -951,8 +1260,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Proficiency Threshold"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
                     ],
                 ],
                 targetPage,
@@ -960,8 +1276,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Proficiency Threshold"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
                     ],
                 ],
                 targetPage,
@@ -991,8 +1314,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -1000,8 +1330,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -1009,8 +1346,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 112,
-                    y: 22.015625,
+                    x: 116,
+                    y: 29.015625,
                 },
             })
         }
@@ -1018,8 +1355,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -1027,8 +1371,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -1058,8 +1409,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -1067,8 +1425,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -1076,8 +1441,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 118,
-                    y: 12.015625,
+                    x: 164,
+                    y: 11.015625,
                 },
             })
         }
@@ -1085,8 +1450,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -1094,8 +1466,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -1125,8 +1504,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -1134,8 +1520,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -1143,8 +1536,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 122,
-                    y: 9.015625,
+                    x: 134,
+                    y: 14.015625,
                 },
             })
         }
@@ -1152,8 +1545,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -1161,8 +1561,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -1193,7 +1600,16 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -1202,7 +1618,16 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -1210,8 +1635,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 123,
-                    y: 16.015625,
+                    x: 130,
+                    y: 13.015625,
                 },
             })
         }
@@ -1220,7 +1645,16 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -1229,7 +1663,16 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].assessmentMeasure[0].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -1260,7 +1703,13 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.dataSLOStatus > div:nth-child(1) > label",
+                        "#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---dataSLOStatus div:nth-of-type(1) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].dataSLOStatus"]/div[1]/label',
+                    ],
+                    [
+                        "pierce/#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---dataSLOStatus div:nth-of-type(1) > label",
                     ],
                 ],
                 targetPage,
@@ -1269,7 +1718,13 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[0\\]\\.dataSLOStatus > div:nth-child(1) > label",
+                        "#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---dataSLOStatus div:nth-of-type(1) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].dataSLOStatus"]/div[1]/label',
+                    ],
+                    [
+                        "pierce/#nonAccGradContainer div.jsonform-error-SLOInformation\\[0\\]---dataSLOStatus div:nth-of-type(1) > label",
                     ],
                 ],
                 targetPage,
@@ -1277,39 +1732,124 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 22,
-                    y: 12.015625,
+                    x: 30,
+                    y: 15.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-SLOInformation\\[0\\]\\.decisionActions"]],
+                [
+                    [
+                        "aria/Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                    ],
+                    ["#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].decisionActions"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions",
+                    ],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-SLOInformation\\[0\\]\\.decisionActions"]],
+                [
+                    [
+                        "aria/Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                    ],
+                    ["#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].decisionActions"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions",
+                    ],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 151,
-                    y: 107.015625,
+                    x: 182,
+                    y: 85.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-SLOInformation\\[0\\]\\.decisionActions"]],
+                [
+                    [
+                        "aria/Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                    ],
+                    ["#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].decisionActions"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions",
+                    ],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-SLOInformation\\[0\\]\\.decisionActions"]],
+                [
+                    [
+                        "aria/Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                    ],
+                    ["#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].decisionActions"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions",
+                    ],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            await element.click({
+                offset: {
+                    x: 162,
+                    y: 63.015625,
+                },
+            })
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    [
+                        "aria/Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                    ],
+                    ["#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].decisionActions"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions",
+                    ],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    [
+                        "aria/Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                    ],
+                    ["#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[0].decisionActions"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[0\\]\\.decisionActions",
+                    ],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -1333,16 +1873,14 @@ function fnTestingCaseThree(callback) {
                 await changeElementValue(element, "Continue with SLO")
             }
         }
-        await page.pdf({
-            path: "./test-pdfs/TestCaseThreeSLO1.pdf",
-            format: "A4",
-        })
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["#jsonform-8-elt-counter-9 > a._jsonform-array-addmore"],
+                    ['xpath///*[@id="jsonform-8-elt-counter-9"]/a[1]'],
                     [
-                        "#jsonform-5-elt-counter-6 > a.btn.btn-default._jsonform-array-addmore",
+                        "pierce/#jsonform-8-elt-counter-9 > a._jsonform-array-addmore",
                     ],
                 ],
                 targetPage,
@@ -1350,8 +1888,10 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["#jsonform-8-elt-counter-9 > a._jsonform-array-addmore"],
+                    ['xpath///*[@id="jsonform-8-elt-counter-9"]/a[1]'],
                     [
-                        "#jsonform-5-elt-counter-6 > a.btn.btn-default._jsonform-array-addmore",
+                        "pierce/#jsonform-8-elt-counter-9 > a._jsonform-array-addmore",
                     ],
                 ],
                 targetPage,
@@ -1359,39 +1899,112 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 25,
-                    y: 25.015625,
+                    x: 23,
+                    y: 24.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-SLOInformation\\[1\\]\\.programSLOsSLO1"]],
+                [
+                    ["aria/SLO Title"],
+                    ["#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].programSLOsSLO1"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1",
+                    ],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-SLOInformation\\[1\\]\\.programSLOsSLO1"]],
+                [
+                    ["aria/SLO Title"],
+                    ["#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].programSLOsSLO1"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1",
+                    ],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 130,
-                    y: 29.015625,
+                    x: 114,
+                    y: 13.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-SLOInformation\\[1\\]\\.programSLOsSLO1"]],
+                [
+                    ["aria/SLO Title"],
+                    ["#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].programSLOsSLO1"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1",
+                    ],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-SLOInformation\\[1\\]\\.programSLOsSLO1"]],
+                [
+                    ["aria/SLO Title"],
+                    ["#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].programSLOsSLO1"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1",
+                    ],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            await element.click({
+                offset: {
+                    x: 60,
+                    y: 14.015625,
+                },
+            })
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    ["aria/SLO Title"],
+                    ["#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].programSLOsSLO1"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1",
+                    ],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    ["aria/SLO Title"],
+                    ["#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].programSLOsSLO1"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.programSLOsSLO1",
+                    ],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -1429,7 +2042,13 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "#jsonform-5-elt-counter-27 > div.form-group.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Bloom > div > div > div:nth-child(6) > label",
+                        "div.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Bloom div:nth-of-type(4) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].programSLOsSLO1Bloom"]/div[4]/label',
+                    ],
+                    [
+                        "pierce/div.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Bloom div:nth-of-type(4) > label",
                     ],
                 ],
                 targetPage,
@@ -1438,7 +2057,13 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "#jsonform-5-elt-counter-27 > div.form-group.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Bloom > div > div > div:nth-child(6) > label",
+                        "div.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Bloom div:nth-of-type(4) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].programSLOsSLO1Bloom"]/div[4]/label',
+                    ],
+                    [
+                        "pierce/div.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Bloom div:nth-of-type(4) > label",
                     ],
                 ],
                 targetPage,
@@ -1446,8 +2071,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 58,
-                    y: 4.015625,
+                    x: 55,
+                    y: 8.015625,
                 },
             })
         }
@@ -1456,7 +2081,13 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "#jsonform-5-elt-counter-27 > div.form-group.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Bloom > div > div > div:nth-child(5) > label",
+                        "div.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Common div:nth-of-type(4) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-counter-28"]/div[3]/div/div/div[4]/label',
+                    ],
+                    [
+                        "pierce/div.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Common div:nth-of-type(4) > label",
                     ],
                 ],
                 targetPage,
@@ -1465,7 +2096,13 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "#jsonform-5-elt-counter-27 > div.form-group.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Bloom > div > div > div:nth-child(5) > label",
+                        "div.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Common div:nth-of-type(4) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-counter-28"]/div[3]/div/div/div[4]/label',
+                    ],
+                    [
+                        "pierce/div.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Common div:nth-of-type(4) > label",
                     ],
                 ],
                 targetPage,
@@ -1473,8 +2110,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 57,
-                    y: 3.015625,
+                    x: 129,
+                    y: 8.015625,
                 },
             })
         }
@@ -1482,8 +2119,42 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["#jsonform-8-elt-counter-29 > div > ul a"],
+                    ['xpath///*[@id="jsonform-8-elt-counter-29"]/div/ul/li/a'],
+                    ["pierce/#jsonform-8-elt-counter-29 > div > ul a"],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    ["#jsonform-8-elt-counter-29 > div > ul a"],
+                    ['xpath///*[@id="jsonform-8-elt-counter-29"]/div/ul/li/a'],
+                    ["pierce/#jsonform-8-elt-counter-29 > div > ul a"],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            await element.click({
+                offset: {
+                    x: 56,
+                    y: 11.015625,
+                },
+            })
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    ["aria/Title of the Measure"],
                     [
-                        "#jsonform-5-elt-counter-27 > div.form-group.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Bloom > div > div > div:nth-child(1) > label",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureTitle"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
                     ],
                 ],
                 targetPage,
@@ -1491,8 +2162,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Title of the Measure"],
                     [
-                        "#jsonform-5-elt-counter-27 > div.form-group.jsonform-error-SLOInformation\\[1\\]---programSLOsSLO1Bloom > div > div > div:nth-child(1) > label",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureTitle"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
                     ],
                 ],
                 targetPage,
@@ -1500,8 +2178,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 50,
-                    y: 17.015625,
+                    x: 131,
+                    y: 13.015625,
                 },
             })
         }
@@ -1509,8 +2187,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Title of the Measure"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.programSLOsSLO1Common > div:nth-child(4) > label",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureTitle"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
                     ],
                 ],
                 targetPage,
@@ -1518,81 +2203,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Title of the Measure"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.programSLOsSLO1Common > div:nth-child(4) > label",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
                     ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 20,
-                    y: 15.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-counter-28 > div > ul > li > a"]],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [["#jsonform-5-elt-counter-28 > div > ul > li > a"]],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 67,
-                    y: 23.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureTitle"]',
                     ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 87,
-                    y: 18.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureTitle",
                     ],
                 ],
                 targetPage,
@@ -1622,8 +2241,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
                     ],
                 ],
                 targetPage,
@@ -1631,8 +2257,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
                     ],
                 ],
                 targetPage,
@@ -1640,8 +2273,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 86,
-                    y: 28.015625,
+                    x: 249,
+                    y: 18.015625,
                 },
             })
         }
@@ -1649,8 +2282,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
                     ],
                 ],
                 targetPage,
@@ -1658,8 +2298,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDescription",
                     ],
                 ],
                 targetPage,
@@ -1698,8 +2345,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Domain"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDomain"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
                     ],
                 ],
                 targetPage,
@@ -1707,8 +2361,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Domain"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDomain"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
                     ],
                 ],
                 targetPage,
@@ -1716,8 +2377,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 57,
-                    y: 28.015625,
+                    x: 175,
+                    y: 9.015625,
                 },
             })
         }
@@ -1725,8 +2386,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Domain"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDomain"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
                     ],
                 ],
                 targetPage,
@@ -1734,8 +2402,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Domain"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDomain"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDomain",
                     ],
                 ],
                 targetPage,
@@ -1765,8 +2440,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Type"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureType"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
                     ],
                 ],
                 targetPage,
@@ -1774,8 +2456,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Type"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureType"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
                     ],
                 ],
                 targetPage,
@@ -1783,8 +2472,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 107,
-                    y: 11.015625,
+                    x: 164,
+                    y: 21.015625,
                 },
             })
         }
@@ -1792,8 +2481,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Type"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureType"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
                     ],
                 ],
                 targetPage,
@@ -1801,8 +2497,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Type"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureType"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureType",
                     ],
                 ],
                 targetPage,
@@ -1832,8 +2535,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointInProgram",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePoint.measurePointLocation"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -1841,8 +2551,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointInProgram",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePoint.measurePointLocation"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -1850,8 +2567,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 81,
-                    y: 20.015625,
+                    x: 132,
+                    y: 14.015625,
                 },
             })
         }
@@ -1859,8 +2576,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointInProgram",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePoint.measurePointLocation"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -1868,75 +2592,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointInProgram",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
                     ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            const inputType = await element.evaluate((el) => el.type)
-            if (inputType === "select-one") {
-                await changeSelectElement(element, "In Final Year of Program")
-            } else if (
-                [
-                    "textarea",
-                    "text",
-                    "url",
-                    "tel",
-                    "search",
-                    "password",
-                    "number",
-                    "email",
-                ].includes(inputType)
-            ) {
-                await typeIntoElement(element, "In Final Year of Program")
-            } else {
-                await changeElementValue(element, "In Final Year of Program")
-            }
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePoint.measurePointLocation"]',
                     ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 93,
-                    y: 12.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -1966,8 +2630,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Population Measured Details"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePopulation.measurePopulationDropDown"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
                     ],
                 ],
                 targetPage,
@@ -1975,8 +2646,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Population Measured Details"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePopulation.measurePopulationDropDown"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
                     ],
                 ],
                 targetPage,
@@ -1984,8 +2662,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 73,
-                    y: 60.015625,
+                    x: 93,
+                    y: 16.015625,
                 },
             })
         }
@@ -1993,8 +2671,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Population Measured Details"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePopulation.measurePopulationDropDown"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
                     ],
                 ],
                 targetPage,
@@ -2002,35 +2687,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Population Measured Details"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
                     ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 79,
-                    y: 21.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePopulation.measurePopulationDropDown"]',
                     ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDropDown",
                     ],
                 ],
                 targetPage,
@@ -2069,8 +2734,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -2078,8 +2750,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -2087,8 +2766,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 78,
-                    y: 20.015625,
+                    x: 102,
+                    y: 19.015625,
                 },
             })
         }
@@ -2096,8 +2775,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -2105,75 +2791,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            const inputType = await element.evaluate((el) => el.type)
-            if (inputType === "select-one") {
-                await changeSelectElement(element, "N/A")
-            } else if (
-                [
-                    "textarea",
-                    "text",
-                    "url",
-                    "tel",
-                    "search",
-                    "password",
-                    "number",
-                    "email",
-                ].includes(inputType)
-            ) {
-                await typeIntoElement(element, "N/A")
-            } else {
-                await changeElementValue(element, "N/A")
-            }
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measurePopulation.measurePopulationDesc"]',
                     ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 16,
-                    y: 14.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -2203,8 +2829,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Frequency of Data Collection"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDataFreq"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
                     ],
                 ],
                 targetPage,
@@ -2212,8 +2845,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Frequency of Data Collection"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDataFreq"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
                     ],
                 ],
                 targetPage,
@@ -2221,8 +2861,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 108,
-                    y: 17.015625,
+                    x: 102,
+                    y: 18.015625,
                 },
             })
         }
@@ -2230,8 +2870,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Frequency of Data Collection"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDataFreq"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
                     ],
                 ],
                 targetPage,
@@ -2239,8 +2886,110 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Frequency of Data Collection"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureDataFreq"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
+                    ],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            const inputType = await element.evaluate((el) => el.type)
+            if (inputType === "select-one") {
+                await changeSelectElement(element, "Once/year")
+            } else if (
+                [
+                    "textarea",
+                    "text",
+                    "url",
+                    "tel",
+                    "search",
+                    "password",
+                    "number",
+                    "email",
+                ].includes(inputType)
+            ) {
+                await typeIntoElement(element, "Once/year")
+            } else {
+                await changeElementValue(element, "Once/year")
+            }
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    ["aria/Proficiency Threshold"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    ["aria/Proficiency Threshold"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            await element.click({
+                offset: {
+                    x: 88,
+                    y: 23.015625,
+                },
+            })
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    ["aria/Proficiency Threshold"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    ["aria/Proficiency Threshold"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyThreshold",
                     ],
                 ],
                 targetPage,
@@ -2270,8 +3019,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -2279,8 +3035,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -2288,8 +3051,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 107,
-                    y: 21.015625,
+                    x: 220,
+                    y: 1.015625,
                 },
             })
         }
@@ -2297,8 +3060,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -2306,8 +3076,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -2337,26 +3114,26 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
-                    ],
+                    ["#jsonform-8-elt-counter-31 > div a"],
+                    ['xpath///*[@id="jsonform-8-elt-counter-31"]/div/ul/li/a'],
+                    ["pierce/#jsonform-8-elt-counter-31 > div a"],
                 ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
                 [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
-                    ],
+                    ["#jsonform-8-elt-counter-31 > div a"],
+                    ['xpath///*[@id="jsonform-8-elt-counter-31"]/div/ul/li/a'],
+                    ["pierce/#jsonform-8-elt-counter-31 > div a"],
                 ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 84,
-                    y: 14.015625,
+                    x: 60,
+                    y: 22.015625,
                 },
             })
         }
@@ -2364,8 +3141,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -2373,48 +3157,23 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.measureDataFreq",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            const inputType = await element.evaluate((el) => el.type)
-            if (inputType === "select-one") {
-                await changeSelectElement(element, "Once/year")
-            } else if (
-                [
-                    "textarea",
-                    "text",
-                    "url",
-                    "tel",
-                    "search",
-                    "password",
-                    "number",
-                    "email",
-                ].includes(inputType)
-            ) {
-                await typeIntoElement(element, "Once/year")
-            } else {
-                await changeElementValue(element, "Once/year")
-            }
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-counter-30 > div > ul > li > a"]],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [["#jsonform-5-elt-counter-30 > div > ul > li > a"]],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 54,
+                    x: 53,
                     y: 23.015625,
                 },
             })
@@ -2423,8 +3182,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -2432,333 +3198,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 117,
-                    y: 17.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1Range"]',
                     ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            const inputType = await element.evaluate((el) => el.type)
-            if (inputType === "select-one") {
-                await changeSelectElement(element, "01/01/2023 to 02/01/2023")
-            } else if (
-                [
-                    "textarea",
-                    "text",
-                    "url",
-                    "tel",
-                    "search",
-                    "password",
-                    "number",
-                    "email",
-                ].includes(inputType)
-            ) {
-                await typeIntoElement(element, "01/01/2023 to 02/01/2023")
-            } else {
-                await changeElementValue(element, "01/01/2023 to 02/01/2023")
-            }
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 104,
-                    y: 6.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            const inputType = await element.evaluate((el) => el.type)
-            if (inputType === "select-one") {
-                await changeSelectElement(element, "65")
-            } else if (
-                [
-                    "textarea",
-                    "text",
-                    "url",
-                    "tel",
-                    "search",
-                    "password",
-                    "number",
-                    "email",
-                ].includes(inputType)
-            ) {
-                await typeIntoElement(element, "65")
-            } else {
-                await changeElementValue(element, "65")
-            }
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 115,
-                    y: 20.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            const inputType = await element.evaluate((el) => el.type)
-            if (inputType === "select-one") {
-                await changeSelectElement(element, "77%")
-            } else if (
-                [
-                    "textarea",
-                    "text",
-                    "url",
-                    "tel",
-                    "search",
-                    "password",
-                    "number",
-                    "email",
-                ].includes(inputType)
-            ) {
-                await typeIntoElement(element, "77%")
-            } else {
-                await changeElementValue(element, "77%")
-            }
-        }
-        await page.screenshot({
-            path: "./test-pdfs/test-screenshots/TestCaseThreeSLO2Data1.png",
-        })
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-counter-30 > a.btn.btn-default._jsonform-array-addmore > i",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-counter-30 > a.btn.btn-default._jsonform-array-addmore > i",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 12,
-                    y: 12.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1Range > div > input",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1Range > div > input",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 121,
-                    y: 12.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1Range > div > input",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1Range > div > input",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            const inputType = await element.evaluate((el) => el.type)
-            if (inputType === "select-one") {
-                await changeSelectElement(element, "01/01/2023 to 02/01/2023")
-            } else if (
-                [
-                    "textarea",
-                    "text",
-                    "url",
-                    "tel",
-                    "search",
-                    "password",
-                    "number",
-                    "email",
-                ].includes(inputType)
-            ) {
-                await typeIntoElement(element, "01/01/2023 to 02/01/2023")
-            } else {
-                await changeElementValue(element, "01/01/2023 to 02/01/2023")
-            }
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1Range > div > input",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1Range > div > input",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 28,
-                    y: 19.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1Range > div > input",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1Range > div > input",
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -2788,8 +3236,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1NumStudents > div > input",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -2797,8 +3252,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1NumStudents > div > input",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -2806,8 +3268,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 163,
-                    y: 20.015625,
+                    x: 94,
+                    y: 21.015625,
                 },
             })
         }
@@ -2815,8 +3277,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1NumStudents > div > input",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -2824,8 +3293,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1NumStudents > div > input",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -2856,7 +3332,16 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1PercStudents > div > input",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -2865,7 +3350,16 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1PercStudents > div > input",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -2873,8 +3367,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 105,
-                    y: 6.015625,
+                    x: 112,
+                    y: 18.015625,
                 },
             })
         }
@@ -2883,7 +3377,16 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1PercStudents > div > input",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -2892,7 +3395,16 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "html > body > div:nth-child(7) > form > div > fieldset:nth-child(2) > div > div > div > div > div > div.tab-pane.active > div > div.form-group.jsonform-error- > div > div > div > div > div > fieldset > div.form-group.jsonform-error- > div > div > div > div > div.tab-pane.active > fieldset > div.form-group.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[0\\]---datacollection---dataResultsSLO1PercStudents > div > input",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[0].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[0\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -2918,16 +3430,14 @@ function fnTestingCaseThree(callback) {
                 await changeElementValue(element, "88%")
             }
         }
-        await page.pdf({
-            path: "./test-pdfs/TestCaseThreeSLO2Measure1.pdf",
-            format: "A4",
-        })
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["#jsonform-8-elt-counter-29 > a._jsonform-array-addmore"],
+                    ['xpath///*[@id="jsonform-8-elt-counter-29"]/a[1]'],
                     [
-                        "#jsonform-5-elt-counter-28 > a.btn.btn-default._jsonform-array-addmore > i",
+                        "pierce/#jsonform-8-elt-counter-29 > a._jsonform-array-addmore",
                     ],
                 ],
                 targetPage,
@@ -2935,8 +3445,10 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["#jsonform-8-elt-counter-29 > a._jsonform-array-addmore"],
+                    ['xpath///*[@id="jsonform-8-elt-counter-29"]/a[1]'],
                     [
-                        "#jsonform-5-elt-counter-28 > a.btn.btn-default._jsonform-array-addmore > i",
+                        "pierce/#jsonform-8-elt-counter-29 > a._jsonform-array-addmore",
                     ],
                 ],
                 targetPage,
@@ -2944,8 +3456,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 12,
-                    y: 4.015625,
+                    x: 27,
+                    y: 24.015625,
                 },
             })
         }
@@ -2954,7 +3466,11 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
+                        "div.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[1\\]---measureDescription > label",
+                    ],
+                    ['xpath///*[@id="jsonform-8-elt-counter-32"]/div[2]/label'],
+                    [
+                        "pierce/div.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[1\\]---measureDescription > label",
                     ],
                 ],
                 targetPage,
@@ -2963,7 +3479,11 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
+                        "div.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[1\\]---measureDescription > label",
+                    ],
+                    ['xpath///*[@id="jsonform-8-elt-counter-32"]/div[2]/label'],
+                    [
+                        "pierce/div.jsonform-error-SLOInformation\\[1\\]---assessmentMeasure\\[1\\]---measureDescription > label",
                     ],
                 ],
                 targetPage,
@@ -2972,7 +3492,7 @@ function fnTestingCaseThree(callback) {
             await element.click({
                 offset: {
                     x: 123,
-                    y: 26.015625,
+                    y: 0.015625,
                 },
             })
         }
@@ -2980,8 +3500,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Title of the Measure"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureTitle"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
                     ],
                 ],
                 targetPage,
@@ -2989,122 +3516,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Title of the Measure"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
                     ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            const inputType = await element.evaluate((el) => el.type)
-            if (inputType === "select-one") {
-                await changeSelectElement(
-                    element,
-                    "Task creation and completion rate"
-                )
-            } else if (
-                [
-                    "textarea",
-                    "text",
-                    "url",
-                    "tel",
-                    "search",
-                    "password",
-                    "number",
-                    "email",
-                ].includes(inputType)
-            ) {
-                await typeIntoElement(
-                    element,
-                    "Task creation and completion rate"
-                )
-            } else {
-                await changeElementValue(
-                    element,
-                    "Task creation and completion rate"
-                )
-            }
-        }
-        {
-            const targetPage = page
-            await targetPage.keyboard.down("Tab")
-        }
-        {
-            const targetPage = page
-            await targetPage.keyboard.up("Tab")
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDescription",
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureTitle"]',
                     ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDescription",
-                    ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            const inputType = await element.evaluate((el) => el.type)
-            if (inputType === "select-one") {
-                await changeSelectElement(
-                    element,
-                    "Encourages high throughput of tasks"
-                )
-            } else if (
-                [
-                    "textarea",
-                    "text",
-                    "url",
-                    "tel",
-                    "search",
-                    "password",
-                    "number",
-                    "email",
-                ].includes(inputType)
-            ) {
-                await typeIntoElement(
-                    element,
-                    "Encourages high throughput of tasks"
-                )
-            } else {
-                await changeElementValue(
-                    element,
-                    "Encourages high throughput of tasks"
-                )
-            }
-        }
-        {
-            const targetPage = page
-            await targetPage.keyboard.down("Tab")
-        }
-        {
-            const targetPage = page
-            await targetPage.keyboard.up("Tab")
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
-                    ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
-                    [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
                     ],
                 ],
                 targetPage,
@@ -3112,8 +3532,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 85,
-                    y: 13.015625,
+                    x: 120,
+                    y: 16.015625,
                 },
             })
         }
@@ -3121,8 +3541,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Title of the Measure"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureTitle"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
                     ],
                 ],
                 targetPage,
@@ -3130,8 +3557,223 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Title of the Measure"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureTitle"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureTitle",
+                    ],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            const inputType = await element.evaluate((el) => el.type)
+            if (inputType === "select-one") {
+                await changeSelectElement(
+                    element,
+                    "Task creation and completion rate"
+                )
+            } else if (
+                [
+                    "textarea",
+                    "text",
+                    "url",
+                    "tel",
+                    "search",
+                    "password",
+                    "number",
+                    "email",
+                ].includes(inputType)
+            ) {
+                await typeIntoElement(
+                    element,
+                    "Task creation and completion rate"
+                )
+            } else {
+                await changeElementValue(
+                    element,
+                    "Task creation and completion rate"
+                )
+            }
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDescription",
+                    ],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDescription",
+                    ],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            await element.click({
+                offset: {
+                    x: 169,
+                    y: 22.015625,
+                },
+            })
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDescription",
+                    ],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    ["aria/Describe How the Measure Aligns to the SLO"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDescription",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureDescription"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDescription",
+                    ],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            const inputType = await element.evaluate((el) => el.type)
+            if (inputType === "select-one") {
+                await changeSelectElement(
+                    element,
+                    "Encourages high throughput of tasks"
+                )
+            } else if (
+                [
+                    "textarea",
+                    "text",
+                    "url",
+                    "tel",
+                    "search",
+                    "password",
+                    "number",
+                    "email",
+                ].includes(inputType)
+            ) {
+                await typeIntoElement(
+                    element,
+                    "Encourages high throughput of tasks"
+                )
+            } else {
+                await changeElementValue(
+                    element,
+                    "Encourages high throughput of tasks"
+                )
+            }
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    ["aria/Domain"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureDomain"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
+                    ],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    ["aria/Domain"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureDomain"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
+                    ],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            await element.click({
+                offset: {
+                    x: 175,
+                    y: 20.015625,
+                },
+            })
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    ["aria/Domain"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureDomain"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
+                    ],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    ["aria/Domain"],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureDomain"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureDomain",
                     ],
                 ],
                 targetPage,
@@ -3161,8 +3803,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureType",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measurePoint.measurePointLocation"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -3170,8 +3819,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureType",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measurePoint.measurePointLocation"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -3179,8 +3835,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 80,
-                    y: 15.015625,
+                    x: 129,
+                    y: 20.015625,
                 },
             })
         }
@@ -3188,8 +3844,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measurePoint.measurePointLocation"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -3197,35 +3860,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Point Description"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
                     ],
-                ],
-                targetPage,
-                { timeout, visible: true }
-            )
-            await element.click({
-                offset: {
-                    x: 98,
-                    y: 12.015625,
-                },
-            })
-        }
-        {
-            const targetPage = page
-            await scrollIntoViewIfNeeded(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measurePoint.measurePointLocation"]',
                     ],
-                ],
-                targetPage,
-                timeout
-            )
-            const element = await waitForSelectors(
-                [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePoint\\.measurePointLocation",
                     ],
                 ],
                 targetPage,
@@ -3255,8 +3898,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -3264,8 +3914,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -3273,8 +3930,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 50,
-                    y: 18.015625,
+                    x: 126,
+                    y: 22.015625,
                 },
             })
         }
@@ -3282,8 +3939,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -3291,8 +3955,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Describe here"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measurePopulation.measurePopulationDesc"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measurePopulation\\.measurePopulationDesc",
                     ],
                 ],
                 targetPage,
@@ -3322,8 +3993,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Proficiency Threshold"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
                     ],
                 ],
                 targetPage,
@@ -3331,8 +4009,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Proficiency Threshold"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
                     ],
                 ],
                 targetPage,
@@ -3340,8 +4025,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 87,
-                    y: 9.015625,
+                    x: 113,
+                    y: 17.015625,
                 },
             })
         }
@@ -3349,8 +4034,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Proficiency Threshold"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
                     ],
                 ],
                 targetPage,
@@ -3358,8 +4050,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Proficiency Threshold"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureProficiencyThreshold"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyThreshold",
                     ],
                 ],
                 targetPage,
@@ -3389,8 +4088,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -3398,8 +4104,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -3407,8 +4120,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 74,
-                    y: 22.015625,
+                    x: 71,
+                    y: 25.015625,
                 },
             })
         }
@@ -3416,8 +4129,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -3425,8 +4145,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Program Proficiency Target"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].measureProficiencyTarget"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.measureProficiencyTarget",
                     ],
                 ],
                 targetPage,
@@ -3455,18 +4182,26 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-counter-32 > div > ul > li > a"]],
+                [
+                    ["#jsonform-8-elt-counter-33 > div a"],
+                    ['xpath///*[@id="jsonform-8-elt-counter-33"]/div/ul/li/a'],
+                    ["pierce/#jsonform-8-elt-counter-33 > div a"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-counter-32 > div > ul > li > a"]],
+                [
+                    ["#jsonform-8-elt-counter-33 > div a"],
+                    ['xpath///*[@id="jsonform-8-elt-counter-33"]/div/ul/li/a'],
+                    ["pierce/#jsonform-8-elt-counter-33 > div a"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 53,
+                    x: 58,
                     y: 21.015625,
                 },
             })
@@ -3475,8 +4210,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -3484,8 +4226,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -3493,8 +4242,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 95,
-                    y: 17.015625,
+                    x: 39,
+                    y: 18.015625,
                 },
             })
         }
@@ -3502,8 +4251,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -3511,8 +4267,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Data Collection Date Range"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1Range"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1Range",
                     ],
                 ],
                 targetPage,
@@ -3542,8 +4305,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -3551,8 +4321,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -3560,8 +4337,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 57,
-                    y: 19.015625,
+                    x: 51,
+                    y: 12.015625,
                 },
             })
         }
@@ -3569,8 +4346,15 @@ function fnTestingCaseThree(callback) {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -3578,8 +4362,15 @@ function fnTestingCaseThree(callback) {
             )
             const element = await waitForSelectors(
                 [
+                    ["aria/Number of Students Assessed"],
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1NumStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1NumStudents",
                     ],
                 ],
                 targetPage,
@@ -3610,7 +4401,16 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -3619,7 +4419,16 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -3627,8 +4436,8 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 73,
-                    y: 23.015625,
+                    x: 68,
+                    y: 16.015625,
                 },
             })
         }
@@ -3637,7 +4446,16 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -3646,7 +4464,16 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                        "aria/Percentage of Students who Met/Exceeded Threshold Proficiency",
+                    ],
+                    [
+                        "#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].assessmentMeasure[1].datacollection.dataResultsSLO1PercStudents"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.assessmentMeasure\\[1\\]\\.datacollection\\.dataResultsSLO1PercStudents",
                     ],
                 ],
                 targetPage,
@@ -3677,7 +4504,13 @@ function fnTestingCaseThree(callback) {
             await scrollIntoViewIfNeeded(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.dataSLOStatus > div:nth-child(3) > label",
+                        "div.jsonform-error-SLOInformation\\[1\\]---dataSLOStatus div:nth-of-type(3) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].dataSLOStatus"]/div[3]/label',
+                    ],
+                    [
+                        "pierce/div.jsonform-error-SLOInformation\\[1\\]---dataSLOStatus div:nth-of-type(3) > label",
                     ],
                 ],
                 targetPage,
@@ -3686,7 +4519,13 @@ function fnTestingCaseThree(callback) {
             const element = await waitForSelectors(
                 [
                     [
-                        "#jsonform-5-elt-SLOInformation\\[1\\]\\.dataSLOStatus > div:nth-child(3) > label",
+                        "div.jsonform-error-SLOInformation\\[1\\]---dataSLOStatus div:nth-of-type(3) > label",
+                    ],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].dataSLOStatus"]/div[3]/label',
+                    ],
+                    [
+                        "pierce/div.jsonform-error-SLOInformation\\[1\\]---dataSLOStatus div:nth-of-type(3) > label",
                     ],
                 ],
                 targetPage,
@@ -3694,39 +4533,83 @@ function fnTestingCaseThree(callback) {
             )
             await element.click({
                 offset: {
-                    x: 47,
-                    y: 14.015625,
+                    x: 69,
+                    y: 10.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-SLOInformation\\[1\\]\\.decisionActions"]],
+                [
+                    [
+                        "aria/Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                    ],
+                    ["#jsonform-8-elt-SLOInformation\\[1\\]\\.decisionActions"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].decisionActions"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.decisionActions",
+                    ],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-SLOInformation\\[1\\]\\.decisionActions"]],
+                [
+                    [
+                        "aria/Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                    ],
+                    ["#jsonform-8-elt-SLOInformation\\[1\\]\\.decisionActions"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].decisionActions"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.decisionActions",
+                    ],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 206,
-                    y: 109.015625,
+                    x: 148,
+                    y: 57.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-SLOInformation\\[1\\]\\.decisionActions"]],
+                [
+                    [
+                        "aria/Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                    ],
+                    ["#jsonform-8-elt-SLOInformation\\[1\\]\\.decisionActions"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].decisionActions"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.decisionActions",
+                    ],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-SLOInformation\\[1\\]\\.decisionActions"]],
+                [
+                    [
+                        "aria/Decisions and Actions - Briefly describe specific decisions and actions related to each SLO (e.g., SLO/goal-related changes, method/process-related changes, stakeholder engagement changes, etc.).",
+                    ],
+                    ["#jsonform-8-elt-SLOInformation\\[1\\]\\.decisionActions"],
+                    [
+                        'xpath///*[@id="jsonform-8-elt-SLOInformation[1].decisionActions"]',
+                    ],
+                    [
+                        "pierce/#jsonform-8-elt-SLOInformation\\[1\\]\\.decisionActions",
+                    ],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -3762,31 +4645,59 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-cSegment"]],
+                [
+                    [
+                        "aria/B. Describe how stakeholders (both internal and external) are involved in the creation and/or review of SLOs as well as how SLOs are communicated to stakeholders.",
+                    ],
+                    ["#jsonform-8-elt-cSegment"],
+                    ['xpath///*[@id="jsonform-8-elt-cSegment"]'],
+                    ["pierce/#jsonform-8-elt-cSegment"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-cSegment"]],
+                [
+                    [
+                        "aria/B. Describe how stakeholders (both internal and external) are involved in the creation and/or review of SLOs as well as how SLOs are communicated to stakeholders.",
+                    ],
+                    ["#jsonform-8-elt-cSegment"],
+                    ['xpath///*[@id="jsonform-8-elt-cSegment"]'],
+                    ["pierce/#jsonform-8-elt-cSegment"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 118,
-                    y: 33.015625,
+                    x: 369,
+                    y: 46.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-cSegment"]],
+                [
+                    [
+                        "aria/B. Describe how stakeholders (both internal and external) are involved in the creation and/or review of SLOs as well as how SLOs are communicated to stakeholders.",
+                    ],
+                    ["#jsonform-8-elt-cSegment"],
+                    ['xpath///*[@id="jsonform-8-elt-cSegment"]'],
+                    ["pierce/#jsonform-8-elt-cSegment"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-cSegment"]],
+                [
+                    [
+                        "aria/B. Describe how stakeholders (both internal and external) are involved in the creation and/or review of SLOs as well as how SLOs are communicated to stakeholders.",
+                    ],
+                    ["#jsonform-8-elt-cSegment"],
+                    ['xpath///*[@id="jsonform-8-elt-cSegment"]'],
+                    ["pierce/#jsonform-8-elt-cSegment"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -3816,31 +4727,59 @@ function fnTestingCaseThree(callback) {
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-measureComplementDirect"]],
+                [
+                    [
+                        "aria/C. Describe any indirect measures or additional data the program uses to complement the direct measures of SLOs.",
+                    ],
+                    ["#jsonform-8-elt-measureComplementDirect"],
+                    ['xpath///*[@id="jsonform-8-elt-measureComplementDirect"]'],
+                    ["pierce/#jsonform-8-elt-measureComplementDirect"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-measureComplementDirect"]],
+                [
+                    [
+                        "aria/C. Describe any indirect measures or additional data the program uses to complement the direct measures of SLOs.",
+                    ],
+                    ["#jsonform-8-elt-measureComplementDirect"],
+                    ['xpath///*[@id="jsonform-8-elt-measureComplementDirect"]'],
+                    ["pierce/#jsonform-8-elt-measureComplementDirect"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 250,
-                    y: 70.015625,
+                    x: 238,
+                    y: 48.015625,
                 },
             })
         }
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-measureComplementDirect"]],
+                [
+                    [
+                        "aria/C. Describe any indirect measures or additional data the program uses to complement the direct measures of SLOs.",
+                    ],
+                    ["#jsonform-8-elt-measureComplementDirect"],
+                    ['xpath///*[@id="jsonform-8-elt-measureComplementDirect"]'],
+                    ["pierce/#jsonform-8-elt-measureComplementDirect"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-measureComplementDirect"]],
+                [
+                    [
+                        "aria/C. Describe any indirect measures or additional data the program uses to complement the direct measures of SLOs.",
+                    ],
+                    ["#jsonform-8-elt-measureComplementDirect"],
+                    ['xpath///*[@id="jsonform-8-elt-measureComplementDirect"]'],
+                    ["pierce/#jsonform-8-elt-measureComplementDirect"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -3866,21 +4805,60 @@ function fnTestingCaseThree(callback) {
         }
         {
             const targetPage = page
-            await targetPage.keyboard.down("Tab")
-        }
-        {
-            const targetPage = page
-            await targetPage.keyboard.up("Tab")
-        }
-        {
-            const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-dataResultsDescription"]],
+                [
+                    [
+                        "aria/D. Describe how results are communicated within the program. Address each SLO. If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.",
+                    ],
+                    ["#jsonform-8-elt-dataResultsDescription"],
+                    ['xpath///*[@id="jsonform-8-elt-dataResultsDescription"]'],
+                    ["pierce/#jsonform-8-elt-dataResultsDescription"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-dataResultsDescription"]],
+                [
+                    [
+                        "aria/D. Describe how results are communicated within the program. Address each SLO. If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.",
+                    ],
+                    ["#jsonform-8-elt-dataResultsDescription"],
+                    ['xpath///*[@id="jsonform-8-elt-dataResultsDescription"]'],
+                    ["pierce/#jsonform-8-elt-dataResultsDescription"],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            await element.click({
+                offset: {
+                    x: 181,
+                    y: 105.015625,
+                },
+            })
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    [
+                        "aria/D. Describe how results are communicated within the program. Address each SLO. If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.",
+                    ],
+                    ["#jsonform-8-elt-dataResultsDescription"],
+                    ['xpath///*[@id="jsonform-8-elt-dataResultsDescription"]'],
+                    ["pierce/#jsonform-8-elt-dataResultsDescription"],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    [
+                        "aria/D. Describe how results are communicated within the program. Address each SLO. If possible, please include the date(s) that Academic Program Assessment results were/will be discussed.",
+                    ],
+                    ["#jsonform-8-elt-dataResultsDescription"],
+                    ['xpath///*[@id="jsonform-8-elt-dataResultsDescription"]'],
+                    ["pierce/#jsonform-8-elt-dataResultsDescription"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -3906,21 +4884,52 @@ function fnTestingCaseThree(callback) {
         }
         {
             const targetPage = page
-            await targetPage.keyboard.down("Tab")
-        }
-        {
-            const targetPage = page
-            await targetPage.keyboard.up("Tab")
-        }
-        {
-            const targetPage = page
             await scrollIntoViewIfNeeded(
-                [["#jsonform-5-elt-additionalInformation"]],
+                [
+                    ["aria/E. Additional Information"],
+                    ["#jsonform-8-elt-additionalInformation"],
+                    ['xpath///*[@id="jsonform-8-elt-additionalInformation"]'],
+                    ["pierce/#jsonform-8-elt-additionalInformation"],
+                ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
-                [["#jsonform-5-elt-additionalInformation"]],
+                [
+                    ["aria/E. Additional Information"],
+                    ["#jsonform-8-elt-additionalInformation"],
+                    ['xpath///*[@id="jsonform-8-elt-additionalInformation"]'],
+                    ["pierce/#jsonform-8-elt-additionalInformation"],
+                ],
+                targetPage,
+                { timeout, visible: true }
+            )
+            await element.click({
+                offset: {
+                    x: 187,
+                    y: 49.015625,
+                },
+            })
+        }
+        {
+            const targetPage = page
+            await scrollIntoViewIfNeeded(
+                [
+                    ["aria/E. Additional Information"],
+                    ["#jsonform-8-elt-additionalInformation"],
+                    ['xpath///*[@id="jsonform-8-elt-additionalInformation"]'],
+                    ["pierce/#jsonform-8-elt-additionalInformation"],
+                ],
+                targetPage,
+                timeout
+            )
+            const element = await waitForSelectors(
+                [
+                    ["aria/E. Additional Information"],
+                    ["#jsonform-8-elt-additionalInformation"],
+                    ['xpath///*[@id="jsonform-8-elt-additionalInformation"]'],
+                    ["pierce/#jsonform-8-elt-additionalInformation"],
+                ],
                 targetPage,
                 { timeout, visible: true }
             )
@@ -3944,29 +4953,32 @@ function fnTestingCaseThree(callback) {
                 await changeElementValue(element, "No additional information")
             }
         }
-
         {
             const targetPage = page
             await scrollIntoViewIfNeeded(
                 [
-                    ["#TestingDesign2Json > div > input"],
-                    ["pierce/#TestingDesign2Json > div > input"],
+                    ["aria/Submit"],
+                    ["#nonAccGradSampleJson > div > input"],
+                    ['xpath///*[@id="submitForm"]'],
+                    ["pierce/#nonAccGradSampleJson > div > input"],
                 ],
                 targetPage,
                 timeout
             )
             const element = await waitForSelectors(
                 [
-                    ["#TestingDesign2Json > div > input"],
-                    ["pierce/#TestingDesign2Json > div > input"],
+                    ["aria/Submit"],
+                    ["#nonAccGradSampleJson > div > input"],
+                    ['xpath///*[@id="submitForm"]'],
+                    ["pierce/#nonAccGradSampleJson > div > input"],
                 ],
                 targetPage,
                 { timeout, visible: true }
             )
             await element.click({
                 offset: {
-                    x: 13,
-                    y: 15.015625,
+                    x: 45,
+                    y: 19.015625,
                 },
             })
         }
@@ -4344,13 +5356,13 @@ function fnTestingCaseThree(callback) {
     })
 }
 
-// QUnit.module("fnTestingCaseThree", (hooks) => {
-//     QUnit.test("Test Case Three", (assert) => {
-//         const done = assert.async()
-//         fnTestingCaseThree((res) => {
-//             var oJSONActual = JSON.parse(res)
-//             assert.true(_.isEqual(oJSONActual, oJSONModelExpected))
-//             done()
-//         })
-//     })
-// })
+QUnit.module("fnTestingCaseThree", (hooks) => {
+    QUnit.test("Test Case Three", (assert) => {
+        const done = assert.async()
+        fnTestingCaseThree((res) => {
+            var oJSONActual = JSON.parse(res)
+            assert.true(_.isEqual(oJSONActual, oJSONModelExpected))
+            done()
+        })
+    })
+})
